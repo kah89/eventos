@@ -1,0 +1,24 @@
+[02-Oct-2020 15:14:24 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function CodeIgniter\locale_set_default() in /home/farmaceu/public_html/teste/system/CodeIgniter.php:184
+Stack trace:
+#0 /home/farmaceu/public_html/teste/system/bootstrap.php(181): CodeIgniter\CodeIgniter->initialize()
+#1 /home/farmaceu/public_html/teste/public/index.php(36): require('/home/farmaceu/...')
+#2 {main}
+  thrown in /home/farmaceu/public_html/teste/system/CodeIgniter.php on line 184
+[02-Oct-2020 10:29:50 America/Chicago] PHP Warning:  Uncaught ErrorException: require_once(/home/farmaceu/public_html/inscricoes/system/ThirdParty/Kint/init.php): failed to open stream: No such file or directory in /home/farmaceu/public_html/inscricoes/system/CodeIgniter.php:230
+Stack trace:
+#0 /home/farmaceu/public_html/inscricoes/system/CodeIgniter.php(230): CodeIgniter\Debug\Exceptions->errorHandler(2, 'require_once(/h...', '/home/farmaceu/...', 230, Array)
+#1 /home/farmaceu/public_html/inscricoes/system/CodeIgniter.php(230): require_once()
+#2 /home/farmaceu/public_html/inscricoes/system/CodeIgniter.php(197): CodeIgniter\CodeIgniter->initializeKint()
+#3 /home/farmaceu/public_html/inscricoes/system/bootstrap.php(181): CodeIgniter\CodeIgniter->initialize()
+#4 /home/farmaceu/public_html/inscricoes/public/index.php(36): require('/home/farmaceu/...')
+#5 {main}
+  thrown in /home/farmaceu/public_html/inscricoes/system/CodeIgniter.php on line 230
+[02-Oct-2020 10:29:50 America/Chicago] PHP Fatal error:  CodeIgniter\CodeIgniter::initializeKint(): Failed opening required '/home/farmaceu/public_html/inscricoes/system/ThirdParty/Kint/init.php' (include_path='.:/opt/cpanel/ea-php72/root/usr/share/pear') in /home/farmaceu/public_html/inscricoes/system/CodeIgniter.php on line 230
+[02-Oct-2020 10:29:50 America/Chicago] PHP Fatal error:  Uncaught ErrorException: include_once(/home/farmaceu/public_html/inscricoes/system/ThirdParty/PSR/Log/LoggerInterface.php): failed to open stream: No such file or directory in /home/farmaceu/public_html/inscricoes/system/Autoloader/Autoloader.php:161
+Stack trace:
+#0 /home/farmaceu/public_html/inscricoes/system/Autoloader/Autoloader.php(161): CodeIgniter\Debug\Exceptions->errorHandler(2, 'include_once(/h...', '/home/farmaceu/...', 161, Array)
+#1 /home/farmaceu/public_html/inscricoes/system/Autoloader/Autoloader.php(161): include_once()
+#2 [internal function]: CodeIgniter\Autoloader\Autoloader->CodeIgniter\Autoloader\{closure}('Psr\\Log\\LoggerI...')
+#3 /home/farmaceu/public_html/inscricoes/system/Log/Logger.php(59): spl_autoload_call('Psr\\Log\\LoggerI...')
+#4 /home/farmaceu/public_html/inscricoes/system/Autoloader/Autoloader.php(365): require_once('/home/farmaceu/...')
+#5 /home/farmaceu/public_html/inscricoes/system/Autoloader/Autoloader.php(296): CodeIgniter\Autoloader\Autoloader->requireFile('/home/farmaceu in /home/farmaceu/public_html/inscricoes/system/Autoloader/Autoloader.php on line 161
