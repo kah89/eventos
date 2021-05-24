@@ -10,7 +10,10 @@ h2{
 <div class="container">
 	   <h2>Eventos</h2>
     <div class="row">
-    <?php if(count($data)>0){ 
+    
+    <?php 
+    // var_dump($data);exit;
+    if(count($data)>0){ 
         foreach($data as $key => $evento){
         ?>
         <div class="col-sm-4">

@@ -38,12 +38,12 @@ $routes->match(['get','post'],'/recuperacao', 'Users::recuperacaoSenha');
 $routes->match(['get','post'],'/recuperacao/(:any)', 'Users::novasenha/$1');
 $routes->get('logout', 'Users::logout');
 
-// $routes->match(['get','post'],'/eventos', 'Users::tdeventos');
+$routes->match(['get','post'],'/eventos', 'Eventos::index');
 $routes->match(['get','post'],'/editaruser', 'Users::edituser');
 $routes->match(['get','post'],'/editarativ', 'Users::editativ');
 $routes->match(['get','post'],'/editareventos', 'Users::editeventos');
 $routes->match(['get','post'],'/listarativ', 'Users::listativ');
-$routes->match(['get','post'],'/listareventos', 'Eventos::index');
+$routes->match(['get','post'],'/listareventos', 'Eventos::listar');
 $routes->match(['get','post'],'/caduser', 'Users::caduser');
 $routes->match(['get','post'],'/cadativ', 'Users::cadativ');
 $routes->match(['get','post'],'/cadevento', 'Eventos::cadeventos');
