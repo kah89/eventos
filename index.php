@@ -1,6 +1,6 @@
 <?php
-header("Access-Control-Allow-Origin: https://portal.crfsp.org.br");
-header("Access-Control-Allow-Origin: http://portal.crfsp.org.br");
+// header("Access-Control-Allow-Origin: https://portal.crfsp.org.br");
+// header("Access-Control-Allow-Origin: http://portal.crfsp.org.br");
         
 // Valid PHP Version?
 $minPHPVersion = '7.2';

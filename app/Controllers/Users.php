@@ -23,13 +23,12 @@ class Users extends BaseController
 {
     public function index()
     {
+        helper(['form']);
         $data = [
             'title' => 'I Fórum de Tecnologias na Área Farmacêutica',
         ];
-
-        helper(['form']);
-
-        if ($this->request->getMethod() == 'post') {
+        
+        if ($this->request->getMethod() == 'post') {            
             //VALIDAÇÕES
             $rules = [
                 'email' => 'required|min_length[6]|max_length[100]|valid_email',
@@ -41,13 +40,13 @@ class Users extends BaseController
                     'validateUser' => 'e-mail ou senha não conferem'
                 ]
             ];
+            
 
             if (!$this->validate($rules, $errors)) {
                 $data['validation'] = $this->validator;
             } else {
                 $model =  new UserModel();
                 $user = $model->where('email', $this->request->getVar('email'))->first();
-
                 $this->setUserSession($user);
                 $acesso =  new LogAcesso();
                 $data = [
@@ -370,8 +369,9 @@ class Users extends BaseController
         ];
 
         helper(['form']);
-
-        if ($this->request->getMethod() == 'post') {
+        
+        
+        if ($this->request->getMethod() == 'post') {            
             $rules = [
                 'email' => 'required|min_length[6]|max_length[100]|valid_email',
             ];
@@ -405,160 +405,111 @@ class Users extends BaseController
         echo view('templates/header', $data);
         echo view('recuperacao', $data);
         echo view('templates/footer');
-
     }
+
+    //--------------------------------------------------------------------
+
+     public function edituser()
+     {
+         $data = [
+             'title' => 'Editar Usuário',
+         ];
+          echo view('templates/header', $data);
+         echo view('edituser', $data);
+         echo view('templates/footer');
+     }
+ 
+ 
      //--------------------------------------------------------------------
+     public function caduser()
+     {
+        $paisModel = new PaisModel();
+        $paises = $paisModel->selectPaises();
 
-    //  public function tdeventos()
-    //  {
-    //      $data = [
-    //          'title' => 'Eventos',
-    //      ];
-    //       echo view('templates/header', $data);
-    //      echo view('tdeventos', $data);
-    //      echo view('templates/footer');
-    //  }
+        $estadoModel = new EstadoModel();
+        $uf = $estadoModel->selectUF();
 
-     //--------------------------------------------------------------------
-
-    public function edituser()
-    {
         $data = [
-            'title' => 'Editar Usuário',
-        ];
-         echo view('templates/header', $data);
-        echo view('edituser', $data);
-        echo view('templates/footer');
-    }
+            'options_paises' => $paises,
+            'options_uf' => $uf,
 
-
-    //--------------------------------------------------------------------
-
-    public function editativ()
-    {
-        $data = [
-            'title' => 'Editar Atividade',
-        ];
-         echo view('templates/header', $data);
-        echo view('editativ', $data);
-        echo view('templates/footer');
-    }
-
-
-    //--------------------------------------------------------------------
-
-    public function editeventos()
-    {
-        $data = [
-            'title' => 'Editar Evento',
-        ];
-         echo view('templates/header', $data);
-        echo view('editeventos', $data);
-        echo view('templates/footer');
-    }
-
-
-    //--------------------------------------------------------------------
-
-    public function listeventos()
-    {
-        $data = [
-            'title' => 'Listar Eventos',
-        ];
-         echo view('templates/header', $data);
-        echo view('listeventos', $data);
-        echo view('templates/footer');
-    }
-
-
-    //--------------------------------------------------------------------
-
-    public function listativ()
-    {
-        $data = [
-            'title' => 'Listar Atividades',
-        ];
-         echo view('templates/header', $data);
-        echo view('listativ', $data);
-        echo view('templates/footer');
-    }
-
-
-    //--------------------------------------------------------------------
-    // public function cadeventos()
-    // {
-    //     $data = [
-    //         'title' => 'Cadastrar Evento',
-    //     ];
-    //      echo view('templates/header', $data);
-    //     echo view('cadevento', $data);
-    //     echo view('templates/footer');
-    // }
-
-
-    //--------------------------------------------------------------------
-
-    public function cadativ()
-    {
-        $data = [
-            'title' => 'Cadastrar Atividade',
-        ];
-         echo view('templates/header', $data);
-        echo view('cadativ', $data);
-        echo view('templates/footer');
-    }
-    
-    //--------------------------------------------------------------------
-    public function caduser()
-    {
-        $data = [
             'title' => 'Cadastrar Usuário',
         ];
+        // var_dump($data); exit;
+        helper(['form']);
+
+        if ($this->request->getMethod() == 'post') {
+            //VALIDAÇÕES
+            $rules = [
+                'nome' => 'required|min_length[3]|max_length[20]',
+                'sobrenome' => 'required|min_length[3]|max_length[100]',
+                'email' => 'required|min_length[6]|max_length[100]|valid_email|is_unique[users.email]',
+                'senha' => 'required|min_length[8]|max_length[255]',
+                'senha_confirmacao' => 'matches[senha]',
+            ];
+            
+            
+            if (!$this->validate($rules)) {
+                $data['validation'] = $this->validator;
+            } else {
+                //salva no BD
+                $model =  new UserModel();
+
+
+                $newData = [
+                    'firstname' => $this->request->getVar('nome'),
+                    'lastname' => $this->request->getVar('sobrenome'),
+                    'email' => $this->request->getVar('email'),
+                    'pais' => $this->request->getVar('paises'),
+                    'estado' => $this->request->getVar('estados'),
+                    'cidade' => $this->request->getVar('cidades'),
+                    'type' => (int) $this->request->getVar('categoria'),
+                    'uf' => $this->request->getVar('uf'),
+                    'crf' => $this->request->getVar('crf'),
+                    'telefone' => $this->request->getVar('telefone'),
+                    'celular' => $this->request->getVar('celular'),
+                    'cpf' => $this->request->getVar('cpf'),
+                    'password' => $this->request->getVar('senha'),
+                ];
+
+              
+
+                if ($model->save($newData)) {
+                    if ($this->sendEmail($newData)) {
+                        $session = session();
+                        $session->setFlashdata('success', 'Seu usuario foi criado com sucesso!');
+                        return redirect()->to(base_url());
+                    } else {
+                        echo "Erro ao enviar email";
+                        exit;
+                    }
+                } else {
+                    echo "Erro ao salvar";
+                    exit;
+                }
+            }
+        }
          echo view('templates/header', $data);
-        echo view('caduser', $data);
-        echo view('templates/footer');
-    }
-
-
-    //--------------------------------------------------------------------
-
-    public function excluirevent()
-    {
-        $data = [
-            'title' => 'Excluir evento',
-        ];
-         echo view('templates/header', $data);
-        echo view('excluirevent', $data);
-        echo view('templates/footer');
-    }
-
-
-    //--------------------------------------------------------------------
-    public function excluirativ()
-    {
-        $data = [
-            'title' => 'Excluir Atividade',
-        ];
-         echo view('templates/header', $data);
-        echo view('excluirativ', $data);
-        echo view('templates/footer');
-    }
-
-
-    //--------------------------------------------------------------------
-
-    public function excluiruser()
-    {
-        $data = [
-            'title' => 'Excluir Usuário',
-        ];
-         echo view('templates/header', $data);
-        echo view('excluiruser', $data);
-        echo view('templates/footer');
-    }
-
-
-    //--------------------------------------------------------------------
+         echo view('caduser', $data);
+         echo view('templates/footer');
+     }
+ 
+ 
+    
+     //--------------------------------------------------------------------
+ 
+     public function excluiruser()
+     {
+         $data = [
+             'title' => 'Excluir Usuário',
+         ];
+          echo view('templates/header', $data);
+         echo view('excluiruser', $data);
+         echo view('templates/footer');
+     }
+ 
+ 
+     //--------------------------------------------------------------------
 
     public function logout()
     {

@@ -39,17 +39,19 @@ $routes->match(['get','post'],'/recuperacao/(:any)', 'Users::novasenha/$1');
 $routes->get('logout', 'Users::logout');
 
 $routes->match(['get','post'],'/eventos', 'Eventos::index');
-$routes->match(['get','post'],'/editaruser', 'Users::edituser');
-$routes->match(['get','post'],'/editarativ', 'Users::editativ');
-$routes->match(['get','post'],'/editareventos', 'Users::editeventos');
-$routes->match(['get','post'],'/listarativ', 'Users::listativ');
+$routes->match(['get','post'],'/editareventos', 'Eventos::editeventos');
 $routes->match(['get','post'],'/listareventos', 'Eventos::listar');
-$routes->match(['get','post'],'/caduser', 'Users::caduser');
-$routes->match(['get','post'],'/cadativ', 'Users::cadativ');
 $routes->match(['get','post'],'/cadevento', 'Eventos::cadeventos');
+$routes->match(['get','post'],'/excluirevent', 'Eventos::excluirevent');
+
+$routes->match(['get','post'],'/editaruser', 'Users::edituser');
+$routes->match(['get','post'],'/caduser', 'Users::caduser');
 $routes->match(['get','post'],'/excluiruser', 'Users::excluiruser');
-$routes->match(['get','post'],'/excluirativ', 'Users::excluirativ');
-$routes->match(['get','post'],'/excluirevent', 'Users::excluirevent');
+
+$routes->match(['get','post'],'/editarativ', 'Atividades::editativ');
+$routes->match(['get','post'],'/excluirativ', 'Atividades::excluirativ');
+$routes->match(['get','post'],'/cadativ', 'Atividades::cadativ');
+$routes->match(['get','post'],'/listarativ', 'Atividades::listativ');
 
 
 /* AJAX */

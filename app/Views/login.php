@@ -89,13 +89,13 @@
                         <div class="alert alert-success" role="alert">
                             <?= session()->get('success'); ?>
                         </div>
-                    <?php endif; ?>
+                    <?php endif; ?>                  
                     <form class="form-signin" method="post">
                         <div class="form-label-group">
-                            <input type="email" id="email" name="email" class="form-control" placeholder="Email" required autofocus>
+                            <input type="email" id="email" name="email" class="form-control" placeholder="Email" autocomplete="username" required autofocus>
                         </div>
                         <div class="form-label-group">
-                            <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" required>
+                            <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" autocomplete="current-password" required>
                         </div>
                         <?php if (isset($validation)) : ?>
                             <div class="alert alert-danger" roles="alert">

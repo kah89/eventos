@@ -170,7 +170,7 @@
                         </div>
                         <div class="form-label-group">
                             <select id="paises" name="paises" class="form-control" placeholder="Selecione o país" required style="height: calc(1.5em + .75rem + 14px);">
-                            
+                            <?php echo $options_paises; ?>
                             </select>
                         </div>
                         <div class="form-label-group">
@@ -185,7 +185,7 @@
                         </div>
                         <div class="form-label-group"><!-- Nível de usuários -->
                             <select id="categoria" name="categoria" class="form-control" style="height: calc(1.5em + .75rem + 14px);">
-                            <option value="0">Admin</option> 
+                            <option value="0">Administrador</option> 
                                 <option value="1">Estudante de Farmácia</option>
                                 <option value="2">Farmacêutico</option>
                             </select>
@@ -193,7 +193,7 @@
                         <div class="form-label-group" id="farmaceutico" style="display: none">
                             <div class="row justify-content-between" style="width: 100%;margin: 0;">
                                 <select id="uf" name="uf" class="form-control col-3" style="height: calc(1.5em + .75rem + 14px);">
-                                   
+                                <?php echo $options_uf; ?>   
                                 </select>
                                 <input type="number" id="crf" name="crf" class="form-control col-8" placeholder="CRF" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
                             </div>
@@ -215,6 +215,11 @@
                         <div class="form-label-group"> <!--cadastrar senha padrão 123456789 -->
                             <input type="password" id="senha_confirmacao" name="senha_confirmacao" class="form-control" placeholder="Confirme a Senha" required>
                         </div>
+                        <?php if (isset($validation)) : ?>
+                            <div class="alert alert-danger" roles="alert">
+                                <?= $validation->listErrors(); ?>
+                            </div>
+                        <?php endif; ?>
                         <button class="btn btn-md btn-primary  text-uppercase" type="submit">Cadastrar</button>
                         <hr class="my-4">
                     </form>
