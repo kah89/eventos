@@ -137,11 +137,33 @@ class Eventos extends BaseController
     //         }
     //     }
     // }
+
+    if($this->request->getPost('file_upload')) {
+        if($file = $this->request->getFile('profile_image')) {
+            if ($file->isValid() && !$file->hasMoved()) {
+                $newName = $file->getRandomName();
+                $file->move(WRITEPATH . 'uploads', $newName);
+                
+                echo view('file_upload', ['success' => 'Arquivo carregado com sucesso']);
+            } else {
+                $error = $file->getErrorString() . '(' . $file->getError() . ')';
+                
+                echo view('file_upload', ['error' => $error]);
+            }
+        } else {
+            echo view('file_upload', ['error' => 'Selecione um arquivo para upload']);
+        }
+    } else {
+        echo view('file_upload');
+    }
             // var_dump($imagem);exit;
             return false;
         
     }
 
+    public function upload_single_file() {
+	
+	}
  
 
     

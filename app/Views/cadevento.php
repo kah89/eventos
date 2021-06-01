@@ -16,10 +16,22 @@ h5{
 
 
 <div class="container">
-    <div class="row">
-  
+<div class="message_box">
+			<?php
+				if (isset($success) && strlen($success)) {
+					echo '<div class="success">';
+					echo '<p>' . esc($success) . '</p>';
+					echo '</div>';
+				}
 
-        
+				if (isset($error) && strlen($error)) {
+					echo '<div class="error">';
+					echo '<p>' . esc($error) . '</p>';
+					echo '</div>';
+				}
+			?>
+		</div>
+    <div class="row">
         <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
             <div class="card card-signin my-5">
                 <div class="card-body">
@@ -30,10 +42,13 @@ h5{
                     </div>
                 <?php endif ?>
                     <h5 class="card-title text-center">Cadastro de Evento </h5> <!-- utilizar a tabela eventos-->
-                    <form class="form-signin"  method="post" enctype="multipart/form-data" >  
+                    <?php
+			echo form_open_multipart('Eventos/upload_image', array('id' => 'file'));
+			?>
+                    <!-- <form class="form-signin"  method="post" enctype="multipart/form-data" >   -->
                         <div class="form-group">
                             <div  class="mb-3">
-                                <input class="form-control" onchange="readURL(this);"  value = " <? = $forEdit ['preview_image'];?> "  type="file" name="profile_image" id="file" accept="image/*"  required autofocus  > 
+                                <input class="form-control" onchange="readURL(this);"  value = " <? = $forEdit ['preview_image'];?> "  type="file" name="profile_image" id="file" accept="image/*"  readonly="true" required autofocus  > 
                                 <img id="blah"  alt="imagem" />
                             </div>
                         </div>
@@ -53,7 +68,7 @@ h5{
                                     <?= $validation->listErrors(); ?>
                                 </div>
                             <?php endif; ?>
-                            <button class="btn btn-md btn-primary  text-uppercase" id="uploadbutton" type="submit" >Cadastrar</button> 
+                            <button class="btn btn-md btn-primary  text-uppercase" name="file_upload" value="Upload File" id="uploadbutton" type="submit" >Cadastrar</button> 
                         </div>
                     </form>
                 </div>
