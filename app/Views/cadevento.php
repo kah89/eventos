@@ -66,7 +66,7 @@ h5{
                                     <?= $validation->listErrors(); ?>
                                 </div>
                             <?php endif; ?>
-                            <button class="btn btn-md btn-primary  text-uppercase" name="file_upload" value="Upload File" id="uploadbutton" type="submit" onclick = "add_user (' <?= $id?> ') ">Cadastrar</button> 
+                            <button class="btn btn-md btn-primary  text-uppercase" name="file_upload" value="Upload File" id="uploadbutton" type="submit">Cadastrar</button> 
                         </div>
                     </form>
                 </div>
