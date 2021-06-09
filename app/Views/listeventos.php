@@ -15,12 +15,12 @@
             <div class="col-12">
                 <h1 style="text-align: center; font-size:30px">Eventos </h1>
                 <?php if(count($data) > 0){?>
-                <table class="table table-hover" id="atividades">
+                <table class="table table-hover " id="atividades">
                     <thead>
                         <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Titulo</th>
-                            <th scope="col">Resumo</th>
+                            <th scope="col2">ID</th>
+                            <th scope="col4">Titulo</th>
+                            <th scope="col6">Resumo</th>
                         </tr>
                     </thead>
                     <tbody>
