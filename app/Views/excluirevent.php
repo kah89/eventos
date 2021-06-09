@@ -20,7 +20,7 @@ h1, th{
                             <th scope="col">ID</th>
                             <th scope="col">Titulo</th>
                             <th scope="col">Resumo</th> 
-                            <th scope="col">Excluir</th> <!-- botão-->
+                            <th scope="col">Ações</th> <!-- botão-->
                         </tr>
                     </thead>
                 </table>

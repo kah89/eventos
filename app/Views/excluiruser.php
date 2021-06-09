@@ -21,7 +21,7 @@ h1, th{
                             <th scope="col">Nome</th>
                             <th scope="col">Sobrenome</th> 
                             <th scope="col">Nível</th> 
-                            <th scope="col">Excluir</th> <!-- botão-->
+                            <th scope="col">Ações</th> <!-- botão-->
                         </tr>
                     </thead>
                 </table>

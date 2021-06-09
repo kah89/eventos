@@ -22,7 +22,7 @@ h1, th{
                             <th scope="col">Conteúdo</th> 
                             <th scope="col">Data</th> 
                             <th scope="col">Certificado</th> 
-                            <th scope="col">Excluir</th> <!-- botão-->
+                            <th scope="col">Ações</th> <!-- botão-->
                         </tr>
                     </thead>
                 </table>

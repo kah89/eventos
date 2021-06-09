@@ -111,16 +111,6 @@
                         </li>
                     <li class="nav-item dropdown nav1">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Editar
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="<?= base_url('editaruser') ?>">Usuário</a> <!--DB users -->
-                        <a class="dropdown-item" href="<?= base_url('editareventos') ?>">Eventos</a> <!--DB eventos -->
-                        <a class="dropdown-item" href="<?= base_url('editarativ') ?>">Atividades</a><!--DB atividade_evento -->
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown nav1">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Listar
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -140,7 +130,7 @@
                     </li>
                     <li class="nav-item dropdown nav1">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Excluir
+                        Alterações
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="<?= base_url('excluirevent') ?>">Eventos</a><!--DB eventos -->
@@ -148,6 +138,16 @@
                         <a class="dropdown-item" href="<?= base_url('excluiruser') ?>">Usuários</a><!--DB users -->
                         </div>
                         
+                    </li>
+                    <li class="nav-item dropdown nav1">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Editar
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="<?= base_url('editaruser') ?>">Usuário</a> <!--DB users -->
+                        <a class="dropdown-item" href="<?= base_url('editareventos') ?>">Eventos</a> <!--DB eventos -->
+                        <a class="dropdown-item" href="<?= base_url('editarativ') ?>">Atividades</a><!--DB atividade_evento -->
+                        </div>
                     </li>
                     </ul>
                     <ul class="navbar-nav my-2 my-lg-0">
