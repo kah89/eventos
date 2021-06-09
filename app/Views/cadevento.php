@@ -16,7 +16,7 @@ h5{
 
 
 <div class="container">
-<div class="message_box">
+    <div class="message_box">
 			<?php
 				if (isset($success) && strlen($success)) {
 					echo '<div class="success">';
@@ -42,13 +42,11 @@ h5{
                     </div>
                 <?php endif ?>
                     <h5 class="card-title text-center">Cadastro de Evento </h5> <!-- utilizar a tabela eventos-->
-                    <?php
-			echo form_open_multipart('Eventos/upload_image', array('id' => 'file'));
-			?>
-                    <!-- <form class="form-signin"  method="post" enctype="multipart/form-data" >   -->
+                    <form class="form-signin" id="file"   method="post" enctype="multipart/form-data" >  
                         <div class="form-group">
                             <div  class="mb-3">
-                                <input class="form-control" onchange="readURL(this);"  value = " <? = $forEdit ['preview_image'];?> "  type="file" name="profile_image" id="file" accept="image/*"  readonly="true" required autofocus  > 
+                                <label for="file"></label>
+                                <input class="form-control" onchange="readURL(this);"   type="file" name="profile_image" id="file" accept="image/*"  readonly="true" required autofocus  > 
                                 <img id="blah"  alt="imagem" />
                             </div>
                         </div>
@@ -68,7 +66,7 @@ h5{
                                     <?= $validation->listErrors(); ?>
                                 </div>
                             <?php endif; ?>
-                            <button class="btn btn-md btn-primary  text-uppercase" name="file_upload" value="Upload File" id="uploadbutton" type="submit" >Cadastrar</button> 
+                            <button class="btn btn-md btn-primary  text-uppercase" name="file_upload" value="Upload File" id="uploadbutton" type="submit" onclick = "add_user (' <? = $id?> ') ">Cadastrar</button> 
                         </div>
                     </form>
                 </div>
@@ -77,7 +75,6 @@ h5{
 
     </div>
 </div>
-
 
 <script>
  function readURL(input) {
@@ -93,6 +90,4 @@ h5{
             }
         }
 </script>
-
-
 

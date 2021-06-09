@@ -183,7 +183,7 @@
                                 <option>Selecione o estado acima</option>
                             </select>
                         </div>
-                        <div class="form-label-group"><!-- Nível de usuários -->
+                        <div class="form-label-group"><!-- Nível de usuários / BD type-->
                             <select id="categoria" name="categoria" class="form-control" style="height: calc(1.5em + .75rem + 14px);">
                             <option value="0">Administrador</option> 
                                 <option value="1">Estudante de Farmácia</option>

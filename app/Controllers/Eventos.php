@@ -83,7 +83,7 @@ class Eventos extends BaseController
                 'imagem' => 'uploaded[profile_image]', 'mime_in[profile_image,image/jpg,image/jpeg,image/gif,image/png]', 'max_size[profile_image,4096]',
                 'resumo' => 'trim|required|min_length[100]|max_length[200]',
             ];
-
+            // echo './public/img';exit;
             if (!$this->validate($rules)) {
                 $data['validation'] = $this->validator;                               
             } else {
@@ -121,49 +121,57 @@ class Eventos extends BaseController
 
   
     public function upload_image($imagem)
-    {    
-    //     if($imagefile = $this->request->getFiles())
-    // {
-    //     if($img = $imagefile['profile_image'])
-    //     {
-    //         if ($img->isValid() && ! $img->hasMoved())
-    //         {
-    //             $newName = $img->getRandomName(); //Isto se você quiser mudar o nome do arquivo para um nome criptografado
-    //             $img->move(WRITEPATH.'uploads', $newName);
+    {   
+        helper(['form', 'url']);
+         
+        $database = \Config\Database::connect();
+        $builder = $database->table('eventos');
 
-    //            // Você pode continuar aqui para escrever um código para salvar o nome no banco de dados
-    //              // db_connect () ou formato do modelo
-
-    //         }
-    //     }
-    // }
-
-    if($this->request->getPost('file_upload')) {
-        if($file = $this->request->getFile('profile_image')) {
-            if ($file->isValid() && !$file->hasMoved()) {
-                $newName = $file->getRandomName();
-                $file->move(WRITEPATH . 'uploads', $newName);
-                
-                echo view('file_upload', ['success' => 'Arquivo carregado com sucesso']);
-            } else {
-                $error = $file->getErrorString() . '(' . $file->getError() . ')';
-                
-                echo view('file_upload', ['error' => $error]);
-            }
-        } else {
-            echo view('file_upload', ['error' => 'Selecione um arquivo para upload']);
-        }
-    } else {
-        echo view('file_upload');
-    }
-            // var_dump($imagem);exit;
-            return false;
+        $validateImage = $this->validate([
+            'imagem' => [
+                'uploaded[file_upload]',
+                'mime_in[file_upload, image/png, image/jpg,image/jpeg, image/gif]',
+                'max_size[file_upload, 4096]',
+            ],
+        ]);
         
-    }
+    
+        $response = [
+            'success' => false,
+            'data' => '',
+            'msg' => "Não foi possivel carregar a imagem!"
+        ];
+        
+        if ($validateImage) {
+            // var_dump($validateImage);exit;
+            $imageFile = $this->request->getFile('file_upload');
+            $imageFile->move(WRITEPATH.'../uploads');
+            // $imageFile->move('./public/img');
+            $data = [
+                'titulo' => $imageFile->getClientName(),
+                'resumo'  => $imageFile->getClientResumo(),
+                'imagem'  => $imageFile->getClientMimeType()
+            ];
 
-    public function upload_single_file() {
-	
-	}
+            $save = $builder->insert($data);
+
+            $response = [
+                'success' => true,
+                'data' => $save,
+                'msg' => "Imagem carregada com sucesso!"
+            ];
+        }
+
+        return $this->response->setJSON($response);
+    }
+// return false;
+
+            
+            
+        
+    
+
+    
  
 
     
