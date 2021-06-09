@@ -1,5 +1,7 @@
-<?php 
+<?php
+
 namespace App\Controllers;
+
 use CodeIgniter\API\ResponseTrait;
 use App\Models\EventoModel;
 
@@ -7,9 +9,9 @@ use App\Models\EventoModel;
 class Eventos extends BaseController
 {
 
-   use ResponseTrait;
+    use ResponseTrait;
 
-    
+
 
     public function index()
     {
@@ -18,12 +20,12 @@ class Eventos extends BaseController
             'title' => 'I Fórum de Tecnologias na Área Farmacêutica',
             'data' => $model->findAll(),
         ];
-        
+
         echo view('templates/header', $data);
-        echo view('tdeventos');        
-        echo view('templates/footer');        
+        echo view('tdeventos');
+        echo view('templates/footer');
     }
- 
+
 
     //------------------------------------------------------------------------------
 
@@ -38,14 +40,14 @@ class Eventos extends BaseController
         ];
 
         echo view('templates/header', $data);
-        echo view('listeventos');        
-        echo view('templates/footer');        
+        echo view('listeventos');
+        echo view('templates/footer');
     }
 
 
     //------------------------------------------------------------------------------
 
-    
+
     // lista um eventos
     // public function show($id = null)
     // {
@@ -55,10 +57,10 @@ class Eventos extends BaseController
     //     if($data){
     //         return $this->respond($data);
     //     }
-        
+
     //     return $this->failNotFound('Nenhum evento encontrado com id '.$id);        
     // }
- 
+
 
     //------------------------------------------------------------------------------
 
@@ -66,7 +68,7 @@ class Eventos extends BaseController
     // adiciona um eventos
     public function cadeventos()
     {
-        
+
         helper(['form', 'url']);
 
         $model = new EventoModel();
@@ -74,9 +76,9 @@ class Eventos extends BaseController
             'title' => 'Cadastre-se',
             // 'data' => $model->findAll(),
         ];
-        
+
         if ($this->request->getMethod() == 'post') {
-            
+
             //VALIDAÇÕES
             $rules = [
                 'titulo' => 'trim|required|min_length[3]|max_length[60]',
@@ -85,33 +87,32 @@ class Eventos extends BaseController
             ];
             // echo './public/img';exit;
             if (!$this->validate($rules)) {
-                $data['validation'] = $this->validator;                               
+                $data['validation'] = $this->validator;
             } else {
 
                 //salva no BD
                 $model =  new EventoModel();
-                if($this->upload_image($this->request->getFile('profile_image'))){                
+                $uploadImagem = $this->upload_image($this->request->getFile('profile_image'));
+                if ($uploadImagem) {                    
                     $newData = [
                         'titulo' => $this->request->getVar('titulo'),
-                        'imagem' => $this->request->getFile('profile_image'),
+                        'imagem' => $uploadImagem,
                         'resumo' => $this->request->getVar('resumo'),
                     ];
-                    // var_dump($newData); exit;
 
                     if ($model->save($newData)) {
-                            $session = session();
-                            $session->setFlashdata('success', 'Seu evento foi cadastrado com sucesso!');
-                            return redirect()->to(base_url());
-                    }else {
+                        $session = session();
+                        $session->setFlashdata('success', 'Seu evento foi cadastrado com sucesso!');
+                        return redirect()->to(base_url());
+                    } else {
                         echo "Erro ao salvar";
                         exit;
                     }
-                }else{
+                } else {
                     echo "Erro no upload";
                     exit;
                 }
             }
-
         }
 
         echo view('templates/header', $data);
@@ -119,75 +120,30 @@ class Eventos extends BaseController
         echo view('templates/footer');
     }
 
-  
+
     public function upload_image($imagem)
-    {   
-        helper(['form', 'url']);
-         
-        $database = \Config\Database::connect();
-        $builder = $database->table('eventos');
-
-        $validateImage = $this->validate([
-            'imagem' => [
-                'uploaded[file_upload]',
-                'mime_in[file_upload, image/png, image/jpg,image/jpeg, image/gif]',
-                'max_size[file_upload, 4096]',
-            ],
-        ]);
-        
-    
-        $response = [
-            'success' => false,
-            'data' => '',
-            'msg' => "Não foi possivel carregar a imagem!"
-        ];
-        
-        if ($validateImage) {
-            // var_dump($validateImage);exit;
-            $imageFile = $this->request->getFile('file_upload');
-            $imageFile->move(WRITEPATH.'../uploads');
-            // $imageFile->move('./public/img');
-            $data = [
-                'titulo' => $imageFile->getClientName(),
-                'resumo'  => $imageFile->getClientResumo(),
-                'imagem'  => $imageFile->getClientMimeType()
-            ];
-
-            $save = $builder->insert($data);
-
-            $response = [
-                'success' => true,
-                'data' => $save,
-                'msg' => "Imagem carregada com sucesso!"
-            ];
+    {
+        $imageFile = $imagem;
+        $nome = md5(uniqid()) . '_' . time() . '.jpg';
+        if ($imageFile->move(WRITEPATH . '../public/img',$nome)) {
+            return $nome;
+        } else {
+            return false;
         }
-
-        return $this->response->setJSON($response);
     }
-// return false;
-
-            
-            
-        
-    
-
-    
  
 
-    
-
-    
     //------------------------------------------------------------------------------
 
 
     // atualiza um eventos
-    
+
     public function editeventos()
     {
         $data = [
             'title' => 'Editar Evento',
         ];
-         echo view('templates/header', $data);
+        echo view('templates/header', $data);
         echo view('editeventos', $data);
         echo view('templates/footer');
     }
@@ -197,7 +153,7 @@ class Eventos extends BaseController
     // {
     //     $model = new EventoModel();
     //     $data = $this->request->getJSON();
-        
+
     //     if($model->update($id, $data)){
     //         $response = [
     //             'status'   => 200,
@@ -211,19 +167,19 @@ class Eventos extends BaseController
 
     //         return $this->fail($model->errors());
     //     }
- 
 
-        //------------------------------------------------------------------------------
+
+    //------------------------------------------------------------------------------
 
 
     // deleta um eventos
- 
+
     public function excluirevent()
     {
         $data = [
             'title' => 'Excluir evento',
         ];
-         echo view('templates/header', $data);
+        echo view('templates/header', $data);
         echo view('excluirevent', $data);
         echo view('templates/footer');
     }
@@ -232,7 +188,7 @@ class Eventos extends BaseController
     // {
     //     $model = new EventoModel();
     //     $data = $model->find($id);
-        
+
     //     if($data){
     //         $model->delete($id);
     //         $response = [
@@ -244,7 +200,7 @@ class Eventos extends BaseController
     //         ];
     //         return $this->respondDeleted($response);
     //     }
-        
+
     //     return $this->failNotFound('Nenhum evento encontrado com id '.$id);        
     // }
 }
