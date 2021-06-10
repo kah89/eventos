@@ -140,16 +140,24 @@ class Eventos extends BaseController
 
     public function editeventos()
     {
+      
+        $model = new EventoModel();
         $data = [
-            'title' => 'Editar Evento',
+            'title' => 'Excluir evento',
+            'data' => $model->findAll(),
         ];
         echo view('templates/header', $data);
-        echo view('editeventos', $data);
+        echo view('editeventos');
         echo view('templates/footer');
         //precisa fazer um get e depois o post para conseguir fazer a edição
     }
- 
 
+    
+        
+        // if ($this->request->getMethod() == 'post') 
+
+    
+ 
 
     //------------------------------------------------------------------------------
 
@@ -172,7 +180,7 @@ class Eventos extends BaseController
     {
         
         $uri = current_url(true);
-        $product_id = $uri->getSegment(5); //verifica em qual quanpo esta o ID
+        $product_id = $uri->getSegment(5); //verifica em qual campo esta o ID
         $model = new EventoModel();
         $result = $model->find($product_id);
         if($result["imagem"]){ //verifica se tem uma imagem cadatrastrada junto com esse ID e se não houver img não acontece nada
@@ -185,7 +193,7 @@ class Eventos extends BaseController
         if (file_exists($filePath)) {  //faz a exclusão do arquivo no banco e na pasta de img
             if (unlink($filePath)) {
                 $model->delete($product_id);
-                return redirect()->to(base_url("excluirevent"));
+                return redirect()->to(base_url("alterareventos"));
             } else {
                 echo "Não foi possivel excluir, verifique permissões!";
             }

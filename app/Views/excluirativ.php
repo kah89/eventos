@@ -25,6 +25,7 @@ h1, th{
                             <th scope="col">Ações</th> <!-- botão-->
                         </tr>
                     </thead>
+                    
                 </table>
             </div>    
         </div>    

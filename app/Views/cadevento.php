@@ -1,3 +1,6 @@
+<!-- <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script>tinymce.init({selector:'textarea'});</script> -->
+
 <style>
 
 h5{
@@ -7,8 +10,23 @@ h5{
 #blah{
     margin-top: 15px;
     margin-left: 30px;
+    
 }
-
+/* .tox .tox-statusbar 
+{
+background-color: #fff;
+border-top: #fff;
+color: #fff;
+}
+.tox .tox-statusbar__path {
+display: none;
+}
+.tox .tox-statusbar__text-container {
+display: none;
+}
+.tox .tox-menubar {
+display: none;
+} */
 </style>
 <script>
 

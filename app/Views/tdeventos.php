@@ -2,7 +2,14 @@
 h2{
     color: #007BFF;
     text-align: center;
-    margin-top: 20px;
+    margin-top: 30px;
+}
+.resumo{
+    margin-top: 10px;
+}
+.card-title{
+    margin-top: -15px;
+    
 }
 
 </style>
@@ -18,12 +25,11 @@ h2{
         ?>
         <div class="col-sm-4">
             <div class="card card-signin my-5">
-                <div class="card-body">
+                <div class="card-body card">
                     <h5 class="card-title"><?php echo $evento['titulo']?></h5> <!-- puxar o título via php -->
                     <img src="<?php echo base_url("/public/img")."/".$evento['imagem']?>" alt="" width="100%">
-                    <p class="card-text"><?php echo $evento['resumo']?></p> <!-- puxar o resumo via php -->
+                    <p class="card-text resumo"><?php echo $evento['resumo']?></p> <!-- puxar o resumo via php -->
                     <a href="<?php echo $evento['id']?>" class="btn btn-primary">Veja mais</a>
-
                 </div>
             </div>
         </div>

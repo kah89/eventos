@@ -415,7 +415,7 @@ class Users extends BaseController
              'title' => 'Editar Usuário',
          ];
           echo view('templates/header', $data);
-         echo view('edituser', $data);
+         echo view('edituser');
          echo view('templates/footer');
      }
  
@@ -500,14 +500,33 @@ class Users extends BaseController
  
      public function excluiruser()
      {
-         $data = [
-             'title' => 'Excluir Usuário',
-         ];
-          echo view('templates/header', $data);
-         echo view('excluiruser', $data);
-         echo view('templates/footer');
+        $model = new UserModel();
+        $data = [
+            'title' => 'Excluir Usuário',
+            'data' => $model->findAll(),
+        ];
+
+        echo view('templates/header', $data);
+        echo view('excluiruser');
+        echo view('templates/footer');;
      }
- 
+
+     public function deletar($id = null){
+
+        $uri = current_url(true);
+        $product_id = $uri->getSegment(5); 
+        $model = new UserModel();
+        $result = $model->find($product_id);
+     
+            if ($product_id) {
+                $model->delete($product_id);
+                return redirect()->to(base_url("excluiruser"));
+            } else {
+                echo "O arquivo" . $result . " não existe";
+            }
+    } 
+             
+     
  
      //--------------------------------------------------------------------
 
