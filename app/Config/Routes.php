@@ -42,7 +42,7 @@ $routes->match(['get','post'],'/eventos', 'Eventos::index');
 $routes->match(['get','post'],'/editareventos', 'Eventos::editeventos');
 $routes->match(['get','post'],'/listareventos', 'Eventos::listar');
 $routes->match(['get','post'],'/cadevento', 'Eventos::cadeventos');
-$routes->match(['get','post'],'/excluirevent', 'Eventos::excluirevent');
+$routes->match(['get','post'],'/alterareventos', 'Eventos::alterareventos');
 
 $routes->match(['get','post'],'/editaruser', 'Users::edituser');
 $routes->match(['get','post'],'/caduser', 'Users::caduser');

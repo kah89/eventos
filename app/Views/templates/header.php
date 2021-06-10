@@ -134,7 +134,7 @@
                         Alterações
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="<?= base_url('excluirevent') ?>">Eventos</a><!--DB eventos -->
+                        <a class="dropdown-item" href="<?= base_url('alterareventos') ?>">Eventos</a><!--DB eventos -->
                         <a class="dropdown-item" href="<?= base_url('excluirativ') ?>">Atividades</a><!--DB atividade_evento -->
                         <a class="dropdown-item" href="<?= base_url('excluiruser') ?>">Usuários</a><!--DB users -->
                         </div>

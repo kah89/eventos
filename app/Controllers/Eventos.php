@@ -156,7 +156,7 @@ class Eventos extends BaseController
 
     // deleta um eventos
 
-    public function excluirevent()
+    public function alterareventos()
     {
         $model = new EventoModel();
         $data = [
