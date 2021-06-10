@@ -12,6 +12,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -139,16 +140,16 @@
                         </div>
                         
                     </li>
-                    <li class="nav-item dropdown nav1">
+                    <!-- <li class="nav-item dropdown nav1">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Editar
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="<?= base_url('editaruser') ?>">Usuário</a> <!--DB users -->
-                        <a class="dropdown-item" href="<?= base_url('editareventos') ?>">Eventos</a> <!--DB eventos -->
-                        <a class="dropdown-item" href="<?= base_url('editarativ') ?>">Atividades</a><!--DB atividade_evento -->
-                        </div>
-                    </li>
+                        <!-- <a class="dropdown-item" href="<?= base_url('editareventos') ?>">Eventos</a> <!--DB eventos -->
+                        <!-- <a class="dropdown-item" href="<?= base_url('editarativ') ?>">Atividades</a>DB atividade_evento -->
+                        <!-- </div> -->
+                    <!-- </li>  -->
                     </ul>
                     <ul class="navbar-nav my-2 my-lg-0">
                         <li class="nav-item"><a class="nav-link" href="<?= base_url('logout')?>"><i class="fa fa-sign-out" aria-hidden="true"></i> Sair</a>

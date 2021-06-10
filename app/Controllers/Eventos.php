@@ -93,7 +93,7 @@ class Eventos extends BaseController
                 //salva no BD
                 $model =  new EventoModel();
                 $uploadImagem = $this->upload_image($this->request->getFile('profile_image'));
-                if ($uploadImagem) {                    
+                if ($uploadImagem) {
                     $newData = [
                         'titulo' => $this->request->getVar('titulo'),
                         'imagem' => $uploadImagem,
@@ -125,13 +125,13 @@ class Eventos extends BaseController
     {
         $imageFile = $imagem;
         $nome = md5(uniqid()) . '_' . time() . '.jpg';
-        if ($imageFile->move(WRITEPATH . '../public/img',$nome)) {
+        if ($imageFile->move(WRITEPATH . '../public/img', $nome)) {
             return $nome;
         } else {
             return false;
         }
     }
- 
+
 
     //------------------------------------------------------------------------------
 
@@ -146,27 +146,9 @@ class Eventos extends BaseController
         echo view('templates/header', $data);
         echo view('editeventos', $data);
         echo view('templates/footer');
+        //precisa fazer um get e depois o post para conseguir fazer a edição
     }
-
-
-    // public function update($id = null)
-    // {
-    //     $model = new EventoModel();
-    //     $data = $this->request->getJSON();
-
-    //     if($model->update($id, $data)){
-    //         $response = [
-    //             'status'   => 200,
-    //             'error'    => null,
-    //             'messages' => [
-    //                 'success' => 'Eventos atualizados'
-    //                 ]
-    //             ];
-    //             return $this->respond($response);
-    //         };
-
-    //         return $this->fail($model->errors());
-    //     }
+ 
 
 
     //------------------------------------------------------------------------------
@@ -176,31 +158,43 @@ class Eventos extends BaseController
 
     public function excluirevent()
     {
+        $model = new EventoModel();
         $data = [
             'title' => 'Excluir evento',
+            'data' => $model->findAll(),
         ];
         echo view('templates/header', $data);
-        echo view('excluirevent', $data);
+        echo view('excluirevent');
         echo view('templates/footer');
     }
 
-    // public function delete($id = null)
-    // {
-    //     $model = new EventoModel();
-    //     $data = $model->find($id);
+    public function deletar()
+    {
+        
+        $uri = current_url(true);
+        $product_id = $uri->getSegment(5); //verifica em qual quanpo esta o ID
+        $model = new EventoModel();
+        $result = $model->find($product_id);
+        if($result["imagem"]){ //verifica se tem uma imagem cadatrastrada junto com esse ID e se não houver img não acontece nada
+            $filePath = "./public/img/" . $result["imagem"];
+        }
+        else{
+            $filePath = ""; 
+        }
+        
+        if (file_exists($filePath)) {  //faz a exclusão do arquivo no banco e na pasta de img
+            if (unlink($filePath)) {
+                $model->delete($product_id);
+                return redirect()->to(base_url("excluirevent"));
+            } else {
+                echo "Não foi possivel excluir, verifique permissões!";
+            }
+        } else {
+            echo "O arquivo" . $filePath . " não existe";
+        }        
+    }
 
-    //     if($data){
-    //         $model->delete($id);
-    //         $response = [
-    //             'status'   => 200,
-    //             'error'    => null,
-    //             'messages' => [
-    //                 'success' => 'Eventos removidos'
-    //             ]
-    //         ];
-    //         return $this->respondDeleted($response);
-    //     }
 
-    //     return $this->failNotFound('Nenhum evento encontrado com id '.$id);        
-    // }
+
+
 }
