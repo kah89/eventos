@@ -7,9 +7,12 @@ h2{
 .resumo{
     margin-top: 10px;
 }
-.card-title{
+.card{
     margin-top: -15px;
-    
+    min-height: 85%;
+}
+.card-title{
+    text-align: center;
 }
 
 </style>

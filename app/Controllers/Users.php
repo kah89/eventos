@@ -417,6 +417,36 @@ class Users extends BaseController
           echo view('templates/header', $data);
          echo view('edituser');
          echo view('templates/footer');
+
+        // helper(['form', 'url']);
+        // $model = new UserModel();
+        
+        // $id = $this->request->getVar('id');
+        
+        // $data = [
+        //     'title' => 'Editar Usuário',
+        //     'firstname' => $this->request->getVar('nome'),
+        //     'lastname' => $this->request->getVar('sobrenome'),
+        //     'email' => $this->request->getVar('email'),
+        //     'pais' => $this->request->getVar('paises'),
+        //     'estado' => $this->request->getVar('estados'),
+        //     'cidade' => $this->request->getVar('cidades'),
+        //     'type' => (int) $this->request->getVar('categoria'),
+        //     'uf' => $this->request->getVar('uf'),
+        //     'crf' => $this->request->getVar('crf'),
+        //     'telefone' => $this->request->getVar('telefone'),
+        //     'celular' => $this->request->getVar('celular'),
+        //     'cpf' => $this->request->getVar('cpf'),
+        //     'password' => $this->request->getVar('senha'),
+        // ];
+        
+        // $save = $model->update($id,$data);
+        
+        // return redirect()->to( base_url('edituser') );
+
+        // echo view('templates/header', $data);
+        // echo view('edituser');
+        // echo view('templates/footer');
      }
  
  
