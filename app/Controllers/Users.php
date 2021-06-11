@@ -411,6 +411,11 @@ class Users extends BaseController
 
      public function edituser()
      {
+        // $uri = current_url(true);
+        // $product_id = $uri->getSegment(5); 
+        // $model = new UserModel();
+        // $result = $model->find($product_id);
+
          $data = [
              'title' => 'Editar Usuário',
          ];
@@ -508,7 +513,7 @@ class Users extends BaseController
                     if ($this->sendEmail($newData)) {
                         $session = session();
                         $session->setFlashdata('success', 'Seu usuario foi criado com sucesso!');
-                        return redirect()->to(base_url());
+                        return redirect()->to(base_url('excluiruser'));
                     } else {
                         echo "Erro ao enviar email";
                         exit;
