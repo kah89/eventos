@@ -7,7 +7,7 @@ h2{
 .resumo{
     margin-top: 10px;
 }
-.card{
+.card-signin{
     margin-top: -15px;
     min-height: 85%;
 }

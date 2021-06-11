@@ -76,9 +76,9 @@
         background-color: #3b5998
     }
 
-    h5{
-    color: #007BFF;
-    font: caption;
+    h5 {
+        color: #007BFF;
+        font: caption;
     }
 </style>
 <script type="text/javascript">
@@ -86,7 +86,7 @@
         $('#paises').on('keyup change', function() {
             var id = $('#paises').val();
 
-            $.post('<?= base_url()."/estado"?>', {
+            $.post('<?= base_url() . "/estado" ?>', {
                 id_estado: id
             }, function(data) {
                 if (id == 1) {
@@ -118,7 +118,7 @@
             var id_estado = $('#estados').val();
             var idPais = $('#paises').val();
 
-            $.post('<?= base_url()."/cidade"?>', {
+            $.post('<?= base_url() . "/cidade" ?>', {
                 id_estado: id_estado
             }, function(data) {
                 if (idPais == 1) {
@@ -137,19 +137,28 @@
         $("#cpf").mask("000.000.000-00");
 
         $('#categoria').change(function() {
-            if ($('#categoria').val() == 1) {
+            if ($('#categoria').val() != 2) {
                 $("#farmaceutico").css("display", "none");
-                $("#uf").attr('required', 0);
-                $("#crf").attr('required', 0);
+
+                if ($("#uf").prop('required')) {
+                    $("#uf").prop('required',false);
+                }
+                if ($("#crf").prop('required')) {
+                    $("#crf").prop('required',false);
+                }
             } else {
                 $("#farmaceutico").css("display", "block");
-                $("#uf").attr('required', 1);
-                $("#crf").attr('required', 1);
+                if (!$("#uf").prop('required')) {
+                    $("#uf").prop('required',true);
+                }
+                if (!$("#crf").prop('required')) {
+                    $("#crf").prop('required',true);
+                }
             }
-            
+
         });
 
-        
+
 
     });
 </script>
@@ -171,7 +180,7 @@
                         </div>
                         <div class="form-label-group">
                             <select id="paises" name="paises" class="form-control" placeholder="Selecione o país" required style="height: calc(1.5em + .75rem + 14px);">
-                            <?php echo $options_paises; ?>
+                                <?php echo $options_paises; ?>
                             </select>
                         </div>
                         <div class="form-label-group">
@@ -184,9 +193,10 @@
                                 <option>Selecione o estado acima</option>
                             </select>
                         </div>
-                        <div class="form-label-group"><!-- Nível de usuários / BD type-->
+                        <div class="form-label-group">
+                            <!-- Nível de usuários / BD type-->
                             <select id="categoria" name="categoria" class="form-control" style="height: calc(1.5em + .75rem + 14px);">
-                                <option value="0">Administrador</option> 
+                                <option value="0">Administrador</option>
                                 <option value="1">Estudante de Farmácia</option>
                                 <option value="2">Farmacêutico</option>
                             </select>
@@ -194,7 +204,7 @@
                         <div class="form-label-group" id="farmaceutico" style="display: none">
                             <div class="row justify-content-between" style="width: 100%;margin: 0;">
                                 <select id="uf" name="uf" class="form-control col-3" style="height: calc(1.5em + .75rem + 14px);">
-                                <?php echo $options_uf; ?>   
+                                    <?php echo $options_uf; ?>
                                 </select>
                                 <input type="number" id="crf" name="crf" class="form-control col-8" placeholder="CRF" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
                             </div>
@@ -210,10 +220,12 @@
                             <input type="text" id="cpf" name="cpf" class="form-control" placeholder="CPF">
                         </div>
 
-                        <div class="form-label-group"> <!--cadastrar senha padrão 123456789 -->
+                        <div class="form-label-group">
+                            <!--cadastrar senha padrão 123456789 -->
                             <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" required>
                         </div>
-                        <div class="form-label-group"> <!--cadastrar senha padrão 123456789 -->
+                        <div class="form-label-group">
+                            <!--cadastrar senha padrão 123456789 -->
                             <input type="password" id="senha_confirmacao" name="senha_confirmacao" class="form-control" placeholder="Confirme a Senha" required>
                         </div>
                         <?php if (isset($validation)) : ?>
