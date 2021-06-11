@@ -2,6 +2,7 @@
 namespace App\Controllers;
 use CodeIgniter\API\ResponseTrait;
 use App\Models\AtividadeModel;
+use App\Models\EventoModel;
 
 class Atividades extends BaseController
 {
@@ -12,10 +13,10 @@ class Atividades extends BaseController
      { 
         helper(['form', 'url']);
 
-        $model = new AtividadeModel();
+        $model = new EventoModel();
         $data = [
             'title' => 'Cadastrar atividade',
-            // 'data' => $model->findAll(),
+            'data' => $model->findAll(),
         ];
 
 
@@ -23,8 +24,8 @@ class Atividades extends BaseController
             //VALIDAÇÕES
             $rules = [
                 'titulo' => 'trim|required|min_length[3]|max_length[60]',
-                'conteudo' => 'trim|required|min_length[10]|max_length[60]',
-                'certificado' => 'trim|required',
+                'descricao' => 'trim|required|min_length[10]|max_length[60]',
+                'tipo' => 'trim|required',
             ];
 
             if (!$this->validate($rules)) {
