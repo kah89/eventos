@@ -44,7 +44,7 @@ $routes->match(['get','post'],'/listareventos', 'Eventos::listar');
 $routes->match(['get','post'],'/cadevento', 'Eventos::cadeventos');
 $routes->match(['get','post'],'/alterareventos', 'Eventos::alterareventos');
 
-$routes->match(['get','post'],'/editaruser', 'Users::edituser');
+$routes->match(['get','post'],'/editaruser/(:num)', 'Users::edituser');
 $routes->match(['get','post'],'/caduser', 'Users::caduser');
 $routes->match(['get','post'],'/excluiruser', 'Users::excluiruser');
 

@@ -16,7 +16,10 @@ h1, th{
         <div class="row">
             <div class="col-12">
                 <h1 style="text-align: center; font-size:30px">Usuários</h1>
+                <form id="form1" method="POST" action="<?php base_url('delete'); ?>" enctype="multipart/form-data">
+                <button type="submit" form="form1" value="Submit">Submit</button>
 
+                </form>
                 <table class="table table-hover" id="atividades">
                     <thead>
                         <tr>
@@ -29,7 +32,7 @@ h1, th{
                     </thead>
                     <tbody>
                         <?php foreach($data as $key => $evento){
-                               echo '<tr><td>'. $evento['id'].'</td><td>'.$evento['firstname'].'</td><td>'.$evento['lastname'].'</td><td>'.$evento['type'].'</td><td><a href="editaruser"><i class="fa fa-edit" style="color: blue"></a></i><a href="users/deletar/'.$evento['id'].'"><i class="fa fa-trash"  style="color: red"></a></i></td></tr>';
+                               echo '<tr><td>'. $evento['id'].'</td><td>'.$evento['firstname'].'</td><td>'.$evento['lastname'].'</td><td>'.$evento['type'].'</td><td><a href="editaruser/'.$evento['id'].'"><i class="fa fa-edit" style="color: blue"></a></i><a href="users/deletar/'.$evento['id'].'"><i class="fa fa-trash"  style="color: red"></a></i></td></tr>';
                         } ?>
                     </tbody>
                 </table>

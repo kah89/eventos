@@ -140,11 +140,17 @@ class Eventos extends BaseController
 
     public function editeventos()
     {
-      
+        $uri = current_url(true);
+        $product_id = $uri->getSegment(5); 
         $model = new EventoModel();
+
         $data = [
             'title' => 'Excluir evento',
             'data' => $model->findAll(),
+            'id' => $this->request->getVar('id'),
+            'imagem' => $this->request->getVar('imagem'),
+            'titulo' => $this->request->getVar('titulo'),
+            'resumo' => $this->request->getVar('resumo'),
         ];
         echo view('templates/header', $data);
         echo view('editeventos');
