@@ -203,7 +203,7 @@
                             <input type="text" id="celular" name="celular" class="form-control" placeholder="Celular">
                         </div>
                         <div class="form-label-group">
-                            <input type="text" id="cpf" name="cpf" class="form-control" placeholder="CPF">
+                            <input type="text" id="cpf" name="cpf" class="form-control" placeholder="CPF" >
                         </div>
 
                         <div class="form-label-group">

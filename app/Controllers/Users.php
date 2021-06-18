@@ -384,66 +384,55 @@ class Users extends BaseController
                 'options_uf' => $uf,             
          ];
 
-         // var_dump($data); exit;
-        helper(['form']);
+     // var_dump($data); exit;
+     helper(['form']);
 
-        if ($this->request->getMethod() == 'post') {
-            //VALIDAÇÕES
-            $rules = [
-                'nome' => 'min_length[3]|max_length[20]',
-                'sobrenome' => 'min_length[3]|max_length[100]',
-                'email' => 'required|min_length[6]|max_length[100]|valid_email|is_unique[users.email]',
-                'senha' => 'required|min_length[8]|max_length[255]',
-                'senha_confirmacao' => 'matches[senha]',
-            ];
+     if ($this->request->getMethod() == 'post') {
+         //VALIDAÇÕES
+         $rules = [
+             'email' => 'required|min_length[6]|max_length[100]|valid_email|is_unique[users.email]',
+             'senha' => 'required|min_length[8]|max_length[255]',
+             'senha_confirmacao' => 'matches[senha]',
+         ];
 
 
-            if (!$this->validate($rules)) {
-                $data['validation'] = $this->validator;
-            } else {
-                //salva no BD
-                $model =  new UserModel();
-
-
-                $newData = [
-                    'firstname' => $this->request->getVar('nome'),
-                    'lastname' => $this->request->getVar('sobrenome'),
-                    'email' => $this->request->getVar('email'),
-                    'pais' => $this->request->getVar('paises'),
-                    'estado' => $this->request->getVar('estados'),
-                    'cidade' => $this->request->getVar('cidades'),
-                    'type' => (int) $this->request->getVar('categoria'),
-                    'uf' => $this->request->getVar('uf'),
-                    'crf' => $this->request->getVar('crf'),
-                    'telefone' => $this->request->getVar('telefone'),
-                    'celular' => $this->request->getVar('celular'),
-                    'cpf' => $this->request->getVar('cpf'),
-                    'password' => $this->request->getVar('senha'),
-                ];
+         if (!$this->validate($rules)) {
+             $data['validation'] = $this->validator;
+         } else {
+             //salva no BD
+             $newData = [
+                'id' => $usuario_id, //sem esse campo não sabe qual ID deve alterar e acaba fazendo um insert
+                 'email' => $this->request->getVar('email'),
+                 'pais' => $this->request->getVar('paises'),
+                 'estado' => $this->request->getVar('estados'),
+                 'cidade' => $this->request->getVar('cidades'),
+                 'type' => (int) $this->request->getVar('categoria'),
+                 'uf' => $this->request->getVar('uf'),
+                 'crf' => $this->request->getVar('crf'),
+                 'telefone' => $this->request->getVar('telefone'),
+                 'celular' => $this->request->getVar('celular'),
+                 'cpf' => $this->request->getVar('cpf'),
+                 'password' => $this->request->getVar('senha'),
+             ];
 
 
 
-                if ($model->save($newData)) {
-                    if ($this->sendEmail($newData)) {
-                        $session = session();
-                        $session->setFlashdata('success', 'Seu usuario foi criado com sucesso!');
-                        return redirect()->to(base_url('excluiruser'));
-                    } else {
-                        echo "Erro ao enviar email";
-                        exit;
-                    }
-                } else {
-                    echo "Erro ao salvar";
-                    exit;                    
-                }
-            }
-        }
+             if ($model->save($newData)) {
+                     $session = session();
+                     $session->setFlashdata('success', 'Seu usuario foi alterado com sucesso!');
+                     return redirect()->to(base_url('excluiruser'));
+                 } else {
+                 echo "Erro ao salvar";
+                 exit;                    
+             }
+         }
+     }
       
         echo view('templates/header', $data);
         echo view('edituser', $result);
         echo view('templates/footer');
 
-        
+
        
 
     }

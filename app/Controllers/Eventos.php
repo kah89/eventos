@@ -149,10 +149,65 @@ class Eventos extends BaseController
             'title' => 'Editar evento',
         ];
 
+
+
+        if ($this->request->getMethod() == 'post') {
+
+            //VALIDAÇÕES
+            $rules = [
+                'titulo' => 'trim|required|min_length[3]|max_length[60]',
+                'imagem' => 'uploaded[profile_image]', 'mime_in[profile_image,image/jpg,image/jpeg,image/gif,image/png]', 'max_size[profile_image,4096]',
+                'resumo' => 'trim|required|min_length[100]|max_length[200]',
+            ];
+            // echo './public/img';exit;
+            if (!$this->validate($rules)) {
+                $data['validation'] = $this->validator;
+            } else {
+
+                //salva no BD
+                $model =  new EventoModel();
+                $uploadImagem = $this->carregamento_image($this->request->getFile('profile_image'));
+                if ($uploadImagem) {
+                    $newData = [
+                        // 'id' => $evento_id, 
+                        'titulo' => $this->request->getVar('titulo'),
+                        'imagem' => $uploadImagem,
+                        'resumo' => $this->request->getVar('resumo'),
+                    ];
+
+                    if ($model->save($newData)) {
+                        $session = session();
+                        $session->setFlashdata('success', 'Seu evento foi cadastrado com sucesso!');
+                        return redirect()->to(base_url('eventos'));
+                    } else {
+                        echo "Erro ao salvar";
+                        exit;
+                    }
+                } else {
+                    echo "Erro no upload";
+                    exit;
+                }
+            }
+        }
+
         echo view('templates/header', $data);
         echo view('editeventos', $result);
         echo view('templates/footer');
     }
+
+
+    public function carregamento_image($imagem)
+    {
+        $imageFile = $imagem;
+        $nome = md5(uniqid()) . '_' . time() . '.jpg';
+        if ($imageFile->move(WRITEPATH . '../public/img', $nome)) {
+            return $nome;
+        } else {
+            return false;
+        }
+    }
+        
+    
 
     
         

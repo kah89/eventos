@@ -168,7 +168,7 @@
                             <input type="text" id="sobrenome" name="sobrenome" class="form-control" placeholder="Sobrenome"  value="<?=$lastname?>" disabled>
                         </div>
                         <div class="form-label-group">
-                            <input type="email" id="email" name="email" class="form-control" placeholder="Email" required value="<?=$email?>">
+                            <input type="email" id="email" name="email" class="form-control" placeholder="Email"  value="<?=$email?>">
                         </div>
                         <div class="form-label-group">
                             <select id="paises" name="paises" class="form-control" placeholder="Selecione o país" required style="height: calc(1.5em + .75rem + 14px);" value="<?=$pais?>">
