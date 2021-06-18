@@ -150,6 +150,7 @@ class Eventos extends BaseController
         ];
 
 
+        helper(['form']);
 
         if ($this->request->getMethod() == 'post') {
 
@@ -159,17 +160,15 @@ class Eventos extends BaseController
                 'imagem' => 'uploaded[profile_image]', 'mime_in[profile_image,image/jpg,image/jpeg,image/gif,image/png]', 'max_size[profile_image,4096]',
                 'resumo' => 'trim|required|min_length[100]|max_length[200]',
             ];
-            // echo './public/img';exit;
+
             if (!$this->validate($rules)) {
                 $data['validation'] = $this->validator;
             } else {
-
                 //salva no BD
-                $model =  new EventoModel();
                 $uploadImagem = $this->carregamento_image($this->request->getFile('profile_image'));
                 if ($uploadImagem) {
                     $newData = [
-                        // 'id' => $evento_id, 
+                        'id' => $evento_id, 
                         'titulo' => $this->request->getVar('titulo'),
                         'imagem' => $uploadImagem,
                         'resumo' => $this->request->getVar('resumo'),
@@ -177,7 +176,7 @@ class Eventos extends BaseController
 
                     if ($model->save($newData)) {
                         $session = session();
-                        $session->setFlashdata('success', 'Seu evento foi cadastrado com sucesso!');
+                        $session->setFlashdata('success', 'Seu evento foi alterado com sucesso!');
                         return redirect()->to(base_url('eventos'));
                     } else {
                         echo "Erro ao salvar";

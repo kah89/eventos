@@ -221,7 +221,7 @@
                                 <?= $validation->listErrors(); ?>
                             </div>
                         <?php endif; ?>
-                        <button class="btn btn-md btn-primary  text-uppercase" type="submit">Alterar</button>
+                        <button class="btn btn-md btn-primary  text-uppercase"  type="submit">Alterar</button>
                         <hr class="my-4">
                     </form>
                 </div>
