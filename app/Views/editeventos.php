@@ -38,22 +38,22 @@ display: none;
                     <form class="form-signin" method="post">
                         <div class="form-group">
                             <div  class="mb-3">
-                                <input class="form-control" onchange="readURL(this);"   type="file" name="profile_image" id="formFile" accept="image/*"  readonly="true"  required autofocus  > 
-                                <img id="blah"  alt="imagem" />      
+                                <input class="form-control" onchange="readURL(this);"   type="file" name="profile_image" id="formFile" accept="image/*"  readonly="true"  required autofocus> 
+                                <img id="blah" type="file" alt="imagem" src="<?php echo base_url("public/img") ."/".$imagem ?>"/>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group"> 
                             <div class="form-label-group">
-                                <input type="text" id="titulo" name="titulo" class="form-control" placeholder="titulo"  required autofocus>
+                                <input type="text" id="titulo" name="titulo" class="form-control" placeholder="titulo"  required autofocus value="<?=$titulo?>">
                             </div>  
                         </div>
                         <div class="form-group">
                             <div class="form-label-group">
-                                <textarea name="resumo" id="resumo" class="form-control" maxlength="200" placeholder="Resumo"   required></textarea>
+                                <textarea name="resumo" id="resumo" class="form-control" maxlength="200" placeholder="Resumo"   required><?=$resumo?></textarea>
                             </div>
                         </div>
                         <div class="form-group">
-                            <button class="btn btn-md btn-primary  text-uppercase" id="cad" type="submit">Alterar</button> 
+                            <button class="btn btn-md btn-primary  text-uppercase" name="file_upload" value="Upload File" id="uploadbutton"  type="submit">Alterar</button> 
                         </div>
                     </form>
                 </div>

@@ -39,7 +39,7 @@ $routes->match(['get','post'],'/recuperacao/(:any)', 'Users::novasenha/$1');
 $routes->get('logout', 'Users::logout');
 
 $routes->match(['get','post'],'/eventos', 'Eventos::index');
-$routes->match(['get','post'],'/editareventos', 'Eventos::editeventos');
+$routes->match(['get','post'],'/editeventos/(:num)', 'Eventos::editeventos');
 $routes->match(['get','post'],'/listareventos', 'Eventos::listar');
 $routes->match(['get','post'],'/cadevento', 'Eventos::cadeventos');
 $routes->match(['get','post'],'/alterareventos', 'Eventos::alterareventos');

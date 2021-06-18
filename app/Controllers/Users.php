@@ -368,9 +368,9 @@ class Users extends BaseController
     public function edituser()
     {
         $uri = current_url(true);
-        $product_id = $uri->getSegment(4); 
+        $usuario_id = $uri->getSegment(4); 
         $model = new UserModel();
-        $result = $model->find($product_id);
+        $result = $model->find($usuario_id);
 
         $paisModel = new PaisModel();
         $paises = $paisModel->selectPaises();

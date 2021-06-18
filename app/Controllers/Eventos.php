@@ -141,21 +141,17 @@ class Eventos extends BaseController
     public function editeventos()
     {
         $uri = current_url(true);
-        $product_id = $uri->getSegment(5); 
+        $evento_id = $uri->getSegment(4); 
         $model = new EventoModel();
+        $result = $model->find($evento_id);
 
         $data = [
-            'title' => 'Excluir evento',
-            'data' => $model->findAll(),
-            'id' => $this->request->getVar('id'),
-            'imagem' => $this->request->getVar('imagem'),
-            'titulo' => $this->request->getVar('titulo'),
-            'resumo' => $this->request->getVar('resumo'),
+            'title' => 'Editar evento',
         ];
+
         echo view('templates/header', $data);
-        echo view('editeventos');
+        echo view('editeventos', $result);
         echo view('templates/footer');
-        //precisa fazer um get e depois o post para conseguir fazer a edição
     }
 
     
@@ -170,7 +166,7 @@ class Eventos extends BaseController
 
     // deleta um eventos
 
-    public function alterareventos()
+    public function alterareventos() //tras a lista de eventos
     {
         $model = new EventoModel();
         $data = [
