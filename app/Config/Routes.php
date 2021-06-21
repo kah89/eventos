@@ -48,7 +48,7 @@ $routes->match(['get','post'],'/editaruser/(:num)', 'Users::edituser');
 $routes->match(['get','post'],'/caduser', 'Users::caduser');
 $routes->match(['get','post'],'/excluiruser', 'Users::excluiruser');
 
-$routes->match(['get','post'],'/editarativ', 'Atividades::editativ');
+$routes->match(['get','post'],'/editativ/(:num)', 'Atividades::editativ');
 $routes->match(['get','post'],'/excluirativ', 'Atividades::excluirativ');
 $routes->match(['get','post'],'/cadativ', 'Atividades::cadativ');
 $routes->match(['get','post'],'/listarativ', 'Atividades::listativ');

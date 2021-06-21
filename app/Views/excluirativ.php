@@ -3,9 +3,12 @@
 <style>
 h1, th{
     color: #007BFF;
-    text-align: center;
+    text-align: left;
     margin-top: 20px;
     font: caption;
+}
+.fa-trash{
+    margin-left: 20%;
 }
 </style>
 <main>
@@ -13,7 +16,6 @@ h1, th{
         <div class="row">
             <div class="col-12">
                 <h1 style="text-align: center; font-size:30px">Atividades</h1>
-
                 <table class="table table-hover" id="atividades">
                     <thead>
                         <tr>
@@ -25,7 +27,11 @@ h1, th{
                             <th scope="col">Ações</th> <!-- botão-->
                         </tr>
                     </thead>
-                    
+                    <tbody>
+                        <?php foreach($data as $key => $evento){
+                               echo '<tr><td>'. $evento['id'].'</td><td>'.$evento['titulo'].'</td><td>'.$evento['descricao'].'</td><td>'.$evento['dtInicio'].'</td><td>'.$evento['tipo'].'</td><td><a href= "editativ'."/".$evento['id'].'"  ><i class="fa fa-edit" style="color: blue"></a></i><a href="atividades/deletar/'.$evento['id'].'"><i class="fa fa-trash"  style="color: red"></a></i></td></tr>';
+                        } ?>
+                    </tbody>
                 </table>
             </div>    
         </div>    

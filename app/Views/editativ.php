@@ -13,11 +13,19 @@
 }
 h5{
     color: #007BFF;
-    text-align: center;
+    text-align: center; 
 }
 .btn{
     margin-left: 58px;
 }
+#data{
+        width: 180px;
+        margin-left: -26px;
+    }
+
+#certificado{
+    margin-left: -15px;
+    }
 </style>
 <div class="container">
     <div class="row">
@@ -28,22 +36,22 @@ h5{
                     <form class="form-signin" method="post">
                         <div class="form-group">
                             <div class="form-label-group">
-                                <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Titulo" required autofocus>
+                                <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Titulo" value="<?=$titulo?>"  required autofocus>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="form-label-group"><!--DB atividade_evento (descrição) -->
-                                <textarea name="conteudo" id="conteudo" class="form-control" maxlength="200" placeholder="Conteúdo" required></textarea>
+                                <textarea name="descricao" id="conteudo" class="form-control" maxlength="200" placeholder="Conteúdo" value="<?=$descricao?>" required></textarea>
                             </div>
                         </div>
                         <div class="form-group col-sm-5 data">
                             <div class="form-label-group">
-                                <input type="text" id="data" name="data" class="form-control" placeholder="Data" required autofocus>
+                                <input type="text" id="data" name="data" class="form-control" placeholder="Data" value="<?=$dtInicio?>" required autofocus>
                             </div>
                         </div>
                         <div class="form-group col-sm-7 certi">
                             <div class="form-label-group"><!--DB atividade_evento (tipo) -->
-                                <select id="certificado" name="certificado" class="form-control" style="height: calc(1.5em + .75rem + 14px);">
+                                <select id="certificado" name="certificado" class="form-control" style="height: calc(1.5em + .75rem + 14px);" value="<?=$tipo?>">
                                     <option value="1">Gera certificado</option>
                                     <option value="2">Não gera certificado</option>
                                 </select>

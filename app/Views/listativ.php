@@ -3,9 +3,12 @@
 <style>
 h1, th{
     color: #007BFF;
-    text-align: center;
+    text-align: left;
     margin-top: 20px;
     font: caption;
+}
+.fa-bell{
+    margin-left: 30px;
 }
 
 </style>
@@ -26,6 +29,11 @@ h1, th{
                             <th scope="col">Lembretes</th> <!-- check box / BD tipo-->
                         </tr>
                     </thead>
+                    <tbody>
+                        <?php foreach($data as $key => $evento){
+                               echo '<tr><td>'. $evento['id'].'</td><td>'.$evento['titulo'].'</td><td>'.$evento['descricao'].'</td><td>'.$evento['dtInicio'].'</td><td>'.$evento['tipo'].'</td><td><a href="#'.$evento['id'].'"><i class="fa fa-bell"  style="color: coral"></a></i></td></tr>';
+                        } ?>
+                    </tbody>
                 </table>
             </div>    
         </div>    

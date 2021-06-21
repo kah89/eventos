@@ -9,8 +9,7 @@ class AtividadeModel extends Model
     protected $table = 'atividade_evento';
     protected $primaryKey = 'id';
     protected $returnType     = 'array';
-
-    protected $allowedFields = ['id', 'iEvento', 'titulo', 'tipo', 'dtInicio', 'dtFim', 'created_at', 'descricao'];
+    protected $allowedFields = ['id', 'idEvento', 'titulo', 'tipo', 'dtInicio', 'dtFim', 'created_at', 'descricao'];
 
     /**
      * Recebe como parâmetro o idUser e o idAtividade e os insere no banco, registrando que a atividade X foi concluída pelo usuário Y na data e hora atual

@@ -78,11 +78,11 @@
                     <form class="form-signin" method="post" name='form1'>
                         <div class="form-group">
                             <div class="form-label-group" required>
-                                <select id="inputState" class="form-control" required>
+                                <select id="selectEvent" name="selectEvent" class="form-control" required>
                                     <option selected disabled >Eventos</option>
                                     <?php
                                     foreach ($data as $key => $evento) {
-                                        echo "<option>".$evento['id'] . " - " . $evento['titulo']."</option>";
+                                        echo "<option value='".$evento['id'] . "'>".$evento['id'] . " - " . $evento['titulo']."</option>";
                                     }
                                     ?>
                                 </select>
@@ -95,7 +95,7 @@
                         </div>
                         <div class="form-group">
                             <div class="form-label-group">
-                                <textarea name="descricao" id="descricao" class="form-control" maxlength="200" placeholder="Descrição" maxlength="60" minilength="10"  ></textarea>
+                                <textarea  type="text" name="descricao" id="descricao" class="form-control" maxlength="200" placeholder="Descrição" maxlength="60" minilength="10"  ></textarea>
                             </div>
                         </div>
                         <div class="form-group col-sm-5 data">

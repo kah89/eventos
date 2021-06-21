@@ -16,10 +16,6 @@ h1, th{
         <div class="row">
             <div class="col-12">
                 <h1 style="text-align: center; font-size:30px">Usuários</h1>
-                <form id="form1" method="POST" action="<?php base_url('delete'); ?>" enctype="multipart/form-data">
-                <button type="submit" form="form1" value="Submit">Submit</button>
-
-                </form>
                 <table class="table table-hover" id="atividades">
                     <thead>
                         <tr>
