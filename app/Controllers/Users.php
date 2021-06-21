@@ -390,7 +390,6 @@ class Users extends BaseController
      if ($this->request->getMethod() == 'post') {
          //VALIDAÇÕES
          $rules = [
-             'email' => 'required|min_length[6]|max_length[100]|valid_email|is_unique[users.email]',
              'senha' => 'required|min_length[8]|max_length[255]',
              'senha_confirmacao' => 'matches[senha]',
          ];

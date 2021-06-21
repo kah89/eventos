@@ -23,9 +23,8 @@ class Atividades extends BaseController
         if ($this->request->getMethod() == 'post') {
             //VALIDAÇÕES
             $rules = [
-                'titulo' => 'trim|required|min_length[3]|max_length[60]',
-                'descricao' => 'trim|required|min_length[10]|max_length[60]',
-                'tipo' => 'trim|required',
+                'titulo' => 'min_length[3]|max_length[60]',
+                'descricao' => 'min_length[10]|max_length[60]',
             ];
 
             if (!$this->validate($rules)) {
@@ -39,7 +38,7 @@ class Atividades extends BaseController
 
                 $newData = [
                     'titulo' => $this->request->getVar('titulo'),
-                    'descricao' => $this->request->getFile('conteudo'),
+                    'descricao' => $this->request->getFile('descricao'),
                     'tipo' => $this->request->getVar('certificado'),
                 ];
                 // var_dump($newData); exit;
