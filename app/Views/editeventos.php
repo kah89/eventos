@@ -56,6 +56,11 @@ display: none;
                         </div>
                     <?php endif ?>
                     <h5 class="card-title text-center">Alteração de Evento</h5> <!-- utilizar a tabela eventos-->
+                    <?php if (session()->get('success')) : ?>
+                        <div class="alert alert-success" role="alert">
+                            <?= session()->get('success'); ?>
+                        </div>
+                    <?php endif; ?> 
                     <form class="form-signin"  id="file"   method="post" enctype="multipart/form-data" >
                         <div class="form-group">
                             <div  class="mb-3">

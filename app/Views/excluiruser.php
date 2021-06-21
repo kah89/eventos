@@ -16,6 +16,11 @@ h1, th{
         <div class="row">
             <div class="col-12">
                 <h1 style="text-align: center; font-size:30px">Usuários</h1>
+                <?php if (session()->get('success')) : ?>
+                        <div class="alert alert-success" role="alert">
+                            <?= session()->get('success'); ?>
+                        </div>
+                <?php endif; ?> 
                 <table class="table table-hover" id="atividades">
                     <thead>
                         <tr>

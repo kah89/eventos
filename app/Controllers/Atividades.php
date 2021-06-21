@@ -44,12 +44,12 @@ class Atividades extends BaseController
                     'dtInicio' => $this->request->getVar('data'),
 
                 ];
-                var_dump($newData); 
+                // var_dump($newData); 
 
                 if ($model->save($newData)) {
                         $session = session();
                         $session->setFlashdata('success', 'Sua atividade foi cadastrada com sucesso!');
-                        return redirect()->to(base_url());
+                        return redirect()->to(base_url('excluirativ'));
                 }else {
                     echo "Erro ao salvar";
                     exit;
@@ -134,6 +134,9 @@ class Atividades extends BaseController
      }
 
 
+
+     
+
     //--------------------------------------------------------------------
 
 
@@ -159,6 +162,8 @@ class Atividades extends BaseController
 
         if ($ativ_id) {
             $model->delete($ativ_id);
+            $session = session();
+            $session->setFlashdata('success', 'Sua atividade foi excluida com sucesso!');
             return redirect()->to(base_url("excluirativ"));
         } else {
             echo "O usuário" . $result . " não existe";

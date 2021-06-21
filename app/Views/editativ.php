@@ -33,6 +33,11 @@ h5{
             <div class="card card-signin my-5">
                 <div class="card-body">
                     <h5 class="card-title text-center">Alteração de Atividade</h5>
+                    <?php if (session()->get('success')) : ?>
+                        <div class="alert alert-success" role="alert">
+                            <?= session()->get('success'); ?>
+                        </div>
+                    <?php endif; ?> 
                     <form class="form-signin" method="post">
                         <div class="form-group">
                             <div class="form-label-group">

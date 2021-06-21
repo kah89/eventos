@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\AtividadeModel;
 use CodeIgniter\API\ResponseTrait;
 use App\Models\EventoModel;
 
@@ -49,17 +50,27 @@ class Eventos extends BaseController
 
 
     // lista um eventos
-    // public function show($id = null)
-    // {
-    //     $model = new EventoModel();
-    //     $data = $model->getWhere(['id' => $id])->getResult();
 
-    //     if($data){
-    //         return $this->respond($data);
-    //     }
+    public function lista($id = null)
+    {
+        $model = new AtividadeModel();
+        $data = [
+            'title' => 'I Fórum de Tecnologias na Área Farmacêutica',
+            'data' => $model->getWhere(['id' => $id])->getResult(),
+        ];
 
-    //     return $this->failNotFound('Nenhum evento encontrado com id '.$id);        
-    // }
+        // if($data){
+        //             return $this->respond($data);
+        //         }
+        
+        //         return $this->failNotFound('Nenhum evento encontrado com id '.$id);        
+            
+        
+
+        echo view('templates/header', $data);
+        echo view('lista');
+        echo view('templates/footer');
+    }
 
 
     //------------------------------------------------------------------------------
@@ -249,6 +260,8 @@ class Eventos extends BaseController
         if (file_exists($filePath)) {  //faz a exclusão do arquivo no banco e na pasta de img
             if (unlink($filePath)) {
                 $model->delete($product_id);
+                $session = session();
+                $session->setFlashdata('success', 'Seu evento foi excluido com sucesso!');
                 return redirect()->to(base_url("alterareventos"));
             } else {
                 echo "Não foi possivel excluir, verifique permissões!";

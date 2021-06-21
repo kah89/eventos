@@ -418,7 +418,7 @@ class Users extends BaseController
 
              if ($model->save($newData)) {
                      $session = session();
-                     $session->setFlashdata('success', 'Seu usuario foi alterado com sucesso!');
+                     $session->setFlashdata('success', 'Seu usuário foi alterado com sucesso!');
                      return redirect()->to(base_url('excluiruser'));
                  } else {
                  echo "Erro ao salvar";
@@ -537,9 +537,11 @@ class Users extends BaseController
 
         if ($product_id) {
             $model->delete($product_id);
+            $session = session();
+            $session->setFlashdata('success', 'Seu usuário foi excluido com sucesso!');
             return redirect()->to(base_url("excluiruser"));
         } else {
-            echo "O arquivo" . $result . " não existe";
+            echo "O usuário" . $result . " não pode ser excluido";
         }
     }
 

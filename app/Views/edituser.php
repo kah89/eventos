@@ -159,6 +159,11 @@
             <div class="card card-signin my-5">
                 <div class="card-body">
                     <h5 class="card-title text-center">Alteração de Usuários</h5>
+                    <?php if (session()->get('success')) : ?>
+                        <div class="alert alert-success" role="alert">
+                            <?= session()->get('success'); ?>
+                        </div>
+                    <?php endif; ?> 
                     <form class="form-signin" method="post">
                     
                         <div class="form-label-group"> <!-- Nome e sobrenome não deixar alterar e puxar do banco -->
@@ -207,14 +212,14 @@
                             <input type="text" id="celular" name="celular" class="form-control" placeholder="Celular" value="<?=$celular?>">
                         </div>
                         <div class="form-label-group">
-                            <input type="text" id="cpf" name="cpf" class="form-control" placeholder="CPF" disabled value="<?=$cpf?>">
+                            <input type="text" id="cpf" name="cpf" class="form-control" placeholder="CPF"  value="<?=$cpf?>">
                         </div>
 
                         <div class="form-label-group"> 
-                            <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" required>
+                            <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha"  required >
                         </div>
                         <div class="form-label-group"> 
-                            <input type="password" id="senha_confirmacao" name="senha_confirmacao" class="form-control" placeholder="Confirme a Senha" required>
+                            <input type="password" id="senha_confirmacao" name="senha_confirmacao" class="form-control" placeholder="Confirme a Senha"  required>
                         </div>
                         <?php if (isset($validation)) : ?>
                             <div class="alert alert-danger" roles="alert">
