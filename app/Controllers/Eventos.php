@@ -18,7 +18,7 @@ class Eventos extends BaseController
     {
         $model = new EventoModel();
         $data = [
-            'title' => 'I Fórum de Tecnologias na Área Farmacêutica',
+            'title' => 'Eventos',
             'data' => $model->findAll(),
         ];
 
@@ -36,7 +36,7 @@ class Eventos extends BaseController
     {
         $model = new EventoModel();
         $data = [
-            'title' => 'I Fórum de Tecnologias na Área Farmacêutica',
+            'title' => 'Lista de eventos',
             'data' => $model->findAll(),
         ];
 
@@ -55,9 +55,10 @@ class Eventos extends BaseController
     {
         $model = new AtividadeModel();
         $data = [
-            'title' => 'I Fórum de Tecnologias na Área Farmacêutica',
-            'data' => $model->getWhere(['id' => $id])->getResult(),
+            'title' => 'Lista atividades',
+            'data' => $model->getWhere(['idEvento' => $id])->getResult(),
         ];
+        // var_dump($data);exit;
 
         // if($data){
         //             return $this->respond($data);

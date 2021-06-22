@@ -41,6 +41,7 @@ h2{
                     <img src="<?php echo base_url("/public/img")."/".$evento['imagem']?>" alt="" width="100%">
                     <p class="card-text resumo"><?php echo $evento['resumo']?></p> <!-- puxar o resumo via php -->
                     <a href="<?php echo base_url("/eventos/lista")."/". $evento['id']?>" class="btn btn-primary">Veja mais</a> <!-- lista de atividades por evento -->
+                 
                     <a href="<?php echo base_url("cadativ")?>" class="btn btn-primary ativ" >Cadastrar atividade</a> <!-- cadastrar atividade trelada a esse evento -->
                 </div>
             </div>
