@@ -7,22 +7,26 @@
         background-color: #daf87d;
     }
 
-    .data {
-        float: right;
-    }
 
     h5 {
         color: #007BFF;
     }
 
-    #dtAgenda{
-        width: 180px;
-        margin-left: -26px;
+    #cad{
+        width: 300px;
+        margin-left: 50px;
     }
 
-    #certificado{
-        margin-left: -15px;
+    #hora1, #hora{
+        width: 90px;
+        /* float: right; */
+        margin-left: 205px;
+        margin-top: -54px;
     }
+
+   
+
+  
     
 </style>
 
@@ -52,7 +56,7 @@
       mm = '0' + mm;
     }
     today = yyyy + '-' + mm + '-' + dd;
-    document.getElementById("dtAgenda").setAttribute("min", today);
+    document.getElementsByClassName("dtAgenda").setAttribute("min", today);
     today = dd + '/' + mm + '/' + yyyy;
     var div = document.getElementById("divDtFutura");
     div.innerText =  today ;
@@ -98,9 +102,26 @@
                                 <textarea  type="text" name="descricao" id="descricao" class="form-control" maxlength="200" placeholder="Descrição" maxlength="60" minilength="10"  ></textarea>
                             </div>
                         </div>
-                        <div class="form-group col-sm-5 data">
+                        <div class="form-group col-sm-6 data" id="inicial">
                             <div class="form-label-group">
-                                <input type="date" name="data" id="dtAgenda" min="2017-04-01" class="form-control" required />
+                            <label for="" >Inicial :</label>
+                                 <input type="date" name="datainicial" id="dtAgenda" min="2017-04-01" class="form-control" required />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-label-group">
+                                <input type="time" name="hinicial" id="hora"  class="form-control" required />
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6 data" id="final" >
+                            <div class="form-label-group">
+                                <label for="" >Final:</label>
+                                <input type="date" name="datafinal" id="dtAgenda1" min="2017-04-01" class="form-control" required />
+                            </div>
+                         </div>
+                        <div class="form-group">
+                            <div class="form-label-group">
+                                <input type="time" name="hfinal" id="hora1"  class="form-control" required />
                                 
                             </div>
                         </div>
@@ -119,7 +140,7 @@
                                     <?= $validation->listErrors(); ?>
                                 </div>
                             <?php endif; ?>
-                            <button class="btn btn-md btn-primary  text-uppercase" id="cad" type="submit">Cadastrar</button>
+                            <button class="btn btn-primary  text-uppercase" id="cad" type="submit">Cadastrar</button>
                         </div>
                     </form>
                 </div>

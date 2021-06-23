@@ -26,12 +26,12 @@ h1, th{
                             <th scope="col">Conteúdo</th> <!-- abrir um popup ou card  / BD descrição-->
                             <th scope="col">Data</th> <!-- abrir um popup ou card  / BD dt inicio-->
                             <th scope="col">Certificado</th> <!-- check box / BD tipo-->
-                            <th scope="col">Lembretes</th> <!-- check box / BD tipo-->
+                            <th scope="col" >Lembretes</th> <!-- check box / BD tipo-->
                         </tr>
                     </thead>
                     <tbody>
                         <?php foreach($data as $key => $evento){
-                               echo '<tr><td>'. $evento['id'].'</td><td>'.$evento['titulo'].'</td><td>'.$evento['descricao'].'</td><td>'.$evento['dtInicio'].'</td><td>'.$evento['tipo'].'</td><td><a href="#'.$evento['id'].'"><i class="fa fa-bell"  style="color: coral"></a></i></td></tr>';
+                               echo '<tr><td>'. $evento['id'].'</td><td>'.$evento['titulo'].'</td><td>'.$evento['descricao'].'</td><td>'.$evento['dtInicio'].'</td><td>'.$evento['tipo'].'</td><td><a href="popup'.$evento['id'].'"><i class="fa fa-bell"  style="color: coral"></a></i></td></tr>';
                         } ?>
                     </tbody>
                 </table>

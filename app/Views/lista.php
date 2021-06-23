@@ -31,6 +31,7 @@ h1, th{
                     </thead>
                     <tbody>
                         <?php foreach($data as $key => $ativ){
+                            // var_dump($ativ);exit;
                                echo '<tr><td>'. $ativ['id'].'</td><td>'.$ativ['titulo'].'</td><td>'.$ativ['descricao'].'</td><td>'.$ativ['dtInicio'].'</td><td>'.$ativ['tipo'].'</td><td><a href="#'.$ativ['id'].'"><i class="fa fa-bell"  style="color: coral"></a></i></td></tr>';
                         } ?>
                     </tbody> 

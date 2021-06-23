@@ -41,10 +41,14 @@ class Atividades extends BaseController
                     'titulo' => $this->request->getVar('titulo'),
                     'descricao' => $this->request->getVar('descricao'),
                     'tipo' => (int)$this->request->getVar('certificado'),
-                    'dtInicio' => $this->request->getVar('data'),
+                    // 'dtInicio' => $this->request->getVar('datainicial'),
+                    
+                    'dtInicio' => date($this->request->getVar('datainicial').' '.$this->request->getVar('hinicial')),
+                    'dtFim' => date($this->request->getVar('datafinal').' '.$this->request->getVar('hfinal')),       
+                    'hora' => date('H:i:s',strtotime($this->request->getVar('datainicial').' '.$this->request->getVar('hinicial'))),
 
                 ];
-                // var_dump($newData); 
+                // var_dump($newData);exit;
 
                 if ($model->save($newData)) {
                         $session = session();
@@ -126,6 +130,7 @@ class Atividades extends BaseController
          $data = [
              'title' => 'Listar Atividades',
              'data' => $model->findAll(),
+            //  'data' => $model->getWhere(['idAtividade' => $id])->getResult(),
          ];
 
          echo view('templates/header', $data);

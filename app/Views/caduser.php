@@ -233,7 +233,7 @@
                                 <?= $validation->listErrors(); ?>
                             </div>
                         <?php endif; ?>
-                        <button class="btn btn-md btn-primary  text-uppercase" type="submit">Cadastrar</button>
+                        <button class="btn btn-primary" type="submit">Cadastrar</button>
                         <hr class="my-4">
                     </form>
                 </div>

@@ -56,7 +56,11 @@ class Eventos extends BaseController
         $model = new AtividadeModel();
         $data = [
             'title' => 'Lista atividades',
-            'data' => $model->getWhere(['idEvento' => $id])->getResult(),
+            'data' => $model->where(['idEvento' => $id])
+            // ->select('*')
+            // ->join('usuario_atividade','usuario_atividade.idAtividade = atividade_evento.id')
+            // ->where('usuario_atividade.idUser', 1)
+            ->findAll(),
         ];
         // var_dump($data);exit;
 
@@ -71,6 +75,11 @@ class Eventos extends BaseController
         echo view('templates/header', $data);
         echo view('lista');
         echo view('templates/footer');
+
+        helper(['form']);
+
+        
+   
     }
 
 

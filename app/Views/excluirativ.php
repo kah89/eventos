@@ -10,6 +10,9 @@ h1, th{
 .fa-trash{
     margin-left: 20%;
 }
+#certificado{
+        text-align: center;
+    }
 </style>
 <main>
     <div class="container bg-white" style="padding-bottom: 10em;">
