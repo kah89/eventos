@@ -74,6 +74,10 @@
             margin-left: 50px;
             color: #fff;
         }
+        #user{
+            color: #B5B5B5;
+            text-transform: uppercase;
+        }
     </style>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ST5941BK0S"></script>
@@ -151,7 +155,11 @@
                         </div>
                     </li>  -->
                     </ul>
-
+                    <ul class="navbar-nav my-2 my-lg-0" id="user" >
+                        <li class="nav-item"><i aria-hidden="true" id="user"></i>
+                        <?php echo $_SESSION['firstname'];?>
+                     </li>
+                    </ul>
                     <ul class="navbar-nav my-2 my-lg-0">
                         <li class="nav-item"><a class="nav-link" href="<?= base_url('logout')?>"><i class="fa fa-sign-out" aria-hidden="true"></i> Sair</a>
                         </li>
