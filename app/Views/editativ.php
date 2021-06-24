@@ -50,11 +50,6 @@ h5{
                         </div>
                         <div class="form-group">
                             <div class="form-label-group"><!--DB atividade_evento (descrição) -->
-                                <textarea name="descricao" id="conteudo" class="form-control" maxlength="200" placeholder="Conteúdo"  required><?=$descricao?></textarea>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="form-label-group"><!--DB atividade_evento (descrição) -->
                                 <textarea name="atividade" id="atividade" class="form-control" maxlength="200" placeholder="Atividade"  required><?=$atividade?></textarea>
                             </div>
                         </div>

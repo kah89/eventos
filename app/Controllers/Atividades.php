@@ -40,7 +40,6 @@ class Atividades extends BaseController
                 $newData = [
                     'idEvento' => (int)$this->request->getVar('selectEvent'),
                     'titulo' => $this->request->getVar('titulo'),
-                    'descricao' => $this->request->getVar('descricao'),
                     'tipo' => (int)$this->request->getVar('certificado'),
                     'atividade' => $this->request->getVar('atividade'),
                     
@@ -104,7 +103,6 @@ class Atividades extends BaseController
                     'titulo' => $this->request->getVar('titulo'),
                     'tipo' => $this->request->getVar('certificado'),
                     'dtInicio' => $this->request->getVar('data'),
-                    'descricao' => $this->request->getVar('descricao'),
                     'atividade' => $this->request->getVar('atividade'),
                 ];
 

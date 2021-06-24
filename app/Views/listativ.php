@@ -10,9 +10,7 @@ h1, th{
 .fa-bell{
     margin-left: 30px;
 }
-#checkbox{
-margin-left: 30px;
-}
+
 
 </style>
 <main>
@@ -26,16 +24,15 @@ margin-left: 30px;
                         <tr>
                             <th scope="col">ID</th>
                             <th scope="col">Titulo</th>
-                            <th scope="col">Conteúdo</th> <!-- abrir um popup ou card  / BD descrição-->
                             <th scope="col">Data</th> <!-- abrir um popup ou card  / BD dt inicio-->
                             <th scope="col" >Certificado</th> <!-- check box / BD tipo-->
-                            <th scope="col" >Lembretes</th> <!-- check box / BD tipo-->
+                            <th scope="col" >Ação</th> <!-- check box / BD tipo-->
                         </tr>
                     </thead>
                     <tbody>
                         <?php foreach($data as $key => $evento){
-                               echo '<tr><td>'. $evento['id'].'</td><td>'.$evento['titulo'].'</td> <td>'.$evento['descricao'].'</td><td>'.$evento['dtInicio'].'</td><td>'.$evento['tipo'].'</td>
-                               <td><a href="'.$evento['id'].'"><input  type="checkbox" onclick="funcao()" id="checkbox"></></a></td></tr>';
+                               echo '<tr><td>'. $evento['id'].'</td><td>'.$evento['titulo'].'</td><td>'.$evento['dtInicio'].'</td><td>'.$evento['tipo'].'</td>
+                               <td><a class="btn btn-primary" href='.base_url('Atividade')."/".$evento['id'].' role="button">Ir </a></td></tr>';
                         } ?>
                     </tbody>
                 </table>

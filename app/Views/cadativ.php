@@ -106,12 +106,7 @@
                         </div>
                         <div class="form-group">
                             <div class="form-label-group">
-                                <textarea  type="text" name="descricao" id="descricao" class="form-control" maxlength="200" placeholder="Descrição" maxlength="60" minilength="10"  ></textarea>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="form-label-group">
-                                <textarea  type="text" name="atividade" id="descricao" class="form-control" maxlength="200" placeholder="atividade" maxlength="60" minilength="10"  ></textarea>
+                                <textarea  type="text" name="atividade" id="descricao" class="form-control" maxlength="200" placeholder="Atividade" maxlength="60" minilength="10"  ></textarea>
                             </div>
                         </div>
                         <div class="form-group col-sm-6 data" id="inicial">

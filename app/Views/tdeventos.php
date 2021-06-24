@@ -9,11 +9,6 @@
         margin-top: 10px;
     }
 
-    .card-signin {
-        margin-top: -15px;
-        min-height: 85%;
-    }
-
     .card-title {
         text-align: center;
     }
@@ -22,6 +17,17 @@
         margin-left: 5px;
         margin-top: 10px;
         text-align: center;
+    }
+    /* .nav-pills{
+        margin-bottom: 0;
+        position: ;
+    } */
+    .card{
+        padding: 0;
+    }
+    .card-title{
+        text-align: center;
+        margin-top: 5px;
     }
 
 </style>
@@ -40,15 +46,17 @@
         if (count($data) > 0) {
             foreach ($data as $key => $evento) {
         ?>
-                <div class="col-sm-4">
-                    <div class="card card-signin my-5">
-                        <div class="card-body card">
 
-                            <h5 class="card-title"><?php echo $evento['titulo'] ?></h5> <!-- puxar o título via php -->
-                            <img src="<?php echo base_url("/public/img") . "/" . $evento['imagem'] ?>" alt="" width="100%">
-                            <p class="card-text resumo"><?php echo $evento['resumo'] ?></p> <!-- puxar o resumo via php -->
-
-                            <ul class="nav nav-pills ">
+<div class="card col-4">
+  <div class="card-header">
+    <h5 class="card-title"><?php echo $evento['titulo'] ?></h5> 
+  </div>
+  <div class="card-body">
+    <img src="<?php echo base_url("/public/img") . "/" . $evento['imagem'] ?>" alt="" width="100%">
+    <p class="card-text"><?php echo $evento['resumo'] ?></p>
+  </div>
+  <div class="card-footer text-muted">
+  <ul class="nav nav-pills ">
                                 <li class="nav-item">
                                     <!-- Botão Modal Sobre -->
                                     <button class="btn btn-primary" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " href="#" data-toggle="modal" data-target="#sobreModal">
@@ -76,7 +84,7 @@
                                     </div>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="<?php echo base_url("/eventos/lista") . "/" . $evento['id'] ?>">Atividades</a>
+                                    <a class="nav-link active" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " href="<?php echo base_url("/eventos/lista") . "/" . $evento['id'] ?>">Atividades</a>
                                 </li>
                                 <li class="nav-item">
                                     <!-- Botão Modal inscreva-se -->
@@ -106,9 +114,9 @@
                                     </div>
                                 </li>
                             </ul>
-                        </div>
-                    </div>
-                </div>
+  </div>
+</div>
+               
         <?php
             }
         } else {

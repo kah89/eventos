@@ -7,9 +7,7 @@ h1, th{
     margin-top: 20px;
     font: caption;
 }
-.fa-bell{
-    margin-left: 30px;
-}
+
 
 </style>
 <main>
@@ -23,16 +21,14 @@ h1, th{
                         <tr>
                             <th scope="col">ID</th>
                             <th scope="col">Titulo</th>
-                            <th scope="col">Conteúdo</th> <!-- abrir um popup ou card  / BD descrição-->
                             <th scope="col">Data</th> <!-- abrir um popup ou card  / BD dt inicio-->
                             <th scope="col">Certificado</th> <!-- check box / BD tipo-->
-                            <th scope="col">Lembretes</th> <!-- check box / BD tipo-->
                         </tr>
                     </thead>
                     <tbody>
                         <?php foreach($data as $key => $ativ){
                             // var_dump($ativ);exit;
-                               echo '<tr><td>'. $ativ['id'].'</td><td>'.$ativ['titulo'].'</td><td>'.$ativ['descricao'].'</td><td>'.$ativ['dtInicio'].'</td><td>'.$ativ['tipo'].'</td><td><a href="#'.$ativ['id'].'"><i class="fa fa-bell"  style="color: coral"></a></i></td></tr>';
+                               echo '<tr><td>'. $ativ['id'].'</td><td>'.$ativ['titulo'].'</td><td>'.$ativ['dtInicio'].'</td><td id="tipo">'.$ativ['tipo'].'</td></tr>';
                         } ?>
                     </tbody> 
                 </table>

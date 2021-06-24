@@ -34,7 +34,6 @@ h1, th{
                         <tr>
                             <th scope="col">ID</th>
                             <th scope="col">Titulo</th>
-                            <th scope="col">Conteúdo</th> 
                             <th scope="col">Data</th> 
                             <th scope="col">Certificado</th> 
                             <th scope="col">Ações</th> <!-- botão-->
@@ -42,7 +41,7 @@ h1, th{
                     </thead>
                     <tbody>
                         <?php foreach($data as $key => $evento){
-                               echo '<tr><td>'. $evento['id'].'</td><td>'.$evento['titulo'].'</td><td>'.$evento['descricao'].'</td><td>'.$evento['dtInicio'].'</td><td>'.$evento['tipo'].'</td>
+                               echo '<tr><td>'. $evento['id'].'</td><td>'.$evento['titulo'].'</td><td>'.$evento['dtInicio'].'</td><td>'.$evento['tipo'].'</td>
                                <td><a href='.base_url('editativ')."/".$evento['id'].'><i class="fa fa-edit" style="color: blue"></a></i>
                                <a href='.base_url('atividades/deletar')."/".$evento['id'].'><i class="fa fa-trash"  style="color: red"></a></i></td></tr>';
                         } ?>
