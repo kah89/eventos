@@ -67,11 +67,7 @@ class Eventos extends BaseController
 
         echo view('templates/header', $data);
         echo view('lista');
-        echo view('templates/footer');
-
-        helper(['form']);
-
-        
+        echo view('templates/footer');  
    
     }
 
