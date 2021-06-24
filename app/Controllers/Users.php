@@ -419,7 +419,7 @@ class Users extends BaseController
 
              if ($model->save($newData)) {
                      $session = session();
-                     $session->setFlashdata('success', 'Seu usuário'." " . $result['firstname'] . " " .  'foi alterado com sucesso!');
+                     $session->setFlashdata('success', 'Seu usuário'." (" . $result['firstname'] . ") " .  'foi alterado com sucesso!');
                      return redirect()->to(base_url('excluiruser'));
                  } else {
                  echo "Erro ao salvar";
@@ -540,7 +540,7 @@ class Users extends BaseController
             if ($user_id) {
                 $model->delete($user_id);
                 $session = session();
-                $session->setFlashdata('success', 'Seu usuário'." " . $result['firstname'] . " " .'foi excluido com sucesso!');
+                $session->setFlashdata('success', 'Seu usuário'."  (" . $result['firstname'] . ")  " .'foi excluido com sucesso!');
                 return redirect()->to(base_url("excluiruser"));
             } else {
                 echo "O usuário" . $result . " não pode ser excluido";
@@ -548,9 +548,9 @@ class Users extends BaseController
         }catch(Exception $e){  
             $session = session();     
             if($e->getCode()==1451){
-                $session->setFlashdata('danger', 'Seu usuário'." " . $result['firstname'] . " " .'não pode ser excluído, pois possui vinculos no sistema!'); 
+                $session->setFlashdata('danger', 'Seu usuário'."  (" . $result['firstname'] . ")  " .'não pode ser excluído, pois possui vinculos no sistema!'); 
             }else{
-                $session->setFlashdata('danger', 'Seu usuário'." " . $result['firstname'] . " " .'não pode ser excluido!');                  
+                $session->setFlashdata('danger', 'Seu usuário'."  (" . $result['firstname'] . ")  " .'não pode ser excluido!');                  
             }                
             return redirect()->to(base_url("excluiruser"));
         }

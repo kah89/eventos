@@ -3,6 +3,7 @@ namespace App\Controllers;
 use CodeIgniter\API\ResponseTrait;
 use App\Models\AtividadeModel;
 use App\Models\EventoModel;
+use Exception;
 
 class Atividades extends BaseController
 {
@@ -41,7 +42,7 @@ class Atividades extends BaseController
                     'titulo' => $this->request->getVar('titulo'),
                     'descricao' => $this->request->getVar('descricao'),
                     'tipo' => (int)$this->request->getVar('certificado'),
-                    // 'dtInicio' => $this->request->getVar('datainicial'),
+                    'atividade' => $this->request->getVar('atividade'),
                     
                     'dtInicio' => date($this->request->getVar('datainicial').' '.$this->request->getVar('hinicial')),
                     'dtFim' => date($this->request->getVar('datafinal').' '.$this->request->getVar('hfinal')),       
@@ -53,6 +54,7 @@ class Atividades extends BaseController
                 if ($model->save($newData)) {
                         $session = session();
                         $session->setFlashdata('success', 'Sua atividade foi cadastrada com sucesso!');
+                   
                         return redirect()->to(base_url('excluirativ'));
                 }else {
                     echo "Erro ao salvar";
@@ -103,12 +105,13 @@ class Atividades extends BaseController
                     'tipo' => $this->request->getVar('certificado'),
                     'dtInicio' => $this->request->getVar('data'),
                     'descricao' => $this->request->getVar('descricao'),
-                    'link' => $this->request->getVar('link'),
+                    'atividade' => $this->request->getVar('atividade'),
                 ];
 
             if ($model->save($newData)) {
                     $session = session();
-                    $session->setFlashdata('success', 'Sua atividade foi alterada com sucesso!');
+                    $session->setFlashdata('success', 'Sua atividade ');
+                    $session->setFlashdata('success', 'Sua atividade'. "  (" . $result['titulo'] . ") " .  'foi alterada com sucesso!');
                     return redirect()->to(base_url('excluirativ'));
                 } else {
                 echo "Erro ao editar";
@@ -169,13 +172,23 @@ class Atividades extends BaseController
         $model = new AtividadeModel();
         $result = $model->find($ativ_id);
 
-        if ($ativ_id) {
-            $model->delete($ativ_id);
-            $session = session();
-            $session->setFlashdata('success', 'Sua atividade'. " " . $result['titulo'] . " " .  'foi excluida com sucesso!');
+        try{
+            if ($ativ_id) {
+                $model->delete($ativ_id);
+                $session = session();
+                $session->setFlashdata('success', 'Sua atividade'. "  (" . $result['titulo'] . ") " .  'foi excluida com sucesso!');
+                return redirect()->to(base_url("excluirativ"));
+            } else {
+                echo "O usuário" . $result . " não existe";
+            }
+        }catch(Exception $e){  
+            $session = session();     
+            if($e->getCode()==1451){
+                $session->setFlashdata('danger', 'Sua atividade'."  (" . $result['titulo'] . ") " .'não pode ser excluída, pois possui vinculos no sistema!'); 
+            }else{
+                $session->setFlashdata('danger', 'Sua atividade'."  (" . $result['titulo'] . ") " .'não pode ser excluida!');                  
+            }                
             return redirect()->to(base_url("excluirativ"));
-        } else {
-            echo "O usuário" . $result . " não existe";
         }
     }
     

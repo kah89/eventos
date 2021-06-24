@@ -12,21 +12,12 @@ h5
     margin-top: 15px;
     margin-left: 30px;
 }
-/* .tox .tox-statusbar 
-{
-background-color: #fff;
-border-top: #fff;
-color: #fff;
-}
-.tox .tox-statusbar__path {
-display: none;
-}
-.tox .tox-statusbar__text-container {
-display: none;
-}
-.tox .tox-menubar {
-display: none;
-} */
+#hora1, #hora{
+        width: 100px;
+        /* float: right; */
+        margin-left: 205px;
+        margin-top: -54px;
+    }
 
 </style>
 <div class="container">
@@ -76,6 +67,29 @@ display: none;
                         <div class="form-group">
                             <div class="form-label-group">
                                 <textarea name="resumo" id="resumo" class="form-control" maxlength="200" placeholder="Resumo"   required><?=$resumo?></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6 data" id="inicial">
+                            <div class="form-label-group">
+                            <label for="" >Inicial :</label>
+                                 <input type="date" name="datainicial" id="dtAgenda" min="2017-04-01" class="form-control" value="<?=$dtInicio?>"  required />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-label-group">
+                                <input type="time" name="hinicial" id="hora"  class="form-control"  required />
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6 data" id="final" >
+                            <div class="form-label-group">
+                                <label for="" >Final:</label>
+                                <input type="date" name="datafinal" id="dtAgenda1" min="2017-04-01" value="<?=$dtFim?>" class="form-control" required />
+                            </div>
+                         </div>
+                        <div class="form-group">
+                            <div class="form-label-group">
+                                <input type="time" name="hfinal" id="hora1"  class="form-control"  required />
+                                
                             </div>
                         </div>
                         <div class="form-group">

@@ -8,9 +8,7 @@
 #ed:hover{
     background-color:#daf87d;
 }
-.data{
-    float: right;
-}
+
 h5{
     color: #007BFF;
     text-align: center; 
@@ -25,6 +23,12 @@ h5{
 
 #certificado{
     margin-left: -15px;
+    }
+#hora1, #hora{
+    width: 100px;
+    /* float: right; */
+    margin-left: 205px;
+        margin-top: -54px;
     }
 </style>
 <div class="container">
@@ -50,13 +54,31 @@ h5{
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="form-label-group">
-                                <input type="text" id="link" name="link" class="form-control" placeholder="link" value="<?=$link?>" autofocus>
+                            <div class="form-label-group"><!--DB atividade_evento (descrição) -->
+                                <textarea name="atividade" id="atividade" class="form-control" maxlength="200" placeholder="Atividade"  required><?=$atividade?></textarea>
                             </div>
                         </div>
-                        <div class="form-group col-sm-5 data">
+                        <div class="form-group col-sm-6 data" id="inicial">
                             <div class="form-label-group">
-                                <input type="text" id="data" name="data" class="form-control" placeholder="Data" value="<?=$dtInicio?>" required autofocus>
+                            <label for="" >Inicial :</label>
+                                 <input type="date" name="datainicial" id="dtAgenda" min="2017-04-01" class="form-control" value="<?=$dtInicio?>"  required />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-label-group">
+                                <input type="time" name="hinicial" id="hora"  class="form-control"  required />
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6 data" id="final" >
+                            <div class="form-label-group">
+                                <label for="" >Final:</label>
+                                <input type="date" name="datafinal" id="dtAgenda1" min="2017-04-01" value="<?=$dtFim?>" class="form-control" required />
+                            </div>
+                         </div>
+                        <div class="form-group">
+                            <div class="form-label-group">
+                                <input type="time" name="hfinal" id="hora1"  class="form-control"  required />
+                                
                             </div>
                         </div>
                         <div class="form-group col-sm-7 certi">

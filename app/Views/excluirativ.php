@@ -19,11 +19,16 @@ h1, th{
         <div class="row">
             <div class="col-12">
                 <h1 style="text-align: center; font-size:30px">Atividades</h1>
-                <?php if (session()->get('success')) : ?>
+                <?php if (session()->get('success')) { ?>
                         <div class="alert alert-success" role="alert">
                             <?= session()->get('success'); ?>
                         </div>
-                <?php endif; ?> 
+                <?php } elseif(session()->get('danger')) {?>
+                    <div class="alert alert-danger" role="alert">
+                            <?= session()->get('danger'); ?>
+                        </div>
+
+                    <?php } ?> 
                 <table class="table table-hover" id="atividades">
                     <thead>
                         <tr>
@@ -38,7 +43,7 @@ h1, th{
                     <tbody>
                         <?php foreach($data as $key => $evento){
                                echo '<tr><td>'. $evento['id'].'</td><td>'.$evento['titulo'].'</td><td>'.$evento['descricao'].'</td><td>'.$evento['dtInicio'].'</td><td>'.$evento['tipo'].'</td>
-                               <td><a href='.base_url('editativ')."/".$evento['id'].'"><i class="fa fa-edit" style="color: blue"></a></i>
+                               <td><a href='.base_url('editativ')."/".$evento['id'].'><i class="fa fa-edit" style="color: blue"></a></i>
                                <a href='.base_url('atividades/deletar')."/".$evento['id'].'><i class="fa fa-trash"  style="color: red"></a></i></td></tr>';
                         } ?>
                     </tbody>

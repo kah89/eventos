@@ -112,6 +112,9 @@ class Eventos extends BaseController
                         'titulo' => $this->request->getVar('titulo'),
                         'imagem' => $uploadImagem,
                         'resumo' => $this->request->getVar('resumo'),
+                        'dtInicio' => date($this->request->getVar('datainicial').' '.$this->request->getVar('hinicial')),
+                        'dtFim' => date($this->request->getVar('datafinal').' '.$this->request->getVar('hfinal')),       
+                        'hora' => date('H:i:s',strtotime($this->request->getVar('datainicial').' '.$this->request->getVar('hinicial'))),
                     ];
 
                     if ($model->save($newData)) {
@@ -186,11 +189,15 @@ class Eventos extends BaseController
                         'titulo' => $this->request->getVar('titulo'),
                         'imagem' => $uploadImagem,
                         'resumo' => $this->request->getVar('resumo'),
+                        'dtInicio' => date($this->request->getVar('datainicial').' '.$this->request->getVar('hinicial')),
+                        'dtFim' => date($this->request->getVar('datafinal').' '.$this->request->getVar('hfinal')),       
+                        'hora' => date('H:i:s',strtotime($this->request->getVar('datainicial').' '.$this->request->getVar('hinicial'))),
+                  
                     ];
 
                     if ($model->save($newData)) {
                         $session = session();
-                        $session->setFlashdata('success', 'Seu evento'. " " . $result['titulo'] . " " .  ' foi alterado com sucesso!');
+                        $session->setFlashdata('success', 'Seu evento'. " (" . $result['titulo'] . ") " .  ' foi alterado com sucesso!');
                         return redirect()->to(base_url('eventos'));
                     } else {
                         echo "Erro ao salvar";
