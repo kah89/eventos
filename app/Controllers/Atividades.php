@@ -103,6 +103,7 @@ class Atividades extends BaseController
                     'tipo' => $this->request->getVar('certificado'),
                     'dtInicio' => $this->request->getVar('data'),
                     'descricao' => $this->request->getVar('descricao'),
+                    'link' => $this->request->getVar('link'),
                 ];
 
             if ($model->save($newData)) {
@@ -168,7 +169,7 @@ class Atividades extends BaseController
         if ($ativ_id) {
             $model->delete($ativ_id);
             $session = session();
-            $session->setFlashdata('success', 'Sua atividade foi excluida com sucesso!');
+            $session->setFlashdata('success', 'Sua atividade'. " " . $result['titulo'] . " " .  'foi excluida com sucesso!');
             return redirect()->to(base_url("excluirativ"));
         } else {
             echo "O usuário" . $result . " não existe";

@@ -8,6 +8,7 @@ use App\Models\UserModel;
 use App\Models\TokenModel;
 use App\Models\LogAcesso;
 use DateTime;
+use Exception;
 
 class Users extends BaseController
 {
@@ -418,7 +419,7 @@ class Users extends BaseController
 
              if ($model->save($newData)) {
                      $session = session();
-                     $session->setFlashdata('success', 'Seu usuário foi alterado com sucesso!');
+                     $session->setFlashdata('success', 'Seu usuário'." " . $result['firstname'] . " " .  'foi alterado com sucesso!');
                      return redirect()->to(base_url('excluiruser'));
                  } else {
                  echo "Erro ao salvar";
@@ -531,20 +532,30 @@ class Users extends BaseController
     {
 
         $uri = current_url(true);
-        $product_id = $uri->getSegment(5);
+        $user_id = $uri->getSegment(5);
         $model = new UserModel();
-        $result = $model->find($product_id);
-
-        if ($product_id) {
-            $model->delete($product_id);
-            $session = session();
-            $session->setFlashdata('success', 'Seu usuário foi excluido com sucesso!');
+        $result = $model->find($user_id);
+// 
+        try{
+            if ($user_id) {
+                $model->delete($user_id);
+                $session = session();
+                $session->setFlashdata('success', 'Seu usuário'." " . $result['firstname'] . " " .'foi excluido com sucesso!');
+                return redirect()->to(base_url("excluiruser"));
+            } else {
+                echo "O usuário" . $result . " não pode ser excluido";
+            }
+        }catch(Exception $e){  
+            $session = session();     
+            if($e->getCode()==1451){
+                $session->setFlashdata('danger', 'Seu usuário'." " . $result['firstname'] . " " .'não pode ser excluído, pois possui vinculos no sistema!'); 
+            }else{
+                $session->setFlashdata('danger', 'Seu usuário'." " . $result['firstname'] . " " .'não pode ser excluido!');                  
+            }                
             return redirect()->to(base_url("excluiruser"));
-        } else {
-            echo "O usuário" . $result . " não pode ser excluido";
         }
     }
-
+   
     //--------------------------------------------------------------------
 
     public function logout()

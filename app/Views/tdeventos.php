@@ -14,9 +14,12 @@ h2{
 .card-title{
     text-align: center;
 }
-.ativ{
+.active {
+    margin-left: 5px;
     margin-top: 10px;
+    text-align: center;
 }
+
 
 </style>
 
@@ -37,12 +40,22 @@ h2{
         <div class="col-sm-4">
             <div class="card card-signin my-5">
                 <div class="card-body card">
+                    
                     <h5 class="card-title"><?php echo $evento['titulo']?></h5> <!-- puxar o título via php -->
                     <img src="<?php echo base_url("/public/img")."/".$evento['imagem']?>" alt="" width="100%">
                     <p class="card-text resumo"><?php echo $evento['resumo']?></p> <!-- puxar o resumo via php -->
-                    <a href="<?php echo base_url("/eventos/lista")."/". $evento['id']?>" class="btn btn-primary">Veja mais</a> <!-- lista de atividades por evento -->
-                 
-                    <a href="<?php echo base_url("cadativ")?>" class="btn btn-primary ativ" >Cadastrar atividade</a> <!-- cadastrar atividade trelada a esse evento -->
+                
+                <ul class="nav nav-pills ">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Sobre</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="<?php echo base_url("/eventos/lista")."/". $evento['id']?>">Atividades</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Inscreva-se</a>                        
+                    </li>
+                </ul>
                 </div>
             </div>
         </div>

@@ -37,7 +37,9 @@ h1, th{
                     </thead>
                     <tbody>
                         <?php foreach($data as $key => $evento){
-                               echo '<tr><td>'. $evento['id'].'</td><td>'.$evento['titulo'].'</td><td>'.$evento['descricao'].'</td><td>'.$evento['dtInicio'].'</td><td>'.$evento['tipo'].'</td><td><a href= "editativ'."/".$evento['id'].'"  ><i class="fa fa-edit" style="color: blue"></a></i><a href="atividades/deletar/'.$evento['id'].'"><i class="fa fa-trash"  style="color: red"></a></i></td></tr>';
+                               echo '<tr><td>'. $evento['id'].'</td><td>'.$evento['titulo'].'</td><td>'.$evento['descricao'].'</td><td>'.$evento['dtInicio'].'</td><td>'.$evento['tipo'].'</td>
+                               <td><a href='.base_url('editativ')."/".$evento['id'].'"><i class="fa fa-edit" style="color: blue"></a></i>
+                               <a href='.base_url('atividades/deletar')."/".$evento['id'].'><i class="fa fa-trash"  style="color: red"></a></i></td></tr>';
                         } ?>
                     </tbody>
                 </table>

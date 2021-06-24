@@ -10,12 +10,15 @@ h1, th{
 .fa-bell{
     margin-left: 30px;
 }
+#checkbox{
+margin-left: 30px;
+}
 
 </style>
 <main>
     <div class="container bg-white" style="padding-bottom: 10em;">
         <div class="row">
-            <div class="col-12">
+            <div class="col-12"> 
                 <h1 style="text-align: center; font-size:30px">Atividades</h1>
 
                 <table class="table table-hover" id="atividades">
@@ -25,13 +28,14 @@ h1, th{
                             <th scope="col">Titulo</th>
                             <th scope="col">Conteúdo</th> <!-- abrir um popup ou card  / BD descrição-->
                             <th scope="col">Data</th> <!-- abrir um popup ou card  / BD dt inicio-->
-                            <th scope="col">Certificado</th> <!-- check box / BD tipo-->
+                            <th scope="col" >Certificado</th> <!-- check box / BD tipo-->
                             <th scope="col" >Lembretes</th> <!-- check box / BD tipo-->
                         </tr>
                     </thead>
                     <tbody>
                         <?php foreach($data as $key => $evento){
-                               echo '<tr><td>'. $evento['id'].'</td><td>'.$evento['titulo'].'</td><td>'.$evento['descricao'].'</td><td>'.$evento['dtInicio'].'</td><td>'.$evento['tipo'].'</td><td><a href="popup'.$evento['id'].'"><i class="fa fa-bell"  style="color: coral"></a></i></td></tr>';
+                               echo '<tr><td>'. $evento['id'].'</td><td>'.$evento['titulo'].'</td> <td>'.$evento['descricao'].'</td><td>'.$evento['dtInicio'].'</td><td>'.$evento['tipo'].'</td>
+                               <td><a href="'.$evento['id'].'"><input  type="checkbox" onclick="funcao()" id="checkbox"></></a></td></tr>';
                         } ?>
                     </tbody>
                 </table>
@@ -39,3 +43,34 @@ h1, th{
         </div>    
     </div>
 </main>
+<script>
+function funcao()
+{
+var x;
+//recebemos o valor do botão pressionado ok ou cancelar em uma variavel
+var r=confirm("Lembrar dessa atividade!");
+if (r==true)
+  {
+  x="você pressionou OK!";
+  }
+else
+  {
+  x="Você pressionou Cancelar!";
+  }
+document.getElementById("demo").innerHTML=x;
+}
+</script> 
+
+<script>
+	function novoAlerta() {
+		const txtDataEvento = document.querySelector('#dataEvento').value;
+		const txtHoraEvento = document.querySelector('#horaEvento').value;
+		const hoje = new Date();
+		const dataEvento = Date.parse(txtDataEvento + ' ' + txtHoraEvento);
+		const diff = parseInt(dataEvento - hoje.getTime());
+		
+		setTimeout(function() {
+			alert('Hora do evento!');
+		}, diff);
+	}
+</script>

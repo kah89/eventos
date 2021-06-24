@@ -46,7 +46,12 @@ h5{
                         </div>
                         <div class="form-group">
                             <div class="form-label-group"><!--DB atividade_evento (descrição) -->
-                                <textarea name="descricao" id="conteudo" class="form-control" maxlength="200" placeholder="Conteúdo" value="<?=$descricao?>" required></textarea>
+                                <textarea name="descricao" id="conteudo" class="form-control" maxlength="200" placeholder="Conteúdo"  required><?=$descricao?></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-label-group">
+                                <input type="text" id="link" name="link" class="form-control" placeholder="link" value="<?=$link?>" autofocus>
                             </div>
                         </div>
                         <div class="form-group col-sm-5 data">

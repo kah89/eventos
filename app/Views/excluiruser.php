@@ -16,11 +16,16 @@ h1, th{
         <div class="row">
             <div class="col-12">
                 <h1 style="text-align: center; font-size:30px">Usuários</h1>
-                <?php if (session()->get('success')) : ?>
+                <?php if (session()->get('success')) { ?>
                         <div class="alert alert-success" role="alert">
                             <?= session()->get('success'); ?>
                         </div>
-                <?php endif; ?> 
+                <?php } elseif(session()->get('danger')) {?>
+                    <div class="alert alert-danger" role="alert">
+                            <?= session()->get('danger'); ?>
+                        </div>
+
+                    <?php } ?> 
                 <table class="table table-hover" id="atividades">
                     <thead>
                         <tr>
@@ -33,7 +38,9 @@ h1, th{
                     </thead>
                     <tbody>
                         <?php foreach($data as $key => $evento){
-                               echo '<tr><td>'. $evento['id'].'</td><td>'.$evento['firstname'].'</td><td>'.$evento['lastname'].'</td><td>'.$evento['type'].'</td><td><a href="editaruser/'.$evento['id'].'"><i class="fa fa-edit" style="color: blue"></a></i><a href="users/deletar/'.$evento['id'].'"><i class="fa fa-trash"  style="color: red"></a></i></td></tr>';
+                               echo '<tr><td>'. $evento['id'].'</td><td>'.$evento['firstname'].'</td><td>'.$evento['lastname'].'</td><td>'.$evento['type'].'</td>
+                               <td><a href='.base_url('editaruser')."/".$evento['id'].'><i class="fa fa-edit" style="color: blue"></a></i>
+                               <a href='.base_url('users/deletar')."/".$evento['id'].'><i class="fa fa-trash"  style="color: red"></a></i></td></tr>';
                         } ?>
                     </tbody>
                 </table>
@@ -41,3 +48,4 @@ h1, th{
         </div>    
     </div> 
 </main>
+

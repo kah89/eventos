@@ -197,7 +197,7 @@ class Eventos extends BaseController
 
                     if ($model->save($newData)) {
                         $session = session();
-                        $session->setFlashdata('success', 'Seu evento foi alterado com sucesso!');
+                        $session->setFlashdata('success', 'Seu evento'. " " . $result['titulo'] . " " .  ' foi alterado com sucesso!');
                         return redirect()->to(base_url('eventos'));
                     } else {
                         echo "Erro ao salvar";
@@ -271,7 +271,7 @@ class Eventos extends BaseController
             if (unlink($filePath)) {
                 $model->delete($product_id);
                 $session = session();
-                $session->setFlashdata('success', 'Seu evento foi excluido com sucesso!');
+                $session->setFlashdata('success', 'Seu evento'. " " . $result['titulo'] . " " .  ' foi excluido com sucesso!');
                 return redirect()->to(base_url("alterareventos"));
             } else {
                 echo "Não foi possivel excluir, verifique permissões!";

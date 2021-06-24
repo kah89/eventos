@@ -18,11 +18,17 @@
     }
 
     #hora1, #hora{
-        width: 90px;
+        width: 100px;
         /* float: right; */
         margin-left: 205px;
         margin-top: -54px;
     }
+
+   
+    /* #link{
+        margin-left: 180px;
+        margin-top: -54px;
+    } */
 
    
 
@@ -102,6 +108,11 @@
                                 <textarea  type="text" name="descricao" id="descricao" class="form-control" maxlength="200" placeholder="Descrição" maxlength="60" minilength="10"  ></textarea>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <div class="form-label-group">
+                                <input type="text" id="link" name="link" class="form-control" placeholder="link"  autofocus>
+                            </div>
+                        </div>
                         <div class="form-group col-sm-6 data" id="inicial">
                             <div class="form-label-group">
                             <label for="" >Inicial :</label>
@@ -125,15 +136,16 @@
                                 
                             </div>
                         </div>
-                        <div class="form-group col-sm-7 certi">
+                        <div class="form-group col-sm-7">
                             <div class="form-label-group">
-                                <select id="certificado" name="certificado" class="form-control" style="height: calc(1.5em + .75rem + 14px);" >
+                                <select id="certificado" name="certificado" class="form-control"  >
                                     <option selected disabled>Certificado</option>
                                     <option value="1">Gera certificado</option>
                                     <option value="2">Não gera certificado</option>
                                 </select>
                             </div>
                         </div>
+                       
                         <div class="form-group">
                             <?php if (isset($validation)) : ?>
                                 <div class="alert alert-danger" roles="alert">
