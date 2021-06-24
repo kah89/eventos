@@ -51,26 +51,25 @@
                             <ul class="nav nav-pills ">
                                 <li class="nav-item">
                                     <!-- Botão Modal Sobre -->
-                                    <button class="btn btn-primary" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " href="#" data-toggle="modal" data-target="#inscrevaModal">
+                                    <button class="btn btn-primary" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " href="#" data-toggle="modal" data-target="#sobreModal">
                                         Sobre
                                     </button>
                                     
                                     <!-- Modal Sobre -->
-                                    <div class="modal fade" id="inscrevaModal" tabindex="-1" role="dialog" aria-labelledby="inscrevaModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="sobreModal" tabindex="-1" role="dialog" aria-labelledby="sobreModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="inscrevaModalLabel">Inscreva-se</h5>
+                                                    <h5 class="modal-title" id="sobreModalLabel">Sobre</h5>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
-                                                <div class="modal-body">
-                                                    Confirma a sua inscrição?
+                                                <div class="modal-body" >
+                                                    <p><?php echo $evento['resumo'] ?></p>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                                                    <button type="button" href="#" class="btn btn-primary">Confirma</button>
                                                 </div>
                                             </div>
                                         </div>

@@ -230,8 +230,6 @@ class Eventos extends BaseController
         // if ($this->request->getMethod() == 'post') 
 
     
- 
-
     //------------------------------------------------------------------------------
 
 
