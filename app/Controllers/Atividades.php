@@ -124,20 +124,23 @@ class Atividades extends BaseController
      
      //--------------------------------------------------------------------
  
-
+// Lista as atividades que o usuario está cadastrado
      public function listativ()
      {
         $model = new AtividadeModel();
          $data = [
              'title' => 'Listar Atividades',
-             'data' => $model->findAll(),
-            //  'data' => $model->getWhere(['idAtividade' => $id])->getResult(),
+             'data' => $model->select('*')
+                ->join('usuario_atividade','usuario_atividade.idAtividade = atividade_evento.id')
+                ->where('usuario_atividade.idUser', 1)
+                ->findAll()
          ];
 
          echo view('templates/header', $data);
          echo view('listativ');
          echo view('templates/footer');
      }
+     
 
 
 

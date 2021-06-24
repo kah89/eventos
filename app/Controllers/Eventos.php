@@ -36,10 +36,9 @@ class Eventos extends BaseController
     {
         $model = new EventoModel();
         $data = [
-            'title' => 'Lista de eventos',
-            'data' => $model->findAll(),
+            'title' => 'Lista de eventos cadastrados',
+            'data' => $model->findAll()
         ];
-
         echo view('templates/header', $data);
         echo view('listeventos');
         echo view('templates/footer');
@@ -49,28 +48,22 @@ class Eventos extends BaseController
     //------------------------------------------------------------------------------
 
 
-    // lista um eventos
-
+    // lista as atividades do evento selecionado 
     public function lista($id = null)
     {
         $model = new AtividadeModel();
         $data = [
-            'title' => 'Lista atividades',
-            'data' => $model->where(['idEvento' => $id])
+            'title' => 'Lista atividades cadastradas',
+            'data' => $model->where(['idEvento' => $id]) -> findAll()
+
+            //'data' => $model->where(['idEvento' => $id])
             // ->select('*')
             // ->join('usuario_atividade','usuario_atividade.idAtividade = atividade_evento.id')
             // ->where('usuario_atividade.idUser', 1)
-            ->findAll(),
+            // ->findAll()
         ];
-        // var_dump($data);exit;
-
-        // if($data){
-        //             return $this->respond($data);
-        //         }
-        
-        //         return $this->failNotFound('Nenhum evento encontrado com id '.$id);        
-            
-        
+        // var_dump($data);exit;      
+                   
 
         echo view('templates/header', $data);
         echo view('lista');
