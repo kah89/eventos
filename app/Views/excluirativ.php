@@ -1,10 +1,17 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.css" />
 <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.js"></script>
 <style>
-    h1,
-    th {
+    h1{
         color: #007BFF;
-        text-align: left;
+        text-align: center;
+        margin-top: 20px;
+        font: caption;
+    }
+    
+    
+    thead {
+        color: white;
+        text-align: center;
         margin-top: 20px;
         font: caption;
     }
@@ -20,7 +27,7 @@
 
     #tabela {
         width: 100%;
-        border: solid 1px;
+        border: solid 2px;
         text-align: left;
         border-collapse: collapse;
     }
@@ -32,7 +39,8 @@
     }
 
     #tabela thead {
-        background: beige;
+        background: #0174DF;
+        border: solid 2px;
     }
 
     #tabela thead th:nth-child(1) {
@@ -95,6 +103,7 @@
                             <th><input type="text" /></th>
                             <th><input type="text" disabled /></th>
                         </tr>
+                        
                     </thead>
                     <tbody>
                         <?php foreach ($data as $key => $evento) {

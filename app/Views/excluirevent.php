@@ -1,47 +1,102 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.css" />
 <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.js"></script>
 <style>
-h1, th{
-    color: #007BFF;
-    text-align: center;
-    margin-top: 20px;
-    font: caption;
-}
-.fa-trash{
-    margin-left: 20%;
-}
+    h1 {
+        color: #007BFF;
+        text-align: left;
+        margin-top: 20px;
+        font: caption;
+    }
+
+    th {
+        color: white;
+        text-align: left;
+        margin-top: 20px;
+        font: caption;
+    }
+
+    .fa-trash {
+        margin-left: 20%;
+    }
+
+    #tabela tbody tr {
+        border: solid 1px;
+        height: 30px;
+        cursor: pointer;
+    }
+
+    #tabela thead {
+        background: #0174DF;
+        border: solid 2px;
+    }
+
+    #tabela thead th:nth-child(1) {
+        width: 100px;
+    }
+
+    #tabela input {
+        color: navy;
+        width: 100%;
+    }
+
 </style>
+<script>
+    $(function() {
+        $("#tabela input").keyup(function() {
+            var index = $(this).parent().index();
+            var nth = "#tabela td:nth-child(" + (index + 1).toString() + ")";
+            var valor = $(this).val().toUpperCase();
+            $("#tabela tbody tr").show();
+            $(nth).each(function() {
+                if ($(this).text().toUpperCase().indexOf(valor) < 0) {
+                    $(this).parent().hide();
+                }
+            });
+        });
+
+        $("#tabela input").blur(function() {
+            $(this).val("");
+        });
+    });
+</script>
 <main>
     <div class="container bg-white" style="padding-bottom: 10em;">
         <div class="row">
-            <div class="col-12">
+            <div class="col-12" id="divConteudo">
                 <h1 style="text-align: center; font-size:30px">Eventos</h1>
                 <?php if (session()->get('success')) : ?>
-                        <div class="alert alert-success" role="alert">
-                            <?= session()->get('success'); ?>
-                        </div>
-                <?php endif; ?> 
-                <?php if(count($data) > 0){?>
-                <table class="table table-hover" id="atividades">
-                    <thead>
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Titulo</th>
-                            <th scope="col">Resumo</th> 
-                            <th scope="col">Ações</th> <!-- botão-->
+                    <div class="alert alert-success" role="alert">
+                        <?= session()->get('success'); ?>
+                    </div>
+                <?php endif; ?>
+                <?php if (count($data) > 0) { ?>
+                    <table class="table table-hover" id="tabela">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Titulo</th>
+                                <th scope="col">Resumo</th>
+                                <th scope="col">Ações</th> <!-- botão-->
+                            </tr>
+                            <tr>
+                            <th><input type="text" id="txtColuna1" /></th>
+                            <th><input type="text" id="txtColuna2" /></th>
+                            <th><input type="text" id="txtColuna3" /></th>
+                            <!-- <th><input type="text" /></th> -->
+                            <th><input type="text" disabled /></th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <?php foreach($data as $key => $evento){
-                               echo '<tr><td>'. $evento['id'].'</td><td>'.$evento['titulo'].'</td><td>'.$evento['resumo'].'</td>
-                               <td><a href='.base_url('editeventos')."/".$evento['id'].'  ><i class="fa fa-edit" style="color: blue"></a></i>
-                               <a href='.base_url('eventos/deletar')."/".$evento['id'].'><i class="fa fa-trash"  style="color: red"></a></i></td></tr>';
-                        } ?>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($data as $key => $evento) {
+                                echo '<tr><td>' . $evento['id'] . '</td><td>' . $evento['titulo'] . '</td><td>' . $evento['resumo'] . '</td>
+                               <td><a href=' . base_url('editeventos') . "/" . $evento['id'] . '  ><i class="fa fa-edit" style="color: blue"></a></i>
+                               <a href=' . base_url('eventos/deletar') . "/" . $evento['id'] . '><i class="fa fa-trash"  style="color: red"></a></i></td></tr>';
+                            } ?>
+                        </tbody>
+                    </table>
                 <?php } ?>
-            </div>    
-        </div>    
+            </div>
+        </div>
     </div>
 </main>
-
