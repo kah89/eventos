@@ -32,7 +32,7 @@ h1, th{
                     <tbody>
                         <?php foreach($data as $key => $evento){
                                echo '<tr><td>'. $evento['id'].'</td><td>'.$evento['titulo'].'</td><td>'.$evento['dtInicio'].'</td><td>'.$evento['tipo'].'</td>
-                               <td><a class="btn btn-primary" href='.base_url('Atividade')."/".$evento['id'].' role="button">Ir </a></td></tr>';
+                               <td><a class="btn btn-primary" href='.base_url('/dashboard/index')."/".$evento['id'].' role="button">Ir </a></td></tr>';
                         } ?>
                     </tbody>
                 </table>

@@ -27,6 +27,23 @@ class Eventos extends BaseController
         echo view('templates/footer');
     }
 
+    //------------------------------------------------------------------------------
+
+    public function inscrverEvento()
+    {
+        $model = new EventoModel();
+        $idUser = session()->get('id');
+        $uri = current_url(true);
+        $idEvento = $uri->getSegment(5); 
+        $msg = $model->inscricaoEvento($idUser,$idEvento);
+        $session = session();
+        $session->setFlashdata('success', $msg);
+        return redirect()->to(base_url('eventos'));
+    }
+
+    //------------------------------------------------------------------------------
+
+    
 
     //------------------------------------------------------------------------------
 

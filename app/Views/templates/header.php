@@ -104,7 +104,7 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item <?= ($uri->getSegment(1) == 'dashboard' ? 'active' : null) ?>">
-                            <a class="nav-link" href="dashboard"><i class="fa fa-home"></i> Início</a>
+                            <a class="nav-link" href="eventos"><i class="fa fa-home"></i> Início</a>
                         </li>
                         <!-- <li class="nav-item <?= ($uri->getSegment(1) == 'profile' ? 'active' : null) ?>">
                             <a class="nav-link" href="/eventos/profile"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Conta</a>
