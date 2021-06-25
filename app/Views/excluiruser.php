@@ -1,5 +1,6 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.css" />
 <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.js"></script>
+
 <style>
     h1 {
         color: #007BFF;
@@ -11,13 +12,14 @@
 
     th {
         color: white;
-        text-align: left;
         margin-top: 20px;
-        font: caption;
+    }
+    .fa-edit {
+        margin-left: 30%;
     }
 
-    .fa-trash {
-        margin-left: 20%;
+    .fa-trash{
+        margin-left: 10%; 
     }
 
     #tabela {
@@ -36,6 +38,7 @@
     #tabela thead {
         background: #0174DF;
         border: solid 2px;
+        opacity: 0.7;
     }
 
     #tabela thead th:nth-child(1) {
@@ -46,31 +49,42 @@
         color: navy;
         width: 100%;
     }
-    .pagination{
+
+    .pagination {
         margin-left: 80%;
     }
 </style>
 <script>
-    $(function() {
-        $("#tabela input").keyup(function() {
-            var index = $(this).parent().index();
-            var nth = "#tabela td:nth-child(" + (index + 1).toString() + ")";
-            var valor = $(this).val().toUpperCase();
-            $("#tabela tbody tr").show();
-            $(nth).each(function() {
-                if ($(this).text().toUpperCase().indexOf(valor) < 0) {
-                    $(this).parent().hide();
-                }
-            });
-        });
 
-        $("#tabela input").blur(function() {
-            $(this).val("");
+$(document).ready(function() {
+        $('#tabela').DataTable({
+            language: {
+            url: 'https://cdn.datatables.net/plug-ins/1.10.25/i18n/Portuguese-Brasil.json'
+        }
         });
     });
+
+    // $(function() {
+    //     $("#tabela input").keyup(function() {
+    //         var index = $(this).parent().index();
+    //         var nth = "#tabela td:nth-child(" + (index + 1).toString() + ")";
+    //         var valor = $(this).val().toUpperCase();
+    //         $("#tabela tbody tr").show();
+    //         $(nth).each(function() {
+    //             if ($(this).text().toUpperCase().indexOf(valor) < 0) {
+    //                 $(this).parent().hide();
+    //             }
+    //         });
+    //     });
+
+    //     $("#tabela input").blur(function() {
+    //         $(this).val("");
+    //     });
+    // });
 </script>
 <main>
     <div class="container bg-white" style="padding-bottom: 10em;">
+
         <div class="row">
             <div class="col-12" id="divConteudo">
                 <h1 style="text-align: center; font-size:30px">Usuários</h1>
@@ -93,39 +107,27 @@
                             <th scope="col">Nível</th>
                             <th scope="col">Ações</th> <!-- botão-->
                         </tr>
-                        <tr>
+                        <!-- <tr>
                             <th><input type="text" id="txtColuna1" /></th>
                             <th><input type="text" id="txtColuna2" /></th>
                             <th><input type="text" id="txtColuna3" /></th>
                             <th><input type="text" /></th>
                             <th><input type="text" disabled /></th>
-                           
+
                         </tr>
-                        <!-- <nav aria-label="Navegação de página exemplo">
-                                <ul class="pagination">
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Anterior">
-                                            <span aria-hidden="true">&laquo;</span>
-                                            <span class="sr-only">Anterior</span>
-                                        </a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Próximo">
-                                            <span aria-hidden="true">&raquo;</span>
-                                            <span class="sr-only">Próximo</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav> -->
+                        <nav aria-label="Navegação de página exemplo">
+
+                            <button id="anterior" disabled>&lsaquo; Anterior</button>
+                            <span id="numeracao"></span>
+                            <button id="proximo" disabled>Próximo &rsaquo;</button>
+
+                        </nav> -->
                     </thead>
                     <tbody>
-                        <?php foreach ($data as $key => $evento) {
-                            echo '<tr><td>' . $evento['id'] . '</td><td>' . $evento['firstname'] . '</td><td>' . $evento['lastname'] . '</td><td>' . $evento['type'] . '</td>
-                               <td><a href=' . base_url('editaruser') . "/" . $evento['id'] . '><i class="fa fa-edit" style="color: blue"></a></i>
-                               <a href=' . base_url('users/deletar') . "/" . $evento['id'] . '><i class="fa fa-trash"  style="color: red"></a></i></td></tr>';
+                        <?php foreach ($data as $key => $user) {
+                            echo '<tr><td>' . $user['id'] . '</td><td>' . $user['firstname'] . '</td><td>' . $user['lastname'] . '</td><td>' . $user['type'] . '</td>
+                               <td><a href=' . base_url('editaruser') . "/" . $user['id'] . '><i class="fa fa-edit" style="color: blue"></a></i>
+                               <a href=' . base_url('users/deletar') . "/" . $user['id'] . '><i class="fa fa-trash"  style="color: red"></a></i></td></tr>';
                         } ?>
                     </tbody>
                 </table>
@@ -133,3 +135,46 @@
         </div>
     </div>
 </main>
+<script>
+//script para criar paginação
+    // var dados = $user;
+    // var tamanhoPagina = 30;
+    // var pagina = 0;
+
+    // function paginar() {
+    //     $('table > tbody > tr').remove();
+    //     var tbody = $('table > tbody');
+    //     for (var i = pagina * tamanhoPagina; i < dados.length && i < (pagina + 1) * tamanhoPagina; i++) {
+    //         tbody.append(
+    //             $('<tr>')
+    //             .append($('<td>').append(dados[i][0]))
+    //             .append($('<td>').append(dados[i][1]))
+    //         )
+    //     }
+    //     $('#numeracao').text('Página ' + (pagina + 1) + ' de ' + Math.ceil(dados.length / tamanhoPagina));
+    // }
+
+    // function ajustarBotoes() {
+    //     $('#proximo').prop('disabled', dados.length <= tamanhoPagina || pagina >= Math.ceil(dados.length / tamanhoPagina) - 1);
+    //     $('#anterior').prop('disabled', dados.length <= tamanhoPagina || pagina == 0);
+    // }
+
+    // $(function() {
+    //     $('#proximo').click(function() {
+    //         if (pagina < dados.length / tamanhoPagina - 1) {
+    //             pagina++;
+    //             paginar();
+    //             ajustarBotoes();
+    //         }
+    //     });
+    //     $('#anterior').click(function() {
+    //         if (pagina > 0) {
+    //             pagina--;
+    //             paginar();
+    //             ajustarBotoes();
+    //         }
+    //     });
+    //     paginar();
+    //     ajustarBotoes();
+    // });
+</script>

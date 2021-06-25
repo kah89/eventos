@@ -419,7 +419,7 @@ class Users extends BaseController
 
              if ($model->save($newData)) {
                      $session = session();
-                     $session->setFlashdata('success', 'Seu usuário'." (" . $result['firstname'] . ") " .  'foi alterado com sucesso!');
+                     $session->setFlashdata('success', 'O usuário'." (" . $result['firstname'] . ") " .  'foi alterado com sucesso!');
                      return redirect()->to(base_url('excluiruser'));
                  } else {
                  echo "Erro ao salvar";
@@ -495,7 +495,7 @@ class Users extends BaseController
                 if ($model->save($newData)) {
                     if ($this->sendEmail($newData)) {
                         $session = session();
-                        $session->setFlashdata('success', 'Seu usuario foi criado com sucesso!');
+                        $session->setFlashdata('success', 'O usuario foi criado com sucesso!');
                         return redirect()->to(base_url('excluiruser'));
                     } else {
                         echo "Erro ao enviar email";
@@ -540,7 +540,7 @@ class Users extends BaseController
             if ($user_id) {
                 $model->delete($user_id);
                 $session = session();
-                $session->setFlashdata('success', 'Seu usuário'."  (" . $result['firstname'] . ")  " .'foi excluido com sucesso!');
+                $session->setFlashdata('success', 'O usuário'."  (" . $result['firstname'] . ")  " .'foi excluido com sucesso!');
                 return redirect()->to(base_url("excluiruser"));
             } else {
                 echo "O usuário" . $result . " não pode ser excluido";

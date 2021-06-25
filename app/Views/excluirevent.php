@@ -28,6 +28,7 @@
     #tabela thead {
         background: #0174DF;
         border: solid 2px;
+        opacity: 0.7;
     }
 
     #tabela thead th:nth-child(1) {
@@ -41,21 +42,12 @@
 
 </style>
 <script>
-    $(function() {
-        $("#tabela input").keyup(function() {
-            var index = $(this).parent().index();
-            var nth = "#tabela td:nth-child(" + (index + 1).toString() + ")";
-            var valor = $(this).val().toUpperCase();
-            $("#tabela tbody tr").show();
-            $(nth).each(function() {
-                if ($(this).text().toUpperCase().indexOf(valor) < 0) {
-                    $(this).parent().hide();
-                }
-            });
-        });
-
-        $("#tabela input").blur(function() {
-            $(this).val("");
+    
+$(document).ready(function() {
+        $('#tabela').DataTable({
+            language: {
+            url: 'https://cdn.datatables.net/plug-ins/1.10.25/i18n/Portuguese-Brasil.json'
+        }
         });
     });
 </script>
@@ -78,13 +70,7 @@
                                 <th scope="col">Resumo</th>
                                 <th scope="col">Ações</th> <!-- botão-->
                             </tr>
-                            <tr>
-                            <th><input type="text" id="txtColuna1" /></th>
-                            <th><input type="text" id="txtColuna2" /></th>
-                            <th><input type="text" id="txtColuna3" /></th>
-                            <!-- <th><input type="text" /></th> -->
-                            <th><input type="text" disabled /></th>
-                        </tr>
+                            
                     </thead>
                         </thead>
                         <tbody>
