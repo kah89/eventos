@@ -144,25 +144,20 @@
                         </div>
                         
                     </li>
-                    <!-- <li class="nav-item dropdown nav1">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Editar
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="<?= base_url('editaruser') ?>">Usuário</a> DB users
-                        <a class="dropdown-item" href="<?= base_url('editareventos') ?>">Eventos</a> DB eventos
-                        <a class="dropdown-item" href="<?= base_url('editarativ') ?>">Atividades</a> DB atividade_evento
-                        </div>
-                    </li>  -->
                     </ul>
                     <ul class="navbar-nav my-2 my-lg-0" id="user" >
-                        <li class="nav-item"><i aria-hidden="true" id="user"></i>
+                    <li class="nav-item dropdown nav1">
+                        <a class="nav-link dropdown-toggle fa fa-sign-out" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" 
+                        aria-haspopup="true" aria-expanded="false">
                         <?php echo $_SESSION['firstname'];?>
-                     </li>
-                    </ul>
-                    <ul class="navbar-nav my-2 my-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="<?= base_url('logout')?>"><i class="fa fa-sign-out" aria-hidden="true"></i> Sair</a>
-                        </li>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="<?php echo base_url('editaruser').'/'.$_SESSION['id']?>">Editar</a>
+                        <a class="dropdown-item" href="<?= base_url('logout')?>">Sair</a>
+                        </div>
+                        
+                        
+                    
                     </ul>
                 </div>
             </div>

@@ -65,7 +65,7 @@
                         <ul class="nav nav-pills ">
                             <li class="nav-item">
                                 <!-- Botão Modal Sobre -->
-                                <button id="myBtn" class="open-AddBookDialog btn btn-primary" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " href="#" data-toggle="modal" data-target="#sobreModal" onClick="javascript:showMyModalSetTitle('Some Title', 'Some body txt')">
+                                <button id="myBtn" class="open-AddBookDialog btn btn-primary" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " href="#" data-toggle="modal" data-target="#sobreModal" onclick="sobremodal(<?php echo $evento['id']; ?>);">
                                     Sobre
                                 </button>
                             </li>
@@ -113,7 +113,7 @@
 
 
         <!-- Modal Sobre -->
-        <div class="modal fade" id="sobreModal" tabindex="-1" role="dialog" aria-labelledby="sobreModalLabel" aria-hidden="true">
+        <div class="modal fade" id="sobreModal" name="sobreModal" tabindex="-1" role="dialog" aria-labelledby="sobreModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -123,7 +123,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <p><?php echo $evento['resumo'] ?></p>
+                        <p></p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
@@ -139,6 +139,8 @@
         }
     </script>
     <script>
-        
+          function sobremodal(id) {
+            var texto = document.getElementsByName("sobreModal");
+        }
     </script>
 </div>
