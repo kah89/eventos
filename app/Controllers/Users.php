@@ -420,7 +420,7 @@ class Users extends BaseController
              if ($model->save($newData)) {
                      $session = session();
                      $session->setFlashdata('success', 'O usuário'." (" . $result['firstname'] . ") " .  'foi alterado com sucesso!');
-                     return redirect()->to(base_url('excluiruser'));
+                     return redirect()->to(base_url('eventos'));
                  } else {
                  echo "Erro ao salvar";
                  exit;                    

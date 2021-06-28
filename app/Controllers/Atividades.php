@@ -10,6 +10,19 @@ class Atividades extends BaseController
 
     use ResponseTrait;
 
+    public function index()
+    {
+        
+        $model =  new AtividadeModel();
+        $data = [
+            'title' => 'Atividade',
+            'data' => $model->findAll(),
+        ];
+        echo view('templates/header', $data);
+        echo view('atividades');
+        echo view('templates/footer');
+    }
+
     public function cadativ()
      { 
         helper(['form', 'url']);
@@ -134,7 +147,7 @@ class Atividades extends BaseController
              'data' => $model
                 ->select('*')
                 ->join('usuario_atividade','usuario_atividade.idAtividade = atividade_evento.id')
-                ->where('usuario_atividade.idUser', 5135)
+                ->where('usuario_atividade.idUser', 'idUser')
                 ->findAll()
          ];
 

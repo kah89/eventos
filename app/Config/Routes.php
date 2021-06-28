@@ -52,7 +52,7 @@ $routes->match(['get','post'],'/editativ/(:num)', 'Atividades::editativ');
 $routes->match(['get','post'],'/excluirativ', 'Atividades::excluirativ');
 $routes->match(['get','post'],'/cadativ', 'Atividades::cadativ');
 $routes->match(['get','post'],'/listarativ', 'Atividades::listativ');
-
+$routes->match(['get','post'],'/atividade', 'Atividades::atividades');
 
 /* AJAX */
 $routes->match(['get','post'],'/cidade', 'AjaxCidade::getCidades');

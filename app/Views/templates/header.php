@@ -23,6 +23,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
 
@@ -104,7 +105,7 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item <?= ($uri->getSegment(1) == 'dashboard' ? 'active' : null) ?>">
-                            <a class="nav-link" href="eventos"><i class="fa fa-home"></i> Início</a>
+                            <a class="nav-link" href="dashboard"><i class="fa fa-home"></i> Início</a>
                         </li>
                         <!-- <li class="nav-item <?= ($uri->getSegment(1) == 'profile' ? 'active' : null) ?>">
                             <a class="nav-link" href="/eventos/profile"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Conta</a>

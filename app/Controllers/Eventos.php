@@ -48,7 +48,7 @@ class Eventos extends BaseController
     //------------------------------------------------------------------------------
 
 
-    // lista todos eventos
+    // lista todos eventos por ussuario
     public function listar()
     {
         $model = new EventoModel();

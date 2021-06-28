@@ -74,7 +74,7 @@
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel"><?php echo $evento['id'] ?> - <?php echo  $evento['titulo'] ?></h5>
+                                                <h5 class="modal-title" id="exampleModalLabel">Sobre</h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
@@ -138,9 +138,9 @@
         }
     </script>
     <script>
-        function sobremodal(resumo) {
-            var texto = document.getElementsByName("sobreModal");
-            document.getElementById("sobreModal") = resumo
-        }
+        // function sobremodal(resumo) {
+        //     var texto = document.getElementsByName("sobreModal");
+        //     document.getElementById("sobreModal") = resumo
+        // }
     </script>
 </div>

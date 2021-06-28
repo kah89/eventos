@@ -21,11 +21,13 @@
                             <th scope="col2">ID</th>
                             <th scope="col4">Titulo</th>
                             <th scope="col6">Resumo</th>
+                            <th scope="col" >Certificado</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php foreach($data as $key => $evento){
-                               echo '<tr><td>'. $evento['id'].'</td><td>'.$evento['titulo'].'</td><td>'.$evento['resumo'].'</td></tr>';
+                               echo '<tr><td>'. $evento['id'].'</td><td>'.$evento['titulo'].'</td><td>'.$evento['resumo'].'</td>
+                               <td><a class="btn btn-primary" href='.base_url('dashboard/index')."/".$evento['id'].' role="button">Gerar</a></td></tr>';
                         } ?>
                     </tbody>
                 </table>
