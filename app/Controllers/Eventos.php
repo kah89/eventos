@@ -52,12 +52,13 @@ class Eventos extends BaseController
     public function listar()
     {
         $model = new EventoModel();
+        
         $data = [
             'title' => 'Lista de eventos cadastrados',
             'data' => $model
                 ->select('*')
                 ->join('usuario_evento','usuario_evento.idEvento = eventos.id')
-                ->where('usuario_evento.idUser', 5135)
+                ->where('usuario_evento.idUser', session()->get('id'))
                 ->findAll()
         ];
         
