@@ -144,9 +144,10 @@ class Atividades extends BaseController
         $model = new AtividadeModel();
          $data = [
              'title' => 'Listar Atividades',
-             'data' => $model->select('*')
+             'data' => $model
+                ->select('*')
                 ->join('usuario_atividade','usuario_atividade.idAtividade = atividade_evento.id')
-                ->where('usuario_atividade.idUser', 1)
+                ->where('usuario_atividade.idUser', 5135)
                 ->findAll()
          ];
 

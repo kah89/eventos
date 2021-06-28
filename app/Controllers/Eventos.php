@@ -54,8 +54,13 @@ class Eventos extends BaseController
         $model = new EventoModel();
         $data = [
             'title' => 'Lista de eventos cadastrados',
-            'data' => $model->findAll()
+            'data' => $model
+                ->select('*')
+                ->join('usuario_evento','usuario_evento.idEvento = eventos.id')
+                ->where('usuario_evento.idUser', 5135)
+                ->findAll()
         ];
+        
         echo view('templates/header', $data);
         echo view('listeventos');
         echo view('templates/footer');
