@@ -1,10 +1,4 @@
-<link rel="stylesheet" href="trumbowyg/dist/ui/trumbowyg.min.css">
-<!-- Import jQuery -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
 
-<!-- Import Trumbowyg -->
-<script src="trumbowyg/dist/trumbowyg.min.js"></script>
 <style>
     #res:hover {
         background-color: red;
@@ -36,13 +30,8 @@
         margin-left: 180px;
         margin-top: -54px;
     } */
-
-   
-
-  
     
 </style>
-
 
 <script language='Javascript'>
  var today = new Date();
