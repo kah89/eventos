@@ -64,10 +64,30 @@
                     <div class="card-footer text-muted">
                         <ul class="nav nav-pills ">
                             <li class="nav-item">
-                                <!-- Botão Modal Sobre -->
-                                <button class="open-AddBookDialog btn btn-primary" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " href="#" data-toggle="modal" data-target="#sobreModal" id="" onclick="sobremodal(<?php echo $evento['resumo']; ?>);">
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal<?php echo $evento['id'] ?>" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px ">
                                     Sobre
                                 </button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal<?php echo $evento['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel"><?php echo $evento['id'] ?> - <?php echo  $evento['titulo'] ?></h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                            <?php echo $evento['resumo'] ?>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " href="<?php echo base_url("/eventos/lista") . "/" . $evento['id'] ?>">Atividades</a>
@@ -110,27 +130,6 @@
             </div>
         </div>
 
-
-
-        <!-- Modal Sobre -->
-        <div class="modal fade" id="sobreModal" name="sobreModal" tabindex="-1" role="dialog" aria-labelledby="sobreModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="sobreModalLabel">Sobre</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p><?php echo $evento['resumo']?></p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
     <script>
         function preenchermodal(id) {
@@ -139,9 +138,9 @@
         }
     </script>
     <script>
-          function sobremodal(resumo) {
+        function sobremodal(resumo) {
             var texto = document.getElementsByName("sobreModal");
-            document.getElementById("sobreModal") =  resumo 
+            document.getElementById("sobreModal") = resumo
         }
     </script>
 </div>
