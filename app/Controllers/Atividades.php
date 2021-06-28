@@ -10,6 +10,19 @@ class Atividades extends BaseController
 
     use ResponseTrait;
 
+    public function index()
+    {
+        
+        $model =  new AtividadeModel();
+        $data = [
+            'title' => 'Atividade',
+            'data' => $model->findAll(),
+        ];
+        echo view('templates/header', $data);
+        echo view('atividades');
+        echo view('templates/footer');
+    }
+
     public function cadativ()
      { 
         helper(['form', 'url']);

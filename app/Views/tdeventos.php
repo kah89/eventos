@@ -39,12 +39,14 @@
 </style>
 
 <div class="container">
-    <h2>Eventos</h2>
-    <?php if (session()->get('success')) : ?>
-        <div class="alert alert-success" role="alert">
-            <?= session()->get('success'); ?>
-        </div>
-    <?php endif; ?>
+    <div>
+        <h2>Eventos</h2>
+        <?php if (session()->get('success')) : ?>
+            <div class="alert alert-success" role="alert">
+                <?= session()->get('success'); ?>
+            </div>
+        <?php endif; ?>
+    </div>
     <div class="row">
 
         <?php
@@ -64,10 +66,10 @@
                     <div class="card-footer text-muted">
                         <ul class="nav nav-pills ">
                             <li class="nav-item">
-                                <!-- Botão Modal Sobre -->
-                                <button id="myBtn" class="open-AddBookDialog btn btn-primary" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " href="#" data-toggle="modal" data-target="#sobreModal" onclick="sobremodal(<?php echo $evento['id']; ?>);">
+                                <button id="sobre" class="btn btn-primary" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " href="#" data-toggle="modal" data-target="#sobreModal" onclick="sobremodal(<?php echo $evento['id']; ?>);">
                                     Sobre
                                 </button>
+                                
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " href="<?php echo base_url("/eventos/lista") . "/" . $evento['id'] ?>">Atividades</a>
@@ -79,6 +81,7 @@
                             </li>
                         </ul>
                     </div>
+
                 </div>
 
         <?php
@@ -113,7 +116,7 @@
 
 
         <!-- Modal Sobre -->
-        <div class="modal fade" id="sobreModal" name="sobreModal" tabindex="-1" role="dialog" aria-labelledby="sobreModalLabel" aria-hidden="true">
+        <div class="modal fade" id="sobreModal" tabindex="-1" role="dialog" aria-labelledby="sobreModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -123,7 +126,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <p></p>
+                        <p id="resumo"></p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
@@ -131,16 +134,17 @@
                 </div>
             </div>
         </div>
+    </div> 
+
+        <script>
+            function preenchermodal(id) {
+                var link = document.getElementById("btnConfirmaInscricao").href;
+                document.getElementById("btnConfirmaInscricao").href = link + id;
+            }
+        </script>
+        <script>
+        function sobremodal(resumo) {
+            var text = document.getElementById($evento['resumo']);
+        }
+    </script>
     </div>
-    <script>
-        function preenchermodal(id) {
-            var link = document.getElementById("btnConfirmaInscricao").href;
-            document.getElementById("btnConfirmaInscricao").href = link + id;
-        }
-    </script>
-    <script>
-          function sobremodal(id) {
-            var texto = document.getElementsByName("sobreModal");
-        }
-    </script>
-</div>
