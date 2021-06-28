@@ -1,4 +1,10 @@
+<link rel="stylesheet" href="trumbowyg/dist/ui/trumbowyg.min.css">
+<!-- Import jQuery -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
 
+<!-- Import Trumbowyg -->
+<script src="trumbowyg/dist/trumbowyg.min.js"></script>
 <style>
     #res:hover {
         background-color: red;
@@ -37,6 +43,7 @@
     
 </style>
 
+
 <script language='Javascript'>
  var today = new Date();
     var dd = today.getDate();
@@ -68,6 +75,7 @@
     var div = document.getElementById("divDtFutura");
     div.innerText =  today ;
 </script>
+
 
 <div class="container">
     <div class="row">
@@ -107,7 +115,8 @@
                         </div>
                         <div class="form-group">
                             <div class="form-label-group">
-                                <textarea  type="text" name="atividade" id="descricao" class="form-control" maxlength="200" placeholder="Atividade" maxlength="60" minilength="10"  ></textarea>
+                                <textarea  type="text"  id="editor" name="atividade" id="descricao" class="form-control" maxlength="200" placeholder="Atividade" maxlength="60" minilength="10"  autofocus></textarea>
+                                
                             </div>
                         </div>
                         <div class="form-group col-sm-6 data" id="inicial">

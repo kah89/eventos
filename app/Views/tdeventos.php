@@ -39,14 +39,12 @@
 </style>
 
 <div class="container">
-    <div>
-        <h2>Eventos</h2>
-        <?php if (session()->get('success')) : ?>
-            <div class="alert alert-success" role="alert">
-                <?= session()->get('success'); ?>
-            </div>
-        <?php endif; ?>
-    </div>
+    <h2>Eventos</h2>
+    <?php if (session()->get('success')) : ?>
+        <div class="alert alert-success" role="alert">
+            <?= session()->get('success'); ?>
+        </div>
+    <?php endif; ?>
     <div class="row">
 
         <?php
@@ -66,15 +64,30 @@
                     <div class="card-footer text-muted">
                         <ul class="nav nav-pills ">
                             <li class="nav-item">
-<<<<<<< HEAD
-                                <button id="sobre" class="btn btn-primary" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " href="#" data-toggle="modal" data-target="#sobreModal" onclick="sobremodal(<?php echo $evento['id']; ?>);">
-=======
-                                <!-- Botão Modal Sobre -->
-                                <button class="open-AddBookDialog btn btn-primary" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " href="#" data-toggle="modal" data-target="#sobreModal" id="" onclick="sobremodal(<?php echo $evento['resumo']; ?>);">
->>>>>>> 14d6a70025f85b57361d3ea036dcd651a15e05da
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal<?php echo $evento['id'] ?>" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px ">
                                     Sobre
                                 </button>
-                                
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal<?php echo $evento['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Sobre</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                            <?php echo $evento['resumo'] ?>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " href="<?php echo base_url("/eventos/lista") . "/" . $evento['id'] ?>">Atividades</a>
@@ -86,7 +99,6 @@
                             </li>
                         </ul>
                     </div>
-
                 </div>
 
         <?php
@@ -118,45 +130,17 @@
             </div>
         </div>
 
-
-
-        <!-- Modal Sobre -->
-        <div class="modal fade" id="sobreModal" tabindex="-1" role="dialog" aria-labelledby="sobreModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="sobreModalLabel">Sobre</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-
-                        <p id="resumo"></p>
-
-                        <p><?php echo $evento['resumo']?></p>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div> 
-
-        <script>
-            function preenchermodal(id) {
-                var link = document.getElementById("btnConfirmaInscricao").href;
-                document.getElementById("btnConfirmaInscricao").href = link + id;
-            }
-        </script>
-        <script>
-
-        function sobremodal(resumo) {
-            var text = document.getElementById($evento['resumo']);}
-        </script>    
-            
-
     </div>
+    <script>
+        function preenchermodal(id) {
+            var link = document.getElementById("btnConfirmaInscricao").href;
+            document.getElementById("btnConfirmaInscricao").href = link + id;
+        }
+    </script>
+    <script>
+        // function sobremodal(resumo) {
+        //     var texto = document.getElementsByName("sobreModal");
+        //     document.getElementById("sobreModal") = resumo
+        // }
+    </script>
+</div>
