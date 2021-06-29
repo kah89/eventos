@@ -14,6 +14,33 @@ class AtividadeModel extends Model
     /**
      * Recebe como parâmetro o idUser e o idAtividade e os insere no banco, registrando que a atividade X foi concluída pelo usuário Y na data e hora atual
      */
+    
+    public function inscricaoAtividade($idUser = null, $idAtividade = null)
+    {
+
+        $data = [
+            'idUser' => $idUser,
+            'idAtividade'    => $idAtividade
+        ];
+
+        $array = array('idUser' => $idUser, 'idAtividade' => $idAtividade);
+        $q = $this->db->table('usuario_atividade')->select('idUser, idAtividade')->where($array);
+        if ($q->countAllResults() < 1) {
+            if ($this
+                ->db
+                ->table('usuario_atividade')
+                ->insert($data)
+            ) {
+                $result = "Inscrição efetuada com sucesso!";
+            }
+        } else {
+            $result = "Inscrição já foi efetuada!";
+        }
+        return $result;
+    }
+
+
+
     public function concluirAtividade($idUser = null, $idAtividade = null)
     {
 

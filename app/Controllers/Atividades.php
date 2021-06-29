@@ -31,28 +31,13 @@ class Atividades extends BaseController
     public function inscreverAtividade()
     {
         $model = new AtividadeModel();
-        $data = [
-            'title' => 'Listar Atividades',
-            'data' => $model
-                ->select('*')
-                ->join('usuario_atividade', 'usuario_atividade.idAtividade = atividade_evento.id')
-                ->where('usuario_atividade.idUser', session()->get('id'))
-                ->findAll()
-        ];
-
-        echo view('templates/header', $data);
-        echo view('atividades');
-        echo view('templates/footer');
-        
-    // $model = new EventoModel();
-    // $idUser = session()->get('id');
-    // $uri = current_url(true);
-    // $idEvento = $uri->getSegment(5); 
-    // $msg = $model->inscricaoEvento($idUser,$idEvento);
-    // $session = session();
-    // $session->setFlashdata('success', $msg);
-    // return redirect()->to(base_url('eventos'));
-     
+        $idUser = session()->get('id');
+        $uri = current_url(true);
+        $idAtividade = $uri->getSegment(5); 
+        $msg = $model->inscricaoAtividade($idUser,$idAtividade);
+        $session = session();
+        $session->setFlashdata('success', $msg);
+        return redirect()->to(base_url('atividades'));
 
     }
     
