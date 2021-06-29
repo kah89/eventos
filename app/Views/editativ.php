@@ -1,3 +1,4 @@
+<script src="http://js.nicedit.com/nicEdit.js" type="text/javascript"></script>
 <style>
 #cad, #ed{
     margin-left: 2px;
@@ -31,6 +32,9 @@ h5{
         margin-top: -54px;
     }
 </style>
+<script type="text/javascript">
+bkLib.onDomLoaded(nicEditors.allTextAreas);
+</script>
 <div class="container">
     <div class="row">
         <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">

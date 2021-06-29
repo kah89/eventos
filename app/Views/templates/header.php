@@ -26,7 +26,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
-
     <title><?php echo $title ?></title>
     <style>
         .bg-custom {
@@ -71,11 +70,13 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #1598ef;
         }
-        .nav1{
+
+        .nav1 {
             margin-left: 50px;
             color: #fff;
         }
-        #user{
+
+        #user {
             color: #B5B5B5;
             text-transform: uppercase;
         }
@@ -113,52 +114,60 @@
                     </ul>
                     <ul class="navbar-nav mr-auto ">
                         <li class="nav-item dropdown nav1">
-                            <a class="nav-link" href="<?= base_url('eventos') ?>"></i>Eventos</a> <!--DB eventos -->
+                            <a class="nav-link" href="<?= base_url('eventos') ?>"></i>Eventos</a>
+                            <!--DB eventos -->
                         </li>
-                    <li class="nav-item dropdown nav1">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Listar
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="<?= base_url('listareventos') ?>">Eventos</a><!--DB eventos -->
-                        <a class="dropdown-item" href="<?= base_url('listarativ') ?>">Atividades</a><!--DB atividade_evento -->
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown nav1">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Cadastrar
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="<?= base_url('cadevento') ?>">Eventos</a><!--DB eventos -->
-                        <a class="dropdown-item" href="<?= base_url('cadativ') ?>">Atividades</a><!--DB atividade_evento -->
-                        <a class="dropdown-item" href="<?= base_url('caduser') ?>">Usuários</a><!--DB users -->
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown nav1">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Alterações
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="<?= base_url('alterareventos') ?>">Eventos</a><!--DB eventos -->
-                        <a class="dropdown-item" href="<?= base_url('excluirativ') ?>">Atividades</a><!--DB atividade_evento -->
-                        <a class="dropdown-item" href="<?= base_url('excluiruser') ?>">Usuários</a><!--DB users -->
-                        </div>
-                        
-                    </li>
+                        <li class="nav-item dropdown nav1">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Listar
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="<?= base_url('listareventos') ?>">Eventos</a>
+                                <!--DB eventos -->
+                                <a class="dropdown-item" href="<?= base_url('listarativ') ?>">Atividades</a>
+                                <!--DB atividade_evento -->
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown nav1">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Cadastrar
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="<?= base_url('cadevento') ?>">Eventos</a>
+                                <!--DB eventos -->
+                                <a class="dropdown-item" href="<?= base_url('cadativ') ?>">Atividades</a>
+                                <!--DB atividade_evento -->
+                                <a class="dropdown-item" href="<?= base_url('caduser') ?>">Usuários</a>
+                                <!--DB users -->
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown nav1">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Alterações
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="<?= base_url('alterareventos') ?>">Eventos</a>
+                                <!--DB eventos -->
+                                <a class="dropdown-item" href="<?= base_url('excluirativ') ?>">Atividades</a>
+                                <!--DB atividade_evento -->
+                                <a class="dropdown-item" href="<?= base_url('excluiruser') ?>">Usuários</a>
+                                <!--DB users -->
+                            </div>
+
+                        </li>
                     </ul>
-                    <ul class="navbar-nav my-2 my-lg-0" id="user" >
-                    <li class="nav-item dropdown nav1">
-                        <a class="nav-link dropdown-toggle fa fa-sign-out" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" 
-                        aria-haspopup="true" aria-expanded="false">
-                        <?php echo $_SESSION['firstname'];?>
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="<?php echo base_url('editaruser').'/'.$_SESSION['id']?>">Editar</a>
-                        <a class="dropdown-item" href="<?= base_url('logout')?>">Sair</a>
-                        </div>
-                        
-                        
-                    
+                    <ul class="navbar-nav my-2 my-lg-0" id="user">
+                        <li class="nav-item dropdown nav1">
+                            <a class="nav-link dropdown-toggle fa fa-sign-out" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <?php echo $_SESSION['firstname']; ?>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="<?php echo base_url('editaruser') . '/' . $_SESSION['id'] ?>">Editar</a>
+                                <a class="dropdown-item" href="<?= base_url('logout') ?>">Sair</a>
+                            </div>
+
+
+
                     </ul>
                 </div>
             </div>

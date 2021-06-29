@@ -75,7 +75,7 @@
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="exampleModalLabel">Sobre</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"> 
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
@@ -124,7 +124,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                        <a href="<?php echo base_url('eventos/inscrverEvento/') . "/"; ?>" class="btn btn-primary" id="btnConfirmaInscricao">Confirma</a>
+                        <a href="#" class="btn btn-primary" id="btnConfirmaInscricao">Confirma</a>
                     </div>
                 </div>
             </div>
