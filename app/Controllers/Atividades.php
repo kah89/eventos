@@ -146,9 +146,14 @@ class Atividades extends BaseController
              'title' => 'Listar Atividades',
              'data' => $model
                 ->select('*')
-                ->join('usuario_atividade','usuario_atividade.idAtividade = atividade_evento.id')
-                ->where('usuario_atividade.idUser', session()->get('id'))
+                ->join('usuario_evento','usuario_evento.idEvento = atividade_evento.idEvento')
+                ->where('usuario_evento.idUser', session()->get('id'))
                 ->findAll()
+
+                // ->select('*')
+                // ->join('usuario_atividade','usuario_atividade.idAtividade = atividade_evento.id')
+                // ->where('usuario_atividade.idUser', session()->get('id'))
+                // ->findAll()
          ];
 
          echo view('templates/header', $data);

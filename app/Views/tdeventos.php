@@ -124,7 +124,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                        <a href="<?php echo base_url('eventos/inscrverEvento/') . "/"; ?>" class="btn btn-primary" id="btnConfirmaInscricao">Confirma</a>
+                        <a href="<?php echo base_url('eventos/inscreverEvento/') . "/"; ?>" class="btn btn-primary" id="btnConfirmaInscricao">Confirma</a>
                     </div>
                 </div>
             </div>

@@ -29,7 +29,7 @@ class Eventos extends BaseController
 
     //------------------------------------------------------------------------------
 
-    public function inscrverEvento()
+    public function inscreverEvento()
     {
         $model = new EventoModel();
         $idUser = session()->get('id');
