@@ -32,7 +32,7 @@
                     <tbody>
                         <?php foreach ($data as $key => $evento) {
                             echo '<tr><td>' . $evento['id'] . '</td><td>' . $evento['titulo'] . '</td><td>' . $evento['dtInicio'] . '</td><td>' . $evento['tipo'] . '</td>
-                               <td><a class="btn btn-primary" id="confirmar" href=' . base_url('/atividades/inscreverAtividade') . "/" . $evento['id'] . ' role="button" >Ir </a></td></tr>';
+                               <td><a class="btn btn-primary" id="confirmar" href=' . base_url('/atividades/inscreverAtividade') . "/" . $evento['id'] .' role="button" >Ir </a></td></tr>';
                         } ?> 
                     </tbody>
                 </table>

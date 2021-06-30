@@ -59,7 +59,7 @@
                     </div>
                     <div class="card-body">
                         <img src="<?php echo base_url("/public/img") . "/" . $evento['imagem'] ?>" alt="" width="100%">
-                        <p class="card-text"><?php echo $evento['resumo'] ?></p>
+                        <p class="card-text"><?php echo $evento['resumo'];?></p>
                     </div>
                     <div class="card-footer text-muted">
                         <ul class="nav nav-pills ">
@@ -80,7 +80,7 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                            <?php echo $evento['resumo'] ?>
+                                            <?php echo $evento['resumo'];  ?>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -93,9 +93,14 @@
                                 <a class="nav-link active" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " href="<?php echo base_url("/eventos/lista") . "/" . $evento['id'] ?>">Atividades</a>
                             </li>
                             <li class="nav-item">
-                                <button class="btn btn-primary" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " href="#" data-toggle="modal" data-target="#inscrevaModal" onclick="preenchermodal(<?php echo $evento['id']; ?>);">
-                                    Inscreva-se
-                                </button>
+                                <?php 
+                                if(date($evento['dtFim']) < date("Y-m-d H:i:s")){
+                                    echo '<button class="btn btn-primary" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " href="#" data-toggle="modal" data-target="#inscrevaModal" id="Btn" onclick="preenchermodal('. $evento['id'] .');">Inscreva-se</button>';
+                                }else{
+                                    echo '<button class="btn btn-primary" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " disabled>Inscreva-se</button>';
+                                }
+                                ?>
+                                
                             </li>
                         </ul>
                     </div>
@@ -144,4 +149,5 @@
         //     document.getElementById("sobreModal") = resumo
         // }
     </script>
+   
 </div>
