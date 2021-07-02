@@ -5,6 +5,7 @@ namespace App\Controllers;
 use CodeIgniter\Controller;
 use Dompdf\Options;
 use App\Models\UserModel;
+use App\Models\EventoModel;
 
 define('DOMPDF_ENABLE_AUTOLOAD', false);
 define("DOMPDF_ENABLE_REMOTE", true);
@@ -20,7 +21,7 @@ class PdfController extends Controller
         } else {
             $id = session()->get('id');
             $usuarios =  new UserModel();
-
+           
             if ($user = $usuarios->find($id)) {
                 $data = [
                     'nome' => $user['firstname'],
@@ -55,7 +56,8 @@ class PdfController extends Controller
             if ($this->request->getMethod(true) == 'POST') {
                 $text = $this->request->getVar('textCertificado');
 
-                $data = [
+               
+                $data  = [
                     'text' => $text
                 ];
 

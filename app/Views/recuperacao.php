@@ -79,30 +79,32 @@
         background-color: #3b5998
     }
 </style>
-<div class="container">
-    <div class="row">
-        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-            <div class="card card-signin my-5">
-                <div class="card-body">
-                    <h5 class="card-title text-center">Recuperar Senha</h5>
-                    <form class="form-signin" method="post">            
-                        <div class="form-label-group">
-                            <input type="email" id="email" name="email" class="form-control" placeholder="Email" required>
-                        </div>          
-                        <?php if (isset($validation)) : ?>
-                            <div class="alert alert-danger" roles="alert">
-                                <?= $validation->listErrors(); ?>
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="card card-signin my-5">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Recuperar Senha</h5>
+                        <form class="form-signin" method="post">
+                            <div class="form-label-group">
+                                <input type="email" id="email" name="email" class="form-control" placeholder="Email" required>
                             </div>
-                        <?php endif; ?>
-                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Recuperar</button>
-                        <hr class="my-4">
-                    </form>
-                </div>
-                <div class="mx-auto">
-                    Já é inscrito? <a href="<?= base_url(''); ?>">Acesse</a>
-                    <br /><br />
+                            <?php if (isset($validation)) : ?>
+                                <div class="alert alert-danger" roles="alert">
+                                    <?= $validation->listErrors(); ?>
+                                </div>
+                            <?php endif; ?>
+                            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Recuperar</button>
+                            <hr class="my-4">
+                        </form>
+                    </div>
+                    <div class="mx-auto">
+                        Já é inscrito? <a href="<?= base_url(''); ?>">Acesse</a>
+                        <br /><br />
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</main>

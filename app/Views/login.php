@@ -79,61 +79,63 @@
         background-color: #3b5998
     }
 </style>
-<div class="container">
-    <div class="row">
-        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-            <div class="card card-signin my-5">
-                <div class="card-body">
-                    <h5 class="card-title text-center">Login</h5>
-                    <?php if (session()->get('success')) : ?>
-                        <div class="alert alert-success" role="alert">
-                            <?= session()->get('success'); ?>
-                        </div>
-                    <?php endif; ?>                  
-                    <form class="form-signin" method="post">
-                        <div class="form-label-group">
-                            <input type="email" id="email" name="email" class="form-control" placeholder="Email" autocomplete="username" required autofocus>
-                        </div>
-                        <div class="form-label-group">
-                            <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" autocomplete="current-password" required>
-                        </div>
-                        <?php if (isset($validation)) : ?>
-                            <div class="alert alert-danger" roles="alert">
-                                <?= $validation->listErrors(); ?>
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="card card-signin my-5">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Login</h5>
+                        <?php if (session()->get('success')) : ?>
+                            <div class="alert alert-success" role="alert">
+                                <?= session()->get('success'); ?>
                             </div>
                         <?php endif; ?>
-                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Entrar</button>
-                        <hr class="my-4">
-                        <?php if (isset($fb_login_url)) : ?>
-                            <a class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit" href='<?= $fb_login_url; ?>'>
-                                <i class="fa fa-facebook" aria-hidden="true"></i> Entrar com o Facebook
-                            </a>
-                        <?php endif; ?>
-                    </form>
-                </div>
-                <div class="mx-auto">
-                    Não tem uma conta? <a href="registro">Inscreva-se</a>
-                    <br />
-                </div>
-                <div class="mx-auto">
-                    Esqueceu a senha? <a href="recuperacao">Lembre-se</a>
-                    <br /><br />
+                        <form class="form-signin" method="post">
+                            <div class="form-label-group">
+                                <input type="email" id="email" name="email" class="form-control" placeholder="Email" autocomplete="username" required autofocus>
+                            </div>
+                            <div class="form-label-group">
+                                <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" autocomplete="current-password" required>
+                            </div>
+                            <?php if (isset($validation)) : ?>
+                                <div class="alert alert-danger" roles="alert">
+                                    <?= $validation->listErrors(); ?>
+                                </div>
+                            <?php endif; ?>
+                            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Entrar</button>
+                            <hr class="my-4">
+                            <?php if (isset($fb_login_url)) : ?>
+                                <a class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit" href='<?= $fb_login_url; ?>'>
+                                    <i class="fa fa-facebook" aria-hidden="true"></i> Entrar com o Facebook
+                                </a>
+                            <?php endif; ?>
+                        </form>
+                    </div>
+                    <div class="mx-auto">
+                        Não tem uma conta? <a href="registro">Inscreva-se</a>
+                        <br />
+                    </div>
+                    <div class="mx-auto">
+                        Esqueceu a senha? <a href="recuperacao">Lembre-se</a>
+                        <br /><br />
+                    </div>
                 </div>
             </div>
-        </div>
-        <?php if (session()->has('userdata')) :
-            $uinfo = session()->get('userdata');
-        ?>
-            <div class="card">
-                <img src='<?= $uinfo['profile_pic']; ?>' height="100" width="100">
-                <p>ID:<?= $uinfo['userid']; ?></p>
+            <?php if (session()->has('userdata')) :
+                $uinfo = session()->get('userdata');
+            ?>
+                <div class="card">
+                    <img src='<?= $uinfo['profile_pic']; ?>' height="100" width="100">
+                    <p>ID:<?= $uinfo['userid']; ?></p>
 
-                <p>Bem vindo <?= $uinfo['user_name']; ?></p>
-                <p><?= $uinfo['email']; ?></p>
-                <a href='<?= base_url(); ?>/login/logout'>Logout</a>
-            </div>
-        <?php
-        endif;
-        ?>
+                    <p>Bem vindo <?= $uinfo['user_name']; ?></p>
+                    <p><?= $uinfo['email']; ?></p>
+                    <a href='<?= base_url(); ?>/login/logout'>Logout</a>
+                </div>
+            <?php
+            endif;
+            ?>
+        </div>
     </div>
-</div>
+</main>

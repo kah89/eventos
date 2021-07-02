@@ -14,18 +14,20 @@ class Atividades extends BaseController
 
     public function index()
     {
-
-        $model =  new AtividadeModel();
+        $uri = current_url(true);
+        $idAtividade = $uri->getSegment(4); 
+        $model = new AtividadeModel();
         $data = [
             'title' => 'Atividade',
-            'data' => $model->findAll(),
+            'data' =>$model->find($idAtividade),
         ];
+        // var_dump($data);exit;
         echo view('templates/header', $data);
         echo view('atividades');
         echo view('templates/footer');
         
-    }
 
+    }
     //------------------------------------------------------------------------------
 
     public function inscreverAtividade()
@@ -37,7 +39,7 @@ class Atividades extends BaseController
         $msg = $model->inscricaoAtividade($idUser,$idAtividade);
         $session = session();
         $session->setFlashdata('success', $msg);
-        return redirect()->to(base_url('atividades'));
+        return redirect()->to(base_url('atividades/'). "/" . $idAtividade);
 
     }
     
@@ -60,7 +62,7 @@ class Atividades extends BaseController
             //VALIDAÇÕES
             $rules = [
                 'titulo' => 'min_length[3]|max_length[60]',
-                'descricao' => 'max_length[60]',
+                'atividade' => 'min_length[3]',
             ];
 
             if (!$this->validate($rules)) {
@@ -75,7 +77,6 @@ class Atividades extends BaseController
                     'titulo' => $this->request->getVar('titulo'),
                     'tipo' => (int)$this->request->getVar('certificado'),
                     'atividade' => $this->request->getVar('atividade'),
-
                     'dtInicio' => date($this->request->getVar('datainicial') . ' ' . $this->request->getVar('hinicial')),
                     'dtFim' => date($this->request->getVar('datafinal') . ' ' . $this->request->getVar('hfinal')),
                     'hora' => date('H:i:s', strtotime($this->request->getVar('datainicial') . ' ' . $this->request->getVar('hinicial'))),
@@ -108,11 +109,13 @@ class Atividades extends BaseController
         $uri = current_url(true);
         $ativ_id = $uri->getSegment(4);
         $model = new AtividadeModel();
+        $model1 = new EventoModel();
 
         $result = $model->find($ativ_id);
 
         $data = [
             'title' => 'Editar evento',
+            'data' => $model1->findall(),
         ];
 
 
@@ -135,7 +138,8 @@ class Atividades extends BaseController
                     'id' => $ativ_id, //sem esse campo não sabe qual ID deve alterar e acaba fazendo um insert
                     'titulo' => $this->request->getVar('titulo'),
                     'tipo' => $this->request->getVar('certificado'),
-                    'dtInicio' => $this->request->getVar('data'),
+                    'dtInicio' => $this->request->getVar('datainicial'),
+                    'dtInicio' => $this->request->getVar('datafinal'),
                     'atividade' => $this->request->getVar('atividade'),
                 ];
 

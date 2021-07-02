@@ -80,6 +80,19 @@
             color: #B5B5B5;
             text-transform: uppercase;
         }
+
+        #mostrar {
+            display: none;
+        }
+
+        #passar_mouse:hover #mostrar {
+            display: block;
+        }
+
+        a.disabled {
+            pointer-events: none;
+            cursor: default;
+        }
     </style>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ST5941BK0S"></script>
@@ -95,7 +108,7 @@
     </script>
 </head>
 
-<body class="d-flex flex-column min-vh-100">
+<body class="d-flex flex-column min-vh-100">   
     <?php $uri = service('uri'); ?>
     <?php if (session()->get('isLoggedIn')) : ?>
         <nav class="navbar navbar-expand-lg navbar-dark bg-info bg-custom" role="navigation">
@@ -128,33 +141,41 @@
                                 <!--DB atividade_evento -->
                             </div>
                         </li>
-                        <li class="nav-item dropdown nav1">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Cadastrar
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="<?= base_url('cadevento') ?>">Eventos</a>
-                                <!--DB eventos -->
-                                <a class="dropdown-item" href="<?= base_url('cadativ') ?>">Atividades</a>
-                                <!--DB atividade_evento -->
-                                <a class="dropdown-item" href="<?= base_url('caduser') ?>">Usuários</a>
-                                <!--DB users -->
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown nav1">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Alterações
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="<?= base_url('alterareventos') ?>">Eventos</a>
-                                <!--DB eventos -->
-                                <a class="dropdown-item" href="<?= base_url('excluirativ') ?>">Atividades</a>
-                                <!--DB atividade_evento -->
-                                <a class="dropdown-item" href="<?= base_url('excluiruser') ?>">Usuários</a>
-                                <!--DB users -->
-                            </div>
-
-                        </li>
+                        <?php                       
+                        if (
+                            isset($_SESSION['id']) &&
+                            $_SESSION['type'] == 0
+                        ) {
+                        ?>
+                            <li class="nav-item dropdown nav1">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Cadastrar
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="<?= base_url('cadevento') ?>">Eventos</a>
+                                    <!--DB eventos -->
+                                    <a class="dropdown-item" href="<?= base_url('cadativ') ?>">Atividades</a>
+                                    <!--DB atividade_evento -->
+                                    <a class="dropdown-item" href="<?= base_url('caduser') ?>">Usuários</a>
+                                    <!--DB users -->
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown nav1">
+                                <a onclick="funcao1()" class=" nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Alterações
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="<?= base_url('alterareventos') ?>">Eventos</a>
+                                    <!--DB eventos -->
+                                    <a class="dropdown-item" href="<?= base_url('excluirativ') ?>">Atividades</a>
+                                    <!--DB atividade_evento -->
+                                    <a class="dropdown-item" href="<?= base_url('excluiruser') ?>">Usuários</a>
+                                    <!--DB users -->
+                                </div>
+                            </li>
+                        <?php
+                        } 
+                        ?>
                     </ul>
                     <ul class="navbar-nav my-2 my-lg-0" id="user">
                         <li class="nav-item dropdown nav1">
@@ -165,13 +186,30 @@
                                 <a class="dropdown-item" href="<?php echo base_url('editaruser') . '/' . $_SESSION['id'] ?>">Editar</a>
                                 <a class="dropdown-item" href="<?= base_url('logout') ?>">Sair</a>
                             </div>
-
-
-
                     </ul>
                 </div>
             </div>
         </nav>
+
     <?php
     endif;
     ?>
+    <!-- <script>
+        let mensagem = document.querySelector(".mensagem") ;
+
+// mostra a mensagem
+function showMessage(){   
+   mensagem.style.display = "block";   
+ }
+// esconde a mensagem
+function hideMessage(){
+  mensagem.style.display = "none"; 
+}
+
+    </script> -->
+    <!-- <script>
+function funcao1()
+{
+alert("Você não tem permissão!");
+}
+</script> -->

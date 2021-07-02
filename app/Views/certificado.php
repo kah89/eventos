@@ -14,7 +14,7 @@
         body {
             background-color: #fff;
             -webkit-print-color-adjust: exact;
-            print-color-adjust: exact;
+            /* print-color-adjust: exact; */
         }
 
         p,
@@ -76,7 +76,7 @@
 
         @media print {
 
-            * {
+            * { 
                 -webkit-print-color-adjust: exact;
             }
 
@@ -91,7 +91,7 @@
     <article id="conteudo-certificado" style="background-image: url('https://farmaceuticosp.com.br/encontro/public/certificado_marcos.jpg');">
         <section>
             <p>Certificamos que <strong><?php echo $nome ?> <?php echo $sobrenome ?></strong></p>
-            <p>Participou do: "<strong>I Fórum de Tecnologias na Área Farmacêutica</strong>"</p>
+            <p>Participou do: "<strong>I Fórum de Tecnologias na Área Farmacêutica </strong>"</p>
             <p>Com carga horária de <strong>8 horas.</strong></p>
             <p class="data">Realizado nos dias 30 e 31 de março de 2021 em São Paulo - SP.</p>
         </section>

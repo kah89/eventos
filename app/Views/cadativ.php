@@ -1,4 +1,8 @@
-<script src="http://js.nicedit.com/nicEdit.js" type="text/javascript"></script>
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
 
 <style>
     #res:hover {
@@ -14,27 +18,32 @@
         color: #007BFF;
     }
 
+
+
     #cad {
         width: 300px;
         margin-left: 50px;
     }
 
-    #hora1,
+    #hora1 {
+        width: 100px;
+        float: right;
+        margin-left: 205px;
+        margin-top: -50px;
+    }
+
     #hora {
         width: 100px;
-        /* float: right; */
+        float: right;
         margin-left: 205px;
         margin-top: -54px;
     }
 
 
-    /* #link{
-        margin-left: 180px;
-        margin-top: -54px;
+
+    /* #summernote{
+        min-height: 5000px;
     } */
-    textarea{
-        min-height: 500px;
-    }
 </style>
 
 <script language='Javascript'>
@@ -68,98 +77,101 @@
     var div = document.getElementById("divDtFutura");
     div.innerText = today;
 </script>
-
-<script type="text/javascript">
-bkLib.onDomLoaded(nicEditors.allTextAreas);
-</script>
-
-<div class="container">
-    <div class="row">
-        <?php
-        if (session()->get("success")) {
-        ?>
-            <h3><?= session()->get("success") ?></h3>
-        <?php
-        }
-        if (session()->get("error")) {
-        ?>
-            <h3><?= session()->get("error") ?></h3>
-        <?php
-        }
-        ?>
-        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-            <div class="card card-signin my-5">
-                <div class="card-body">
-                    <h5 class="card-title text-center">Cadastro de Atividade</h5>
-                    <form class="form-signin" method="post" name='form1'>
-                        <div class="form-group">
-                            <div class="form-label-group" required>
-                                <select id="selectEvent" name="selectEvent" class="form-control" required>
-                                    <option selected disabled>Eventos</option>
-                                    <?php
-                                    foreach ($data as $key => $evento) {
-                                        echo "<option value='" . $evento['id'] . "'>" . $evento['id'] . " - " . $evento['titulo'] . "</option>";
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="form-label-group">
-                                <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Titulo" maxlength="60" minilength="3" required autofocus>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="form-label-group">
-                                <textarea type="text" name="atividade" id="editor" class="form-control"  placeholder="Atividade"  autofocus></textarea>
-
-                            </div>
-                        </div>
-                        <div class="form-group col-sm-6 data" id="inicial">
-                            <div class="form-label-group">
-                                <label for="">Inicial :</label>
-                                <input type="date" name="datainicial" id="dtAgenda" min="2017-04-01" class="form-control" required />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="form-label-group">
-                                <input type="time" name="hinicial" id="hora" class="form-control" required />
-                            </div>
-                        </div>
-                        <div class="form-group col-sm-6 data" id="final">
-                            <div class="form-label-group">
-                                <label for="">Final:</label>
-                                <input type="date" name="datafinal" id="dtAgenda1" min="2017-04-01" class="form-control" required />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="form-label-group">
-                                <input type="time" name="hfinal" id="hora1" class="form-control" required />
-
-                            </div>
-                        </div>
-                        <div class="form-group col-sm-7">
-                            <div class="form-label-group">
-                                <select id="certificado" name="certificado" class="form-control">
-                                    <option selected disabled>Certificado</option>
-                                    <option value="1">Gera certificado</option>
-                                    <option value="2">Não gera certificado</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <?php if (isset($validation)) : ?>
-                                <div class="alert alert-danger" roles="alert">
-                                    <?= $validation->listErrors(); ?>
+<main>
+    <div class="container">
+        <div class="row">
+            <?php
+            if (session()->get("success")) {
+            ?>
+                <h3><?= session()->get("success") ?></h3>
+            <?php
+            }
+            if (session()->get("error")) {
+            ?>
+                <h3><?= session()->get("error") ?></h3>
+            <?php
+            }
+            ?>
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="card card-signin my-5">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Cadastro de Atividade</h5>
+                        <form class="form-signin" method="post" name='form1'>
+                            <div class="form-group">
+                                <div class="form-label-group" required>
+                                    <select id="selectEvent" name="selectEvent" class="form-control" required>
+                                        <option selected disabled>Eventos</option>
+                                        <?php
+                                        foreach ($data as $key => $evento) {
+                                            echo "<option value='" . $evento['id'] . "'>" . $evento['id'] . " - " . $evento['titulo'] . "</option>";
+                                        }
+                                        ?>
+                                    </select>
                                 </div>
-                            <?php endif; ?>
-                            <button class="btn btn-primary  text-uppercase" id="cad" type="submit">Cadastrar</button>
-                        </div>
-                    </form>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-label-group">
+                                    <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Titulo" maxlength="60" minilength="3" required autofocus>
+                                </div>
+                            </div>
+                            <div class="form-group" name="atividade">
+                                <div class="form-label-group">
+                                    <!-- <textarea type="text" name="atividade" id="editor" class="form-control"  placeholder="Atividade"  autofocus></textarea> -->
+                                    <div id="summernote" name="atividade" autofocus>
+                                        <p> Atividade: </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-6 data" id="inicial">
+                                <div class="form-label-group">
+                                    <label for="">Inicial :</label>
+                                    <input type="date" name="datainicial" id="dtAgenda" min="2017-04-01" class="form-control" required />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-label-group">
+                                    <input type="time" name="hinicial" id="hora" class="form-control" required />
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-6 data" id="final">
+                                <div class="form-label-group">
+                                    <label for="">Final:</label>
+                                    <input type="date" name="datafinal" id="dtAgenda1" min="2017-04-01" class="form-control" required />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-label-group">
+                                    <input type="time" name="hfinal" id="hora1" class="form-control" required />
+
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-7">
+                                <div class="form-label-group">
+                                    <select id="certificado" name="certificado" class="form-control">
+                                        <option selected disabled>Certificado</option>
+                                        <option value="1">Gera certificado</option>
+                                        <option value="2">Não gera certificado</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <?php if (isset($validation)) : ?>
+                                    <div class="alert alert-danger" roles="alert">
+                                        <?= $validation->listErrors(); ?>
+                                    </div>
+                                <?php endif; ?>
+                                <button class="btn btn-primary  text-uppercase" id="cad" type="submit">Cadastrar</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
+</main>
+<script>
+    $(document).ready(function() {
+        $('#summernote').summernote();
+    });
+</script>

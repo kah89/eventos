@@ -4,7 +4,7 @@
         --input-padding-y: .75rem
     }
 
-    
+
     .card-signin {
         border: 0;
         border-radius: 0rem;
@@ -76,18 +76,18 @@
         background-color: #3b5998
     }
 
-    h5{
-    color: #007BFF;
-    text-align: center;
-    font: caption;
-}
+    h5 {
+        color: #007BFF;
+        text-align: center;
+        font: caption;
+    }
 </style>
 <script type="text/javascript">
     $(function() {
         $('#paises').on('keyup change', function() {
             var id = $('#paises').val();
 
-            $.post('<?= base_url()."/estado"?>', {
+            $.post('<?= base_url() . "/estado" ?>', {
                 id_estado: id
             }, function(data) {
                 if (id == 1) {
@@ -119,7 +119,7 @@
             var id_estado = $('#estados').val();
             var idPais = $('#paises').val();
 
-            $.post('<?= base_url()."/cidade"?>', {
+            $.post('<?= base_url() . "/cidade" ?>', {
                 id_estado: id_estado
             }, function(data) {
                 if (idPais == 1) {
@@ -147,90 +147,93 @@
                 $("#uf").attr('required', 1);
                 $("#crf").attr('required', 1);
             }
-        }); 
+        });
 
-        
+
 
     });
 </script>
-<div class="container"> 
-    <div class="row">
-        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-            <div class="card card-signin my-5">
-                <div class="card-body">
-                    <h5 class="card-title text-center">Alteração de Usuários</h5>
-                    <?php if (session()->get('success')) : ?>
-                        <div class="alert alert-success" role="alert">
-                            <?= session()->get('success'); ?>
-                        </div>
-                    <?php endif; ?> 
-                    <form class="form-signin" method="post">
-                    
-                        <div class="form-label-group"> <!-- Nome e sobrenome não deixar alterar e puxar do banco -->
-                             <input type="text" id="nome" name="nome" class="form-control" placeholder="Nome"  autofocus value="<?=$firstname?>" disabled>
-                        </div>
-                        <div class="form-label-group">
-                            <input type="text" id="sobrenome" name="sobrenome" class="form-control" placeholder="Sobrenome"  value="<?=$lastname?>" disabled>
-                        </div>
-                        <div class="form-label-group">
-                            <input type="email" id="email" name="email" class="form-control" placeholder="Email"  value="<?=$email?>">
-                        </div>
-                        <div class="form-label-group">
-                            <select id="paises" name="paises" class="form-control" placeholder="Selecione o país" required style="height: calc(1.5em + .75rem + 14px);" value="<?=$pais?>">
-                            <?php echo $options_paises; ?>
-                            </select>
-                        </div>
-                        <div class="form-label-group">
-                            <select id="estados" name="estados" class="form-control" style="height: calc(1.5em + .75rem + 14px);" disabled value="<?=$estado?>">
-                                <option>Selecione o estado acima</option>
-                            </select>
-                        </div>
-                        <div class="form-label-group">
-                            <select id="cidades" name="cidades" class="form-control" style="height: calc(1.5em + .75rem + 14px);" disabled value="<?=$cidade?>">
-                                <option>Selecione o cidade acima</option>
-                            </select>
-                        </div>
-                        <div class="form-label-group">
-                            <select id="categoria" name="categoria" class="form-control" style="height: calc(1.5em + .75rem + 14px);" value="<?=$type?>">
-                                <option value="1">Estudante de Farmácia</option>
-                                <option value="2">Farmacêutico</option>
-                            </select>
-                        </div>
-                        <div class="form-label-group" id="farmaceutico" style="display: none">
-                            <div class="row justify-content-between" style="width: 100%;margin: 0;">
-                                <select id="uf" name="uf" class="form-control col-3" style="height: calc(1.5em + .75rem + 14px);" value="<?=$uf?>">
-                                <?php echo $options_uf; ?>
-                                </select>
-                                <input type="number" id="crf" name="crf" class="form-control col-8" placeholder="CRF" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" value="<?=$crf?>">
-                            </div>
-                        </div>
-
-                        <div class="form-label-group">
-                            <input type="text" id="telefone" name="telefone" class="form-control" placeholder="Telefone" value="<?=$telefone?>" >
-                        </div>
-                        <div class="form-label-group">
-                            <input type="text" id="celular" name="celular" class="form-control" placeholder="Celular" value="<?=$celular?>">
-                        </div>
-                        <div class="form-label-group">
-                            <input type="text" id="cpf" name="cpf" class="form-control" placeholder="CPF"  value="<?=$cpf?>">
-                        </div>
-
-                        <div class="form-label-group"> 
-                            <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha"  required >
-                        </div>
-                        <div class="form-label-group"> 
-                            <input type="password" id="senha_confirmacao" name="senha_confirmacao" class="form-control" placeholder="Confirme a Senha"  required>
-                        </div>
-                        <?php if (isset($validation)) : ?>
-                            <div class="alert alert-danger" roles="alert">
-                                <?= $validation->listErrors(); ?>
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="card card-signin my-5">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Alteração de Usuários</h5>
+                        <?php if (session()->get('success')) : ?>
+                            <div class="alert alert-success" role="alert">
+                                <?= session()->get('success'); ?>
                             </div>
                         <?php endif; ?>
-                        <button class="btn btn-md btn-primary  text-uppercase"  type="submit">Alterar</button>
-                        <hr class="my-4">
-                    </form>
+                        <form class="form-signin" method="post">
+
+                            <div class="form-label-group">
+                                <!-- Nome e sobrenome não deixar alterar e puxar do banco -->
+                                <input type="text" id="nome" name="nome" class="form-control" placeholder="Nome" autofocus value="<?= $firstname ?>" disabled>
+                            </div>
+                            <div class="form-label-group">
+                                <input type="text" id="sobrenome" name="sobrenome" class="form-control" placeholder="Sobrenome" value="<?= $lastname ?>" disabled>
+                            </div>
+                            <div class="form-label-group">
+                                <input type="email" id="email" name="email" class="form-control" placeholder="Email" value="<?= $email ?>">
+                            </div>
+                            <div class="form-label-group">
+                                <select id="paises" name="paises" class="form-control" placeholder="Selecione o país" required style="height: calc(1.5em + .75rem + 14px);" value="<?= $pais ?>">
+                                    <?php echo $options_paises; ?>
+                                </select>
+                            </div>
+                            <div class="form-label-group">
+                                <select id="estados" name="estados" class="form-control" style="height: calc(1.5em + .75rem + 14px);" disabled value="<?= $estado ?>">
+                                    <option>Selecione o estado acima</option>
+                                </select>
+                            </div>
+                            <div class="form-label-group">
+                                <select id="cidades" name="cidades" class="form-control" style="height: calc(1.5em + .75rem + 14px);" disabled value="<?= $cidade ?>">
+                                    <option>Selecione o cidade acima</option>
+                                </select>
+                            </div>
+                            <div class="form-label-group">
+                                <select id="categoria" name="categoria" class="form-control" style="height: calc(1.5em + .75rem + 14px);" value="<?= $type ?>">
+                                    <option value="1">Estudante de Farmácia</option>
+                                    <option value="2">Farmacêutico</option>
+                                </select>
+                            </div>
+                            <div class="form-label-group" id="farmaceutico" style="display: none">
+                                <div class="row justify-content-between" style="width: 100%;margin: 0;">
+                                    <select id="uf" name="uf" class="form-control col-3" style="height: calc(1.5em + .75rem + 14px);" value="<?= $uf ?>">
+                                        <?php echo $options_uf; ?>
+                                    </select>
+                                    <input type="number" id="crf" name="crf" class="form-control col-8" placeholder="CRF" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" value="<?= $crf ?>">
+                                </div>
+                            </div>
+
+                            <div class="form-label-group">
+                                <input type="text" id="telefone" name="telefone" class="form-control" placeholder="Telefone" value="<?= $telefone ?>">
+                            </div>
+                            <div class="form-label-group">
+                                <input type="text" id="celular" name="celular" class="form-control" placeholder="Celular" value="<?= $celular ?>">
+                            </div>
+                            <div class="form-label-group">
+                                <input type="text" id="cpf" name="cpf" class="form-control" placeholder="CPF" value="<?= $cpf ?>">
+                            </div>
+
+                            <div class="form-label-group">
+                                <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" required>
+                            </div>
+                            <div class="form-label-group">
+                                <input type="password" id="senha_confirmacao" name="senha_confirmacao" class="form-control" placeholder="Confirme a Senha" required>
+                            </div>
+                            <?php if (isset($validation)) : ?>
+                                <div class="alert alert-danger" roles="alert">
+                                    <?= $validation->listErrors(); ?>
+                                </div>
+                            <?php endif; ?>
+                            <button class="btn btn-md btn-primary  text-uppercase" type="submit">Alterar</button>
+                            <hr class="my-4">
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</main>

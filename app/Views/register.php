@@ -69,7 +69,7 @@
         box-shadow: 10px 0px 0px 0px #ffffff !important
     }
 
-    .btn-google {
+    .btn-google { 
         color: white;
         background-color: #ea4335
     }
@@ -84,7 +84,7 @@
         $('#paises').on('keyup change', function() {
             var id = $('#paises').val();
 
-            $.post('<?= base_url()."/estado"?>', {
+            $.post('<?= base_url() . "/estado" ?>', {
                 id_estado: id
             }, function(data) {
                 if (id == 1) {
@@ -116,7 +116,7 @@
             var id_estado = $('#estados').val();
             var idPais = $('#paises').val();
 
-            $.post('<?= base_url()."/cidade"?>', {
+            $.post('<?= base_url() . "/cidade" ?>', {
                 id_estado: id_estado
             }, function(data) {
                 if (idPais == 1) {
@@ -146,95 +146,97 @@
             }
         });
 
-        
+
 
     });
 </script>
-<div class="container">
-    <div class="row">
-        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-            <div class="card card-signin my-5">
-                <div class="card-body">
-                    <h5 class="card-title text-center">Inscreva-se</h5>
-                    <form class="form-signin" method="post">
-                        <div class="form-label-group">
-                            <input type="text" id="nome" name="nome" class="form-control" placeholder="Nome" required autofocus>
-                        </div>
-                        <div class="form-label-group">
-                            <input type="text" id="sobrenome" name="sobrenome" class="form-control" placeholder="Sobrenome" required>
-                        </div>
-                        <div class="form-label-group">
-                            <input type="email" id="email" name="email" class="form-control" placeholder="Email" required>
-                        </div>
-                        <div class="form-label-group">
-                            <select id="paises" name="paises" class="form-control" placeholder="Selecione o país" required style="height: calc(1.5em + .75rem + 14px);">
-                                <?php echo $options_paises; ?>
-                            </select>
-                        </div>
-                        <div class="form-label-group">
-                            <select id="estados" name="estados" class="form-control" style="height: calc(1.5em + .75rem + 14px);" disabled>
-                                <option>Selecione o país acima</option>
-                            </select>
-                        </div>
-                        <div class="form-label-group">
-                            <select id="cidades" name="cidades" class="form-control" style="height: calc(1.5em + .75rem + 14px);" disabled>
-                                <option>Selecione o estado acima</option>
-                            </select>
-                        </div>
-                        <div class="form-label-group">
-                            <select id="categoria" name="categoria" class="form-control" style="height: calc(1.5em + .75rem + 14px);">
-                                <option value="1">Estudante de Farmácia</option>
-                                <option value="2">Farmacêutico</option>
-                            </select>
-                        </div>
-                        <div class="form-label-group" id="farmaceutico" style="display: none">
-                            <div class="row justify-content-between" style="width: 100%;margin: 0;">
-                                <select id="uf" name="uf" class="form-control col-3" style="height: calc(1.5em + .75rem + 14px);">
-                                    <?php echo $options_uf; ?>
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="card card-signin my-5">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Inscreva-se</h5>
+                        <form class="form-signin" method="post">
+                            <div class="form-label-group">
+                                <input type="text" id="nome" name="nome" class="form-control" placeholder="Nome" required autofocus>
+                            </div>
+                            <div class="form-label-group">
+                                <input type="text" id="sobrenome" name="sobrenome" class="form-control" placeholder="Sobrenome" required>
+                            </div>
+                            <div class="form-label-group">
+                                <input type="email" id="email" name="email" class="form-control" placeholder="Email" required>
+                            </div>
+                            <div class="form-label-group">
+                                <select id="paises" name="paises" class="form-control" placeholder="Selecione o país" required style="height: calc(1.5em + .75rem + 14px);">
+                                    <?php echo $options_paises; ?>
                                 </select>
-                                <input type="number" id="crf" name="crf" class="form-control col-8" placeholder="CRF" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
                             </div>
-                        </div>
-
-                        <div class="form-label-group">
-                            <input type="text" id="telefone" name="telefone" class="form-control" placeholder="Telefone">
-                        </div>
-                        <div class="form-label-group">
-                            <input type="text" id="celular" name="celular" class="form-control" placeholder="Celular">
-                        </div>
-                        <div class="form-label-group">
-                            <input type="text" id="cpf" name="cpf" class="form-control" placeholder="CPF" >
-                        </div>
-
-                        <div class="form-label-group">
-                            <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" required>
-                        </div>
-                        <div class="form-label-group">
-                            <input type="password" id="senha_confirmacao" name="senha_confirmacao" class="form-control" placeholder="Confirme a Senha" required>
-                        </div>
-
-                        <!-- <div class="custom-control custom-checkbox mb-3"> -->
-                        <div class="row">
-                            <!-- <input type="checkbox" class="custom-control-input" id="termos" name="termos" required style="z-index: 9;"> -->
-                            <input type="checkbox" class="col-1" id="termos" name="termos" required style="margin-top: 7px;margin-left: 7px;margin-right: -7px;">
-                            <label for="concordo" class="col-11">Estou de acordo com os <a href="http://farmaceuticosp.com.br/eventos/public/Termo de Consentimento para tratamento de dados pessoais.pdf" target="_blank">Termo de Consentimento para tratamento de dados pessoais</a></label>
-                            <!-- <label class="custom-control-label" for="concordo">Estou de acordo com o <a href="http://farmaceuticosp.com.br/encontro/public/Termo de consentimento para tratamento de dados pessoais_XXI Encontro Paulista de Farmaceuticos.pdf" target="_blank">Termo de Consentimento para tratamento de dados pessoais</a></label> -->
-                        </div>
-
-                        <?php if (isset($validation)) : ?>
-                            <div class="alert alert-danger" roles="alert">
-                                <?= $validation->listErrors(); ?>
+                            <div class="form-label-group">
+                                <select id="estados" name="estados" class="form-control" style="height: calc(1.5em + .75rem + 14px);" disabled>
+                                    <option>Selecione o país acima</option>
+                                </select>
                             </div>
-                        <?php endif; ?>
-                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Inscrever</button>
-                        <hr class="my-4">
-                    </form>
-                </div>
-                <div class="mx-auto">
-                    Já é inscrito? <a href="<?= base_url(''); ?>">Acesse</a>
-                    <br /><br />
+                            <div class="form-label-group">
+                                <select id="cidades" name="cidades" class="form-control" style="height: calc(1.5em + .75rem + 14px);" disabled>
+                                    <option>Selecione o estado acima</option>
+                                </select>
+                            </div>
+                            <div class="form-label-group">
+                                <select id="categoria" name="categoria" class="form-control" style="height: calc(1.5em + .75rem + 14px);">
+                                    <option value="1">Estudante de Farmácia</option>
+                                    <option value="2">Farmacêutico</option>
+                                </select>
+                            </div>
+                            <div class="form-label-group" id="farmaceutico" style="display: none">
+                                <div class="row justify-content-between" style="width: 100%;margin: 0;">
+                                    <select id="uf" name="uf" class="form-control col-3" style="height: calc(1.5em + .75rem + 14px);">
+                                        <?php echo $options_uf; ?>
+                                    </select>
+                                    <input type="number" id="crf" name="crf" class="form-control col-8" placeholder="CRF" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                                </div>
+                            </div>
+
+                            <div class="form-label-group">
+                                <input type="text" id="telefone" name="telefone" class="form-control" placeholder="Telefone">
+                            </div>
+                            <div class="form-label-group">
+                                <input type="text" id="celular" name="celular" class="form-control" placeholder="Celular">
+                            </div>
+                            <div class="form-label-group">
+                                <input type="text" id="cpf" name="cpf" class="form-control" placeholder="CPF">
+                            </div>
+
+                            <div class="form-label-group">
+                                <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" required>
+                            </div>
+                            <div class="form-label-group">
+                                <input type="password" id="senha_confirmacao" name="senha_confirmacao" class="form-control" placeholder="Confirme a Senha" required>
+                            </div>
+
+                            <!-- <div class="custom-control custom-checkbox mb-3"> -->
+                            <div class="row">
+                                <!-- <input type="checkbox" class="custom-control-input" id="termos" name="termos" required style="z-index: 9;"> -->
+                                <input type="checkbox" class="col-1" id="termos" name="termos" required style="margin-top: 7px;margin-left: 7px;margin-right: -7px;">
+                                <label for="concordo" class="col-11">Estou de acordo com os <a href="http://farmaceuticosp.com.br/eventos/public/Termo de Consentimento para tratamento de dados pessoais.pdf" target="_blank">Termo de Consentimento para tratamento de dados pessoais</a></label>
+                                <!-- <label class="custom-control-label" for="concordo">Estou de acordo com o <a href="http://farmaceuticosp.com.br/encontro/public/Termo de consentimento para tratamento de dados pessoais_XXI Encontro Paulista de Farmaceuticos.pdf" target="_blank">Termo de Consentimento para tratamento de dados pessoais</a></label> -->
+                            </div>
+
+                            <?php if (isset($validation)) : ?>
+                                <div class="alert alert-danger" roles="alert">
+                                    <?= $validation->listErrors(); ?>
+                                </div>
+                            <?php endif; ?>
+                            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Inscrever</button>
+                            <hr class="my-4">
+                        </form>
+                    </div>
+                    <div class="mx-auto">
+                        Já é inscrito? <a href="<?= base_url(''); ?>">Acesse</a>
+                        <br /><br />
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</main>

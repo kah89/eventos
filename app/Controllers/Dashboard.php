@@ -52,7 +52,7 @@ class Dashboard extends BaseController
         
         $atividade = new \App\Models\AtividadeModel();
         echo $atividade->verificarConclusao($id_user,$id_evento);                
-    }
+    } 
 
     //--------------------------------------------------------------------
 
