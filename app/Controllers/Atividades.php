@@ -191,17 +191,23 @@ class Atividades extends BaseController
     //--------------------------------------------------------------------
 
 
-    public function excluirativ()
+    public function excluirativ() //lista das atividades
     {
         $model = new AtividadeModel();
         $data = [
             'title' => 'Excluir Atividade',
             'data' => $model->findAll(),
         ];
+    
+
         echo view('templates/header', $data);
         echo view('excluirativ');
         echo view('templates/footer');
     }
+
+
+    //--------------------------------------------------------------------
+
 
     public function deletar($id = null)
     {

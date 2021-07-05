@@ -1,46 +1,66 @@
+
+
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
-<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
 
 <style>
-    #res:hover {
-        background-color: red;
-    }
-
-    #ed:hover {
-        background-color: #daf87d;
-    }
-
+  
 
     h5 {
         color: #007BFF;
+        font-size: 25px;
+    }
+
+    #cad {
+        width: 200px;
+        background-color: #008CBA;
+        font-size: 12px;
+        padding: 12px 28px;
+        border-radius: 8px;
+        border: 2px solid;
+        margin-left: -200px;
+    }
+    #cad:hover {
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
     }
 
 
+    #hora {
+        width: 100px;
+        margin-left: 220px;
+        margin-top: 40px; 
+    }
 
-    #cad {
-        width: 300px;
-        margin-left: 50px;
+    .data{
+        width: 200px;
+        float: left ;
+    }
+
+    .data1{
+        width: 200px;
+        margin-left: 400px;
+        margin-top: -75px; 
     }
 
     #hora1 {
         width: 100px;
-        float: right;
-        margin-left: 205px;
-        margin-top: -50px;
+        margin-left: 620px;
+        margin-top: -49px; 
     }
 
-    #hora {
-        width: 100px;
-        float: right;
-        margin-left: 205px;
-        margin-top: -54px;
+    #certificado{
+        width: 200px;
+        margin-left: 820px;
+        margin-top: -49px; 
     }
 
-
-
+    .eventos, #user{
+        margin-left: 210px;
+    }
     /* #summernote{
         min-height: 5000px;
     } */
@@ -79,7 +99,7 @@
 </script>
 <main>
     <div class="container">
-        <div class="row">
+        <div >
             <?php
             if (session()->get("success")) {
             ?>
@@ -92,8 +112,8 @@
             <?php
             }
             ?>
-            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-                <div class="card card-signin my-5">
+            <div class="mx-auto">
+                <div class="card">
                     <div class="card-body">
                         <h5 class="card-title text-center">Cadastro de Atividade</h5>
                         <form class="form-signin" method="post" name='form1'>
@@ -124,18 +144,18 @@
                                     </div> -->
                                 </div>
                             </div>
-                            <div class="form-group col-sm-6 data" id="inicial">
+                            <div class="form-group  data" id="inicial">
                                 <div class="form-label-group">
                                     <label for="">Inicial :</label>
                                     <input type="date" name="datainicial" id="dtAgenda" min="2017-04-01" class="form-control" required />
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group ">
                                 <div class="form-label-group">
                                     <input type="time" name="hinicial" id="hora" class="form-control" required />
                                 </div>
                             </div>
-                            <div class="form-group col-sm-6 data" id="final">
+                            <div class="form-group data1" id="final">
                                 <div class="form-label-group">
                                     <label for="">Final:</label>
                                     <input type="date" name="datafinal" id="dtAgenda1" min="2017-04-01" class="form-control" required />
@@ -147,7 +167,7 @@
 
                                 </div>
                             </div>
-                            <div class="form-group col-sm-7">
+                            <div class="form-group">
                                 <div class="form-label-group">
                                     <select id="certificado" name="certificado" class="form-control">
                                         <option selected disabled>Certificado</option>

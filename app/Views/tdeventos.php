@@ -1,9 +1,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <style>
-    h2 {
-        color: #007BFF;
+    h5 {
         text-align: center;
         margin-top: 30px;
+        color: #007BFF;
+        font-size: 25px;
     }
 
     .resumo {
@@ -14,16 +15,7 @@
         text-align: center;
     }
 
-    .active {
-        margin-left: 5px;
-        margin-top: 10px;
-        text-align: center;
-    }
 
-    /* .nav-pills{
-        margin-bottom: 0;
-        position: ;
-    } */
     .card {
         padding: 5px;
         border-width: medium;
@@ -36,10 +28,21 @@
         text-align: center;
         margin-top: 5px;
     }
+
+    .cad, #cad {
+        background-color: #008CBA;
+        font-size: 12px;
+        padding: 10px 22px;
+        border-radius: 8px;
+        border: 2px solid;
+    }
+    .cad:hover, #cad:hover {
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    }
 </style>
 <main>
     <div class="container">
-        <h2>Eventos</h2>
+        <h5>Eventos</h5>
         <?php if (session()->get('success')) : ?>
             <div class="alert alert-success" role="alert">
                 <?= session()->get('success'); ?>
@@ -65,7 +68,7 @@
                             <ul class="nav nav-pills ">
                                 <li class="nav-item">
                                     <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal<?php echo $evento['id'] ?>" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px ">
+                                    <button type="button" class=" cad btn btn-primary" data-toggle="modal" data-target="#exampleModal<?php echo $evento['id'] ?>" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px ">
                                         Sobre
                                     </button>
 
@@ -75,7 +78,7 @@
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title" id="exampleModalLabel">Sobre</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <button type="button" class="close cad" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
@@ -83,21 +86,21 @@
                                                     <?php echo $evento['resumo'];  ?>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-secondary cad" data-dismiss="modal">Close</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link active" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " href="<?php echo base_url("/eventos/lista") . "/" . $evento['id'] ?>">Atividades</a>
+                                    <a class="nav-link active" id="cad" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " href="<?php echo base_url("/eventos/lista") . "/" . $evento['id'] ?>">Atividades</a>
                                 </li>
                                 <li class="nav-item">
                                     <?php
                                     if (date($evento['dtFim']) > date("Y-m-d H:i:s")) {
-                                        echo '<button class="btn btn-primary" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " href="#" data-toggle="modal" data-target="#inscrevaModal" id="Btn" onclick="preenchermodal(' . $evento['id'] . ');">Inscreva-se</button>';
+                                        echo '<button class="btn btn-primary cad" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " href="#" data-toggle="modal" data-target="#inscrevaModal" id="Btn" onclick="preenchermodal(' . $evento['id'] . ');">Inscreva-se</button>';
                                     } else {
-                                        echo '<button class="btn btn-primary" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " disabled>Inscreva-se</button>';
+                                        echo '<button class="btn btn-primary cad" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " disabled>Inscreva-se</button>';
                                     }
                                     ?>
 
@@ -128,8 +131,8 @@
                             Confirma a sua inscrição?
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                            <a href="<?php echo base_url('eventos/inscreverEvento/') . "/"; ?>" class="btn btn-primary" id="btnConfirmaInscricao">Confirma</a>
+                            <button type="button" class="btn btn-secondary cad" data-dismiss="modal">Fechar</button>
+                            <a href="<?php echo base_url('eventos/inscreverEvento/') . "/"; ?>" class="btn btn-primary cad" id="btnConfirmaInscricao">Confirma</a>
 
                         </div>
                     </div>
