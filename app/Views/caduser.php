@@ -3,7 +3,18 @@
         --input-padding-x: 1.5rem;
         --input-padding-y: .75rem
     }
+    #cad {
+        width: 200px;
+        background-color: #008CBA;
+        font-size: 12px;
+        padding: 12px 28px;
+        border-radius: 8px;
+        border: 2px solid;
+    }
 
+    #cad:hover {
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    }
 
     .card-signin {
         border: 0;
@@ -66,19 +77,9 @@
         box-shadow: 10px 0px 0px 0px #ffffff !important
     }
 
-    .btn-google {
-        color: white;
-        background-color: #ea4335
-    }
-
-    .btn-facebook {
-        color: white;
-        background-color: #3b5998
-    }
-
     h5 {
         color: #007BFF;
-        font: caption;
+        font-size: 25px;
     }
 </style>
 <script type="text/javascript">
@@ -234,7 +235,7 @@
                                     <?= $validation->listErrors(); ?>
                                 </div>
                             <?php endif; ?>
-                            <button class="btn btn-primary" type="submit">Cadastrar</button>
+                            <button class="btn btn-primary" id="cad" type="submit">Cadastrar</button>
                             <hr class="my-4">
                         </form>
                     </div>

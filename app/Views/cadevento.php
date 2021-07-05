@@ -1,9 +1,7 @@
-<!-- <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-<script>tinymce.init({selector:'textarea'});</script> -->
-
 <style>
     h5 {
         color: #007BFF;
+        font-size: 25px;
     }
 
     #blah {
@@ -12,17 +10,40 @@
 
     }
 
-    /* #cad {
-        width: 300px;
-        margin-left: 50px;
-    } */
+    #uploadbutton {
+        width: 200px;
+        background-color: #008CBA;
+        font-size: 12px;
+        padding: 12px 28px;
+        border-radius: 8px;
+        border: 2px solid;
+       
+    }
+    #uploadbutton:hover {
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    }
 
-    #hora1,
+
+    .data{
+        width: 200px;
+        float: left ;
+    }
+
+    .data1{
+        width: 200px;
+        margin-left: 400px;
+        margin-top: -85px; 
+    }
     #hora {
         width: 100px;
-        /* float: right; */
-        margin-left: 205px;
-        margin-top: -54px;
+        margin-left: 220px;
+        margin-top: 48px; 
+    }
+
+    #hora1 {
+        width: 100px;
+        margin-left: 620px;
+        margin-top: -55px; 
     }
     
     .card-signin {
@@ -114,9 +135,9 @@
             }
             ?>
         </div>
-        <div class="row">
-            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-                <div class="card card-signin my-5">
+        <div >
+            <div class=" mx-auto">
+                <div class="card">
                     <div class="card-body">
                         <?php if (session('msg')) : ?>
                             <div class="alert alert-info alert-dismissible">
@@ -154,7 +175,7 @@
                                     <input type="time" name="hinicial" id="hora" class="form-control" required />
                                 </div>
                             </div>
-                            <div class="form-group col-sm-6 data" id="final">
+                            <div class="form-group col-sm-6 data1" id="final">
                                 <div class="form-label-group">
                                     <label for="">Final:</label>
                                     <input type="date" name="datafinal" id="dtAgenda1" min="2017-04-01" class="form-control" required />

@@ -66,21 +66,23 @@
         box-shadow: 10px 0px 0px 0px #ffffff !important
     }
 
-    .btn-google {
-        color: white;
-        background-color: #ea4335
-    }
-
-    .btn-facebook {
-        color: white;
-        background-color: #3b5998
-    }
-
     h5 {
         color: #007BFF;
-        text-align: center;
-        font: caption;
+        font-size: 25px;
     }
+
+    #cad {
+        width: 200px;
+        background-color: #008CBA;
+        font-size: 12px;
+        padding: 12px 28px;
+        border-radius: 8px;
+        border: 2px solid;
+    }
+    #cad:hover {
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    }
+
 </style>
 <script type="text/javascript">
     $(function() {
@@ -178,10 +180,10 @@
 
                             <div class="form-label-group">
                                 <!-- Nome e sobrenome não deixar alterar e puxar do banco -->
-                                <input type="text" id="nome" name="nome" class="form-control" placeholder="Nome" autofocus value="<?= $firstname ?>" disabled>
+                                <input type="text" id="nome" name="nome" class="form-control" placeholder="Nome" autofocus value="<?= $firstname ?>" >
                             </div>
                             <div class="form-label-group">
-                                <input type="text" id="sobrenome" name="sobrenome" class="form-control" placeholder="Sobrenome" value="<?= $lastname ?>" disabled>
+                                <input type="text" id="sobrenome" name="sobrenome" class="form-control" placeholder="Sobrenome" value="<?= $lastname ?>" >
                             </div>
                             <div class="form-label-group">
                                 <input type="email" id="email" name="email" class="form-control" placeholder="Email" value="<?= $email ?>">
@@ -247,7 +249,7 @@
                                     <?= $validation->listErrors(); ?>
                                 </div>
                             <?php endif; ?>
-                            <button class="btn btn-md btn-primary  text-uppercase" type="submit">Alterar</button>
+                            <button class="btn btn-md btn-primary  text-uppercase" id="cad" type="submit">Alterar</button>
                             <hr class="my-4">
                         </form>
                     </div>
