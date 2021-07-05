@@ -15,18 +15,18 @@ class Atividades extends BaseController
     public function index()
     {
         $uri = current_url(true);
-        $idAtividade = $uri->getSegment(4); 
+        $idAtividade = $uri->getSegment(4);
         $model = new AtividadeModel();
         $data = [
             'title' => 'Atividade',
-            'data' =>$model->find($idAtividade),
+            'data' => $model->find($idAtividade),
         ];
-        // var_dump($data);exit;
+        
+         
+        //var_dump($data);exit;
         echo view('templates/header', $data);
         echo view('atividades');
         echo view('templates/footer');
-        
-
     }
     //------------------------------------------------------------------------------
 
@@ -35,14 +35,13 @@ class Atividades extends BaseController
         $model = new AtividadeModel();
         $idUser = session()->get('id');
         $uri = current_url(true);
-        $idAtividade = $uri->getSegment(5); 
-        $msg = $model->inscricaoAtividade($idUser,$idAtividade);
+        $idAtividade = $uri->getSegment(5);
+        $msg = $model->inscricaoAtividade($idUser, $idAtividade);
         $session = session();
         $session->setFlashdata('success', $msg);
-        return redirect()->to(base_url('atividades/'). "/" . $idAtividade);
-
+        return redirect()->to(base_url('atividades/') . "/" . $idAtividade);
     }
-    
+
 
     //------------------------------------------------------------------------------
 
@@ -82,8 +81,11 @@ class Atividades extends BaseController
                     'hora' => date('H:i:s', strtotime($this->request->getVar('datainicial') . ' ' . $this->request->getVar('hinicial'))),
 
                 ];
-                // var_dump($newData);exit;
-
+                 
+                 $newData['atividade'] = htmlspecialchars($newData['atividade'], ENT_QUOTES, 'UTF-8'); 
+                
+            
+                //var_dump($newData);exit;
                 if ($model->save($newData)) {
                     $session = session();
                     $session->setFlashdata('success', 'Sua atividade foi cadastrada com sucesso!');
@@ -162,7 +164,7 @@ class Atividades extends BaseController
 
     //--------------------------------------------------------------------
 
-    
+
     // lista todas atividades por ussuario de acordo com o evento cadastrado
     public function listativ()
     {
@@ -171,12 +173,12 @@ class Atividades extends BaseController
             'title' => 'Lista de Atividades',
             'data' => $model
                 ->select('*')
-                ->join('usuario_evento','usuario_evento.idEvento = atividade_evento.idEvento')
+                ->join('usuario_evento', 'usuario_evento.idEvento = atividade_evento.idEvento')
                 ->where('usuario_evento.idUser', session()->get('id'))
                 ->findAll()
         ];
         // var_dump($data);exit;
-        
+
         echo view('templates/header', $data);
         echo view('listativ');
         echo view('templates/footer');

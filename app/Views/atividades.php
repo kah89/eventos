@@ -29,7 +29,8 @@
                 </ol>
             </div>
             <div>
-                <p> <?php echo $data['atividade'] ?></p>
+                <p> <?php echo $data['atividade'] = htmlspecialchars_decode($data['atividade']); ?></p>
+                
             </div>
         <?php
 
