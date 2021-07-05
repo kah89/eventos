@@ -16,42 +16,44 @@ require_once APPPATH . 'ThirdParty' . DIRECTORY_SEPARATOR . 'dompdf' . DIRECTORY
 class PdfController extends Controller
 {
 
-    public function verCertificado()
+    public function index ()
     {
         if (!session()->get('isLoggedIn')) {
             return redirect()->to(base_url(''));
         } else {
             $id = session()->get('id');
             $usuarios =  new UserModel();
-           
+
             if ($user = $usuarios->find($id)) {
                 $data = [
+                    'title' => 'Certificado',
                     'nome' => $user['firstname'],
                     'sobrenome' => $user['lastname']
                 ];
 
-               echo view('certificado', $data);
-            } 
+                echo view('certificadoVizualizacao', $data);
+            }
         }
     }
 
-        //---------------------------------------------------------------------------------------------
-    
-    
-        public function index()
+    //---------------------------------------------------------------------------------------------
+
+
+    public function gerarCertificado ()
     {
 
         if (!session()->get('isLoggedIn')) {
             return redirect()->to(base_url(''));
         } else {
-            $eventos = new EventoModel();
-            $atividades = new AtividadeModel();
-           
-            if ($this->request->getMethod() == 'post') {
-                $data = [
-                    'title' => 'Editar evento',
-                    'data' => $eventos->findall()
 
+            helper(['form']);
+            $eventos = new EventoModel();
+            // $atividades = new AtividadeModel();
+
+            if ($event = $eventos->find()) {
+                $data = [
+                    'title' => 'Certificado',
+                    'tiluto' => $event['titulo'],
                 ];
 
                 $html = view('certificado', $data);
@@ -75,8 +77,8 @@ class PdfController extends Controller
     }
 
     //---------------------------------------------------------------------------------------------
-   
-   
+
+
     public function emitirCertificado()
     {
         if (!session()->get('isLoggedIn')) {
@@ -85,7 +87,7 @@ class PdfController extends Controller
             if ($this->request->getMethod(true) == 'POST') {
                 $text = $this->request->getVar('textCertificado');
 
-               
+
                 $data  = [
                     'text' => $text
                 ];

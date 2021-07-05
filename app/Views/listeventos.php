@@ -80,7 +80,7 @@
                             </div>
                             <div class="modal-body">
                                 <p style="text-align: justify;"> Se os dados estiverem corretos, basta somente emitir. Caso precise editar volte e vá no editar do seu usuário.</p>
-                                <a href="<?php echo base_url("/pdfController/verCertificado") ?>" target="_blank" id="vizualizar">vizualização do certificado</a>
+                                <a href="<?php echo base_url("certificadoVizualizacao") ?>" target="_blank" id="vizualizar">vizualização do certificado</a>
                                 <!-- <p style="text-align: justify;"><strong>lembrando que após a emissão não pode ser alterados os dados!</strong></p> -->
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">

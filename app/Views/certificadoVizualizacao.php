@@ -85,8 +85,9 @@
                 background-color: #FFF;
             }
         }
+
         article{
-            background-image: url(./public/img/certificado.jpg);
+            background-image: url(./public/img/certificadoProibido.jpg);
         }
         
     </style>

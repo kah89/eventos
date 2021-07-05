@@ -61,7 +61,8 @@ $routes->match(['get','post'],'/estado', 'AjaxEstado::getEstados');
 $routes->match(['get','post'],'/concluirAtividade', 'Dashboard::concluirAtividade');
 $routes->match(['get','post'],'/verificarConclusao', 'Dashboard::verificarConclusao');
 
-$routes->get('/certificado', 'PdfController::index');
+$routes->get('/certificadoVizualizacao', 'PdfController::index');
+$routes->get('/certificado', 'PdfController::gerarCertificado');
 
 $routes->match(['get','post'],'/chats', 'Chat::index');
 
