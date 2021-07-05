@@ -1,7 +1,8 @@
 <html>
-<head>  
+
+<head>
     <title>Certificado</title>
-    <meta http-equiv="Content-Type" content="application/pdf; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="application/pdf; charset=utf-8" />
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
@@ -76,7 +77,7 @@
 
         @media print {
 
-            * { 
+            * {
                 -webkit-print-color-adjust: exact;
             }
 
@@ -90,8 +91,8 @@
 <body>
     <article id="conteudo-certificado" style="background-image: url('https://farmaceuticosp.com.br/encontro/public/certificado_marcos.jpg');">
         <section>
-            <p>Certificamos que <strong><?php echo $nome ?> <?php echo $sobrenome ?></strong></p>
-            <p>Participou do: "<strong>I Fórum de Tecnologias na Área Farmacêutica </strong>"</p>
+            <p>Certificamos que <strong><?php echo $_SESSION['firstname']." "; ?><?php echo $_SESSION['lastname']; ?></strong></p>
+            <p>Participou do: "<strong><?php echo $titulo ?> </strong>"</p>
             <p>Com carga horária de <strong>8 horas.</strong></p>
             <p class="data">Realizado nos dias 30 e 31 de março de 2021 em São Paulo - SP.</p>
         </section>

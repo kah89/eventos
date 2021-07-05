@@ -62,7 +62,7 @@
                         <tbody>
                             <?php foreach ($data as $key => $evento) {
                                 echo '<tr><td>' . $evento['id'] . '</td><td>' . $evento['titulo'] . '</td><td>' . $evento['resumo'] . '</td>
-                               <td><a class="btn btn-primary" id="cad" href="#" data-toggle="modal" data-target="#certificadoModal" onclick="preenchermodal(' . $evento['id'] . ');" role="button">Gerar</a></td></tr>';
+                               <td><a class="btn btn-primary" id="cad" href="#" data-toggle="modal" data-target="#certificadoModal" onclick="preenchermodal('. $evento['id'] .');" role="button">Gerar</a></td></tr>';
                             } ?>
                         </tbody>
                     </table>
@@ -91,7 +91,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" id="cad" data-dismiss="modal">Fechar</button>
-                                <a href="<?= base_url("/eventos/gerarCertificado")."/" ?>" class="btn btn-primary emitir disabled" id="btnEmitir">Emita aqui seu certificado!</a>
+                                <a href="<?=  base_url("/eventos/gerarCertificado") ?>" class="btn btn-primary emitir disabled" id="btnEmitir">Emita aqui seu certificado!</a>
                             </div>
                         </div>
                     </div>

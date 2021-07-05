@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\AtividadeModel;
 use CodeIgniter\Controller;
 use Dompdf\Options;
 use App\Models\UserModel;
@@ -39,16 +40,18 @@ class PdfController extends Controller
     
         public function index()
     {
+
         if (!session()->get('isLoggedIn')) {
             return redirect()->to(base_url(''));
         } else {
-            $id = session()->get('id');
-            $usuarios =  new UserModel();
+            $eventos = new EventoModel();
+            $atividades = new AtividadeModel();
            
-            if ($user = $usuarios->find($id)) {
+            if ($this->request->getMethod() == 'post') {
                 $data = [
-                    'nome' => $user['firstname'],
-                    'sobrenome' => $user['lastname']
+                    'title' => 'Editar evento',
+                    'data' => $eventos->findall()
+
                 ];
 
                 $html = view('certificado', $data);
