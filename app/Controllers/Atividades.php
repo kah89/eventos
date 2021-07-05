@@ -62,7 +62,7 @@ class Atividades extends BaseController
             //VALIDAÇÕES
             $rules = [
                 'titulo' => 'min_length[3]|max_length[60]',
-                'atividade' => 'min_length[3]',
+                'atividade' => 'min_length[10]',
             ];
 
             if (!$this->validate($rules)) {
@@ -126,7 +126,7 @@ class Atividades extends BaseController
             //VALIDAÇÕES
             $rules = [
                 'titulo' => 'min_length[3]|max_length[60]',
-                'descricao' => 'min_length[10]|max_length[60]',
+                'atividade' => 'min_length[10]',
             ];
 
 
@@ -139,7 +139,7 @@ class Atividades extends BaseController
                     'titulo' => $this->request->getVar('titulo'),
                     'tipo' => $this->request->getVar('certificado'),
                     'dtInicio' => $this->request->getVar('datainicial'),
-                    'dtInicio' => $this->request->getVar('datafinal'),
+                    'dtFim' => $this->request->getVar('datafinal'),
                     'atividade' => $this->request->getVar('atividade'),
                 ];
 

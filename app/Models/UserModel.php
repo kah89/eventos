@@ -64,17 +64,26 @@ class UserModel extends Model
     // protected $beforeInsert = ['beforeInsert'];
     // protected $beforeUpdate = ['beforeUpdate'];
 
+     //-----------------------------------------------------------------------------------------------------
+
+     
     protected function beforeInsert(array $data)
     {
         $data = $this->passwordHash($data);
         return $data;
     }
 
+     //-----------------------------------------------------------------------------------------------------
+
+
     protected function beforeUpdate(array $data)
     {
         $data = $this->passwordHash($data);
         return $data;
     }
+
+ //-----------------------------------------------------------------------------------------------------
+
 
     protected function passwordHash(array $data)
     {
@@ -83,6 +92,9 @@ class UserModel extends Model
         }
         return $data;
     }
+
+    //-----------------------------------------------------------------------------------------------------
+
 
     public function getAll()
     {

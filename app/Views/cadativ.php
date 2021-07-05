@@ -114,12 +114,14 @@
                                     <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Titulo" maxlength="60" minilength="3" required autofocus>
                                 </div>
                             </div>
-                            <div class="form-group" name="atividade">
+                            <div class="form-group" >
                                 <div class="form-label-group">
-                                    <!-- <textarea type="text" name="atividade" id="editor" class="form-control"  placeholder="Atividade"  autofocus></textarea> -->
-                                    <div id="summernote" name="atividade" autofocus>
+                                    <textarea type="text" name="atividade" id="summernote" class="form-control"  placeholder="Atividade"  autofocus></textarea>
+                                    <!-- <input  id="summernote" name="atividade"  autofocus >  -->
+                            
+                                    <!-- <div id="summernote" name="atividade" autofocus>
                                         <p> Atividade: </p>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                             <div class="form-group col-sm-6 data" id="inicial">

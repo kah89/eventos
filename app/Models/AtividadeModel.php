@@ -39,7 +39,7 @@ class AtividadeModel extends Model
         return $result;
     }
 
-
+//-----------------------------------------------------------------------
 
     public function concluirAtividade($idUser = null, $idAtividade = null)
     {
@@ -68,6 +68,9 @@ class AtividadeModel extends Model
     /**
      * Recebe como parâmetro o idUser e o idAtividade e os insere no banco, registrando que a atividade X foi concluída pelo usuário Y na data e hora atual
      */
+
+    //--------------------------------------------------------------------------------------------------------------------
+    
     public function verificarConclusao($idUser, $idEvento)
     {
         $result = "false";

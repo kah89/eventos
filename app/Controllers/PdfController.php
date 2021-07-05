@@ -14,7 +14,30 @@ require_once APPPATH . 'ThirdParty' . DIRECTORY_SEPARATOR . 'dompdf' . DIRECTORY
 
 class PdfController extends Controller
 {
-    public function index()
+
+    public function verCertificado()
+    {
+        if (!session()->get('isLoggedIn')) {
+            return redirect()->to(base_url(''));
+        } else {
+            $id = session()->get('id');
+            $usuarios =  new UserModel();
+           
+            if ($user = $usuarios->find($id)) {
+                $data = [
+                    'nome' => $user['firstname'],
+                    'sobrenome' => $user['lastname']
+                ];
+
+               echo view('certificado', $data);
+            } 
+        }
+    }
+
+        //---------------------------------------------------------------------------------------------
+    
+    
+        public function index()
     {
         if (!session()->get('isLoggedIn')) {
             return redirect()->to(base_url(''));
@@ -48,6 +71,9 @@ class PdfController extends Controller
         }
     }
 
+    //---------------------------------------------------------------------------------------------
+   
+   
     public function emitirCertificado()
     {
         if (!session()->get('isLoggedIn')) {

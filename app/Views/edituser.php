@@ -138,17 +138,26 @@
         $("#cpf").mask("000.000.000-00");
 
         $('#categoria').change(function() {
-            if ($('#categoria').val() == 1) {
+            if ($('#categoria').val() != 2) {
                 $("#farmaceutico").css("display", "none");
-                $("#uf").attr('required', 0);
-                $("#crf").attr('required', 0);
+
+                if ($("#uf").prop('required')) {
+                    $("#uf").prop('required', false);
+                }
+                if ($("#crf").prop('required')) {
+                    $("#crf").prop('required', false);
+                }
             } else {
                 $("#farmaceutico").css("display", "block");
-                $("#uf").attr('required', 1);
-                $("#crf").attr('required', 1);
+                if (!$("#uf").prop('required')) {
+                    $("#uf").prop('required', true);
+                }
+                if (!$("#crf").prop('required')) {
+                    $("#crf").prop('required', true);
+                }
             }
-        });
 
+        });
 
 
     });
@@ -194,6 +203,16 @@
                             </div>
                             <div class="form-label-group">
                                 <select id="categoria" name="categoria" class="form-control" style="height: calc(1.5em + .75rem + 14px);" value="<?= $type ?>">
+                                    <?php                       
+                                        if (
+                                            isset($_SESSION['id']) &&
+                                            $_SESSION['type'] == 0
+                                        ) {
+                                    ?>
+                                    <option value="0">Administrador</option>
+                                    <?php
+                                        } 
+                                    ?>
                                     <option value="1">Estudante de Farmácia</option>
                                     <option value="2">Farmacêutico</option>
                                 </select>

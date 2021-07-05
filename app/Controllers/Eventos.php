@@ -39,7 +39,26 @@ class Eventos extends BaseController
         $session = session();
         $session->setFlashdata('success', $msg);
         return redirect()->to(base_url('eventos'));
-    }
+    } 
+
+
+    //------------------------------------------------------------------------------
+
+
+    public function gerarCertificado()
+    {
+        $model = new EventoModel();
+        $idUser = session()->get('id');
+        $uri = current_url(true);
+        $idEvento = $uri->getSegment(5); 
+        $msg = $model->certificado($idUser,$idEvento);
+        $session = session();
+        $session->setFlashdata('success', $msg);
+        $pdf = new PdfController();        
+        echo $pdf->index();
+        return redirect()->to(base_url('listareventos'));
+        
+    } 
 
 
     //------------------------------------------------------------------------------

@@ -37,4 +37,31 @@ class EventoModel extends Model
         }
         return $result;
     }
+
+
+//---------------------------------------------------------------------------------------------
+    
+public function certificado($idUser = null, $idEvento = null)
+{
+
+    $data = [
+        'idUser' => $idUser,
+        'idEvento'    => $idEvento
+    ];
+
+    $array = array('idUser' => $idUser, 'idEvento' => $idEvento);
+    $q = $this->db->table('certificado')->select('idUser, idEvento')->where($array);
+    if ($q->countAllResults() < 1) {
+        if ($this
+            ->db
+            ->table('certificado')
+            ->insert($data)
+        ) {
+            $result = "Certificado gerado com sucesso!";
+        }
+    } else {
+        $result = "Certificado já foi gerado e não dá para alterar os dados!";
+    }
+    return $result;
+}
 }

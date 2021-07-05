@@ -107,9 +107,12 @@
                             </div>
                             <div class="form-group">
                                 <div class="form-label-group">
-                                    <div id="summernote" name="atividade" autofocus>
+                                    <textarea type="text" name="atividade" id="summernote" class="form-control"  placeholder="Atividade"  autofocus> <?= $atividade ?> </textarea>
+                                    
+                                    <!-- <div id="summernote" name="atividade" autofocus>
                                         <p> Atividade: </p>
-                                    </div>
+                                    </div> -->
+                                    
                                 </div>
                             </div>
                             <div class="form-group col-sm-6 data" id="inicial">
