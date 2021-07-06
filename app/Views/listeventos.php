@@ -80,34 +80,62 @@
                     </table>
                 <?php } ?>
 
-                <!-- Modal vizualização do pré-certificado -->
-                <div class="modal fade" id="certificadoModal" tabindex="-1" role="dialog" aria-labelledby="certificadoModalLabel" aria-hidden="true">
+                <?php
+                if ( $result == true ) {
+                ?>
+                    <!-- Modal vizualização do pré-certificado -->
+                    <div class="modal fade" id="certificadoModal" tabindex="-1" role="dialog" aria-labelledby="certificadoModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="certificadoModalLabel" style="text-align: center;">Olá <?= session()->get('firstname') ?>, bem-vindo(a)! </br> Seu certificado do evento já está disponível.</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p style="text-align: justify;"> Se os dados estiverem corretos, basta somente emitir. Caso precise editar volte e vá no editar do seu usuário.</p>
+                                    <a href="<?php echo base_url("certificadoVizualizacao") . "/" . $evento['id'] ?>" target="_blank" id="vizualizar">vizualização do certificado</a>
+                                    <!-- <p style="text-align: justify;"><strong>lembrando que após a emissão não pode ser alterados os dados!</strong></p> -->
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Declaro para os devidos fins que participei desse evento e estou ciente que não poderei alterar os dados após ser feita emissão.
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" id="cad" data-dismiss="modal">Fechar</button>
+                                    <a href="<?= base_url("/eventos/gerarCertificado") . "/" . $evento['id'] ?>" class="btn btn-primary emitir disabled" id="btnEmitir">Emita aqui seu certificado!</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                <?php
+                }
+                ?>
+
+               <!-- Modal não concluiu todas as atividades -->
+                <div class="modal fade" id="certificado" tabindex="-1" role="dialog" aria-labelledby="certificadoModal" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="certificadoModalLabel" style="text-align: center;">Olá <?= session()->get('firstname') ?>, bem-vindo(a)! </br> Seu certificado do evento já está disponível.</h5>
+                                <h5 class="modal-title" id="certificadoModal" style="text-align: center;">Olá <?= session()->get('firstname') ?>, bem-vindo(a)!</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <p style="text-align: justify;"> Se os dados estiverem corretos, basta somente emitir. Caso precise editar volte e vá no editar do seu usuário.</p>
-                                <a href="<?php echo base_url("certificadoVizualizacao") . "/" . $evento['id'] ?>" target="_blank" id="vizualizar">vizualização do certificado</a>
-                                <!-- <p style="text-align: justify;"><strong>lembrando que após a emissão não pode ser alterados os dados!</strong></p> -->
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        Declaro para os devidos fins que participei desse evento e estou ciente que não poderei alterar os dados após ser feita emissão.
-                                    </label>
-                                </div>
+                                <p style="text-align: justify;"> Infelizmente não é possivel gerar certificado para esse evento, pois o mesmo não concluiu todas as atividade</p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" id="cad" data-dismiss="modal">Fechar</button>
-                                <a href="<?= base_url("/eventos/gerarCertificado") . "/" . $evento['id'] ?>" class="btn btn-primary emitir disabled" id="btnEmitir">Emita aqui seu certificado!</a>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
             <script>
                 $('.form-check-input').on('change', function() {
