@@ -74,13 +74,15 @@ class AtividadeModel extends Model
     public function verificarConclusao($idUser, $idEvento)
     {
         $result = "false";
-        $query = $this->select('count(id) -1 as total')->where('idEvento', $idEvento)
-            ->first();
+        $query = $this->select('count(id) as total')->where('idEvento', $idEvento);
 
         $totalAtividadesEvento = $query['total'];
 
-        $query2 = $this->select('count(b.idUser) as total')->join('usuario_atividade b', 'id = b.idAtividade')->where('b.idUser', $idUser)
-            ->first();
+        $query2 = $this->select('count(idUser) as total')
+        ->join('atividade_evento', 'atividade_evento.id = usuario_evento.idAtividade')
+        ->and('atividade_evento.idEvento', $idEvento)
+        ->where('usuario_atividade.idUser', $idUser);
+            
 
         $totalAtividadesConcluidas = $query2['total'];
 
