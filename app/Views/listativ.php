@@ -8,12 +8,11 @@
         font: caption;
     }
 
-    h5 {
+    h2 {
         color: #007BFF;
-        font-size: 25px;
     }
 
-    #cad {
+    #cad, #cad1{
         width: 40px;
         background-color: #008CBA;
         font-size: 12px;
@@ -31,7 +30,7 @@
     <div class="container bg-white" style="padding-bottom: 10em;">
         <div class="row">
             <div class="col-12">
-                <h5 style="text-align: center; font-size:30px">Atividades</h5>
+                <h2 style="text-align: center; font-size:30px">Atividades</h2>
 
                 <table class="table table-hover" id="atividades">
                     <thead>
@@ -52,7 +51,7 @@
                         if (date($atividade['dtFim']) > date("Y-m-d H:i:s")) {
                             echo '<td><button class="btn btn-primary" id="cad" href=' . base_url('/atividades/inscreverAtividade') . "/" . $atividade['id'] . ' role="button" >Ir </button></td></tr>';
                         } else {
-                            echo '<td><button class="btn btn-primary" id="cad" role="button" disabled> Ir </button></td></tr>';
+                            echo '<td><button class="btn btn-primary" id="cad1" role="button" disabled> Ir </button></td></tr>';
                         }
 
                     }

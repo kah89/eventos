@@ -34,7 +34,7 @@ class AtividadeModel extends Model
                 $result = "Inscrição efetuada com sucesso!";
             }
         } else {
-            $result = "Inscrição já foi efetuada!";
+            $result = "Atividade já foi concluída!";
         }
         return $result;
     }

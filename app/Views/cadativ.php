@@ -10,9 +10,8 @@
 <style>
   
 
-    h5 {
+    h2 {
         color: #007BFF;
-        font-size: 25px;
     }
 
     #cad {
@@ -22,48 +21,49 @@
         padding: 12px 28px;
         border-radius: 8px;
         border: 2px solid;
-        margin-left: -200px;
     }
     #cad:hover {
         box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
     }
 
-
     #hora {
         width: 100px;
+        float: left;
+        margin-top: -49px;
         margin-left: 220px;
-        margin-top: 40px; 
     }
 
     .data{
         width: 200px;
-        float: left ;
     }
 
-    .data1{
+     .data1{
         width: 200px;
-        margin-left: 400px;
-        margin-top: -75px; 
+        margin-top: -74px;
+        margin-left: 420px;
     }
 
-    #hora1 {
+    #hora2 {
         width: 100px;
-        margin-left: 620px;
-        margin-top: -49px; 
+        float: right;
+        margin-right: 340px;
+        margin-top: -49px;
     }
 
     #certificado{
         width: 200px;
-        margin-left: 820px;
-        margin-top: -49px; 
+        float: right;
+        margin-right: 50px;
+        margin-top: -49px;
     }
 
     .eventos, #user{
-        margin-left: 210px;
+        margin-left: 190px;
     }
-    /* #summernote{
-        min-height: 5000px;
-    } */
+
+    #navbarNav{
+        font-size: 15px ;
+    }
 </style>
 
 <script language='Javascript'>
@@ -115,7 +115,7 @@
             <div class="mx-auto">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title text-center">Cadastro de Atividade</h5>
+                        <h2 class="card-title text-center">Cadastro de Atividade</h2>
                         <form class="form-signin" method="post" name='form1'>
                             <div class="form-group">
                                 <div class="form-label-group" required>
@@ -163,7 +163,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="form-label-group">
-                                    <input type="time" name="hfinal" id="hora1" class="form-control" required />
+                                    <input type="time" name="hfinal" id="hora2" class="form-control" required />
 
                                 </div>
                             </div>

@@ -1,10 +1,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <style>
-    h5 {
+    h1 {
         text-align: center;
         margin-top: 30px;
         color: #007BFF;
-        font-size: 25px;
+    }
+
+    h4 {
+        text-align: center;
+        margin-top: 30px;
     }
 
     .resumo {
@@ -29,7 +33,7 @@
         margin-top: 5px;
     }
 
-    .cad, #cad {
+    .cad, #cad, .cad1 {
         background-color: #008CBA;
         font-size: 12px;
         padding: 10px 22px;
@@ -42,7 +46,7 @@
 </style>
 <main>
     <div class="container">
-        <h5>Eventos</h5>
+        <h1>Eventos</h1>
         <?php if (session()->get('success')) : ?>
             <div class="alert alert-success" role="alert">
                 <?= session()->get('success'); ?>
@@ -58,7 +62,7 @@
 
                     <div class="card col-4">
                         <div class="card-header">
-                            <h5 class="card-title"><?php echo $evento['titulo'] ?></h5>
+                            <h4 class="card-title"><?php echo $evento['titulo'] ?></h4>
                         </div>
                         <div class="card-body">
                             <img src="<?php echo base_url("/public/img") . "/" . $evento['imagem'] ?>" alt="" width="100%">
@@ -100,7 +104,7 @@
                                     if (date($evento['dtFim']) > date("Y-m-d H:i:s")) {
                                         echo '<button class="btn btn-primary cad" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " href="#" data-toggle="modal" data-target="#inscrevaModal" id="Btn" onclick="preenchermodal(' . $evento['id'] . ');">Inscreva-se</button>';
                                     } else {
-                                        echo '<button class="btn btn-primary cad" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " disabled>Inscreva-se</button>';
+                                        echo '<button class="btn btn-primary cad1" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " disabled>Inscreva-se</button>';
                                     }
                                     ?>
 

@@ -1,7 +1,6 @@
 <style>
-    h5 {
+    h2 {
         color: #007BFF;
-        font-size: 25px;
     }
 
     #blah {
@@ -145,7 +144,7 @@
                                 <button type="button" class="close" data-dismiss="alert"><span>×</span></button>
                             </div>
                         <?php endif ?>
-                        <h5 class="card-title text-center">Cadastro de Evento </h5> <!-- utilizar a tabela eventos-->
+                        <h2 class="card-title text-center">Cadastro de Evento </h2> <!-- utilizar a tabela eventos-->
                         <form class="form-signin" id="file" method="post" enctype="multipart/form-data">
                             <div class="form-group">
                                 <div class="mb-3">

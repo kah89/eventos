@@ -1,11 +1,9 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.css" />
 <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.js"></script>
 <style>
-    h1{
+    h2{
         color: #007BFF;
-        text-align: center;
         margin-top: 20px;
-        font: caption;
     }
     
     
@@ -68,7 +66,7 @@ $(document).ready(function() {
     <div class="container bg-white" style="padding-bottom: 10em;">
         <div class="row">
             <div class="col-12" id="divConteudo">
-                <h1 style="text-align: center; font-size:30px">Atividades</h1>
+                <h2 style="text-align: center; font-size:30px">Atividades</h2>
                 <?php if (session()->get('success')) { ?>
                     <div class="alert alert-success" role="alert">
                         <?= session()->get('success'); ?>

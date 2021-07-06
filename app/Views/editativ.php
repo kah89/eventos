@@ -22,43 +22,49 @@
         box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
     }
 
-    h5 {
+    h2 {
         color: #007BFF;
-        font-size: 25px;
     }
 
     #hora {
         width: 100px;
-        margin-left: 220px;
-        margin-top: 45px; 
+        margin-top: 45px;  
     }
 
     .data{
         width: 200px;
-        float: left ;
     }
 
     .data1{
         width: 200px;
         margin-left: 400px;
-        margin-top: -75px; 
+        margin-top: -72px; 
     }
 
-    #hora1 {
+    #hora2 {
         width: 100px;
-        margin-left: 620px;
-        margin-top: -49px; 
+        float: right;
+        margin-right: 380px;
+        margin-top: -47px;
+        /* margin-left: 620px;
+        margin-top: -49px;  */
     }
 
     #certificado{
         width: 200px;
-        margin-left: 820px;
-        margin-top: -49px; 
+        float: right;
+        margin-right: -400px;
+        margin-top: -47px;
     }
 
     .eventos, #user{
-        margin-left: 210px;
+        margin-left: 190px;
     }
+
+    #navbarNav{
+        font-size: 15px ;
+    }
+    
 </style>
 <main>
     <div class="container">
@@ -66,7 +72,7 @@
             <div class=" mx-auto">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title text-center">Alteração de Atividade</h5>
+                        <h2 class="card-title text-center">Alteração de Atividade</h2>
                         <?php if (session()->get('success')) : ?>
                             <div class="alert alert-success" role="alert">
                                 <?= session()->get('success'); ?>
@@ -119,7 +125,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="form-label-group">
-                                    <input type="time" name="hfinal" id="hora1" class="form-control" value="<?php echo date_format(new DateTime($dtFim), "H:i"); ?>" required />
+                                    <input type="time" name="hfinal" id="hora2" class="form-control" value="<?php echo date_format(new DateTime($dtFim), "H:i"); ?>" required />
 
                                 </div>
                             </div>

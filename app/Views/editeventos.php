@@ -1,7 +1,6 @@
 <style>
-    h5 {
+    h2 {
         color: #007BFF;
-        text-align: center;
     }
     
     #uploadbutton {
@@ -73,7 +72,7 @@
                                 <button type="button" class="close" data-dismiss="alert"><span>×</span></button>
                             </div>
                         <?php endif ?>
-                        <h5 class="card-title text-center">Alteração de Evento</h5> <!-- utilizar a tabela eventos-->
+                        <h2 class="card-title text-center">Alteração de Evento</h2> <!-- utilizar a tabela eventos-->
                         <?php if (session()->get('success')) : ?>
                             <div class="alert alert-success" role="alert">
                                 <?= session()->get('success'); ?>

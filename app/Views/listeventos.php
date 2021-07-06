@@ -1,9 +1,8 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.css" />
 <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.js"></script>
 <style>
-    h5 {
+    h2 {
         color: #007BFF;
-        font-size: 25px;
     }
 
     th {
@@ -46,7 +45,7 @@
     <div class="container bg-white" style="padding-bottom: 10em;">
         <div class="row">
             <div class="col-12">
-                <h5 style="text-align: center; font-size:30px">Eventos </h5>
+                <h2 style="text-align: center; font-size:30px">Eventos </h2>
                 <?php if (session()->get('success')) : ?>
                     <div class="alert alert-success" role="alert">
                         <?= session()->get('success'); ?>
