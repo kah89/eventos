@@ -16,7 +16,7 @@ class Users extends BaseController
     {
         helper(['form']);
         $data = [
-            'title' => 'I Fórum de Tecnologias na Área Farmacêutica',
+            'title' => 'Login',
         ];
 
         if ($this->request->getMethod() == 'post') {
@@ -46,7 +46,7 @@ class Users extends BaseController
 
                 $acesso->save($data);
 
-                return redirect()->to('dashboard');
+                return redirect()->to('eventos');
             }
         }
 

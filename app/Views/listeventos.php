@@ -5,6 +5,7 @@
         color: #007BFF;
         font-size: 25px;
     }
+
     th {
         color: #007BFF;
         text-align: center;
@@ -17,7 +18,7 @@
         margin-bottom: 10px;
     }
 
-    .emitir{
+    .emitir {
         width: 200px;
         background-color: #008CBA;
         font-size: 12px;
@@ -35,8 +36,10 @@
         border-radius: 8px;
         border: 2px solid;
     }
-    .emitir:hover, #cad:hover{
-        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+
+    .emitir:hover,
+    #cad:hover {
+        box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
     }
 </style>
 <main>
@@ -62,8 +65,18 @@
                         <tbody>
                             <?php foreach ($data as $key => $evento) {
                                 echo '<tr><td>' . $evento['id'] . '</td><td>' . $evento['titulo'] . '</td><td>' . $evento['resumo'] . '</td>
-                               <td><a class="btn btn-primary" id="cad" href="#" data-toggle="modal" data-target="#certificadoModal" onclick="preenchermodal('. $evento['id'] .');" role="button">Gerar</a></td></tr>';
-                            } ?>
+                               <td><a class="btn btn-primary" id="cad" href="#" data-toggle="modal" data-target="#certificadoModal" onclick="preenchermodal(' . "/" . $evento['id'] . ');" role="button">Gerar</a></td></tr>';
+                            }
+                            //desativar o botão de gerar caso não tenha concluido todas atividades no tempo estimado 
+                            // if () {
+                            //     echo '<tr><td><a class="btn btn-primary" id="cad" href="#" data-toggle="modal" data-target="#certificadoModal" 
+                            //     onclick="preenchermodal(' . "/" . $evento['id'] . ');" role="button">Gerar</a></td></tr>';
+                            // } else {
+                            //     echo ' <tr><td><a class="btn btn-primary" id="cad" href="#" data-toggle="modal" data-target="#certificadoModal" 
+                            //     onclick="preenchermodal(' . "/" . $evento['id'] . ');" role="button" disabled>Gerar</a></td></tr> ';
+                            // }
+                            ?>
+
                         </tbody>
                     </table>
                 <?php } ?>
@@ -80,7 +93,7 @@
                             </div>
                             <div class="modal-body">
                                 <p style="text-align: justify;"> Se os dados estiverem corretos, basta somente emitir. Caso precise editar volte e vá no editar do seu usuário.</p>
-                                <a href="<?php echo base_url("certificadoVizualizacao") ?>" target="_blank" id="vizualizar">vizualização do certificado</a>
+                                <a href="<?php echo base_url("certificadoVizualizacao") . "/" . $evento['id'] ?>" target="_blank" id="vizualizar">vizualização do certificado</a>
                                 <!-- <p style="text-align: justify;"><strong>lembrando que após a emissão não pode ser alterados os dados!</strong></p> -->
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
@@ -91,7 +104,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" id="cad" data-dismiss="modal">Fechar</button>
-                                <a href="<?=  base_url("/eventos/gerarCertificado") ?>" class="btn btn-primary emitir disabled" id="btnEmitir">Emita aqui seu certificado!</a>
+                                <a href="<?= base_url("/eventos/gerarCertificado") . "/" . $evento['id'] ?>" class="btn btn-primary emitir disabled" id="btnEmitir">Emita aqui seu certificado!</a>
                             </div>
                         </div>
                     </div>
@@ -101,17 +114,16 @@
                 $('.form-check-input').on('change', function() {
                     if (this.checked) {
                         //Do stuff
-                        $("#btnEmitir").removeClass("disabled");              
+                        $("#btnEmitir").removeClass("disabled");
 
                     } else {
-                        $("#btnEmitir").addClass("disabled");                      
+                        $("#btnEmitir").addClass("disabled");
 
                     }
-                });              
+                });
 
-                function preenchermodal(id) {
-                    var link = document.getElementById("btnEmitir").href;
-                    document.getElementById("btnEmitir").href = link + id;
+                function preenchermodal($id) {
+                    var link = document.getElementById("btnEmitir").$evento['id'];
                 }
             </script>
             </script>

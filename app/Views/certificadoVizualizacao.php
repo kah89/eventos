@@ -95,13 +95,20 @@
 
 <body>
     <article id="conteudo-certificado" >
-        <section>          
+    <?php
+        if ($data) {
+            // var_dump($data);exit;
+
+        ?>
+        <section>     
             <p>Certificamos que <strong><?php echo $_SESSION['firstname']." "; ?><?php echo $_SESSION['lastname']; ?></strong></p>
-            <p>Participou do: "<strong> </strong>"</p>
+            <p>Participou do:  <?php $data['titulo']; ?> <strong></strong></p>
             <p>Com carga horária de <strong>8 horas.</strong></p>
-            <p class="data">Realizado nos dias 30 e 31 de março de 2021 em São Paulo - SP.</p>
-     
+            <p class="data">Realizado nos dias <?php $data['dtInicio']; ?> 30 e 31 de março de 2021 em São Paulo - SP.</p>
+          
         </section>
+        <?php
+        } ?>
     </article>
 </body>
 
