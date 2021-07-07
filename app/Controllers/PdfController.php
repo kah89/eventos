@@ -18,34 +18,35 @@ class PdfController extends Controller
 
     public function index ()
     {
-        // if (!session()->get('isLoggedIn')) {
-        //     return redirect()->to(base_url(''));
-        // } else {
-        //     $eventos =  new EventoModel();
-
-        //     if ($user = $eventos->find()) {
-        //         $data = [
-        //             'title' => 'Certificado',
-        //             'titulo' => $user['titulo'],
-        //         ];
-
-        //         echo view('certificadoVizualizacao', $data);
-        //     }
-        // }
-        $uri = current_url(true);
-        $idEvent = $uri->getSegment(4);
-        $model = new EventoModel();
         if (!session()->get('isLoggedIn')) {
-                return redirect()->to(base_url('eventosonline/eventos/'));
-            }
-        $data = [
-            'title' => 'Certificado',
-            'data' => $model->find($idEvent),
-        ];
+            return redirect()->to(base_url(''));
+        } else {
+            $uri = current_url(true);
+            $evento_id = $uri->getSegment(4);
+            $model =  new EventoModel();
+
+                $data = [
+                    'title' => 'Certificado',
+                    'data' => $model->find($evento_id),
+                ];
+
+                echo view('certificadoVizualizacao', $data);
+            
+        }
+        // $uri = current_url(true);
+        // $idEvent = $uri->getSegment(4);
+        // $model = new EventoModel();
+        // if (!session()->get('isLoggedIn')) {
+        //         return redirect()->to(base_url('eventosonline/eventos/'));
+        //     }
+        // $data = [
+        //     'title' => 'Certificado',
+        //     'data' => $model->find($idEvent),
+        // ];
         
          
-        //var_dump($data);exit;
-        echo view('certificadoVizualizacao',$data);
+        // //var_dump($data);exit;
+        // echo view('certificadoVizualizacao',$data);
     }
 
     //---------------------------------------------------------------------------------------------
@@ -59,13 +60,15 @@ class PdfController extends Controller
         } else {
 
             helper(['form']);
-            $eventos = new EventoModel();
+            $uri = current_url(true);
+            $evento_id = $uri->getSegment(4);
+            $model = new EventoModel();
             // $atividades = new AtividadeModel();
 
-            if ($event = $eventos->find()) {
+            if ( $model) {
                 $data = [
                     'title' => 'Certificado',
-                    'tiluto' => $event['titulo'],
+                    'data' => $model->find($evento_id),
                 ];
 
                 $html = view('certificado', $data);

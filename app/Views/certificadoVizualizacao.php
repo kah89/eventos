@@ -86,29 +86,39 @@
             }
         }
 
-        article{
+        article {
             background-image: url(./public/img/certificadoProibido.jpg);
         }
-        
     </style>
 </head>
 
 <body>
-    <article id="conteudo-certificado" >
-    <?php
-        if ($data) {
+    <article id="conteudo-certificado">
+        <?php if (count($data) > 0) {
             // var_dump($data);exit;
-
         ?>
-        <section >     
-            <p>Certificamos que <strong><?php echo $_SESSION['firstname']." "; ?><?php echo $_SESSION['lastname']; ?></strong></p>
-            <p>Participou do:  <?php $data['titulo']; ?> <strong></strong></p>
-            <p>Com carga horária de <strong>8 horas.</strong></p>
-            <p class="data">Realizado nos dias <?php $data['dtInicio']; ?> 30 e 31 de março de 2021 em São Paulo - SP.</p>
-          
-        </section>
-        <?php
-        } ?>
+
+
+            <section style="background-image: url(./public/img/certificadoProibido.jpg);">
+                <p>Certificamos que <strong><?php echo $_SESSION['firstname'] . " "; ?><?php echo $_SESSION['lastname']; ?></strong></p>
+                <p>Participou do: <strong><?php echo $data['titulo']; ?></strong></p>
+                <p>Com carga horária de <strong><?php
+                                                  $date1= $data['dtInicio'];
+                                                  $date2= $data['dtFim'];
+                                                
+                                                  $dateS1 = new \DateTime($date1);
+                                                  $dateS2 = new \DateTime($date2);
+                                                
+                                                  $dateDiff = $dateS1->diff($dateS2);
+                                                  $result = $dateDiff->h . ' horas ';
+                                                  //   $result = $dateDiff->h . ' horas e ' . $dateDiff->i . ' minutos';
+                                                  echo $result;
+                                                ?>.</strong></p>
+
+                <p class="data">Realizado nos dias <?php echo date_format(new DateTime($data['dtInicio']), "d/m"); ?> a <?php echo date_format(new DateTime($data['dtFim']), "d/m"); ?> de <?php echo date_format(new DateTime($data['dtFim']), "Y"); ?> em São Paulo - SP.</p>
+
+            </section>
+        <?php } ?>
     </article>
 </body>
 

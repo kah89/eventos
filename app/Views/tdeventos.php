@@ -71,17 +71,16 @@
                         <div class="card-footer text-muted">
                             <ul class="nav nav-pills ">
                                 <li class="nav-item">
-                                    <!-- Button trigger modal -->
-                                    <button type="button" class=" cad btn btn-primary" data-toggle="modal" data-target="#exampleModal<?php echo $evento['id'] ?>" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px ">
+                                    <button type="button" id="sobremodal" class=" cad btn btn-primary" data-toggle="modal" data-target="#sobreModal<?php echo $evento['id'] ?>" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px ">
                                         Sobre
                                     </button>
 
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="exampleModal<?php echo $evento['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <!-- Modal sobre -->
+                                    <div class="modal fade" id="sobreModal<?php echo $evento['id'] ?>" tabindex="-1" aria-labelledby="sobreModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Sobre</h5>
+                                                    <h5 class="modal-title" id="sobreModalLabel">Sobre</h5>
                                                     <button type="button" class="close cad" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
@@ -107,13 +106,8 @@
                                         echo '<button class="btn btn-primary cad1" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " disabled>Inscreva-se</button>';
 
                                     }
-
                                 
                                     ?>
-
-                                    
-                                    }?>
-
                                 </li>
                             </ul>
                         </div>
@@ -142,7 +136,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary cad" data-dismiss="modal">Fechar</button>
-                            <a href="<?php echo base_url('eventos/inscreverEvento/') . "/"; ?>" class="btn btn-primary cad" id="btnConfirmaInscricao">Confirma</a>
+                            <a href="#" class="btn btn-primary cad" id="btnConfirmaInscricao">Confirma</a>
 
                         </div>
                     </div>
@@ -152,16 +146,16 @@
         </div>
         <script>
             function preenchermodal(id) {
-                var link = document.getElementById("btnConfirmaInscricao").href;
+                var link = '<?php echo (base_url('eventos/inscreverEvento/') . "/"); ?>';
                 document.getElementById("btnConfirmaInscricao").href = link + id;
             }
         </script>
-        <script>
-            // function sobremodal(resumo) {
-            //     var texto = document.getElementsByName("sobreModal");
-            //     document.getElementById("sobreModal") = resumo
-            // }
-        </script>
+        <!-- <script>
+            function sobremodal(id) {
+                var link = document.getElementById("sobremodal").href;
+               document.getElementById("sobremodal").href = link + id;
+            }
+        </script> -->
 
     </div>
 </main>
