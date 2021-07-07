@@ -34,7 +34,7 @@ class AtividadeModel extends Model
                 $result = "Inscrição efetuada com sucesso!";
             }
         } else {
-            $result = "Atividade já foi concluída!";
+            $result = "Inscrição já foi efetuada!";
         }
         return $result;
     }
@@ -74,15 +74,20 @@ class AtividadeModel extends Model
     public function verificarConclusao($idUser, $idEvento)
     {
         $result = "false";
-        $query = $this->select('count(id) as total')->where('idEvento', $idEvento);
-
+        $query = $this
+        ->select('count(id) as total')
+        ->where('idEvento', $idEvento)
+        ->first();
+        
         $totalAtividadesEvento = $query['total'];
+        // var_dump($idUser);
+        // var_dump($idEvento);exit;
 
-        $query2 = $this->select('count(idUser) as total')
-        ->join('atividade_evento', 'atividade_evento.id = usuario_evento.idAtividade')
-        ->and('atividade_evento.idEvento', $idEvento)
-        ->where('usuario_atividade.idUser', $idUser);
-            
+        $query2 = $this
+        ->select('count(usuario_atividade.idUser) as total')
+        ->join('usuario_atividade', 'atividade_evento.id = usuario_atividade.idAtividade and atividade_evento.idEvento = '.$idEvento)        
+        ->where('usuario_atividade.idUser', $idUser)
+        ->first();
 
         $totalAtividadesConcluidas = $query2['total'];
 

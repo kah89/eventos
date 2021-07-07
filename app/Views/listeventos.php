@@ -64,8 +64,7 @@
                         <tbody>
                             <?php foreach ($data as $key => $evento) {
                                 echo '<tr><td>' . $evento['id'] . '</td><td>' . $evento['titulo'] . '</td><td>' . $evento['resumo'] . '</td>
-                               <td><a class="btn btn-primary" id="cad" href='.base_url('/Atividades/verificarConclusao').' data-toggle="modal" data-target="#certificadoModal" onclick="preenchermodal(' . "/" . $evento['id'] . ');" role="button">Gerar</a></td></tr>';
-                            }
+                           <td><a class="btn btn-primary" id="cad" href='.base_url('/Atividades/verificarConclusao').' data-toggle="modal" data-target="#certificadoModal" onclick="preenchermodal(' . "/" . $evento['id'] . ');" role="button">Gerar</a></td></tr>'; }
                             //desativar o botão de gerar caso não tenha concluido todas atividades no tempo estimado 
                             // if () {
                             //     echo '<tr><td><a class="btn btn-primary" id="cad" href="#" data-toggle="modal" data-target="#certificadoModal" 
@@ -80,6 +79,9 @@
                     </table>
                 <?php } ?>
 
+                <?php
+               // if ( $result == true ) {
+                ?>
                     <!-- Modal vizualização do pré-certificado -->
                     <div class="modal fade" id="certificadoModal" tabindex="-1" role="dialog" aria-labelledby="certificadoModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -92,7 +94,7 @@
                                 </div>
                                 <div class="modal-body">
                                     <p style="text-align: justify;"> Se os dados estiverem corretos, basta somente emitir. Caso precise editar volte e vá no editar do seu usuário.</p>
-                                    <a href="<?php echo base_url("certificadoVizualizacao") . "/" . $evento['id'] ?>" target="_blank" id="vizualizar">vizualização do certificado</a>
+                                    <a href="<?php echo base_url("certificadoVizualizacao") . "/" ?>" target="_blank" id="vizualizar">vizualização do certificado</a>
                                     <!-- <p style="text-align: justify;"><strong>lembrando que após a emissão não pode ser alterados os dados!</strong></p> -->
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
@@ -103,11 +105,15 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" id="cad" data-dismiss="modal">Fechar</button>
-                                    <a href="<?= base_url("/eventos/gerarCertificado") . "/" . $evento['id'] ?>" class="btn btn-primary emitir disabled" id="btnEmitir">Emita aqui seu certificado!</a>
+                                    <a href="" class="btn btn-primary emitir disabled" id="btnEmitir">Emita aqui seu certificado!</a>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                <?php
+               // }
+                ?>
 
                <!-- Modal não concluiu todas as atividades -->
                 <div class="modal fade" id="certificado" tabindex="-1" role="dialog" aria-labelledby="certificadoModal" aria-hidden="true">
@@ -143,7 +149,9 @@
                 });
 
                 function preenchermodal($id) {
-                    var link = document.getElementById("btnEmitir").$evento['id'];
+                    
+                    var link = '<?php echo(base_url("/eventos/gerarCertificado") . "/");  ?>' ;
+                    document.getElementById("btnEmitir").href = link + $id;               
                 }
             </script>
             </script>
