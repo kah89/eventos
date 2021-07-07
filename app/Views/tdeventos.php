@@ -106,7 +106,7 @@
                                     } else {
                                         echo '<button class="btn btn-primary cad1" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " disabled>Inscreva-se</button>';
                                     
-
+                                    }?>
                                 </li>
                             </ul>
                         </div>
