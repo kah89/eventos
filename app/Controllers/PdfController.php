@@ -18,20 +18,34 @@ class PdfController extends Controller
 
     public function index ()
     {
+        // if (!session()->get('isLoggedIn')) {
+        //     return redirect()->to(base_url(''));
+        // } else {
+        //     $eventos =  new EventoModel();
+
+        //     if ($user = $eventos->find()) {
+        //         $data = [
+        //             'title' => 'Certificado',
+        //             'titulo' => $user['titulo'],
+        //         ];
+
+        //         echo view('certificadoVizualizacao', $data);
+        //     }
+        // }
+        $uri = current_url(true);
+        $idEvent = $uri->getSegment(4);
+        $model = new EventoModel();
         if (!session()->get('isLoggedIn')) {
-            return redirect()->to(base_url(''));
-        } else {
-            $eventos =  new EventoModel();
-
-            if ($user = $eventos->find()) {
-                $data = [
-                    'title' => 'Certificado',
-                    'titulo' => $user['titulo'],
-                ];
-
-                echo view('certificadoVizualizacao', $data);
+                return redirect()->to(base_url('eventosonline/eventos/'));
             }
-        }
+        $data = [
+            'title' => 'Certificado',
+            'data' => $model->find($idEvent),
+        ];
+        
+         
+        //var_dump($data);exit;
+        echo view('certificadoVizualizacao',$data);
     }
 
     //---------------------------------------------------------------------------------------------

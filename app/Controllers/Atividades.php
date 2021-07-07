@@ -21,8 +21,8 @@ class Atividades extends BaseController
             'title' => 'Atividade',
             'data' => $model->find($idAtividade),
         ];
-        
-         
+
+
         //var_dump($data);exit;
         echo view('templates/header', $data);
         echo view('atividades');
@@ -81,10 +81,10 @@ class Atividades extends BaseController
                     'hora' => date('H:i:s', strtotime($this->request->getVar('datainicial') . ' ' . $this->request->getVar('hinicial'))),
 
                 ];
-                 
-                 $newData['atividade'] = htmlspecialchars($newData['atividade'], ENT_QUOTES, 'UTF-8'); 
-                
-            
+
+                $newData['atividade'] = htmlspecialchars($newData['atividade'], ENT_QUOTES, 'UTF-8');
+
+
                 //var_dump($newData);exit;
                 if ($model->save($newData)) {
                     $session = session();
@@ -200,7 +200,7 @@ class Atividades extends BaseController
             'title' => 'Excluir Atividade',
             'data' => $model->findAll(),
         ];
-    
+
 
         echo view('templates/header', $data);
         echo view('excluirativ');
@@ -237,5 +237,18 @@ class Atividades extends BaseController
             }
             return redirect()->to(base_url("excluirativ"));
         }
+    }
+
+    //--------------------------------------------------------------------
+
+    public function verificarConclusao()
+    {
+        $id_user = service('request')->getPost('id_user');
+        $id_evento = service('request')->getPost('id_evento');
+
+        $atividade = new \App\Models\AtividadeModel();
+        echo $atividade->verificarConclusao($id_user, $id_evento);
+
+     
     }
 }

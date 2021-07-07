@@ -100,7 +100,7 @@
             // var_dump($data);exit;
 
         ?>
-        <section>     
+        <section >     
             <p>Certificamos que <strong><?php echo $_SESSION['firstname']." "; ?><?php echo $_SESSION['lastname']; ?></strong></p>
             <p>Participou do:  <?php $data['titulo']; ?> <strong></strong></p>
             <p>Com carga horária de <strong>8 horas.</strong></p>

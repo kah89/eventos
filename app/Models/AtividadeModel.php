@@ -41,29 +41,29 @@ class AtividadeModel extends Model
 
 //-----------------------------------------------------------------------
 
-    public function concluirAtividade($idUser = null, $idAtividade = null)
-    {
+    // public function concluirAtividade($idUser = null, $idAtividade = null)
+    // {
 
-        $data = [
-            'idUser' => $idUser,
-            'idAtividade'    => $idAtividade
-        ];
+    //     $data = [
+    //         'idUser' => $idUser,
+    //         'idAtividade'    => $idAtividade
+    //     ];
 
-        $array = array('idUser' => $idUser, 'idAtividade' => $idAtividade);
-        $q = $this->db->table('usuario_atividade')->select('idUser, idAtividade')->where($array);
-        if ($q->countAllResults() < 1) {
-            if ($this
-                ->db
-                ->table('usuario_atividade')
-                ->insert($data)
-            ) {
-                $result = "Inserido com sucesso!";
-            }
-        } else {
-            $result = "Atividade já foi concluída!";
-        }
-        return $result;
-    }
+    //     $array = array('idUser' => $idUser, 'idAtividade' => $idAtividade);
+    //     $q = $this->db->table('usuario_atividade')->select('idUser, idAtividade')->where($array);
+    //     if ($q->countAllResults() < 1) {
+    //         if ($this
+    //             ->db
+    //             ->table('usuario_atividade')
+    //             ->insert($data)
+    //         ) {
+    //             $result = "Inserido com sucesso!";
+    //         }
+    //     } else {
+    //         $result = "Atividade já foi concluída!";
+    //     }
+    //     return $result;
+    // }
 
     /**
      * Recebe como parâmetro o idUser e o idAtividade e os insere no banco, registrando que a atividade X foi concluída pelo usuário Y na data e hora atual
@@ -88,7 +88,9 @@ class AtividadeModel extends Model
 
         if ($totalAtividadesEvento <= $totalAtividadesConcluidas) {
             $result = "true";
+          
         }
         return $result;
+        
     }
 }

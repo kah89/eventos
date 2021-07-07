@@ -64,7 +64,7 @@
                         <tbody>
                             <?php foreach ($data as $key => $evento) {
                                 echo '<tr><td>' . $evento['id'] . '</td><td>' . $evento['titulo'] . '</td><td>' . $evento['resumo'] . '</td>
-                               <td><a class="btn btn-primary" id="cad" href="#" data-toggle="modal" data-target="#certificadoModal" onclick="preenchermodal(' . "/" . $evento['id'] . ');" role="button">Gerar</a></td></tr>';
+                               <td><a class="btn btn-primary" id="cad" href='.base_url('/Atividades/verificarConclusao').' data-toggle="modal" data-target="#certificadoModal" onclick="preenchermodal(' . "/" . $evento['id'] . ');" role="button">Gerar</a></td></tr>';
                             }
                             //desativar o botão de gerar caso não tenha concluido todas atividades no tempo estimado 
                             // if () {
@@ -80,9 +80,6 @@
                     </table>
                 <?php } ?>
 
-                <?php
-                if ( $result == true ) {
-                ?>
                     <!-- Modal vizualização do pré-certificado -->
                     <div class="modal fade" id="certificadoModal" tabindex="-1" role="dialog" aria-labelledby="certificadoModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -111,10 +108,6 @@
                             </div>
                         </div>
                     </div>
-
-                <?php
-                }
-                ?>
 
                <!-- Modal não concluiu todas as atividades -->
                 <div class="modal fade" id="certificado" tabindex="-1" role="dialog" aria-labelledby="certificadoModal" aria-hidden="true">
