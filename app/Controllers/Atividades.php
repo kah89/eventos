@@ -148,7 +148,7 @@ class Atividades extends BaseController
                 if ($model->save($newData)) {
                     $session = session();
                     $session->setFlashdata('success', 'Sua atividade ');
-                    $session->setFlashdata('success', 'Sua atividade' . "  (" . $result['titulo'] . ") " .  'foi alterada com sucesso!');
+                    $session->setFlashdata('success', 'Sua atividade' . "  (" . "ID ". $result['id'] ." - " . $result['titulo'] . ") " .  'foi alterada com sucesso!');
                     return redirect()->to(base_url('excluirativ'));
                 } else {
                     echo "Erro ao editar";

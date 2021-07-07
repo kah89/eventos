@@ -61,7 +61,8 @@ class PdfController extends Controller
 
             helper(['form']);
             $uri = current_url(true);
-            $evento_id = $uri->getSegment(4);
+            $evento_id = $uri->getSegment(5);
+            // var_dump($evento_id);exit;
             $model = new EventoModel();
             // $atividades = new AtividadeModel();
 

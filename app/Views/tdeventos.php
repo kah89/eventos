@@ -149,13 +149,12 @@
                 var link = '<?php echo (base_url('eventos/inscreverEvento/') . "/"); ?>';
                 document.getElementById("btnConfirmaInscricao").href = link + id;
             }
+        
+            // function sobremodal(id) {
+            //     var link = '<?php echo (base_url("/certificadoVizualizacao") . "/");  ?>';
+            //         document.getElementById("vizualizar").href = link + $id;
+            // }
         </script>
-        <!-- <script>
-            function sobremodal(id) {
-                var link = document.getElementById("sobremodal").href;
-               document.getElementById("sobremodal").href = link + id;
-            }
-        </script> -->
 
     </div>
 </main>

@@ -87,7 +87,7 @@
         }
 
         article {
-            background-image: url(./public/img/certificadoProibido.jpg);
+            background-image: url(<?php echo(base_url('/public/img/certificadoProibido.jpg'));?>);
         }
     </style>
 </head>

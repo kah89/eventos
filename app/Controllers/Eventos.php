@@ -51,11 +51,15 @@ class Eventos extends BaseController
         $idUser = session()->get('id');
         $uri = current_url(true);
         $idEvento = $uri->getSegment(5); 
+        
+
         $msg = $model->certificado($idUser,$idEvento);
         $session = session();
         $session->setFlashdata('success', $msg);
+        
+
         $pdf = new PdfController();        
-        echo $pdf->index();
+        echo $pdf->gerarCertificado();
         return redirect()->to(base_url('listareventos'));
         
     } 
@@ -232,7 +236,7 @@ class Eventos extends BaseController
 
                     if ($model->save($newData)) {
                         $session = session();
-                        $session->setFlashdata('success', 'Seu evento'. " (" . $result['titulo'] . ") " .  ' foi alterado com sucesso!');
+                        $session->setFlashdata('success', 'Seu evento'. " (" . "ID". $result['id'] ." - " . $result['titulo'] . ") " .  ' foi alterado com sucesso!');
                         return redirect()->to(base_url('eventos'));
                     } else {
                         echo "Erro ao salvar";

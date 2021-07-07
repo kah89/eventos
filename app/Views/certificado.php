@@ -86,7 +86,7 @@
             }
         }
         article{
-            background-image: url(./public/img/certificado.jpg);
+            background-image: url(<?php echo(base_url('/public/img/certificado.jpg'));?>);
         }
         
     </style>
@@ -99,7 +99,7 @@
         ?>
 
 
-            <section style="background-image: url(./public/img/certificadoProibido.jpg);">
+            <section >
                 <p>Certificamos que <strong><?php echo $_SESSION['firstname'] . " "; ?><?php echo $_SESSION['lastname']; ?></strong></p>
                 <p>Participou do: <strong><?php echo $data['titulo']; ?></strong></p>
                 <p>Com carga horária de <strong><?php
