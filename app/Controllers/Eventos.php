@@ -82,9 +82,24 @@ class Eventos extends BaseController
                 ->findAll()
         ];
         
+        // $atividade = new Atividades();
+        // $this->function->verificarConclusao();
+        // var_dump($atividade);exit;
+
         echo view('templates/header', $data);
         echo view('listeventos');
         echo view('templates/footer');
+    }
+
+
+    public function verificarConclusao()
+    {
+        $id_user = service('request')->getPost('id_user');
+        $id_evento = service('request')->getPost('id_evento');
+
+        $atividade = new \App\Models\AtividadeModel();
+        echo $atividade->verificarConclusao($id_user, $id_evento);
+    
     }
 
 

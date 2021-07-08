@@ -58,8 +58,8 @@ $routes->match(['get','post'],'/atividades/(:num)', 'Atividades::index');
 $routes->match(['get','post'],'/cidade', 'AjaxCidade::getCidades');
 $routes->match(['get','post'],'/estado', 'AjaxEstado::getEstados');
 
-$routes->match(['get','post'],'/concluirAtividade', 'Dashboard::concluirAtividade');
-$routes->match(['get','post'],'/verificarConclusao', 'Dashboard::verificarConclusao');
+// $routes->match(['get','post'],'/concluirAtividade', 'Dashboard::concluirAtividade');
+$routes->match(['get','post'],'/verificarConclusao', 'Eventos::verificarConclusao');
 
 $routes->get('/certificadoVizualizacao/(:num)', 'PdfController::index');
 $routes->get('/certificado/(:num)', 'PdfController::gerarCertificado');

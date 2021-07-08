@@ -64,16 +64,8 @@
                         <tbody>
                             <?php foreach ($data as $key => $evento) {
                                 echo '<tr><td>' . $evento['id'] . '</td><td>' . $evento['titulo'] . '</td><td>' . $evento['resumo'] . '</td>
-                           <td><a class="btn btn-primary" id="cad" href=' . base_url('/Atividades/verificarConclusao') . "/" . $evento['id'] . ' data-toggle="modal" data-target="#certificadoModal" onclick="setarCampos(' . $evento['id'] . ');" role="button">Gerar</a></td></tr>';
+                           <td><a class="btn btn-primary" id="cad" href=' . base_url('/eventos/verificarConclusao') . "/" . $evento['id'] . ' data-toggle="modal" data-target="#certificadoModal" onclick="setarCampos(' . $evento['id'] . ');" role="button">Gerar</a></td></tr>';
                             }
-                            //desativar o botão de gerar caso não tenha concluido todas atividades no tempo estimado 
-                            // if () {
-                            //     echo '<tr><td><a class="btn btn-primary" id="cad" href="#" data-toggle="modal" data-target="#certificadoModal" 
-                            //     onclick="preenchermodal(' . "/" . $evento['id'] . ');" role="button">Gerar</a></td></tr>';
-                            // } else {
-                            //     echo ' <tr><td><a class="btn btn-primary" id="cad" href="#" data-toggle="modal" data-target="#certificadoModal" 
-                            //     onclick="preenchermodal(' . "/" . $evento['id'] . ');" role="button" disabled>Gerar</a></td></tr> ';
-                            // }
                             ?>
 
                         </tbody>
@@ -81,7 +73,7 @@
                 <?php } ?>
 
                 <?php
-                // if ( $result == true ) {
+                // if ( $atividade == true ) {
                 ?>
                 <!-- Modal vizualização do pré-certificado -->
                 <div class="modal fade " id="certificadoModal" tabindex="-1" role="dialog" aria-labelledby="certificadoModalLabel" aria-hidden="true">
@@ -128,7 +120,7 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="certificadoModal" style="text-align: center;">Olá <?= session()->get('firstname') ?>, bem-vindo(a)!</h5>
+                                <h5 class="modal-title" id="certificado" style="text-align: center;">Olá <?= session()->get('firstname') ?>, bem-vindo(a)!</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -161,6 +153,9 @@
                     document.getElementById("vizualizar").href = link + $id;
                     var link = '<?php echo (base_url("/eventos/gerarCertificado") . "/");  ?>';
                     document.getElementById("btnEmitir").href = link + $id;
+
+                    var link = '<?php echo (base_url("/eventos/verificarConclusao") . "/");?>';
+                    document.getElementById("certificado").href = link + $id;
                 }
                 
             </script>
