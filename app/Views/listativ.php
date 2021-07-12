@@ -48,10 +48,10 @@
 
                                ';
                        
-                        if (date($atividade['dtFim']) < date("Y-m-d H:i:s")) {
-                            echo '<td><button class="btn btn-primary" id="cad" href=' . base_url('atividades/') . "/" . $atividade['id'] . ' role="button" >Ir </button></td></tr>';
+                        if (date($atividade['dtFim']) > date("Y-m-d H:i:s")) {
+                            echo '<td><a class="btn btn-primary" id="cad" href= '.base_url('atividades/') . "/" . $atividade['id'].' role="button" >Ir </a></td></tr>';
                         } else {
-                            echo '<td><button class="btn btn-primary" id="cad1" role="button" disabled> Ir </button></td></tr>';
+                            echo '<td><a class="btn btn-primary" id="cad1" role="button" disabled> Ir </a></td></tr>';
                         }
 
                     }
