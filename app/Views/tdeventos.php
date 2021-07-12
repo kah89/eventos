@@ -11,6 +11,12 @@
         margin-top: 20px;
     }
 
+    h3 {
+        margin-top: 50px;
+      text-align: center;
+      color: red;
+    }
+
     .resumo {
         margin-top: 10px;
         font-size: 25px;
@@ -129,13 +135,7 @@
                         </div>
                     </div>
 
-            <?php
-                }
-            } else {
-                echo "<h2>Nenhum evento cadastrado!</h2>";
-            }
-
-            ?>
+           
 
             <!-- Modal Inscreva-se -->
             <div class="modal fade" data-backdrop="static" id="inscrevaModal" tabindex="-1" role="dialog" aria-labelledby="inscrevaModalLabel" aria-hidden="true">
@@ -158,6 +158,14 @@
                     </div>
                 </div>
             </div>
+
+            <?php
+                }
+            } else {
+                echo "<h3>Nenhum evento cadastrado!</h3>";
+            }
+
+            ?>
 
         </div>
         <script>

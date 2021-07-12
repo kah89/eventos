@@ -5,6 +5,12 @@
         color: #007BFF;
     }
 
+    h3 {
+        margin-top: 50px;
+      text-align: center;
+      color: red;
+    }
+
     th {
         color: #007BFF;
         text-align: center;
@@ -28,10 +34,11 @@
     }
 
     #cad {
-        width: 100px;
+        width: 80px;
+        height: 40px;
         background-color: #008CBA;
         font-size: 12px;
-        padding: 12px 28px;
+        padding: 8px 20px;
         border-radius: 8px;
         border: 2px solid;
     }
@@ -62,6 +69,7 @@
                     </div>
                 <?php endif; ?>
                 <?php if (count($data) > 0) { ?>
+                   
                     <table class="table table-hover " id="atividades">
                         <thead>
                             <tr>
@@ -81,7 +89,7 @@
 
                         </tbody>
                     </table>
-                <?php } ?>
+               
 
                 <?php
                 if ($result = "true") {
@@ -176,5 +184,12 @@
             </script>
             </script>
         </div>
+        <?php
+
+} else {
+    echo "<h3>Não esta cadastrado em nenhum evento!</h3>";
+}
+
+?>
     </div>
 </main>

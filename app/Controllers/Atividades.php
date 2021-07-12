@@ -40,7 +40,6 @@ class Atividades extends BaseController
         if (!session()->get('isLoggedIn')) {
             return redirect()->to(base_url(''));
         } else {
-
             $model = new AtividadeModel();
             $idUser = session()->get('id');
             $uri = current_url(true);

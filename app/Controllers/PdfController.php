@@ -158,18 +158,18 @@ class PdfController extends Controller
         }
 
     
-    $result = "false";
-    $query = $this
-                    ->select('HOUR(TIMEDIFF(dtFim, dtInicio))')
-                    ->join('usuario_atividade')
-                    ->on('atividade_evento.id = usuario_atividade.idAtividade and atividade_evento.idEvento = eventos.id' )
-                    ->where('usuario_atividade.idUser', session()->get('id'))
-                    ->findAll();
+    // $result = "false";
+    // $query = $this
+    //                 ->select('HOUR(TIMEDIFF(dtFim, dtInicio))')
+    //                 ->join('usuario_atividade')
+    //                 ->on('atividade_evento.id = usuario_atividade.idAtividade and atividade_evento.idEvento = eventos.id' )
+    //                 ->where('usuario_atividade.idUser', session()->get('id'))
+                    // ->findAll();
     // var_dump($idUser);
     // var_dump($idEvento);exit;
       
     
-    return $result;
+    // return $result;
 }
 
 }

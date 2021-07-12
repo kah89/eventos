@@ -92,7 +92,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="form-label-group">
-                                    <textarea name="resumo" id="resumo" class="form-control" maxlength="200" placeholder="Resumo" required><?= $resumo ?></textarea>
+                                    <textarea name="resumo" id="resumo" class="form-control" minilength="100" maxlength="500" placeholder="Resumo" required><?= $resumo ?></textarea>
                                 </div>
                             </div>
                             <div class="form-group col-sm-6 data" id="inicial">

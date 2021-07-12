@@ -11,6 +11,7 @@
 
     p {
         font-size: 25px;
+        margin: 20px;
     }
 </style>
 <main>
