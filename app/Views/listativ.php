@@ -51,13 +51,22 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($data as $key => $atividade) {
-                                echo '<tr><td>' . $atividade['id'] . '</td><td>' . $atividade['titulo'] . '</td><td>' . $atividade['dtInicio'] . '</td><td>' . $atividade['tipo'] . '</td>
+                            <?php
+
+
+
+                            foreach ($data as $key => $atividade) {
+                                if ($atividade['tipo'] == '1') {
+                                    $tipo = 'Sim';
+                                } else {
+                                    $tipo = 'Não';
+                                }
+                                echo '<tr><td>' . $atividade['id'] . '</td><td>' . $atividade['titulo'] . '</td><td>' . $atividade['dtInicio'] . '</td><td>' . $tipo . '</td>
 
                                ';
 
                                 if (date($atividade['dtFim']) > date("Y-m-d H:i:s")) {
-                                    echo '<td><a class="btn btn-primary" id="cad" href= ' . base_url('/atividades/inscreverAtividade') . "/" . $atividade['id'] . ' onclick="inscreverAtividade('. $atividade['id'] .');"  role="button" >Ir </a></td></tr>';
+                                    echo '<td><a class="btn btn-primary" id="cad" href= ' . base_url('/atividades/inscreverAtividade') . "/" . $atividade['id'] . ' onclick="inscreverAtividade(' . $atividade['id'] . ');"  role="button" >Ir </a></td></tr>';
                                 } else {
                                     echo '<td><a class="btn btn-primary" id="cad1" role="button" disabled> Ir </a></td></tr>';
                                 }
@@ -78,9 +87,9 @@
     </div>
 </main>
 <script>
-     function inscreverAtividade($id) {
+    function inscreverAtividade($id) {
         var link = '<?php echo (base_url("/atividades/inscreverAtividade") . "/");  ?>';
         document.getElementById("cad").href = link + $id;
-        
+
     }
 </script>
