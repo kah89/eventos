@@ -163,7 +163,7 @@ class Eventos extends BaseController
                 $rules = [
                     'titulo' => 'trim|required|min_length[3]|max_length[60]',
                     'imagem' => 'uploaded[profile_image]', 'mime_in[profile_image,image/jpg,image/jpeg,image/gif,image/png]', 'max_size[profile_image,4096]',
-                    'resumo' => 'trim|required|min_length[100]|max_length[200]',
+                    'resumo' => 'trim|required|min_length[100]|max_length[500]',
                 ];
                 // echo './public/img';exit;
                 if (!$this->validate($rules)) {

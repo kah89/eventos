@@ -8,11 +8,12 @@
 
     h4 {
         text-align: center;
-        margin-top: 30px;
+        margin-top: 20px;
     }
 
     .resumo {
         margin-top: 10px;
+        font-size: 25px;
     }
 
     .card-title {
@@ -33,16 +34,32 @@
         margin-top: 5px;
     }
 
-    .cad, #cad, .cad1 {
+    .cad,
+    #cad,
+    .cad1 {
         background-color: #008CBA;
         font-size: 12px;
         padding: 10px 22px;
         border-radius: 8px;
         border: 2px solid;
     }
-    .cad:hover, #cad:hover {
-        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+
+    .cad:hover,
+    #cad:hover {
+        box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
     }
+
+    p {
+  /* max-width: 90ch; */
+  /* width: 20em;  */
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+   
 </style>
 <main>
     <div class="container">
@@ -104,9 +121,8 @@
                                         echo '<button class="btn btn-primary cad" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " href="#" data-toggle="modal" data-target="#inscrevaModal" id="Btn" onclick="preenchermodal(' . $evento['id'] . ');">Inscreva-se</button>';
                                     } else {
                                         echo '<button class="btn btn-primary cad1" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " disabled>Inscreva-se</button>';
-
                                     }
-                                
+
                                     ?>
                                 </li>
                             </ul>
@@ -149,7 +165,7 @@
                 var link = '<?php echo (base_url('eventos/inscreverEvento/') . "/"); ?>';
                 document.getElementById("btnConfirmaInscricao").href = link + id;
             }
-        
+
             // function sobremodal(id) {
             //     var link = '<?php echo (base_url("/certificadoVizualizacao") . "/");  ?>';
             //         document.getElementById("vizualizar").href = link + $id;
