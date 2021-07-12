@@ -331,6 +331,9 @@ class Eventos extends BaseController
         }
     }
 
+    
+    //------------------------------------------------------------------------------
+
     public function deletar()
     {
         if (!session()->get('isLoggedIn')) {

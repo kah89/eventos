@@ -133,4 +133,43 @@ class PdfController extends Controller
             }
         }
     }
+
+
+
+    //---------------------------------------------------------------------------------------------
+
+
+    public function horario()
+    {
+        if (!session()->get('isLoggedIn')) {
+            return redirect()->to(base_url(''));
+        } else {
+            // $model = new AtividadeModel();
+            // $data = [
+            //     'data' => $model
+            //         ->select('HOUR(TIMEDIFF(dtFim, dtInicio))')
+            //         ->join('usuario_atividade')
+            //         ->on('atividade_evento.id = usuario_atividade.idAtividade and atividade_evento.idEvento = eventos.id' )
+            //         ->where('usuario_atividade.idUser', session()->get('id'))
+            //         ->findAll()
+            // ];
+
+            // echo view('templates/header', $data);
+        }
+
+    
+    $result = "false";
+    $query = $this
+                    ->select('HOUR(TIMEDIFF(dtFim, dtInicio))')
+                    ->join('usuario_atividade')
+                    ->on('atividade_evento.id = usuario_atividade.idAtividade and atividade_evento.idEvento = eventos.id' )
+                    ->where('usuario_atividade.idUser', session()->get('id'))
+                    ->findAll();
+    // var_dump($idUser);
+    // var_dump($idEvento);exit;
+      
+    
+    return $result;
+}
+
 }

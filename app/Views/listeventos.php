@@ -40,6 +40,16 @@
     #cad:hover {
         box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
     }
+
+    #p {
+  /* max-width: 90ch; */
+  /* width: 20em;  */
+  max-width: 700px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 </style>
 <main>
     <div class="container bg-white" style="padding-bottom: 10em;">
@@ -63,7 +73,7 @@
                         </thead>
                         <tbody>
                             <?php foreach ($data as $key => $evento) {
-                                echo '<tr><td>' . $evento['id'] . '</td><td>' . $evento['titulo'] . '</td><td>' . $evento['resumo'] . '</td>
+                                echo '<tr><td>' . $evento['id'] . '</td><td>' . $evento['titulo'] . '</td><td id="p">' . $evento['resumo'] . '</td>
                            
                               <td><a class="btn btn-primary" id="cad" href=' . base_url('/atividades/verificarConclusao') . "/" . $evento['id'] . ' data-toggle="modal" data-target="#certificadoModal" onclick="setarCampos(' . $evento['id'] . ');" role="button">Gerar</a></td></tr>';
                             }
@@ -90,7 +100,6 @@
                                     <!-- <h5>Seu certificado do evento já está disponível.</h5>
                                 <p> Para <a href="#" role="button" class="btn btn-secondary popover-test" title="Popover title" data-content="Popover body content is set in this attribute.">Vizualizar</a> seu.</p>
                                 <hr> -->
-
 
                                     <p style="text-align: justify;"> Se os dados estiverem corretos, basta somente emitir. Caso precise editar volte e vá no editar do seu usuário.</p>
 
