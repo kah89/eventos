@@ -369,148 +369,154 @@ class Users extends BaseController
 
     public function edituser()
     {
-        $uri = current_url(true);
-        $usuario_id = $uri->getSegment(4); 
-        $model = new UserModel();
-        $result = $model->find($usuario_id);
+        if (!session()->get('isLoggedIn')) {
+            return redirect()->to(base_url(''));
+        } else {
+            $uri = current_url(true);
+            $usuario_id = $uri->getSegment(4);
+            $model = new UserModel();
+            $result = $model->find($usuario_id);
 
-        $paisModel = new PaisModel();
-        $paises = $paisModel->selectPaises();
+            $paisModel = new PaisModel();
+            $paises = $paisModel->selectPaises();
 
-        $estadoModel = new EstadoModel();
-        $uf = $estadoModel->selectUF();
-             
-        $data = [
-                'title' => 'Editar Usuário', 
+            $estadoModel = new EstadoModel();
+            $uf = $estadoModel->selectUF();
+
+            $data = [
+                'title' => 'Editar Usuário',
                 'options_paises' => $paises,
-                'options_uf' => $uf,             
-         ];
+                'options_uf' => $uf,
+            ];
 
-     // var_dump($data); exit;
-     helper(['form']);
+            // var_dump($data); exit;
+            helper(['form']);
 
-     if ($this->request->getMethod() == 'post') {
-         //VALIDAÇÕES
-         $rules = [
-             'senha' => 'required|min_length[8]|max_length[255]',
-             'senha_confirmacao' => 'matches[senha]',
-         ];
-
-
-         if (!$this->validate($rules)) {
-             $data['validation'] = $this->validator;
-         } else {
-             //salva no BD
-             $newData = [
-                'id' => $usuario_id, //sem esse campo não sabe qual ID deve alterar e acaba fazendo um insert
-                 'email' => $this->request->getVar('email'),
-                 'pais' => $this->request->getVar('paises'),
-                 'estado' => $this->request->getVar('estados'),
-                 'cidade' => $this->request->getVar('cidades'),
-                 'type' => (int) $this->request->getVar('categoria'),
-                 'uf' => $this->request->getVar('uf'),
-                 'crf' => $this->request->getVar('crf'),
-                 'telefone' => $this->request->getVar('telefone'),
-                 'celular' => $this->request->getVar('celular'),
-                 'cpf' => $this->request->getVar('cpf'),
-                 'password' => $this->request->getVar('senha'),
-             ];
+            if ($this->request->getMethod() == 'post') {
+                //VALIDAÇÕES
+                $rules = [
+                    'senha' => 'required|min_length[8]|max_length[255]',
+                    'senha_confirmacao' => 'matches[senha]',
+                ];
 
 
+                if (!$this->validate($rules)) {
+                    $data['validation'] = $this->validator;
+                } else {
+                    //salva no BD
+                    $newData = [
+                        'id' => $usuario_id, //sem esse campo não sabe qual ID deve alterar e acaba fazendo um insert
+                        'email' => $this->request->getVar('email'),
+                        'pais' => $this->request->getVar('paises'),
+                        'estado' => $this->request->getVar('estados'),
+                        'cidade' => $this->request->getVar('cidades'),
+                        'type' => (int) $this->request->getVar('categoria'),
+                        'uf' => $this->request->getVar('uf'),
+                        'crf' => $this->request->getVar('crf'),
+                        'telefone' => $this->request->getVar('telefone'),
+                        'celular' => $this->request->getVar('celular'),
+                        'cpf' => $this->request->getVar('cpf'),
+                        'password' => $this->request->getVar('senha'),
+                    ];
 
-             if ($model->save($newData)) {
-                     $session = session();
-                     $session->setFlashdata('success', 'O usuário'." (" . "ID". $result['id'] ." - " . $result['firstname'] . ") " .  'foi alterado com sucesso!');
-                     return redirect()->to(base_url('eventos'));
-                 } else {
-                 echo "Erro ao salvar";
-                 exit;                    
-             }
-         }
-     }
-      
-        echo view('templates/header', $data);
-        echo view('edituser', $result);
-        echo view('templates/footer');
 
 
-       
+                    if ($model->save($newData)) {
+                        $session = session();
+                        $session->setFlashdata('success', 'O usuário' . " (" . "ID" . $result['id'] . " - " . $result['firstname'] . ") " .  'foi alterado com sucesso!');
+                        return redirect()->to(base_url('eventos'));
+                    } else {
+                        echo "Erro ao salvar";
+                        exit;
+                    }
+                }
+            }
 
+            echo view('templates/header', $data);
+            echo view('edituser', $result);
+            echo view('templates/footer');
+        }
     }
 
 
     //--------------------------------------------------------------------
+
+
     public function caduser()
     {
-        $paisModel = new PaisModel();
-        $paises = $paisModel->selectPaises();
+        if (!session()->get('isLoggedIn')) {
+            return redirect()->to(base_url(''));
+        } else {
+            $paisModel = new PaisModel();
+            $paises = $paisModel->selectPaises();
 
-        $estadoModel = new EstadoModel();
-        $uf = $estadoModel->selectUF();
+            $estadoModel = new EstadoModel();
+            $uf = $estadoModel->selectUF();
 
-        $data = [
-            'options_paises' => $paises,
-            'options_uf' => $uf,
+            $data = [
+                'options_paises' => $paises,
+                'options_uf' => $uf,
 
-            'title' => 'Cadastrar Usuário',
-        ];
-        // var_dump($data); exit;
-        helper(['form']);
-
-        if ($this->request->getMethod() == 'post') {
-            //VALIDAÇÕES
-            $rules = [
-                'nome' => 'required|min_length[3]|max_length[20]',
-                'sobrenome' => 'required|min_length[3]|max_length[100]',
-                'email' => 'required|min_length[6]|max_length[100]|valid_email|is_unique[users.email]',
-                'senha' => 'required|min_length[8]|max_length[255]',
-                'senha_confirmacao' => 'matches[senha]',
+                'title' => 'Cadastrar Usuário',
             ];
+            // var_dump($data); exit;
+            helper(['form']);
 
-
-            if (!$this->validate($rules)) {
-                $data['validation'] = $this->validator;
-            } else {
-                //salva no BD
-                $model =  new UserModel();
-
-
-                $newData = [
-                    'firstname' => $this->request->getVar('nome'),
-                    'lastname' => $this->request->getVar('sobrenome'),
-                    'email' => $this->request->getVar('email'),
-                    'pais' => $this->request->getVar('paises'),
-                    'estado' => $this->request->getVar('estados'),
-                    'cidade' => $this->request->getVar('cidades'),
-                    'type' => (int) $this->request->getVar('categoria'),
-                    'uf' => $this->request->getVar('uf'),
-                    'crf' => $this->request->getVar('crf'),
-                    'telefone' => $this->request->getVar('telefone'),
-                    'celular' => $this->request->getVar('celular'),
-                    'cpf' => $this->request->getVar('cpf'),
-                    'password' => $this->request->getVar('senha'),
+            if ($this->request->getMethod() == 'post') {
+                //VALIDAÇÕES
+                $rules = [
+                    'nome' => 'required|min_length[3]|max_length[20]',
+                    'sobrenome' => 'required|min_length[3]|max_length[100]',
+                    'email' => 'required|min_length[6]|max_length[100]|valid_email|is_unique[users.email]',
+                    'senha' => 'required|min_length[8]|max_length[255]',
+                    'senha_confirmacao' => 'matches[senha]',
                 ];
 
 
+                if (!$this->validate($rules)) {
+                    $data['validation'] = $this->validator;
+                } else {
+                    //salva no BD
+                    $model =  new UserModel();
 
-                if ($model->save($newData)) {
-                    if ($this->sendEmail($newData)) {
-                        $session = session();
-                        $session->setFlashdata('success', 'O usuario foi criado com sucesso!');
-                        return redirect()->to(base_url('excluiruser'));
+
+                    $newData = [
+                        'firstname' => $this->request->getVar('nome'),
+                        'lastname' => $this->request->getVar('sobrenome'),
+                        'email' => $this->request->getVar('email'),
+                        'pais' => $this->request->getVar('paises'),
+                        'estado' => $this->request->getVar('estados'),
+                        'cidade' => $this->request->getVar('cidades'),
+                        'type' => (int) $this->request->getVar('categoria'),
+                        'uf' => $this->request->getVar('uf'),
+                        'crf' => $this->request->getVar('crf'),
+                        'telefone' => $this->request->getVar('telefone'),
+                        'celular' => $this->request->getVar('celular'),
+                        'cpf' => $this->request->getVar('cpf'),
+                        'password' => $this->request->getVar('senha'),
+                    ];
+
+
+
+                    if ($model->save($newData)) {
+                        if ($this->sendEmail($newData)) {
+                            $session = session();
+                            $session->setFlashdata('success', 'O usuario foi criado com sucesso!');
+                            return redirect()->to(base_url('excluiruser'));
+                        } else {
+                            echo "Erro ao enviar email";
+                            exit;
+                        }
                     } else {
-                        echo "Erro ao enviar email";
+                        echo "Erro ao salvar";
                         exit;
                     }
-                } else {
-                    echo "Erro ao salvar";
-                    exit;                    
                 }
             }
+            echo view('templates/header', $data);
+            echo view('caduser', $data);
+            echo view('templates/footer');
         }
-        echo view('templates/header', $data);
-        echo view('caduser', $data);
-        echo view('templates/footer');
     }
 
 
@@ -518,45 +524,55 @@ class Users extends BaseController
     //--------------------------------------------------------------------
     public function excluiruser()
     {
-        $model = new UserModel();
-        $data = [
-            'title' => 'Excluir Usuário',
-            'data' => $model->findAll(),
-        ];
+        if (!session()->get('isLoggedIn')) {
+            return redirect()->to(base_url(''));
+        } else {
+            $model = new UserModel();
+            $data = [
+                'title' => 'Excluir Usuário',
+                'data' => $model->findAll(),
+            ];
 
-        echo view('templates/header', $data);
-        echo view('excluiruser');
-        echo view('templates/footer');;
+            echo view('templates/header', $data);
+            echo view('excluiruser');
+            echo view('templates/footer');;
+        }
     }
+
+
+    //--------------------------------------------------------------------
 
     public function deletar($id = null)
     {
-
-        $uri = current_url(true);
-        $user_id = $uri->getSegment(5);
-        $model = new UserModel();
-        $result = $model->find($user_id);
-// 
-        try{
-            if ($user_id) {
-                $model->delete($user_id);
+        if (!session()->get('isLoggedIn')) {
+            return redirect()->to(base_url(''));
+        } else {
+            $uri = current_url(true);
+            $user_id = $uri->getSegment(5);
+            $model = new UserModel();
+            $result = $model->find($user_id);
+            // 
+            try {
+                if ($user_id) {
+                    $model->delete($user_id);
+                    $session = session();
+                    $session->setFlashdata('success', 'O usuário' . "  (" . $result['firstname'] . ")  " . 'foi excluido com sucesso!');
+                    return redirect()->to(base_url("excluiruser"));
+                } else {
+                    echo "O usuário" . $result . " não pode ser excluido";
+                }
+            } catch (Exception $e) {
                 $session = session();
-                $session->setFlashdata('success', 'O usuário'."  (" . $result['firstname'] . ")  " .'foi excluido com sucesso!');
+                if ($e->getCode() == 1451) {
+                    $session->setFlashdata('danger', 'Seu usuário' . "  (" . $result['firstname'] . ")  " . 'não pode ser excluído, pois possui vinculos no sistema!');
+                } else {
+                    $session->setFlashdata('danger', 'Seu usuário' . "  (" . $result['firstname'] . ")  " . 'não pode ser excluido!');
+                }
                 return redirect()->to(base_url("excluiruser"));
-            } else {
-                echo "O usuário" . $result . " não pode ser excluido";
             }
-        }catch(Exception $e){  
-            $session = session();     
-            if($e->getCode()==1451){
-                $session->setFlashdata('danger', 'Seu usuário'."  (" . $result['firstname'] . ")  " .'não pode ser excluído, pois possui vinculos no sistema!'); 
-            }else{
-                $session->setFlashdata('danger', 'Seu usuário'."  (" . $result['firstname'] . ")  " .'não pode ser excluido!');                  
-            }                
-            return redirect()->to(base_url("excluiruser"));
         }
     }
-   
+
     //--------------------------------------------------------------------
 
     public function logout()

@@ -24,11 +24,14 @@ class PdfController extends Controller
             $uri = current_url(true);
             $evento_id = $uri->getSegment(4);
             $model =  new EventoModel();
+            $newmodel = new AtividadeModel();
 
                 $data = [
                     'title' => 'Certificado',
                     'data' => $model->find($evento_id),
+                    'data' => $newmodel->find($evento_id),
                 ];
+
 
                 echo view('certificadoVizualizacao', $data);
             
@@ -65,14 +68,18 @@ class PdfController extends Controller
             // var_dump($evento_id);exit;
             $model = new EventoModel();
             // $atividades = new AtividadeModel();
+            $newmodel = new AtividadeModel();
 
             if ( $model) {
                 $data = [
                     'title' => 'Certificado',
                     'data' => $model->find($evento_id),
                 ];
+                $newdata = [
+                    'data' => $newmodel->find($evento_id),
+                ];
 
-                $html = view('certificado', $data);
+                $html = view('certificado', $data, $newdata);
                 $options = new Options();
                 $options->set('isHtml5ParserEnabled', true);
                 $options->set('isRemoteEnabled', true);

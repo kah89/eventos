@@ -28,7 +28,12 @@ h1, th{
                     <tbody>
                         <?php foreach($data as $key => $ativ){
                             // var_dump($ativ);exit;
-                               echo '<tr><td>'. $ativ['id'].'</td><td>'.$ativ['titulo'].'</td><td>'.$ativ['dtInicio'].'</td><td id="tipo">'.$ativ['tipo'].'</td></tr>';
+                               echo '<tr><td>'. $ativ['id'].'</td><td>'.$ativ['titulo'].'</td><td>'.$ativ['dtInicio'].'</td>
+                              
+                               <td id="tipo">'.$ativ['tipo'].'</td>
+
+                               </tr>';
+
                         } ?>
                     </tbody> 
                 </table>

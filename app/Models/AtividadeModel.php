@@ -80,14 +80,15 @@ class AtividadeModel extends Model
         ->first();
         
         $totalAtividadesEvento = $query['total'];
-        // var_dump($idUser);
-        // var_dump($idEvento);exit;
-
+        
+       
         $query2 = $this
         ->select('count(usuario_atividade.idUser) as total')
         ->join('usuario_atividade', 'atividade_evento.id = usuario_atividade.idAtividade and atividade_evento.idEvento = '.$idEvento)        
         ->where('usuario_atividade.idUser', $idUser)
         ->first();
+        // var_dump($idUser);
+        // var_dump($idEvento);exit;
 
         $totalAtividadesConcluidas = $query2['total'];
 

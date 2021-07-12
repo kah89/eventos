@@ -103,16 +103,17 @@
                 <p>Certificamos que <strong><?php echo $_SESSION['firstname'] . " "; ?><?php echo $_SESSION['lastname']; ?></strong></p>
                 <p>Participou do: <strong><?php echo $data['titulo']; ?></strong></p>
                 <p>Com carga horária de <strong><?php
-                                                  $date1= $data['dtInicio'];
-                                                  $date2= $data['dtFim'];
+                                                //   $date1= $data['dtInicio'];
+                                                //   $date2= $data['dtFim'];
                                                 
-                                                  $dateS1 = new \DateTime($date1);
-                                                  $dateS2 = new \DateTime($date2);
+                                                //   $dateS1 = new \DateTime($date1);
+                                                //   $dateS2 = new \DateTime($date2);
                                                 
-                                                  $dateDiff = $dateS1->diff($dateS2);
-                                                  $result = $dateDiff->h . ' horas ';
+                                                //   $dateDiff = $dateS1->diff($dateS2);
+                                                //   $result = $dateDiff->h . ' horas ';
                                                   //   $result = $dateDiff->h . ' horas e ' . $dateDiff->i . ' minutos';
-                                                  echo $result;
+                                                //   echo $result;
+                                               echo $data['dtFim'];
                                                 ?>.</strong></p>
 
                 <p class="data">Realizado nos dias <?php echo date_format(new DateTime($data['dtInicio']), "d/m"); ?> a <?php echo date_format(new DateTime($data['dtFim']), "d/m"); ?> de <?php echo date_format(new DateTime($data['dtFim']), "Y"); ?> em São Paulo - SP.</p>

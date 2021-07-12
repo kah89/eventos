@@ -48,8 +48,8 @@
 
                                ';
                        
-                        if (date($atividade['dtFim']) > date("Y-m-d H:i:s")) {
-                            echo '<td><button class="btn btn-primary" id="cad" href=' . base_url('/atividades/inscreverAtividade') . "/" . $atividade['id'] . ' role="button" >Ir </button></td></tr>';
+                        if (date($atividade['dtFim']) < date("Y-m-d H:i:s")) {
+                            echo '<td><button class="btn btn-primary" id="cad" href=' . base_url('atividades/') . "/" . $atividade['id'] . ' role="button" >Ir </button></td></tr>';
                         } else {
                             echo '<td><button class="btn btn-primary" id="cad1" role="button" disabled> Ir </button></td></tr>';
                         }
@@ -63,9 +63,10 @@
         </div>
     </div>
 </main>
-<!-- <script>
-        function veratividade(id) {
-            var link = document.getElementById("confirmar").href;
-            document.getElementById("confirmar").href = link + id;
-        }
-    </script> -->
+<script>
+        function setarCampos($id) {
+                    var link = '<?php echo (base_url("Atividades/inscreverAtividade") . "/");  ?>';
+                    document.getElementById("cad").href = link + $id;
+
+                }
+</script>
