@@ -64,4 +64,5 @@ public function certificado($idUser = null, $idEvento = null)
     }
     return $result;
 }
+
 }
