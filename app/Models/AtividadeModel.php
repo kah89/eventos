@@ -99,4 +99,15 @@ class AtividadeModel extends Model
         return $result;
         
     }
+
+    public function horasEvento($idEvento){
+
+        $horasEvento = $this
+        ->select('*,  SUM(HOUR(TIMEDIFF(dtInicio, dtFim))) AS horasTotais')
+        ->where('idEvento', $idEvento)
+        ->first();
+
+        return $horasEvento;
+
+    }
 }
