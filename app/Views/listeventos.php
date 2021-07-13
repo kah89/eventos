@@ -81,9 +81,17 @@
                         </thead>
                         <tbody>
                             <?php foreach ($data as $key => $evento) {
-                                echo '<tr><td>' . $evento['id'] . '</td><td>' . $evento['titulo'] . '</td><td id="p">' . $evento['resumo'] . '</td>
-                           
-                              <td><a class="btn btn-primary" id="cad" href=' . base_url('/atividades/verificarConclusao') . "/" . $evento['id'] . ' data-toggle="modal" data-target="#certificadoModal" onclick="setarCampos(' . $evento['id'] . ');" role="button">Gerar</a></td></tr>';
+                                
+                                $htm = '<tr><td>' . $evento['id'] . '</td><td>' . $evento['titulo'] . '</td><td id="p">' . $evento['resumo'] . '</td>                           
+                              <td><a class="btn btn-primary" id="cad" href=' . base_url('/atividades/verificarConclusao') . "/" . $evento['id'] . ' data-toggle="modal"';
+                              
+                              if($evento['certificado']== 'true'){
+                                $htm .= 'data-target="#certificadoModal"'; 
+                              }else{
+                                $htm .= 'data-target="#certificadoModalNC"'; 
+                              }
+                              $htm .= 'onclick="setarCampos(' . $evento['id'] . ');" role="button">Gerar</a></td></tr>';
+                              echo ($htm);
                             }
                             ?>
 
@@ -134,11 +142,11 @@
                 ?>
 
                 <!-- Modal não concluiu todas as atividades -->
-                <div class="modal fade" id="certificadoModal" tabindex="-1" role="dialog" aria-labelledby="certificadoModal" aria-hidden="true">
+                <div class="modal fade" id="certificadoModalNC" tabindex="-1" role="dialog" aria-labelledby="certificadoModalNC" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="certificadoModal" style="text-align: center;">Olá <?= session()->get('firstname') ?>, bem-vindo(a)!</h5>
+                                <h5 class="modal-title" id="certificadoModalNC" style="text-align: center;">Olá <?= session()->get('firstname') ?>, bem-vindo(a)!</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>

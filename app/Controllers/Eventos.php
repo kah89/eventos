@@ -86,14 +86,24 @@ class Eventos extends BaseController
             return redirect()->to(base_url(''));
         } else {
             $model = new EventoModel();
+            $eventosM = $model
+                ->select('*')
+                ->join('usuario_evento', 'usuario_evento.idEvento = eventos.id')
+                ->where('usuario_evento.idUser', session()->get('id'))
+                ->findAll();
+
+            $eventos = [];
+
+            foreach ($eventosM as $evento) {
+                $atividadeM = new AtividadeModel();
+                $evento['certificado'] = $atividadeM->verificarConclusao(session()->get('id'), $evento['id']);
+                array_push($eventos, $evento);
+            }
+            // var_dump($eventos );exit;
 
             $data = [
                 'title' => 'Lista de eventos cadastrados',
-                'data' => $model
-                    ->select('*')
-                    ->join('usuario_evento', 'usuario_evento.idEvento = eventos.id')
-                    ->where('usuario_evento.idUser', session()->get('id'))
-                    ->findAll()
+                'data' => $eventos
             ];
 
             // $atividade = new Atividades();
@@ -331,7 +341,7 @@ class Eventos extends BaseController
         }
     }
 
-    
+
     //------------------------------------------------------------------------------
 
     public function deletar()
