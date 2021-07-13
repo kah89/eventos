@@ -1,5 +1,3 @@
-
-
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
@@ -7,8 +5,6 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
 
 <style>
-   
-
     #cad {
         width: 200px;
         background-color: #008CBA;
@@ -18,8 +14,9 @@
         border: 2px solid;
         margin-left: -630px;
     }
+
     #cad:hover {
-        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+        box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
     }
 
     h2 {
@@ -28,17 +25,17 @@
 
     #hora {
         width: 100px;
-        margin-top: 45px;  
+        margin-top: 45px;
     }
 
-    .data{
+    .data {
         width: 200px;
     }
 
-    .data1{
+    .data1 {
         width: 200px;
         margin-left: 400px;
-        margin-top: -72px; 
+        margin-top: -72px;
     }
 
     #hora2 {
@@ -50,21 +47,21 @@
         margin-top: -49px;  */
     }
 
-    #certificado{
+    #certificado {
         width: 200px;
         float: right;
         margin-right: -400px;
         margin-top: -47px;
     }
 
-    .eventos, #user{
+    .eventos,
+    #user {
         margin-left: 190px;
     }
 
-    #navbarNav{
-        font-size: 15px ;
+    #navbarNav {
+        font-size: 15px;
     }
-    
 </style>
 <main>
     <div class="container">
@@ -79,8 +76,8 @@
                             </div>
                         <?php endif; ?>
                         <form class="form-signin" method="post">
-                        <div class="form-group">
-                                <div class="form-label-group" >
+                            <div class="form-group">
+                                <div class="form-label-group">
                                     <select id="selectEvent" name="selectEvent" class="form-control" required>
                                         <option selected disabled>Eventos</option>
                                         <?php
@@ -98,12 +95,12 @@
                             </div>
                             <div class="form-group">
                                 <div class="form-label-group">
-                                    <textarea type="text" name="atividade" id="summernote" class="form-control"  placeholder="Atividade"  autofocus> <?= $atividade ?> </textarea>
-                                    
+                                    <textarea type="text" name="atividade" id="summernote" class="form-control" placeholder="Atividade" autofocus> <?= $atividade ?> </textarea>
+
                                     <!-- <div id="summernote" name="atividade" autofocus>
                                         <p> Atividade: </p>
                                     </div> -->
-                                    
+
                                 </div>
                             </div>
                             <div class="form-group col-sm-6 data" id="inicial">
@@ -131,10 +128,14 @@
                             </div>
                             <div class="form-group col-sm-7">
                                 <div class="form-label-group">
-                                    <select id="certificado" name="certificado" class="form-control" value="<?= $tipo ?>">
-                                        <option selected disabled>Certificado</option>
-                                        <option value="1">Gera certificado</option>
-                                        <option value="2">Não gera certificado</option>
+                                    <select id="certificado" name="certificado" class="form-control">
+                                        <?
+                                        if ($dataAtiv['tipo'] == '1') {
+                                            $tipo = $id['1'];
+                                        } ?>
+
+                                        <option value="1" id=<?$id['1']?>>Gera certificado</option>
+                                        <option value="2" id=<?$id['2']?>>Não gera certificado</option>
                                     </select>
                                 </div>
                             </div>

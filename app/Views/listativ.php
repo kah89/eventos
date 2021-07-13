@@ -52,9 +52,6 @@
                         </thead>
                         <tbody>
                             <?php
-
-
-
                             foreach ($data as $key => $atividade) {
                                 if ($atividade['tipo'] == '1') {
                                     $tipo = 'Sim';

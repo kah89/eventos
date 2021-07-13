@@ -29,7 +29,6 @@ class PdfController extends Controller
                 $data = [
                     'title' => 'Certificado',
                     'data' => $model->find($evento_id),
-                    'data' => $newmodel->find($evento_id),
                 ];
 
 

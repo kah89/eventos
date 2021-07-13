@@ -138,6 +138,11 @@ class Atividades extends BaseController
                 'data' => $model1->findall(),
             ];
 
+            $dataAtiv = [
+                'title' => 'Editar evento',
+                'data' => $model->findall(),
+            ];
+
 
             // var_dump($data); exit;
             helper(['form']);
@@ -175,7 +180,7 @@ class Atividades extends BaseController
                 }
             }
             echo view('templates/header', $data);
-            echo view('editativ', $result);
+            echo view('editativ', $result, $dataAtiv);
             echo view('templates/footer');
         }
     }

@@ -54,6 +54,8 @@ $routes->match(['get','post'],'/cadativ', 'Atividades::cadativ');
 $routes->match(['get','post'],'/listarativ', 'Atividades::listativ');
 $routes->match(['get','post'],'/atividades/(:num)', 'Atividades::index');
 
+$routes->match(['get','post'],'/inscritos', 'Inscritos::index');
+
 /* AJAX */
 $routes->match(['get','post'],'/cidade', 'AjaxCidade::getCidades');
 $routes->match(['get','post'],'/estado', 'AjaxEstado::getEstados');

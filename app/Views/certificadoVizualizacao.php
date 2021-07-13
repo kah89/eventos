@@ -93,13 +93,13 @@
 </head>
 
 <body>
-    <article id="conteudo-certificado">
-        <?php if (count($data) > 0) {
+<article id="conteudo-certificado" >
+    <?php if (count($data) > 0) {
             // var_dump($data);exit;
         ?>
 
 
-            <section style="background-image: url(./public/img/certificadoProibido.jpg);">
+            <section >
                 <p>Certificamos que <strong><?php echo $_SESSION['firstname'] . " "; ?><?php echo $_SESSION['lastname']; ?></strong></p>
                 <p>Participou do: <strong><?php echo $data['titulo']; ?></strong></p>
                 <p>Com carga horária de <strong><?php
