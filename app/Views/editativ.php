@@ -132,10 +132,12 @@
                                         <?
                                         if ($dataAtiv['tipo'] == '1') {
                                             $tipo = $id['1'];
-                                        } ?>
 
-                                        <option value="1" id=<?$id['1']?>>Gera certificado</option>
-                                        <option value="2" id=<?$id['2']?>>Não gera certificado</option>
+                                        }else {
+                                            
+                                        } ?>
+                                        <option value="1" id="1">Gera certificado</option>
+                                        <option value="2" id="2">Não gera certificado</option>
                                     </select>
                                 </div>
                             </div>

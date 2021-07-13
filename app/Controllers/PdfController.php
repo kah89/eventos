@@ -32,9 +32,9 @@ class PdfController extends Controller
                 $data = [
                     'title' => 'Certificado',
                     'data' => $model->find($evento_id),
-                    'data' => $horasTotalEvento
-
+                    'horas' => $horasTotalEvento
                 ];
+
                 //var_dump($data);exit;
                 
                 echo view('certificadoVizualizacao', $data);
@@ -79,13 +79,11 @@ class PdfController extends Controller
                 $data = [
                     'title' => 'Certificado',
                     'data' => $model->find($evento_id),
-                    'data' => $horasTotalEvento
+                    'horas' => $horasTotalEvento
                 ];
-                $newdata = [
-                    'data' => $newmodel->find($evento_id),
-                ];
+                
 
-                $html = view('certificado', $data, $newdata);
+                $html = view('certificado', $data);
                 $options = new Options();
                 $options->set('isHtml5ParserEnabled', true);
                 $options->set('isRemoteEnabled', true);
