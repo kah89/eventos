@@ -1,47 +1,53 @@
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
 
-<script type="text/javascript" src="<?php echo base_url('public/js/tinymce/tinymce.min.js')?>"></script>
+<style>
+  h3 {
+        margin-top: 50px;
+        text-align: center;
+        color: red;
+    }
+    .eventos,
+    #user {
+        margin-left: 190px;
+    }
+
+    #navbarNav {
+        font-size: 15px;
+    }
+</style>
 <main>
+<?php
+    if (
+        isset($_SESSION['id']) &&
+        $_SESSION['type'] == 0
+    ) {
+    ?>
     <div class="container bg-white" style="padding-bottom: 10em;">
         <div class="row">
             <div class="col-12">
                 <form method="post" action="<?= base_url('/PdfController/emitirCertificado'); ?>">
                     <div class="form-group">
                         <label for="textCertificado">Texto do Certificado</label>
-                        <textarea class="form-control" id="textCertificado" name="textCertificado" rows="3"></textarea>
+                        <textarea type="text" name="atividade" id="summernote" class="form-control" placeholder="Atividade" autofocus> </textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Emitir</button>
                 </form>
             </div>
         </div>
     </div>
+    <?php
+    }else{
+        // return redirect()->to(base_url('eventos'));
+       echo "<h3>Não tem permissão para acessar essa página!</h3>";
+    }
+    ?>
 </main>
-
 <script>
-    tinymce.init({
-        language: 'pt_BR',
-        selector: 'textarea',
-        height: 390,
-        theme: 'modern',
-        plugins: ['advlist anchor autolink charmap code codesample colorpicker contextmenu',
-            'directionality fullpage fullscreen help hr image imagetools insertdatetime',
-            'link lists media nonbreaking pagebreak paste preview print searchreplace',
-            'table template textcolor textpattern toc visualblocks visualchars wordcount'
-        ],
-
-        toolbar1: 'alignleft aligncenter alignright alignjustify | bold italic strikethrough forecolor backcolor | bullist numlist outdent indent | formatselect | fontsizeselect | link image |   removeformat | styleselect | insertfile undo redo',
-        image_advtab: true,
-        templates: [{
-                title: 'Notícia',
-                url: '<?php echo base_url('assets/js/tinymce/plugins/template/noticias.html'); ?>'
-            },
-            {
-                title: 'Evento',
-                content: 'TESTE 2'
-            }
-        ],
-        content_css: [
-            '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
-            '//www.tinymce.com/css/codepen.min.css'
-        ]
+    $(document).ready(function() {
+        $('#summernote').summernote();
     });
 </script>

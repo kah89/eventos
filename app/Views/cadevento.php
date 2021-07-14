@@ -32,19 +32,19 @@
     .data1 {
         width: 200px;
         margin-left: 400px;
-        margin-top: -85px;
     }
 
     #hora {
         width: 100px;
-        margin-left: 220px;
-        margin-top: 48px;
+        float: left;
+        margin-top: 32px;
     }
 
     #hora1 {
         width: 100px;
-        margin-left: 620px;
-        margin-top: -55px;
+        float: right;
+        margin-right: 370px;
+        margin-top: -54px;
     }
 
     .card-signin {

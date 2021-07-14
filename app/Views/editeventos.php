@@ -10,8 +10,8 @@
         padding: 12px 28px;
         border-radius: 8px;
         border: 2px solid;
-        margin-left: -200px;
     }
+    
     #uploadbutton:hover {
         box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
     }
@@ -22,27 +22,28 @@
         margin-left: 350px;
     }
 
-    #hora {
-        width: 100px;
-        margin-left: 220px;
-        margin-top: 48px; 
-    }
-
-    .data{
+    
+    .data {
         width: 200px;
-        float: left ;
+        float: left;
     }
 
-    .data1{
+    .data1 {
         width: 200px;
         margin-left: 400px;
-        margin-top: -88px; 
+    }
+
+    #hora {
+        width: 100px;
+        float: left;
+        margin-top: 32px;
     }
 
     #hora1 {
         width: 100px;
-        margin-left: 620px;
-        margin-top: -54px; 
+        float: right;
+        margin-right: 370px;
+        margin-top: -54px;
     }
 </style>
 <main>
