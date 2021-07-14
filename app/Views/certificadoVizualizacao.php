@@ -30,6 +30,10 @@
             font-family: 'Oxygen', sans-serif;
         }
 
+        .p{
+            margin-top: -30px;
+        }
+
         h1,
         h2,
         h3,
@@ -87,20 +91,21 @@
         }
 
         article {
-            background-image: url(<?php echo(base_url('/public/img/certificadoProibido.jpg'));?>);
+            background-image: url(<?php echo (base_url('/public/img/certificado_Proibido2.jpg'));?>);
         }
+
     </style>
 </head>
 
 <body>
-<article id="conteudo-certificado" >
+<article id="conteudo-certificado"  >
     <?php if (count($data) > 0) {
             // var_dump($data);exit;
         ?>
             <section >
-                <p>Certificamos que <strong><?php echo $_SESSION['firstname'] . " "; ?><?php echo $_SESSION['lastname']; ?></strong></p>
-                <p>Participou do: <strong><?php echo $data['titulo']; ?></strong></p>
-                <p>Com carga horária de <strong>
+                <p class="p">Certificamos que <strong><?php echo $_SESSION['firstname'] . " "; ?><?php echo $_SESSION['lastname']; ?></strong></p>
+                <p class="p"> Participou do: <strong><?php echo $data['titulo']; ?></strong></p>
+                <p class="p">Com carga horária de <strong>
                 <?php echo $horas['horasTotais'];?> horas</strong>.</p>
 
                 <p class="data">Realizado nos dias <?php echo date_format(new DateTime($data['dtInicio']), "d/m"); ?> a <?php echo date_format(new DateTime($data['dtFim']), "d/m"); ?> de <?php echo date_format(new DateTime($data['dtFim']), "Y"); ?> em São Paulo - SP.</p>

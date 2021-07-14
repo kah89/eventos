@@ -144,7 +144,6 @@
                                     </div> -->
                                 </div>
                             </div>
-                            <?php echo date_format(new DateTime($data[0]['dtInicio']), "Y-m-d");?>
                             <div class="form-group  data" id="inicial">
                                 <div class="form-label-group">
                                     <label for="">Inicial :</label>

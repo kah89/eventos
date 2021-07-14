@@ -92,7 +92,7 @@ class Atividades extends BaseController
                         'dtInicio' => date($this->request->getVar('datainicial') . ' ' . $this->request->getVar('hinicial')),
                         'dtFim' => date($this->request->getVar('datafinal') . ' ' . $this->request->getVar('hfinal')),
                         'hora' => date('H:i:s', strtotime($this->request->getVar('datainicial') . ' ' . $this->request->getVar('hinicial'))),
-
+                        'userCreated' => session()->get('id'),
                     ];
 
                     $newData['atividade'] = htmlspecialchars($newData['atividade'], ENT_QUOTES, 'UTF-8');
@@ -138,11 +138,7 @@ class Atividades extends BaseController
                 'data' => $model1->findall(),
             ];
 
-            $dataAtiv = [
-                'title' => 'Editar evento',
-                'data' => $model->findall(),
-            ];
-
+          
 
             // var_dump($data); exit;
             helper(['form']);
@@ -167,7 +163,7 @@ class Atividades extends BaseController
                         'dtFim' => date($this->request->getVar('datafinal') . ' ' . $this->request->getVar('hfinal')),
                         'atividade' => $this->request->getVar('atividade'),
                         'hora' => date('H:i:s', strtotime($this->request->getVar('datainicial') . ' ' . $this->request->getVar('hinicial'))),
-
+                        'userCreated' => session()->get('id'),
                     ];
 
                     if ($model->save($newData)) {
@@ -182,7 +178,7 @@ class Atividades extends BaseController
                 }
             }
             echo view('templates/header', $data);
-            echo view('editativ', $result, $dataAtiv);
+            echo view('editativ', $result);
             echo view('templates/footer');
         }
     }

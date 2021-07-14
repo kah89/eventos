@@ -24,6 +24,7 @@
 
     .card-title {
         text-align: center;
+        margin-top: 5px;
     }
 
 
@@ -33,11 +34,6 @@
         border-radius: 10px;
         max-width: 370px;
         margin: 5px;
-    }
-
-    .card-title {
-        text-align: center;
-        margin-top: 5px;
     }
 
     .cad,
@@ -55,13 +51,18 @@
         box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
     }
 
-    p {
+    .card-text {
   /* max-width: 90ch; */
   /* width: 20em;  */
   /* max-width: 300px; */
+  margin-top: 20px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+img{
+    max-height: 200px;
 }
 
 
@@ -90,6 +91,7 @@
                         <div class="card-body">
                             <img src="<?php echo base_url("/public/img") . "/" . $evento['imagem'] ?>" alt="" width="100%">
                             <p class="card-text"><?php echo $evento['resumo']; ?></p>
+                            <p> <strong>Data:</strong>  <?php echo date_format(new DateTime($evento['dtInicio']), "d-m-Y"); ?> até <?php echo date_format(new DateTime($evento['dtFim']), "d-m-Y"); ?></p>
                         </div>
                         <div class="card-footer text-muted">
                             <ul class="nav nav-pills ">

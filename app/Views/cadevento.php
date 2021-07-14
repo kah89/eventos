@@ -160,7 +160,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="form-label-group">
-                                    <textarea name="resumo" id="resumo" class="form-control" minilength="100" maxlength="500" placeholder="Resumo" required autofocus></textarea>
+                                    <textarea name="resumo" id="resumo" class="form-control" minilength="100" maxlength="1000" placeholder="Resumo" required autofocus></textarea>
                                 </div>
                             </div>
                             <div class="form-group col-sm-6 data" id="inicial">
