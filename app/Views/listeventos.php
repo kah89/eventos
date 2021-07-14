@@ -11,6 +11,10 @@
       color: red;
     }
 
+    #certificadoModalNC{
+        color: red;
+    }
+
     th {
         color: #007BFF;
         text-align: center;

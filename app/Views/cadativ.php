@@ -144,10 +144,11 @@
                                     </div> -->
                                 </div>
                             </div>
+                            <?php echo date_format(new DateTime($data[0]['dtInicio']), "Y-m-d");?>
                             <div class="form-group  data" id="inicial">
                                 <div class="form-label-group">
                                     <label for="">Inicial :</label>
-                                    <input type="date" name="datainicial" id="dtAgenda" min="2017-04-01" class="form-control" required />
+                                    <input type="date" name="datainicial" id="dtAgenda" min="<?php echo date_format(new DateTime($data[0]['dtInicio']), "Y-m-d"); ?>" max= "<?php echo date_format(new DateTime($data[0]['dtFim']), "Y-m-d"); ?>"  class="form-control" required />
                                 </div>
                             </div>
                             <div class="form-group ">
@@ -158,7 +159,7 @@
                             <div class="form-group data1" id="final">
                                 <div class="form-label-group">
                                     <label for="">Final:</label>
-                                    <input type="date" name="datafinal" id="dtAgenda1" min="2017-04-01" class="form-control" required />
+                                    <input type="date" name="datafinal" id="dtAgenda1" min="<?php echo date_format(new DateTime($data[0]['dtInicio']), "Y-m-d"); ?>" max= "<?php echo date_format(new DateTime($data[0]['dtFim']), "Y-m-d"); ?>"  class="form-control" required />
                                 </div>
                             </div>
                             <div class="form-group">
@@ -196,4 +197,11 @@
     $(document).ready(function() {
         $('#summernote').summernote();
     });
+
+
+    function myFunction() {
+    var x = document.getElementById("myDate").min;
+    document.getElementById("demo").innerHTML = x;
+}
+
 </script>

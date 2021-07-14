@@ -8,7 +8,6 @@ h1, th{
     font: caption;
 }
 
-
 </style>
 <main>
     <div class="container bg-white" style="padding-bottom: 10em;">
@@ -27,10 +26,15 @@ h1, th{
                     </thead>
                     <tbody>
                         <?php foreach($data as $key => $ativ){
+                            if ($ativ['tipo'] == '1') {
+                                $tipo = 'Sim';
+                            } else {
+                                $tipo = 'Não';
+                            }
                             // var_dump($ativ);exit;
                                echo '<tr><td>'. $ativ['id'].'</td><td>'.$ativ['titulo'].'</td><td>'.$ativ['dtInicio'].'</td>
                               
-                               <td id="tipo">'.$ativ['tipo'].'</td>
+                               <td id="tipo">'. $tipo.'</td>
 
                                </tr>';
 

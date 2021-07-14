@@ -163,9 +163,11 @@ class Atividades extends BaseController
                         'id' => $ativ_id, //sem esse campo não sabe qual ID deve alterar e acaba fazendo um insert
                         'titulo' => $this->request->getVar('titulo'),
                         'tipo' => $this->request->getVar('certificado'),
-                        'dtInicio' => $this->request->getVar('datainicial'),
-                        'dtFim' => $this->request->getVar('datafinal'),
+                        'dtInicio' => date($this->request->getVar('datainicial') . ' ' . $this->request->getVar('hinicial')),
+                        'dtFim' => date($this->request->getVar('datafinal') . ' ' . $this->request->getVar('hfinal')),
                         'atividade' => $this->request->getVar('atividade'),
+                        'hora' => date('H:i:s', strtotime($this->request->getVar('datainicial') . ' ' . $this->request->getVar('hinicial'))),
+
                     ];
 
                     if ($model->save($newData)) {

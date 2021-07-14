@@ -58,7 +58,7 @@
     p {
   /* max-width: 90ch; */
   /* width: 20em;  */
-  max-width: 300px;
+  /* max-width: 300px; */
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -110,7 +110,7 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <?php echo $evento['resumo'];  ?>
-                                                </div>
+                                                    </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary cad" data-dismiss="modal">Close</button>
                                                 </div>
