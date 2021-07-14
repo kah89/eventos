@@ -51,6 +51,7 @@
         box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
     }
 
+    
     .card-text {
   /* max-width: 90ch; */
   /* width: 20em;  */
@@ -102,7 +103,7 @@ img{
 
                                     <!-- Modal sobre -->
                                     <div class="modal fade" data-backdrop="static" id="sobreModal<?php echo $evento['id'] ?>" tabindex="-1" aria-labelledby="sobreModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-dialog modal-dialog-centered modal-lg">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title" id="sobreModalLabel">Sobre</h5>

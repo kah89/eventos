@@ -12,12 +12,13 @@
         color: white;
         margin-top: 20px;
     }
+
     .fa-edit {
         margin-left: 30%;
     }
 
-    .fa-trash{
-        margin-left: 10%; 
+    .fa-trash {
+        margin-left: 10%;
     }
 
     #tabela {
@@ -51,14 +52,19 @@
     .pagination {
         margin-left: 80%;
     }
+
+    h3 {
+        margin-top: 50px;
+        text-align: center;
+        color: red;
+    }
 </style>
 <script>
-
-$(document).ready(function() {
+    $(document).ready(function() {
         $('#tabela').DataTable({
             language: {
-            url: 'https://cdn.datatables.net/plug-ins/1.10.25/i18n/Portuguese-Brasil.json'
-        }
+                url: 'https://cdn.datatables.net/plug-ins/1.10.25/i18n/Portuguese-Brasil.json'
+            }
         });
     });
 
@@ -81,31 +87,37 @@ $(document).ready(function() {
     // });
 </script>
 <main>
-    <div class="container bg-white" style="padding-bottom: 10em;">
+    <?php
+    if (
+        isset($_SESSION['id']) &&
+        $_SESSION['type'] == 0
+    ) {
+    ?>
+        <div class="container bg-white" style="padding-bottom: 10em;">
 
-        <div class="row">
-            <div class="col-12" id="divConteudo">
-                <h2 style="text-align: center; font-size:30px">Usuários</h2>
-                <?php if (session()->get('success')) { ?>
-                    <div class="alert alert-success" role="alert">
-                        <?= session()->get('success'); ?>
-                    </div>
-                <?php } elseif (session()->get('danger')) { ?>
-                    <div class="alert alert-danger" role="alert">
-                        <?= session()->get('danger'); ?>
-                    </div>
+            <div class="row">
+                <div class="col-12" id="divConteudo">
+                    <h2 style="text-align: center; font-size:30px">Usuários</h2>
+                    <?php if (session()->get('success')) { ?>
+                        <div class="alert alert-success" role="alert">
+                            <?= session()->get('success'); ?>
+                        </div>
+                    <?php } elseif (session()->get('danger')) { ?>
+                        <div class="alert alert-danger" role="alert">
+                            <?= session()->get('danger'); ?>
+                        </div>
 
-                <?php } ?>
-                <table class="table table-hover" id="tabela">
-                    <thead>
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Nome</th>
-                            <th scope="col">Sobrenome</th>
-                            <th scope="col">Nível</th>
-                            <th scope="col">Ações</th> <!-- botão-->
-                        </tr>
-                        <!-- <tr>
+                    <?php } ?>
+                    <table class="table table-hover" id="tabela">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Sobrenome</th>
+                                <th scope="col">Nível</th>
+                                <th scope="col">Ações</th> <!-- botão-->
+                            </tr>
+                            <!-- <tr>
                             <th><input type="text" id="txtColuna1" /></th>
                             <th><input type="text" id="txtColuna2" /></th>
                             <th><input type="text" id="txtColuna3" /></th>
@@ -120,21 +132,27 @@ $(document).ready(function() {
                             <button id="proximo" disabled>Próximo &rsaquo;</button>
 
                         </nav> -->
-                    </thead>
-                    <tbody>
-                        <?php foreach ($data as $key => $user) {
-                            echo '<tr><td>' . $user['id'] . '</td><td>' . $user['firstname'] . '</td><td>' . $user['lastname'] . '</td><td>' . $user['type'] . '</td>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($data as $key => $user) {
+                                echo '<tr><td>' . $user['id'] . '</td><td>' . $user['firstname'] . '</td><td>' . $user['lastname'] . '</td><td>' . $user['type'] . '</td>
                                <td><a href=' . base_url('editaruser') . "/" . $user['id'] . '><i class="fa fa-edit" style="color: blue"></a></i>
                                <a href=' . base_url('users/deletar') . "/" . $user['id'] . '><i class="fa fa-trash"  style="color: red"></a></i></td></tr>';
-                        } ?>
-                    </tbody>
-                </table>
+                            } ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
+    <?php
+    } else {
+        // return redirect()->to(base_url('eventos'));
+        echo "<h3>Não tem permissão para acessar essa página!</h3>";
+    }
+    ?>
 </main>
 <script>
-//script para criar paginação
+    //script para criar paginação
     // var dados = $user;
     // var tamanhoPagina = 30;
     // var pagina = 0;

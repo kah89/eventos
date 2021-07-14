@@ -1,5 +1,3 @@
-
-
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
 
@@ -8,8 +6,6 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
 
 <style>
-  
-
     h2 {
         color: #007BFF;
     }
@@ -22,8 +18,9 @@
         border-radius: 8px;
         border: 2px solid;
     }
+
     #cad:hover {
-        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+        box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
     }
 
     #hora {
@@ -33,11 +30,11 @@
         margin-left: 220px;
     }
 
-    .data{
+    .data {
         width: 200px;
     }
 
-     .data1{
+    .data1 {
         width: 200px;
         margin-top: -74px;
         margin-left: 420px;
@@ -50,19 +47,30 @@
         margin-top: -49px;
     }
 
-    #certificado{
+    #certificado {
         width: 200px;
         float: right;
         margin-right: 50px;
         margin-top: -49px;
     }
 
-    .eventos, #user{
-        margin-left: 190px;
+    .eventos,
+    #user {
+        margin-left: 300px;
     }
 
-    #navbarNav{
-        font-size: 15px ;
+    #navbarNav {
+        font-size: 16px;
+    }
+
+    .inicio {
+        margin-left: 40px;
+    }
+
+    h3 {
+        margin-top: 50px;
+        text-align: center;
+        color: red;
     }
 </style>
 
@@ -98,99 +106,114 @@
     div.innerText = today;
 </script>
 <main>
-    <div class="container">
-        <div >
-            <?php
-            if (session()->get("success")) {
-            ?>
-                <h3><?= session()->get("success") ?></h3>
-            <?php
-            }
-            if (session()->get("error")) {
-            ?>
-                <h3><?= session()->get("error") ?></h3>
-            <?php
-            }
-            ?>
-            <div class="mx-auto">
-                <div class="card">
-                    <div class="card-body">
-                        <h2 class="card-title text-center">Cadastro de Atividade</h2>
-                        <form class="form-signin" method="post" name='form1'>
-                            <div class="form-group">
-                                <div class="form-label-group" required>
-                                    <select id="selectEvent" name="selectEvent" class="form-control" required>
-                                        <option selected disabled>Eventos</option>
-                                        <?php
-                                        foreach ($data as $key => $evento) {
-                                            echo "<option value='" . $evento['id'] . "'>" . $evento['id'] . " - " . $evento['titulo'] . "</option>";
-                                        }
-                                        ?>
-                                    </select>
+    <?php
+    if (
+        isset($_SESSION['id']) &&
+        $_SESSION['type'] == 0
+    ) {
+    ?>
+        <div class="container">
+
+
+            <div>
+                <?php
+                if (session()->get("success")) {
+                ?>
+                    <h3><?= session()->get("success") ?></h3>
+                <?php
+                }
+                if (session()->get("error")) {
+                ?>
+                    <h3><?= session()->get("error") ?></h3>
+                <?php
+                }
+                ?>
+                <div class="mx-auto">
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h2 class="card-title text-center">Cadastro de Atividade</h2>
+                            <form class="form-signin" method="post" name='form1'>
+                                <div class="form-group">
+                                    <div class="form-label-group" required>
+                                        <select id="selectEvent" name="selectEvent" class="form-control" required>
+                                            <option selected disabled>Eventos</option>
+                                            <?php
+                                            foreach ($data as $key => $evento) {
+                                                echo "<option value='" . $evento['id'] . "'>" . $evento['id'] . " - " . $evento['titulo'] . "</option>";
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="form-label-group">
-                                    <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Titulo" maxlength="60" minilength="3" required autofocus>
+                                <div class="form-group">
+                                    <div class="form-label-group">
+                                        <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Titulo" maxlength="60" minilength="3" required autofocus>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group" >
-                                <div class="form-label-group">
-                                    <textarea type="text" name="atividade" id="summernote" class="form-control"  placeholder="Atividade"  autofocus></textarea>
-                                    <!-- <input  id="summernote" name="atividade"  autofocus >  -->
-                            
-                                    <!-- <div id="summernote" name="atividade" autofocus>
+                                <div class="form-group">
+                                    <div class="form-label-group">
+                                        <textarea type="text" name="atividade" id="summernote" class="form-control" placeholder="Atividade" autofocus></textarea>
+                                        <!-- <input  id="summernote" name="atividade"  autofocus >  -->
+
+                                        <!-- <div id="summernote" name="atividade" autofocus>
                                         <p> Atividade: </p>
                                     </div> -->
-                                </div>
-                            </div>
-                            <div class="form-group  data" id="inicial">
-                                <div class="form-label-group">
-                                    <label for="">Inicial :</label>
-                                    <input type="date" name="datainicial" id="dtAgenda" min="<?php echo date_format(new DateTime($data[0]['dtInicio']), "Y-m-d"); ?>" max= "<?php echo date_format(new DateTime($data[0]['dtFim']), "Y-m-d"); ?>"  class="form-control" required />
-                                </div>
-                            </div>
-                            <div class="form-group ">
-                                <div class="form-label-group">
-                                    <input type="time" name="hinicial" id="hora" class="form-control" required />
-                                </div>
-                            </div>
-                            <div class="form-group data1" id="final">
-                                <div class="form-label-group">
-                                    <label for="">Final:</label>
-                                    <input type="date" name="datafinal" id="dtAgenda1" min="<?php echo date_format(new DateTime($data[0]['dtInicio']), "Y-m-d"); ?>" max= "<?php echo date_format(new DateTime($data[0]['dtFim']), "Y-m-d"); ?>"  class="form-control" required />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="form-label-group">
-                                    <input type="time" name="hfinal" id="hora2" class="form-control" required />
-
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="form-label-group">
-                                    <select id="certificado" name="certificado" class="form-control">
-                                        <option selected disabled>Certificado</option>
-                                        <option value="1">Gera certificado</option>
-                                        <option value="2">Não gera certificado</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <?php if (isset($validation)) : ?>
-                                    <div class="alert alert-danger" roles="alert">
-                                        <?= $validation->listErrors(); ?>
                                     </div>
-                                <?php endif; ?>
-                                <button class="btn btn-primary  text-uppercase" id="cad" type="submit">Cadastrar</button>
-                            </div>
-                        </form>
+                                </div>
+                                <div class="form-group  data" id="inicial">
+                                    <div class="form-label-group">
+                                        <label for="">Inicial :</label>
+                                        <input type="date" name="datainicial" id="dtAgenda" min="<?php echo date_format(new DateTime($data[0]['dtInicio']), "Y-m-d"); ?>" max="<?php echo date_format(new DateTime($data[0]['dtFim']), "Y-m-d"); ?>" class="form-control" required />
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                    <div class="form-label-group">
+                                        <input type="time" name="hinicial" id="hora" class="form-control" required />
+                                    </div>
+                                </div>
+                                <div class="form-group data1" id="final">
+                                    <div class="form-label-group">
+                                        <label for="">Final:</label>
+                                        <input type="date" name="datafinal" id="dtAgenda1" min="<?php echo date_format(new DateTime($data[0]['dtInicio']), "Y-m-d"); ?>" max="<?php echo date_format(new DateTime($data[0]['dtFim']), "Y-m-d"); ?>" class="form-control" required />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-label-group">
+                                        <input type="time" name="hfinal" id="hora2" class="form-control" required />
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-label-group">
+                                        <select id="certificado" name="certificado" class="form-control">
+                                            <option selected disabled>Certificado</option>
+                                            <option value="1">Gera certificado</option>
+                                            <option value="2">Não gera certificado</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <?php if (isset($validation)) : ?>
+                                        <div class="alert alert-danger" roles="alert">
+                                            <?= $validation->listErrors(); ?>
+                                        </div>
+                                    <?php endif; ?>
+                                    <button class="btn btn-primary  text-uppercase" id="cad" type="submit">Cadastrar</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    <?php
+    } else {
+        // return redirect()->to(base_url('eventos'));
+        echo "<h3>Não tem permissão para acessar essa página!</h3>";
+    }
+    ?>
 </main>
 <script>
     $(document).ready(function() {
@@ -199,8 +222,7 @@
 
 
     function myFunction() {
-    var x = document.getElementById("myDate").min;
-    document.getElementById("demo").innerHTML = x;
-}
-
+        var x = document.getElementById("myDate").min;
+        document.getElementById("demo").innerHTML = x;
+    }
 </script>
