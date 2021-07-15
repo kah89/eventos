@@ -134,9 +134,9 @@
                                 Listar
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="<?= base_url('listareventos') ?>">Eventos</a>
+                                <a class="dropdown-item" href="<?= base_url('listarEventosUser') ?>">Eventos</a>
                                 <!--DB eventos -->
-                                <a class="dropdown-item" href="<?= base_url('listarativ') ?>">Atividades</a>
+                                <a class="dropdown-item" href="<?= base_url('listarAtividadesalterarUser') ?>">Atividades</a>
                                 <!--DB atividade_evento -->
                             </div>
                         </li>
@@ -151,11 +151,11 @@
                                     Cadastrar
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" href="<?= base_url('cadevento') ?>">Eventos</a>
+                                    <a class="dropdown-item" href="<?= base_url('cadastrarEventos') ?>">Eventos</a>
                                     <!--DB eventos -->
-                                    <a class="dropdown-item" href="<?= base_url('cadativ') ?>">Atividades</a>
+                                    <a class="dropdown-item" href="<?= base_url('cadastrarAtividades') ?>">Atividades</a>
                                     <!--DB atividade_evento -->
-                                    <a class="dropdown-item" href="<?= base_url('caduser') ?>">Usuários</a>
+                                    <a class="dropdown-item" href="<?= base_url('cadastrarUser') ?>">Usuários</a>
                                     <!--DB users -->
                                 </div>
                             </li>
@@ -164,11 +164,11 @@
                                     Alterações
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" href="<?= base_url('alterareventos') ?>">Eventos</a>
+                                    <a class="dropdown-item" href="<?= base_url('alterarEventos') ?>">Eventos</a>
                                     <!--DB eventos -->
-                                    <a class="dropdown-item" href="<?= base_url('excluirativ') ?>">Atividades</a>
+                                    <a class="dropdown-item" href="<?= base_url('alterarAtividades') ?>">Atividades</a>
                                     <!--DB atividade_evento -->
-                                    <a class="dropdown-item" href="<?= base_url('excluiruser') ?>">Usuários</a>
+                                    <a class="dropdown-item" href="<?= base_url('alterarUser') ?>">Usuários</a>
                                     <!--DB users -->
                                 </div>
                             </li>

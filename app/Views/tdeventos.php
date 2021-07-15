@@ -122,7 +122,7 @@ img{
                                     </div>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link active" id="cad" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " href="<?php echo base_url("/eventos/lista") . "/" . $evento['id'] ?>">Atividades</a>
+                                    <a class="nav-link active" id="cad" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " href="<?php echo base_url("/eventos/listaEvento") . "/" . $evento['id'] ?>">Atividades</a>
                                 </li>
                                 <li class="nav-item">
                                     <?php

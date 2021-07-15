@@ -136,7 +136,7 @@
                         <tbody>
                             <?php foreach ($data as $key => $user) {
                                 echo '<tr><td>' . $user['id'] . '</td><td>' . $user['firstname'] . '</td><td>' . $user['lastname'] . '</td><td>' . $user['type'] . '</td>
-                               <td><a href=' . base_url('editaruser') . "/" . $user['id'] . '><i class="fa fa-edit" style="color: blue"></a></i>
+                               <td><a href=' . base_url('editarUser') . "/" . $user['id'] . '><i class="fa fa-edit" style="color: blue"></a></i>
                                <a href=' . base_url('users/deletar') . "/" . $user['id'] . '><i class="fa fa-trash"  style="color: red"></a></i></td></tr>';
                             } ?>
                         </tbody>

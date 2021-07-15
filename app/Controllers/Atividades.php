@@ -55,7 +55,7 @@ class Atividades extends BaseController
     //------------------------------------------------------------------------------
 
 
-    public function cadativ()
+    public function cadastrarAtividades()
     {
         if (!session()->get('isLoggedIn')) {
             return redirect()->to(base_url(''));
@@ -107,7 +107,7 @@ class Atividades extends BaseController
                         $session = session();
                         $session->setFlashdata('success', 'Sua atividade foi cadastrada com sucesso!');
 
-                        return redirect()->to(base_url('excluirativ'));
+                        return redirect()->to(base_url('alterarAtividades'));
                     } else {
                         echo "Erro ao salvar";
                         exit;
@@ -115,7 +115,7 @@ class Atividades extends BaseController
                 }
             }
             echo view('templates/header', $data);
-            echo view('cadativ', $data);
+            echo view('cadastrarAtividades', $data);
             echo view('templates/footer');
         }
     }
@@ -124,7 +124,7 @@ class Atividades extends BaseController
     //--------------------------------------------------------------------
 
 
-    public function editativ()
+    public function editarAtividades()
     {
         if (!session()->get('isLoggedIn')) {
             return redirect()->to(base_url(''));
@@ -138,7 +138,7 @@ class Atividades extends BaseController
             $eventos = $model1->findall();
             
             $data = [
-                'title' => 'Editar evento',
+                'title' => 'Editar atividade',
                 'data' => $eventos,
                 'ativ' =>  $atividades,
             ];
@@ -172,7 +172,7 @@ class Atividades extends BaseController
                         $session = session();
                         $session->setFlashdata('success', 'Sua atividade ');
                         $session->setFlashdata('success', 'Sua atividade' . "  (" . "ID " . $atividades['id'] . " - " . $atividades['titulo'] . ") " .  'foi alterada com sucesso!');
-                        return redirect()->to(base_url('excluirativ'));
+                        return redirect()->to(base_url('alterarAtividades'));
                     } else {
                         echo "Erro ao editar";
                         exit;
@@ -180,7 +180,7 @@ class Atividades extends BaseController
                 }
             }
             echo view('templates/header', $data);
-            echo view('editativ', $atividades);
+            echo view('editarAtividades', $atividades);
             echo view('templates/footer');
         }
     }
@@ -190,7 +190,7 @@ class Atividades extends BaseController
 
 
     // lista todas atividades por ussuario de acordo com o evento cadastrado
-    public function listativ()
+    public function listarAtividades()
     {
         if (!session()->get('isLoggedIn')) {
             return redirect()->to(base_url(''));
@@ -208,7 +208,7 @@ class Atividades extends BaseController
             // var_dump($data);exit;
 
             echo view('templates/header', $data);
-            echo view('listativ');
+            echo view('listarAtividades');
             echo view('templates/footer');
         }
     }
@@ -222,7 +222,7 @@ class Atividades extends BaseController
     //--------------------------------------------------------------------
 
 
-    public function excluirativ() //lista das atividades
+    public function alterarAtividades() //lista das atividades
     {
         if (!session()->get('isLoggedIn')) {
             return redirect()->to(base_url(''));
@@ -231,13 +231,13 @@ class Atividades extends BaseController
 
             $model = new AtividadeModel();
             $data = [
-                'title' => 'Excluir Atividade',
+                'title' => 'Alterar Atividades',
                 'data' => $model->findAll(),
             ];
 
 
             echo view('templates/header', $data);
-            echo view('excluirativ');
+            echo view('alterarAtividades');
             echo view('templates/footer');
         }
     }
@@ -262,7 +262,7 @@ class Atividades extends BaseController
                     $model->delete($ativ_id);
                     $session = session();
                     $session->setFlashdata('success', 'Sua atividade' . "  (" . $result['titulo'] . ") " .  'foi excluida com sucesso!');
-                    return redirect()->to(base_url("excluirativ"));
+                    return redirect()->to(base_url("alterarAtividades"));
                 } else {
                     echo "O usuário" . $result . " não existe";
                 }
@@ -273,7 +273,7 @@ class Atividades extends BaseController
                 } else {
                     $session->setFlashdata('danger', 'Sua atividade' . "  (" . $result['titulo'] . ") " . 'não pode ser excluida!');
                 }
-                return redirect()->to(base_url("excluirativ"));
+                return redirect()->to(base_url("alterarAtividades"));
             }
         }
     }

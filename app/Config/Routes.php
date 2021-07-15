@@ -39,19 +39,19 @@ $routes->match(['get','post'],'/recuperacao/(:any)', 'Users::novasenha/$1');
 $routes->get('logout', 'Users::logout');
 
 $routes->match(['get','post'],'/eventos', 'Eventos::index');
-$routes->match(['get','post'],'/editeventos/(:num)', 'Eventos::editeventos');
-$routes->match(['get','post'],'/listareventos', 'Eventos::listar');
-$routes->match(['get','post'],'/cadevento', 'Eventos::cadeventos');
-$routes->match(['get','post'],'/alterareventos', 'Eventos::alterareventos');
+$routes->match(['get','post'],'/editarEventos/(:num)', 'Eventos::editarEventos');
+$routes->match(['get','post'],'/listarEventosUser', 'Eventos::listarEventosUser');
+$routes->match(['get','post'],'/cadastrarEventos', 'Eventos::cadastrarEventos');
+$routes->match(['get','post'],'/alterarEventos', 'Eventos::alterarEventos');
 
-$routes->match(['get','post'],'/editaruser/(:num)', 'Users::edituser');
-$routes->match(['get','post'],'/caduser', 'Users::caduser');
-$routes->match(['get','post'],'/excluiruser', 'Users::excluiruser');
+$routes->match(['get','post'],'/editarUser/(:num)', 'Users::editarUser');
+$routes->match(['get','post'],'/cadastrarUser', 'Users::cadastrarUser');
+$routes->match(['get','post'],'/alterarUser', 'Users::alterarUser');
 
-$routes->match(['get','post'],'/editativ/(:num)', 'Atividades::editativ');
-$routes->match(['get','post'],'/excluirativ', 'Atividades::excluirativ');
-$routes->match(['get','post'],'/cadativ', 'Atividades::cadativ');
-$routes->match(['get','post'],'/listarativ', 'Atividades::listativ');
+$routes->match(['get','post'],'/editarAtividades/(:num)', 'Atividades::editarAtividades');
+$routes->match(['get','post'],'/alterarAtividades', 'Atividades::alterarAtividades');
+$routes->match(['get','post'],'/cadastrarAtividades', 'Atividades::cadastrarAtividades');
+$routes->match(['get','post'],'/listarAtividades', 'Atividades::listarAtividades');
 $routes->match(['get','post'],'/atividades/(:num)', 'Atividades::index');
 
 $routes->match(['get','post'],'/inscritos', 'Inscritos::index');

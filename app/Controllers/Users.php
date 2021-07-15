@@ -367,7 +367,7 @@ class Users extends BaseController
 
     //--------------------------------------------------------------------
 
-    public function edituser()
+    public function editarUser()
     {
         if (!session()->get('isLoggedIn')) {
             return redirect()->to(base_url(''));
@@ -433,7 +433,7 @@ class Users extends BaseController
             }
 
             echo view('templates/header', $data);
-            echo view('edituser', $result);
+            echo view('editarUser', $result);
             echo view('templates/footer');
         }
     }
@@ -442,7 +442,7 @@ class Users extends BaseController
     //--------------------------------------------------------------------
 
 
-    public function caduser()
+    public function cadastrarUser()
     {
         if (!session()->get('isLoggedIn')) {
             return redirect()->to(base_url(''));
@@ -502,7 +502,7 @@ class Users extends BaseController
                         if ($this->sendEmail($newData)) {
                             $session = session();
                             $session->setFlashdata('success', 'O usuario foi criado com sucesso!');
-                            return redirect()->to(base_url('excluiruser'));
+                            return redirect()->to(base_url('alteraruser'));
                         } else {
                             echo "Erro ao enviar email";
                             exit;
@@ -514,7 +514,7 @@ class Users extends BaseController
                 }
             }
             echo view('templates/header', $data);
-            echo view('caduser', $data);
+            echo view('cadastrarUser', $data);
             echo view('templates/footer');
         }
     }
@@ -522,19 +522,19 @@ class Users extends BaseController
 
 
     //--------------------------------------------------------------------
-    public function excluiruser()
+    public function alterarUser()
     {
         if (!session()->get('isLoggedIn')) {
             return redirect()->to(base_url(''));
         } else {
             $model = new UserModel();
             $data = [
-                'title' => 'Excluir Usuário',
+                'title' => 'Alterar Usuários',
                 'data' => $model->findAll(),
             ];
 
             echo view('templates/header', $data);
-            echo view('excluiruser');
+            echo view('alterarUser');
             echo view('templates/footer');;
         }
     }
@@ -557,7 +557,7 @@ class Users extends BaseController
                     $model->delete($user_id);
                     $session = session();
                     $session->setFlashdata('success', 'O usuário' . "  (" . $result['firstname'] . ")  " . 'foi excluido com sucesso!');
-                    return redirect()->to(base_url("excluiruser"));
+                    return redirect()->to(base_url("alterarUser"));
                 } else {
                     echo "O usuário" . $result . " não pode ser excluido";
                 }
@@ -568,7 +568,7 @@ class Users extends BaseController
                 } else {
                     $session->setFlashdata('danger', 'Seu usuário' . "  (" . $result['firstname'] . ")  " . 'não pode ser excluido!');
                 }
-                return redirect()->to(base_url("excluiruser"));
+                return redirect()->to(base_url("alterarUser"));
             }
         }
     }

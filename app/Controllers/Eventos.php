@@ -71,7 +71,7 @@ class Eventos extends BaseController
 
             $pdf = new PdfController();
             echo $pdf->gerarCertificado();
-            return redirect()->to(base_url('listareventos'));
+            return redirect()->to(base_url('listarEventosUser'));
         }
     }
 
@@ -80,7 +80,7 @@ class Eventos extends BaseController
 
 
     // lista todos eventos por ussuario
-    public function listar()
+    public function listarEventosUser()
     {
         if (!session()->get('isLoggedIn')) {
             return redirect()->to(base_url(''));
@@ -111,7 +111,7 @@ class Eventos extends BaseController
             // var_dump($atividade);exit;
 
             echo view('templates/header', $data);
-            echo view('listeventos');
+            echo view('listarEventosUser');
             echo view('templates/footer');
         }
     }
@@ -124,7 +124,7 @@ class Eventos extends BaseController
 
 
     // lista as atividades do evento selecionado 
-    public function lista($id = null)
+    public function listaEvento($id = null)
     {
         if (!session()->get('isLoggedIn')) {
             return redirect()->to(base_url(''));
@@ -144,7 +144,7 @@ class Eventos extends BaseController
 
 
             echo view('templates/header', $data);
-            echo view('lista');
+            echo view('listaEvento');
             echo view('templates/footer');
         }
     }
@@ -154,7 +154,7 @@ class Eventos extends BaseController
 
 
     // adiciona um eventos
-    public function cadeventos()
+    public function cadastrarEventos()
     {
         if (!session()->get('isLoggedIn')) {
             return redirect()->to(base_url(''));
@@ -210,7 +210,7 @@ class Eventos extends BaseController
             }
 
             echo view('templates/header', $data);
-            echo view('cadevento');
+            echo view('cadastrarEventos');
             echo view('templates/footer');
         }
     }
@@ -237,7 +237,7 @@ class Eventos extends BaseController
 
     // atualiza um eventos
 
-    public function editeventos()
+    public function editarEventos()
     {
         if (!session()->get('isLoggedIn')) {
             return redirect()->to(base_url(''));
@@ -296,7 +296,7 @@ class Eventos extends BaseController
             }
 
             echo view('templates/header', $data);
-            echo view('editeventos', $result);
+            echo view('editarEventos', $result);
             echo view('templates/footer');
         }
     }
@@ -333,11 +333,11 @@ class Eventos extends BaseController
         } else {
             $model = new EventoModel();
             $data = [
-                'title' => 'Excluir evento',
+                'title' => 'Alterar eventos',
                 'data' => $model->findAll(),
             ];
             echo view('templates/header', $data);
-            echo view('excluirevent');
+            echo view('alterareventos');
             echo view('templates/footer');
         }
     }

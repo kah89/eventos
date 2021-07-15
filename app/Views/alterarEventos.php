@@ -85,7 +85,7 @@
                             <tbody>
                                 <?php foreach ($data as $key => $evento) {
                                     echo '<tr><td>' . $evento['id'] . '</td><td>' . $evento['titulo'] . '</td><td>' . $evento['resumo'] . '</td>
-                               <td><a href=' . base_url('editeventos') . "/" . $evento['id'] . '  ><i class="fa fa-edit" style="color: blue"></a></i>
+                               <td><a href=' . base_url('editarEventos') . "/" . $evento['id'] . '  ><i class="fa fa-edit" style="color: blue"></a></i>
                                <a href=' . base_url('eventos/deletar') . "/" . $evento['id'] . '><i class="fa fa-trash"  style="color: red"></a></i></td></tr>';
                                 } ?>
                             </tbody>
