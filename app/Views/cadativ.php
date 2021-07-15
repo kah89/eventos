@@ -133,6 +133,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h2 class="card-title text-center">Cadastro de Atividade</h2>
+                            <?php //var_dump($data); exit;?>
                             <form class="form-signin" method="post" name='form1'>
                                 <div class="form-group">
                                     <div class="form-label-group" required>

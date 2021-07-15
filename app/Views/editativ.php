@@ -80,13 +80,12 @@
                             <div class="form-group">
                                 <div class="form-label-group">
                                     <select id="selectEvent" name="selectEvent" class="form-control" required>
-                                        <!-- <option selected disabled>Eventos</option> -->
+                                        <option selected disabled>Eventos</option>
                                         <?php
-                                        foreach ($data as $key => $evento) {                                            
-                                            if($evento['id'] == $idEvento){
-                                                echo "<option value='" . $evento['id'] ."' selected='selected' >" . $evento['id'] . " - " . $evento['titulo'] . "</option>";
-                                            }
-                                            else{
+                                        foreach ($data as $key => $evento) {
+                                            if ($evento['id'] == $idEvento) {
+                                                echo "<option value='" . $evento['id'] . "' selected='selected' >" . $evento['id'] . " - " . $evento['titulo'] . "</option>";
+                                            } else {
                                                 echo "<option value='" . $evento['id'] .  "'>" . $evento['id'] . " - " . $evento['titulo'] . "</option>";
                                             }
                                         }
@@ -112,7 +111,11 @@
                             <div class="form-group col-sm-6 data" id="inicial">
                                 <div class="form-label-group">
                                     <label for="">Inicial :</label>
-                                    <input type="date" name="datainicial" id="dtAgenda" min="2017-04-01" class="form-control" value="<?php echo date_format(new DateTime($dtInicio), "Y-m-d"); ?>" required />
+                                    <input type="date" name="datainicial" id="dtAgenda" min="<?php  foreach ($data as $key => $evento) { 
+                                        if ($evento['id'] == $idEvento) { echo date_format(new DateTime($evento['dtInicio']), "Y-m-d"); } }?>" 
+                                        max="<?php   foreach ($data as $key => $evento) { if ($evento['id'] == $idEvento) {
+                                             echo date_format(new DateTime($evento['dtFim']), "Y-m-d"); }}?>" class="form-control" 
+                                        value="<?php echo date_format(new DateTime($dtInicio), "Y-m-d"); ?>" required />
                                 </div>
                             </div>
                             <div class="form-group">
@@ -123,22 +126,40 @@
                             <div class="form-group col-sm-6 data1" id="final">
                                 <div class="form-label-group">
                                     <label for="">Final:</label>
-                                    <input type="date" name="datafinal" id="dtAgenda1" min="2017-04-01" value="<?php echo date_format(new DateTime($dtFim), "Y-m-d"); ?>" class="form-control" required />
+                                    <input type="date" name="datafinal" id="dtAgenda1"  min="<?php  foreach ($data as $key => $evento) { 
+                                        if ($evento['id'] == $idEvento) { echo date_format(new DateTime($evento['dtInicio']), "Y-m-d"); } }?>" 
+                                        max="<?php   foreach ($data as $key => $evento) { if ($evento['id'] == $idEvento) {
+                                             echo date_format(new DateTime($evento['dtFim']), "Y-m-d"); }}?>" value="<?php echo date_format(new DateTime($dtFim), "Y-m-d"); ?>" 
+                                             class="form-control" required />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="form-label-group">
-                                    <input type="time" name="hfinal" id="hora2" class="form-control" value="<?php echo date_format(new DateTime($dtFim), "H:i"); ?>" required />
+                                    <input type="time" name="hfinal" id="hora2" class="form-control"  value="<?php echo date_format(new DateTime($dtFim), "H:i"); ?>" required />
 
                                 </div>
                             </div>
                             <div class="form-group col-sm-7">
                                 <div class="form-label-group">
+                             
                                     <select id="certificado" name="certificado" class="form-control">
+                                        <?php
+                                        // $tipo = 1;
+                                        foreach ($ativ as $key => $atividades) {
+                                            $selecionado = $ativ['tipo'] == $idEvento;
+                                            if ($selecionado) {
+                                                $tipo =  $atividades['tipo'];
+                                            }
+                                        }
 
-                                        <option><?php $tipo ?></option>
-                                        <option value="1" id="1">Gera certificado</option>
-                                        <option value="2" id="2">Não gera certificado</option>
+                                        if ($tipo == 1) {
+                                            echo '<option value="1" id="1" selected="selected">Gera certificado</option>';
+                                            echo '<option value="2" id="2">Não gera certificado</option>';
+                                        } else {
+                                            echo '<option value="1" id="1">Gera certificado</option>';
+                                            echo '<option value="2" id="2" selected="selected">Não gera certificado</option>';
+                                        }
+                                        ?>
 
                                     </select>
                                 </div>

@@ -62,12 +62,16 @@ class Atividades extends BaseController
         } else {
 
             helper(['form', 'url']);
-
+            $model1 = new AtividadeModel();
             $model = new EventoModel();
+            $atividades = $model1->findall();
+            $eventos = $model->findall();
             $data = [
                 'title' => 'Cadastrar atividade',
-                'data' => $model->findAll(),
+                'data' =>  $eventos,
+                'atividade' => $atividades,
             ];
+            // var_dump($atividades); exit;
 
 
             if ($this->request->getMethod() == 'post') {
@@ -130,14 +134,15 @@ class Atividades extends BaseController
             $ativ_id = $uri->getSegment(4);
             $model = new AtividadeModel();
             $model1 = new EventoModel();
-            $atividade = $model->find($ativ_id);
+            $atividades = $model->find($ativ_id);
             $eventos = $model1->findall();
-           
+            
             $data = [
                 'title' => 'Editar evento',
                 'data' => $eventos,
+                'ativ' =>  $atividades,
             ];
-          
+            // var_dump( $atividades);exit;
             helper(['form']);
 
             if ($this->request->getMethod() == 'post') {
@@ -166,7 +171,7 @@ class Atividades extends BaseController
                     if ($model->save($newData)) {
                         $session = session();
                         $session->setFlashdata('success', 'Sua atividade ');
-                        $session->setFlashdata('success', 'Sua atividade' . "  (" . "ID " . $atividade['id'] . " - " . $atividade['titulo'] . ") " .  'foi alterada com sucesso!');
+                        $session->setFlashdata('success', 'Sua atividade' . "  (" . "ID " . $atividades['id'] . " - " . $atividades['titulo'] . ") " .  'foi alterada com sucesso!');
                         return redirect()->to(base_url('excluirativ'));
                     } else {
                         echo "Erro ao editar";
@@ -175,7 +180,7 @@ class Atividades extends BaseController
                 }
             }
             echo view('templates/header', $data);
-            echo view('editativ', $atividade);
+            echo view('editativ', $atividades);
             echo view('templates/footer');
         }
     }
