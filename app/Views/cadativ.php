@@ -56,7 +56,7 @@
 
     .eventos,
     #user {
-        margin-left: 300px;
+        margin-left: 150px;
     }
 
     #navbarNav {

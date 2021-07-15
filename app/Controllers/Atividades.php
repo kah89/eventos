@@ -130,17 +130,14 @@ class Atividades extends BaseController
             $ativ_id = $uri->getSegment(4);
             $model = new AtividadeModel();
             $model1 = new EventoModel();
-
-            $result = $model->find($ativ_id);
-
+            $atividade = $model->find($ativ_id);
+            $eventos = $model1->findall();
+           
             $data = [
                 'title' => 'Editar evento',
-                'data' => $model1->findall(),
+                'data' => $eventos,
             ];
-
           
-
-            // var_dump($data); exit;
             helper(['form']);
 
             if ($this->request->getMethod() == 'post') {
@@ -169,7 +166,7 @@ class Atividades extends BaseController
                     if ($model->save($newData)) {
                         $session = session();
                         $session->setFlashdata('success', 'Sua atividade ');
-                        $session->setFlashdata('success', 'Sua atividade' . "  (" . "ID " . $result['id'] . " - " . $result['titulo'] . ") " .  'foi alterada com sucesso!');
+                        $session->setFlashdata('success', 'Sua atividade' . "  (" . "ID " . $atividade['id'] . " - " . $atividade['titulo'] . ") " .  'foi alterada com sucesso!');
                         return redirect()->to(base_url('excluirativ'));
                     } else {
                         echo "Erro ao editar";
@@ -178,7 +175,7 @@ class Atividades extends BaseController
                 }
             }
             echo view('templates/header', $data);
-            echo view('editativ', $result);
+            echo view('editativ', $atividade);
             echo view('templates/footer');
         }
     }

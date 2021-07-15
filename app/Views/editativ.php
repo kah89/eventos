@@ -63,6 +63,7 @@
         font-size: 15px;
     }
 </style>
+
 <main>
     <div class="container">
         <div>
@@ -77,14 +78,17 @@
                         <?php endif; ?>
                         <form class="form-signin" method="post">
                             <div class="form-group">
-                           
                                 <div class="form-label-group">
                                     <select id="selectEvent" name="selectEvent" class="form-control" required>
-                                        <option selected disabled><?php if($data) { echo $titulo ;}?></option>
-                                        
+                                        <!-- <option selected disabled>Eventos</option> -->
                                         <?php
-                                        foreach ($data as $key => $evento) {
-                                            echo "<option value='" . $evento['id'] . "'>" . $evento['id'] . " - " . $evento['titulo'] . "</option>";
+                                        foreach ($data as $key => $evento) {                                            
+                                            if($evento['id'] == $idEvento){
+                                                echo "<option value='" . $evento['id'] ."' selected='selected' >" . $evento['id'] . " - " . $evento['titulo'] . "</option>";
+                                            }
+                                            else{
+                                                echo "<option value='" . $evento['id'] .  "'>" . $evento['id'] . " - " . $evento['titulo'] . "</option>";
+                                            }
                                         }
                                         ?>
                                     </select>
@@ -131,11 +135,11 @@
                             <div class="form-group col-sm-7">
                                 <div class="form-label-group">
                                     <select id="certificado" name="certificado" class="form-control">
-                                   
+
                                         <option><?php $tipo ?></option>
                                         <option value="1" id="1">Gera certificado</option>
                                         <option value="2" id="2">Não gera certificado</option>
-                           
+
                                     </select>
                                 </div>
                             </div>
