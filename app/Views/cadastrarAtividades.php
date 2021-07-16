@@ -133,15 +133,26 @@
                     <div class="card">
                         <div class="card-body">
                             <h2 class="card-title text-center">Cadastro de Atividade</h2>
-                            <?php //var_dump($data); exit;?>
-                            <form class="form-signin" method="post" name='form1'>
+                            <?php
+                            foreach ($data as $key => $evento) {
+                            } ?>
+                            <form class="form-signin" method="get" name='form1'>
                                 <div class="form-group">
                                     <div class="form-label-group" required>
-                                        <select id="selectEvent" name="selectEvent" class="form-control" required>
+                                        <script>
+                                            $("#selectEvent").on("change", function() {
+
+                                                idEventoJs = $("#selectEvent").val();
+                                                alert(idEventoJs);
+                                                $.ajax({});
+
+                                            });
+                                        </script>
+                                        <select id="selectEvent" name="selectEvent" class="form-control" required onchange="atribuir(this)">
                                             <option selected disabled>Eventos</option>
                                             <?php
                                             foreach ($data as $key => $evento) {
-                                                echo "<option value='" . $evento['id'] . "'>" . $evento['id'] . " - " . $evento['titulo'] . "</option>";
+                                                echo "<option value='" . $evento['id'] . "' title='" . $evento['dtInicio'] . "|" . $evento['dtFim'] . "'>" . $evento['id'] . " - " . $evento['titulo'] . "</option>";
                                             }
                                             ?>
                                         </select>
@@ -155,33 +166,48 @@
                                 <div class="form-group">
                                     <div class="form-label-group">
                                         <textarea type="text" name="atividade" id="summernote" class="form-control" placeholder="Atividade" autofocus></textarea>
-                                        <!-- <input  id="summernote" name="atividade"  autofocus >  -->
-
-                                        <!-- <div id="summernote" name="atividade" autofocus>
-                                        <p> Atividade: </p>
-                                    </div> -->
                                     </div>
                                 </div>
                                 <div class="form-group  data" id="inicial">
                                     <div class="form-label-group">
                                         <label for="">Inicial :</label>
-                                        <input type="date" name="datainicial" id="dtAgenda" min="<?php echo date_format(new DateTime($data[0]['dtInicio']), "Y-m-d"); ?>" max="<?php echo date_format(new DateTime($data[0]['dtFim']), "Y-m-d"); ?>" class="form-control" required />
+                                        <input type="date" name="datainicial" id="dtAgenda" min="
+                                <?php foreach ($data as $key => $evento) {
+                                   
+                                    echo date_format(new DateTime($evento['dtInicio']), "Y-m-d");
+                                    
+                                } ?>" max="
+                                <?php foreach ($data as $key => $evento) {
+                                    
+                                    echo date_format(new DateTime($evento['dtFim']), "Y-m-d");
+                                   
+                                } ?>" class="form-control"  required />
                                     </div>
                                 </div>
                                 <div class="form-group ">
                                     <div class="form-label-group">
-                                        <input type="time" name="hinicial" id="hora" class="form-control" required />
+                                        <input type="time" name="hinicial" id="hora" class="form-control" value="<?php echo date_format(new DateTime($evento['dtInicio']), "H:i"); ?>" required />
                                     </div>
                                 </div>
                                 <div class="form-group data1" id="final">
                                     <div class="form-label-group">
                                         <label for="">Final:</label>
-                                        <input type="date" name="datafinal" id="dtAgenda1" min="<?php echo date_format(new DateTime($data[0]['dtInicio']), "Y-m-d"); ?>" max="<?php echo date_format(new DateTime($data[0]['dtFim']), "Y-m-d"); ?>" class="form-control" required />
+                                        <input type="date" name="datafinal" id="dtAgenda1" min="
+                                    <?php foreach ($data as $key => $evento) {
+                                        // if ($evento['id'] == 21) {
+                                        echo date_format(new DateTime($evento['dtInicio']), "Y-m-d");
+                                        // }
+                                    } ?>" max="  
+                                    <?php foreach ($data as $key => $evento) {
+                                        // if ($evento['id'] == 21) {
+                                        echo date_format(new DateTime($evento['dtFim']), "Y-m-d");
+                                        // }
+                                    } ?>"  class="form-control" required />
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="form-label-group">
-                                        <input type="time" name="hfinal" id="hora2" class="form-control" required />
+                                        <input type="time" name="hfinal" id="hora2" class="form-control" value="<?php echo date_format(new DateTime($evento['dtFim']), "H:i"); ?>" required />
 
                                     </div>
                                 </div>
@@ -211,7 +237,6 @@
         </div>
     <?php
     } else {
-        // return redirect()->to(base_url('eventos'));
         echo "<h3>Não tem permissão para acessar essa página!</h3>";
     }
     ?>
@@ -225,5 +250,29 @@
     function myFunction() {
         var x = document.getElementById("myDate").min;
         document.getElementById("demo").innerHTML = x;
+    }
+
+    function atribuir(elem) {
+        var datas = elem.options[elem.selectedIndex].getAttribute("title").split("|");
+        var dtINI = document.getElementById("dtAgenda");
+        var dtFIM = document.getElementById("dtAgenda1");
+        
+        var min = new Date(datas[0]);
+        min = (min.getFullYear() + "-" + adicionaZero(((min.getMonth() + 1))) + "-" + adicionaZero((min.getDate())));
+
+        var max = new Date(datas[1]);
+        max = (max.getFullYear() + "-" + adicionaZero(((max.getMonth() + 1))) + "-" + adicionaZero((max.getDate())));
+
+        dtINI.setAttribute("min", min);
+        dtINI.setAttribute("max", max);
+        dtFIM.setAttribute("min", min);
+        dtFIM.setAttribute("max", max);
+    }
+
+    function adicionaZero(numero) {
+        if (numero <= 9)
+            return "0" + numero;
+        else
+            return numero;
     }
 </script>
