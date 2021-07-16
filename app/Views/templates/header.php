@@ -136,7 +136,7 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="<?= base_url('listarEventosUser') ?>">Eventos</a>
                                 <!--DB eventos -->
-                                <a class="dropdown-item" href="<?= base_url('listarAtividadesalterarUser') ?>">Atividades</a>
+                                <a class="dropdown-item" href="<?= base_url('listarAtividades') ?>">Atividades</a>
                                 <!--DB atividade_evento -->
                             </div>
                         </li>

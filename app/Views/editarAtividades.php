@@ -114,7 +114,7 @@
                                     <input type="date" name="datainicial" id="dtAgenda" min="<?php  foreach ($data as $key => $evento) { 
                                         if ($evento['id'] == $idEvento) { echo date_format(new DateTime($evento['dtInicio']), "Y-m-d"); } }?>" 
                                         max="<?php   foreach ($data as $key => $evento) { if ($evento['id'] == $idEvento) {
-                                             echo date_format(new DateTime($evento['dtFim']), "Y-m-d"); }}?>" class="form-control" 
+                                        echo date_format(new DateTime($evento['dtFim']), "Y-m-d"); }}?>" class="form-control" 
                                         value="<?php echo date_format(new DateTime($dtInicio), "Y-m-d"); ?>" required />
                                 </div>
                             </div>
@@ -129,8 +129,8 @@
                                     <input type="date" name="datafinal" id="dtAgenda1"  min="<?php  foreach ($data as $key => $evento) { 
                                         if ($evento['id'] == $idEvento) { echo date_format(new DateTime($evento['dtInicio']), "Y-m-d"); } }?>" 
                                         max="<?php   foreach ($data as $key => $evento) { if ($evento['id'] == $idEvento) {
-                                             echo date_format(new DateTime($evento['dtFim']), "Y-m-d"); }}?>" value="<?php echo date_format(new DateTime($dtFim), "Y-m-d"); ?>" 
-                                             class="form-control" required />
+                                        echo date_format(new DateTime($evento['dtFim']), "Y-m-d"); }}?>"  class="form-control"
+                                        value="<?php echo date_format(new DateTime($dtFim), "Y-m-d"); ?>" required />
                                 </div>
                             </div>
                             <div class="form-group">

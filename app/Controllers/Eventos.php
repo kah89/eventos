@@ -366,7 +366,7 @@ class Eventos extends BaseController
                     $model->delete($product_id);
                     $session = session();
                     $session->setFlashdata('success', 'Seu evento' . " (" . $result['titulo'] . ") " .  ' foi excluido com sucesso!');
-                    return redirect()->to(base_url("alterareventos"));
+                    return redirect()->to(base_url("alterarEventos"));
                 } else {
                     echo "Não foi possivel excluir, verifique permissões!";
                 }

@@ -72,6 +72,19 @@
         text-align: center;
         color: red;
     }
+
+    #selectEvent {
+        width: 900px;
+    }
+
+    #value {
+        width: 150px;
+        text-align: center;
+        float: right;
+        margin-top: -34px;
+        /* display: none; */
+    }
+
 </style>
 
 <script language='Javascript'>
@@ -133,20 +146,25 @@
                     <div class="card">
                         <div class="card-body">
                             <h2 class="card-title text-center">Cadastro de Atividade</h2>
-                            <?php //var_dump($data); exit;?>
+                            <?php //var_dump($data); exit;
+                            ?>
                             <form class="form-signin" method="post" name='form1'>
                                 <div class="form-group">
+                                <p id="resultado"></p>
                                     <div class="form-label-group" required>
-                                        <select id="selectEvent" name="selectEvent" class="form-control" required>
+                                        <select id="selectEvent" name="selectEvent" class="form-control" onChange="update()" required>
                                             <option selected disabled>Eventos</option>
                                             <?php
                                             foreach ($data as $key => $evento) {
-                                                echo "<option value='" . $evento['id'] . "'>" . $evento['id'] . " - " . $evento['titulo'] . "</option>";
+                                                echo "<option value='" . $evento['id'] . "'>" .$evento['id'] . " - " . $evento['titulo'] . "</option>";
                                             }
                                             ?>
                                         </select>
+                                        <input type="text" id="value" name="value" class="form-control" disabled>
                                     </div>
                                 </div>
+                               
+
                                 <div class="form-group">
                                     <div class="form-label-group">
                                         <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Titulo" maxlength="60" minilength="3" required autofocus>
@@ -155,17 +173,13 @@
                                 <div class="form-group">
                                     <div class="form-label-group">
                                         <textarea type="text" name="atividade" id="summernote" class="form-control" placeholder="Atividade" autofocus></textarea>
-                                        <!-- <input  id="summernote" name="atividade"  autofocus >  -->
-
-                                        <!-- <div id="summernote" name="atividade" autofocus>
-                                        <p> Atividade: </p>
-                                    </div> -->
                                     </div>
                                 </div>
                                 <div class="form-group  data" id="inicial">
                                     <div class="form-label-group">
                                         <label for="">Inicial :</label>
                                         <input type="date" name="datainicial" id="dtAgenda" min="<?php echo date_format(new DateTime($data[0]['dtInicio']), "Y-m-d"); ?>" max="<?php echo date_format(new DateTime($data[0]['dtFim']), "Y-m-d"); ?>" class="form-control" required />
+                                                                                                                                          
                                     </div>
                                 </div>
                                 <div class="form-group ">
@@ -226,4 +240,17 @@
         var x = document.getElementById("myDate").min;
         document.getElementById("demo").innerHTML = x;
     }
+
+    function update() {
+        var select = document.getElementById('selectEvent');
+        var option = select.options[select.selectedIndex];
+
+        document.getElementById('value').value = option.value;
+        // document.getElementById('text').value = option.text;
+    }
+    update();
+
+    
+
+ 
 </script>
