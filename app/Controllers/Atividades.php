@@ -101,7 +101,6 @@ class Atividades extends BaseController
 
                     $newData['atividade'] = htmlspecialchars($newData['atividade'], ENT_QUOTES, 'UTF-8');
 
-
                     //var_dump($newData);exit;
                     if ($model->save($newData)) {
                         $session = session();

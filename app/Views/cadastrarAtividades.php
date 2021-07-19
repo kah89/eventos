@@ -74,37 +74,6 @@
     }
 </style>
 
-<script language='Javascript'>
-    var today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth() + 1; //Janeiro é 0, então somamos + 1 para trabalhar com calendário conhecido
-    var yyyy = today.getFullYear();
-    // Data de hoje mais 5 dias
-    dd = dd + 5;
-    //se for maior que dia 30 vai para o proximo mês
-    if (dd > 30) {
-        dd = dd - 30;
-        mm = mm + 1;
-    }
-    //se for maior que 12 vai para o proximo ano
-    if (mm > 12) {
-        mm = 1;
-        yyyy = yyyy + 1;
-    }
-    // Se for menor que 10 formatamos com um zero na frente Ex: de 9 para 09
-    if (dd < 10) {
-        dd = '0' + dd;
-    }
-    // Se for menor que 10 formatamos com um zero na frente Ex: de 9 para 09
-    if (mm < 10) {
-        mm = '0' + mm;
-    }
-    today = yyyy + '-' + mm + '-' + dd;
-    document.getElementsByClassName("dtAgenda").setAttribute("min", today);
-    today = dd + '/' + mm + '/' + yyyy;
-    var div = document.getElementById("divDtFutura");
-    div.innerText = today;
-</script>
 <main>
     <?php
     if (
@@ -136,7 +105,7 @@
                             <?php
                             foreach ($data as $key => $evento) {
                             } ?>
-                            <form class="form-signin" method="get" name='form1'>
+                            <form class="form-signin" name='form1' method="POST">
                                 <div class="form-group">
                                     <div class="form-label-group" required>
                                         <script>
@@ -165,13 +134,13 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="form-label-group">
-                                        <textarea type="text" name="atividade" id="summernote" class="form-control" placeholder="Atividade" autofocus></textarea>
+                                        <textarea type="text" name="atividade" id="summernote" class="form-control" placeholder="Atividade" autofocus required></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group  data" id="inicial">
                                     <div class="form-label-group">
                                         <label for="">Inicial :</label>
-                                        <input type="date" name="datainicial" id="dtAgenda" min="
+                                        <input  type="date" name="datainicial" id="dtAgenda" min="
                                 <?php foreach ($data as $key => $evento) {
                                    
                                     echo date_format(new DateTime($evento['dtInicio']), "Y-m-d");
@@ -186,7 +155,7 @@
                                 </div>
                                 <div class="form-group ">
                                     <div class="form-label-group">
-                                        <input type="time" name="hinicial" id="hora" class="form-control" value="<?php echo date_format(new DateTime($evento['dtInicio']), "H:i"); ?>" required />
+                                        <input  type="time" name="hinicial" id="hora" class="form-control" value="<?php echo date_format(new DateTime($evento['dtInicio']), "H:i"); ?>" required />
                                     </div>
                                 </div>
                                 <div class="form-group data1" id="final">
@@ -212,8 +181,8 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <div class="form-label-group">
-                                        <select id="certificado" name="certificado" class="form-control">
+                                    <div class="form-label-group" required>
+                                        <select id="certificado" name="certificado" class="form-control" >
                                             <option selected disabled>Certificado</option>
                                             <option value="1">Gera certificado</option>
                                             <option value="2">Não gera certificado</option>
@@ -247,10 +216,7 @@
     });
 
 
-    function myFunction() {
-        var x = document.getElementById("myDate").min;
-        document.getElementById("demo").innerHTML = x;
-    }
+    
 
     function atribuir(elem) {
         var datas = elem.options[elem.selectedIndex].getAttribute("title").split("|");

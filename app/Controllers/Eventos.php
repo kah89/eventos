@@ -5,7 +5,7 @@ namespace App\Controllers;
 use App\Models\AtividadeModel;
 use CodeIgniter\API\ResponseTrait;
 use App\Models\EventoModel;
-
+use Exception;
 
 class Eventos extends BaseController
 {
@@ -373,6 +373,9 @@ class Eventos extends BaseController
             } else {
                 echo "O arquivo" . $filePath . " não existe";
             }
+
+
+            
         }
     }
 }

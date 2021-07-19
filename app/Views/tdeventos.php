@@ -126,15 +126,18 @@ img{
                                 </li>
                                 <li class="nav-item">
                                     <?php
-                                    if (date($evento['dtFim']) > date("Y-m-d H:i:s")) {
+                                    if (Date($evento['dtFim']) >  date("Y-m-d H:i:s")) {
                                         echo '<button class="btn btn-primary cad" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " href="#" data-toggle="modal" data-target="#inscrevaModal" id="Btn" onclick="preenchermodal(' . $evento['id'] . ');">Inscreva-se</button>';
                                     } else {
                                         echo '<button class="btn btn-primary cad1" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " disabled>Inscreva-se</button>';
                                     }
-
                                     ?>
                                 </li>
                             </ul>
+                            <?php 
+                            echo $evento['dtFim'];
+                            echo date("Y-m-d H:i:s");
+                            ?>
                         </div>
                     </div>
 
@@ -160,6 +163,7 @@ img{
                         </div>
                     </div>
                 </div>
+
             </div>
 
             <?php
@@ -182,6 +186,5 @@ img{
             //         document.getElementById("vizualizar").href = link + $id;
             // }
         </script>
-
     </div>
 </main>
