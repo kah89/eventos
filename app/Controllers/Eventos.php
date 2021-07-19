@@ -68,10 +68,9 @@ class Eventos extends BaseController
             $session = session();
             $session->setFlashdata('success', $msg);
 
-
             $pdf = new PdfController();
             echo $pdf->gerarCertificado();
-            return redirect()->to(base_url('eventos'));
+            return redirect()->to(base_url('listarEventosUser'));
         }
     }
 
@@ -355,6 +354,8 @@ class Eventos extends BaseController
             $product_id = $uri->getSegment(5); //verifica em qual campo esta o ID
             $model = new EventoModel();
             $result = $model->find($product_id);
+            
+            try {
             if ($result["imagem"]) { //verifica se tem uma imagem cadatrastrada junto com esse ID e se não houver img não acontece nada
                 $filePath = "./public/img/" . $result["imagem"];
             } else {
@@ -365,7 +366,7 @@ class Eventos extends BaseController
                 if (unlink($filePath)) {
                     $model->delete($product_id);
                     $session = session();
-                    $session->setFlashdata('success', 'Seu evento' . " (" . $result['titulo'] . ") " .  ' foi excluido com sucesso!');
+                    $session->setFlashdata('success', 'Seu evento' . " (" . $result['titulo'] . ") " .  ' foi excluído com sucesso!');
                     return redirect()->to(base_url("alterarEventos"));
                 } else {
                     echo "Não foi possivel excluir, verifique permissões!";
@@ -374,7 +375,15 @@ class Eventos extends BaseController
                 echo "O arquivo" . $filePath . " não existe";
             }
 
-
+        } catch (Exception $e){
+            $session = session();
+            if ($e->getCode() == 1451) {
+                $session->setFlashdata('danger', 'Seu evento' . "  (" . $result['titulo'] . ") " . 'não pode ser excluído, pois possui vinculos no sistema!');
+            } else {
+                $session->setFlashdata('danger', 'Seu evento' . "  (" . $result['titulo'] . ") " . 'não pode ser excluído!');
+            }
+            return redirect()->to(base_url("alterarEventos"));
+        }
             
         }
     }

@@ -268,7 +268,7 @@ class Atividades extends BaseController
                     $session->setFlashdata('success', 'Sua atividade' . "  (" . $result['titulo'] . ") " .  'foi excluida com sucesso!');
                     return redirect()->to(base_url("alterarAtividades"));
                 } else {
-                    echo "O usuário" . $result . " não existe";
+                    echo "A atividade" . $result . " não existe";
                 }
             } catch (Exception $e) {
                 $session = session();

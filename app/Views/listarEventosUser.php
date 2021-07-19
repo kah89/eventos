@@ -7,11 +7,11 @@
 
     h3 {
         margin-top: 50px;
-      text-align: center;
-      color: red;
+        text-align: center;
+        color: red;
     }
 
-    #certificadoModalNC{
+    #certificadoModalNC {
         color: red;
     }
 
@@ -53,14 +53,13 @@
     }
 
     #p {
-  /* max-width: 90ch; */
-  /* width: 20em;  */
-  max-width: 700px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
+        /* max-width: 90ch; */
+        /* width: 20em;  */
+        max-width: 700px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
 </style>
 <main>
     <div class="container bg-white" style="padding-bottom: 10em;">
@@ -73,7 +72,7 @@
                     </div>
                 <?php endif; ?>
                 <?php if (count($data) > 0) { ?>
-                   
+
                     <table class="table table-hover " id="atividades">
                         <thead>
                             <tr>
@@ -85,85 +84,85 @@
                         </thead>
                         <tbody>
                             <?php foreach ($data as $key => $evento) {
-                                
+
                                 $htm = '<tr><td>' . $evento['id'] . '</td><td>' . $evento['titulo'] . '</td><td id="p">' . $evento['resumo'] . '</td>                           
                               <td><a class="btn btn-primary" id="cad" href=' . base_url('/atividades/verificarConclusao') . "/" . $evento['id'] . ' data-toggle="modal"';
-                              
-                              if($evento['certificado']== 'true'){
-                                $htm .= 'data-target="#certificadoModal"'; 
-                              }else{
-                                $htm .= 'data-target="#certificadoModalNC"'; 
-                              }
-                              $htm .= 'onclick="setarCampos(' . $evento['id'] . ');" role="button">Gerar</a></td></tr>';
-                              echo ($htm);
+
+                                if ($evento['certificado'] == 'true') {
+                                    $htm .= 'data-target="#certificadoModal"';
+                                } else {
+                                    $htm .= 'data-target="#certificadoModalNC"';
+                                }
+                                $htm .= 'onclick="setarCampos(' . $evento['id'] . ');" role="button">Gerar</a></td></tr>';
+                                echo ($htm);
                             }
                             ?>
 
                         </tbody>
                     </table>
-               
 
-                <?php
-                if ($result = "true") {
-                ?>
-                    <!-- Modal vizualização do pré-certificado -->
-                    <div class="modal fade " data-backdrop="static" id="certificadoModal" tabindex="-1" role="dialog" aria-labelledby="certificadoModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered " role="document">
+
+                    <?php
+                    if ($result = "true") {
+                    ?>
+                        <!-- Modal vizualização do pré-certificado -->
+                        <div class="modal fade " data-backdrop="static" id="certificadoModal" tabindex="-1" role="dialog" aria-labelledby="certificadoModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered " role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="certificadoModalLabel" style="text-align: center;">Olá <?= session()->get('firstname') ?>, bem-vindo(a)! </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- <h5>Seu certificado do evento já está disponível.</h5>
+                                <p> Para <a href="#" role="button" class="btn btn-secondary popover-test" title="Popover title" data-content="Popover body content is set in this attribute.">Vizualizar</a> seu.</p>
+                                <hr> -->
+
+                                        <p style="text-align: justify;"> Se os dados estiverem corretos, basta somente emitir. Caso precise editar volte e vá no editar do seu usuário.</p>
+
+                                        <a href="#" target="_blank" id="vizualizar">vizualização do certificado</a>
+
+                                        <!-- <p style="text-align: justify;"><strong>lembrando que após a emissão não pode ser alterados os dados!</strong></p> -->
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Declaro para os devidos fins que participei desse evento e estou ciente que não poderei alterar os dados após ser feita emissão.
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" id="cad" data-dismiss="modal">Fechar</button>
+                                        <a href="#" class="btn btn-primary emitir disabled" id="btnEmitir" onclick="fecharModal()">Emita aqui seu certificado!</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    <?php
+                    }
+                    ?>
+
+                    <!-- Modal não concluiu todas as atividades -->
+                    <div class="modal fade" data-backdrop="static" id="certificadoModalNC" tabindex="-1" role="dialog" aria-labelledby="certificadoModalNC" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="certificadoModalLabel" style="text-align: center;">Olá <?= session()->get('firstname') ?>, bem-vindo(a)! </h5>
+                                    <h5 class="modal-title" id="certificadoModalNC" style="text-align: center;">Olá <?= session()->get('firstname') ?>, </h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <!-- <h5>Seu certificado do evento já está disponível.</h5>
-                                <p> Para <a href="#" role="button" class="btn btn-secondary popover-test" title="Popover title" data-content="Popover body content is set in this attribute.">Vizualizar</a> seu.</p>
-                                <hr> -->
-
-                                    <p style="text-align: justify;"> Se os dados estiverem corretos, basta somente emitir. Caso precise editar volte e vá no editar do seu usuário.</p>
-
-                                    <a href="#" target="_blank" id="vizualizar">vizualização do certificado</a>
-
-                                    <!-- <p style="text-align: justify;"><strong>lembrando que após a emissão não pode ser alterados os dados!</strong></p> -->
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                            Declaro para os devidos fins que participei desse evento e estou ciente que não poderei alterar os dados após ser feita emissão.
-                                        </label>
-                                    </div>
+                                    <p style="text-align: justify;"> Infelizmente não é possivel gerar certificado para esse evento, pois o mesmo não concluiu todas as atividade</p>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" id="cad" data-dismiss="modal">Fechar</button>
-                                    <a href="#" class="btn btn-primary emitir disabled" id="btnEmitir">Emita aqui seu certificado!</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                <?php
-                }
-                ?>
-
-                <!-- Modal não concluiu todas as atividades -->
-                <div class="modal fade" data-backdrop="static" id="certificadoModalNC" tabindex="-1" role="dialog" aria-labelledby="certificadoModalNC" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="certificadoModalNC" style="text-align: center;">Olá <?= session()->get('firstname') ?>, </h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <p style="text-align: justify;"> Infelizmente não é possivel gerar certificado para esse evento, pois o mesmo não concluiu todas as atividade</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" id="cad" data-dismiss="modal">Fechar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
             </div>
             <script>
@@ -180,7 +179,7 @@
 
 
                 //-----------------------------------------------------------------------------
-
+                
 
                 //-----------------------------------------------------------------------------
 
@@ -191,14 +190,13 @@
                     document.getElementById("btnEmitir").href = link + $id;
                 }
             </script>
-            </script>
         </div>
-        <?php
+    <?php
 
-} else {
-    echo "<h3>Não esta cadastrado em nenhum evento!</h3>";
-}
+                } else {
+                    echo "<h3>Não esta cadastrado em nenhum evento!</h3>";
+                }
 
-?>
+    ?>
     </div>
 </main>

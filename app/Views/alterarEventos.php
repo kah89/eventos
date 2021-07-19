@@ -65,11 +65,16 @@
             <div class="row">
                 <div class="col-12" id="divConteudo">
                     <h2 style="text-align: center; font-size:30px">Eventos</h2>
-                    <?php if (session()->get('success')) : ?>
+                    <?php if (session()->get('success')) { ?>
                         <div class="alert alert-success" role="alert">
                             <?= session()->get('success'); ?>
                         </div>
-                    <?php endif; ?>
+                    <?php } elseif (session()->get('danger')) { ?>
+                        <div class="alert alert-danger" role="alert">
+                            <?= session()->get('danger'); ?>
+                        </div>
+
+                    <?php } ?>
                     <?php if (count($data) > 0) { ?>
                         <table class="table table-hover" id="tabela">
                             <thead>

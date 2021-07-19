@@ -102,6 +102,7 @@
             <section>
                 <p>Certificamos que <strong><?php echo $_SESSION['firstname'] . " "; ?><?php echo $_SESSION['lastname']; ?></strong></p>
                 <p>Participou do: <strong><?php echo $data['titulo']; ?></strong></p>
+                <p class="p">Com carga horária de <strong>
                 <?php echo $horas['horas']?> Horas e <?php echo $minutos['minutos'];?> minutos</strong>.</p>
 
                 <p class="data">Realizado nos dias <?php echo date_format(new DateTime($data['dtInicio']), "d/m"); ?> a <?php echo date_format(new DateTime($data['dtFim']), "d/m"); ?> de <?php echo date_format(new DateTime($data['dtFim']), "Y"); ?> em São Paulo - SP.</p>
