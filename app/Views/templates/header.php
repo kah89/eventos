@@ -182,7 +182,7 @@
                                 <?php echo $_SESSION['firstname']; ?>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="<?php echo base_url('editaruser') . '/' . $_SESSION['id'] ?>">Editar</a>
+                                <a class="dropdown-item" href="<?php echo base_url('editarUser') . '/' . $_SESSION['id'] ?>">Editar</a>
                                 <a class="dropdown-item" href="<?= base_url('logout') ?>">Sair</a>
                             </div>
                     </ul>

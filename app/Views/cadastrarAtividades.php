@@ -155,7 +155,7 @@
                                 </div>
                                 <div class="form-group ">
                                     <div class="form-label-group">
-                                        <input  type="time" name="hinicial" id="hora" class="form-control" value="<?php echo date_format(new DateTime($evento['dtInicio']), "H:i"); ?>" required />
+                                        <input  type="time" name="hinicial" id="hora" class="form-control"" required />
                                     </div>
                                 </div>
                                 <div class="form-group data1" id="final">
@@ -176,7 +176,7 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="form-label-group">
-                                        <input type="time" name="hfinal" id="hora2" class="form-control" value="<?php echo date_format(new DateTime($evento['dtFim']), "H:i"); ?>" required />
+                                        <input type="time" name="hfinal" id="hora2" class="form-control"  required />
 
                                     </div>
                                 </div>

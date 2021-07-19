@@ -412,6 +412,8 @@ class Users extends BaseController
                     //salva no BD
                     $newData = [
                         'id' => $usuario_id, //sem esse campo não sabe qual ID deve alterar e acaba fazendo um insert
+                        'firstname' => $this->request->getVar('nome'),
+                        'lastname' => $this->request->getVar('sobrenome'),
                         'email' => $this->request->getVar('email'),
                         'pais' => $this->request->getVar('paises'),
                         'estado' => $this->request->getVar('estados'),

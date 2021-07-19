@@ -71,7 +71,7 @@ class Eventos extends BaseController
 
             $pdf = new PdfController();
             echo $pdf->gerarCertificado();
-            return redirect()->to(base_url('listarEventosUser'));
+            return redirect()->to(base_url('eventos'));
         }
     }
 

@@ -135,7 +135,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" id="cad" data-dismiss="modal">Fechar</button>
-                                    <a href="" class="btn btn-primary emitir disabled" id="btnEmitir">Emita aqui seu certificado!</a>
+                                    <a href="#" class="btn btn-primary emitir disabled" id="btnEmitir">Emita aqui seu certificado!</a>
                                 </div>
                             </div>
                         </div>
@@ -189,9 +189,6 @@
                     document.getElementById("vizualizar").href = link + $id;
                     var link = '<?php echo (base_url("/eventos/gerarCertificado") . "/");  ?>';
                     document.getElementById("btnEmitir").href = link + $id;
-
-                 
-
                 }
             </script>
             </script>
