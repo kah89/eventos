@@ -12,7 +12,8 @@ class Atividades extends BaseController
 
     use ResponseTrait;
 
-
+// Carrega a pagina de uma atividade cadastrada 
+// NECESSARIO ESTAR CADASTRADO EM UM EVENTO QUE TENHA UMA ATIVIDADE
     public function index()
     {
         if (!session()->get('isLoggedIn')) {
@@ -35,6 +36,9 @@ class Atividades extends BaseController
     }
     //------------------------------------------------------------------------------
 
+
+    // Inscreve em uma Atividade de um Evento
+    // NECESSARIO ESTAR CADASTRADO EM UM EVENTO
     public function inscreverAtividade()
     {
         if (!session()->get('isLoggedIn')) {
@@ -54,9 +58,10 @@ class Atividades extends BaseController
 
     //------------------------------------------------------------------------------
 
-
+// Cadastra a atividade para um evento
     public function cadastrarAtividades()
     {
+        // Verifica de o usuario está logado * Presente em todas as funções
         if (!session()->get('isLoggedIn')) {
             return redirect()->to(base_url(''));
         } else {
@@ -71,7 +76,7 @@ class Atividades extends BaseController
                 'data' =>  $eventos,
                 'atividade' => $atividades,
             ];
-            // var_dump($atividades); exit;
+            
 
 
             if ($this->request->getMethod() == 'post') {
@@ -101,7 +106,7 @@ class Atividades extends BaseController
 
                     $newData['atividade'] = htmlspecialchars($newData['atividade'], ENT_QUOTES, 'UTF-8');
 
-                    //var_dump($newData);exit;
+                    
                     if ($model->save($newData)) {
                         $session = session();
                         $session->setFlashdata('success', 'Sua atividade foi cadastrada com sucesso!');
@@ -122,7 +127,7 @@ class Atividades extends BaseController
 
     //--------------------------------------------------------------------
 
-
+// Edita uma atividade de um evento
     public function editarAtividades()
     {
         if (!session()->get('isLoggedIn')) {
@@ -141,7 +146,7 @@ class Atividades extends BaseController
                 'data' => $eventos,
                 'ativ' =>  $atividades,
             ];
-            // var_dump( $atividades);exit;
+            
             helper(['form']);
 
             if ($this->request->getMethod() == 'post') {
@@ -155,7 +160,7 @@ class Atividades extends BaseController
                 if (!$this->validate($rules)) {
                     $data['validation'] = $this->validator;
                 } else {
-                    //salva no BD
+                    //Atualiza no BD
                     $newData = [
                         'id' => $ativ_id, //sem esse campo não sabe qual ID deve alterar e acaba fazendo um insert
                         'titulo' => $this->request->getVar('titulo'),
@@ -188,7 +193,7 @@ class Atividades extends BaseController
     //--------------------------------------------------------------------
 
 
-    // lista todas atividades por ussuario de acordo com o evento cadastrado
+    // Lista todas as atividades de todos os eventos que o usuário está cadastrado 
     public function listarAtividades()
     {
         if (!session()->get('isLoggedIn')) {

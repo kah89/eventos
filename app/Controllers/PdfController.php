@@ -27,12 +27,15 @@ class PdfController extends Controller
             $newmodel = new AtividadeModel();
             
             $horasTotalEvento = $newmodel->horasEvento($evento_id);
-            
+
+           // var_dump($horasTotalEvento);exit;
             
                 $data = [
                     'title' => 'Certificado',
                     'data' => $model->find($evento_id),
-                    'horas' => $horasTotalEvento
+                    'horas' => $horasTotalEvento,
+                    'minutos' => $horasTotalEvento
+
                 ];
 
                 //var_dump($data);exit;
