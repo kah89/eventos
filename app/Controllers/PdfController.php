@@ -37,8 +37,8 @@ class PdfController extends Controller
                     'minutos' => $horasTotalEvento
 
                 ];
-
-                //var_dump($data);exit;
+        
+                // var_dump($data['user']);exit;
                 
                 echo view('certificadoVizualizacao', $data);
             
@@ -74,10 +74,10 @@ class PdfController extends Controller
             $evento_id = $uri->getSegment(5);
             // var_dump($evento_id);exit;
             $model = new EventoModel();
-            // $atividades = new AtividadeModel();
             $newmodel = new AtividadeModel();
 
             $horasTotalEvento = $newmodel->horasEvento($evento_id);
+
             if ( $model) {
                 $data = [
                     'title' => 'Certificado',
@@ -85,8 +85,8 @@ class PdfController extends Controller
                     'horas' => $horasTotalEvento,
                     'minutos' => $horasTotalEvento
                 ];
-                
 
+                
                 $html = view('certificado', $data);
                 $options = new Options();
                 $options->set('isHtml5ParserEnabled', true);
@@ -103,6 +103,7 @@ class PdfController extends Controller
                 exit;
             } else {
                 return redirect()->to(base_url(''));
+                exit;
             }
         }
     }

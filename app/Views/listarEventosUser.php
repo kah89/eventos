@@ -116,9 +116,6 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <!-- <h5>Seu certificado do evento já está disponível.</h5>
-                                <p> Para <a href="#" role="button" class="btn btn-secondary popover-test" title="Popover title" data-content="Popover body content is set in this attribute.">Vizualizar</a> seu.</p>
-                                <hr> -->
 
                                         <p style="text-align: justify;"> Se os dados estiverem corretos, basta somente emitir. Caso precise editar volte e vá no editar do seu usuário.</p>
 
@@ -133,8 +130,8 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" id="cad" data-dismiss="modal">Fechar</button>
-                                        <a href="#" class="btn btn-primary emitir disabled" id="btnEmitir" onclick="fecharModal()">Emita aqui seu certificado!</a>
+                                        <button href='#' type="button" class="btn btn-secondary" id="cad" data-dismiss="modal"  onclick="document.location.reload(true)">Fechar</button>:
+                                        <a href="#" class="btn btn-primary emitir disabled" id="btnEmitir">Emita aqui seu certificado!</a>
                                     </div>
                                 </div>
                             </div>
@@ -179,16 +176,14 @@
 
 
                 //-----------------------------------------------------------------------------
-                
-
-                //-----------------------------------------------------------------------------
-
                 function setarCampos($id) {
                     var link = '<?php echo (base_url("/certificadoVizualizacao") . "/");  ?>';
                     document.getElementById("vizualizar").href = link + $id;
                     var link = '<?php echo (base_url("/eventos/gerarCertificado") . "/");  ?>';
                     document.getElementById("btnEmitir").href = link + $id;
                 }
+                //-----------------------------------------------------------------------------
+              
             </script>
         </div>
     <?php

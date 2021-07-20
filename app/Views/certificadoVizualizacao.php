@@ -100,7 +100,6 @@
 <body>
 <article id="conteudo-certificado"  >
     <?php if (count($data) > 0) {
-            // var_dump($data);exit;
         ?>
             <section >
                 <p class="p">Certificamos que <strong><?php echo $_SESSION['firstname'] . " "; ?><?php echo $_SESSION['lastname']; ?></strong></p>

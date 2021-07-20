@@ -67,6 +67,7 @@ class Users extends BaseController
 
     private function setUserSession($user)
     {
+        $model =  new UserModel();
         $data = [
             'id' => $user['id'],
             'firstname' => $user['firstname'],
@@ -74,12 +75,14 @@ class Users extends BaseController
             'email' => $user['email'],
             'type' => $user['type'],
             'isLoggedIn' => true,
+            'data' => $model->findAll(),
         ];
 
         session()->set($data);
 
-        // session()->set($data['type']==0);
+        
 
+        // session()->set($data);
         // if (!session()->get('isLoggedIn')) {
         //     return redirect()->to(base_url(''));
         // } else {}
@@ -431,7 +434,7 @@ class Users extends BaseController
 
                     if ($model->save($newData)) {
                         $session = session();
-                        $session->setFlashdata('success', 'O usuário' . " (" . "ID" . $result['id'] . " - " . $result['firstname'] . ") " .  'foi alterado com sucesso!');
+                        $session->setFlashdata('success', 'O usuário' . " ("  . $result['firstname'] . ") " .  'foi alterado com sucesso!');
                         return redirect()->to(base_url('eventos'));
                     } else {
                         echo "Erro ao salvar";

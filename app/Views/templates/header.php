@@ -8,9 +8,9 @@
     <meta name="theme-color" content="#0a346d">
     <meta name="apple-mobile-web-app-status-bar-style" content="#0a346d">
     <meta name="msapplication-navbutton-color" content="#0a346d">
-    
+
     <!-- Bootstrap CSS -->
-    
+
     <link rel="icon" href="<?= base_url() ?>/public/favicon.ico" type="image/ico">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -24,7 +24,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    
+
     <title><?php echo $title ?></title>
     <style>
         .bg-custom {
@@ -107,7 +107,7 @@
     </script>
 </head>
 
-<body class="d-flex flex-column min-vh-100">   
+<body class="d-flex flex-column min-vh-100">
     <?php $uri = service('uri'); ?>
     <?php if (session()->get('isLoggedIn')) : ?>
         <nav class="navbar navbar-expand-lg navbar-dark bg-info bg-custom" role="navigation">
@@ -140,7 +140,7 @@
                                 <!--DB atividade_evento -->
                             </div>
                         </li>
-                        <?php                       
+                        <?php
                         if (
                             isset($_SESSION['id']) &&
                             $_SESSION['type'] == 0
@@ -173,13 +173,19 @@
                                 </div>
                             </li>
                         <?php
-                        } 
+                        }
                         ?>
                     </ul>
                     <ul class="navbar-nav my-2 my-lg-0" id="user">
                         <li class="nav-item dropdown nav1">
                             <a class="nav-link dropdown-toggle fa fa-sign-out" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <?php echo $_SESSION['firstname']; ?>
+                                <?php 
+                                 
+                                 echo $_SESSION['firstname']; 
+                                // echo session_start(['firstname']);
+                                
+                                ?>
+                               
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="<?php echo base_url('editarUser') . '/' . $_SESSION['id'] ?>">Editar</a>

@@ -41,16 +41,18 @@ class EventoModel extends Model
 
 //---------------------------------------------------------------------------------------------
     
-public function certificado($idUser = null, $idEvento = null)
+public function certificado($idUser = null, $idEvento = null, $firstnameUser = null, $lastnameUser = null)
 {
 
     $data = [
         'idUser' => $idUser,
-        'idEvento'    => $idEvento
+        'idEvento'  => $idEvento,
+        'firstname' => $firstnameUser,
+        'lastname' => $lastnameUser,
     ];
 
-    $array = array('idUser' => $idUser, 'idEvento' => $idEvento);
-    $q = $this->db->table('certificado')->select('idUser, idEvento')->where($array);
+    $array = array('idUser' => $idUser, 'idEvento' => $idEvento, 'firstname' => $firstnameUser, 'lastname' => $lastnameUser);
+    $q = $this->db->table('certificado')->select('idUser, idEvento, firstname, lastname ')->where($array);
     if ($q->countAllResults() < 1) {
         if ($this
             ->db

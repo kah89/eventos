@@ -60,17 +60,40 @@ class Eventos extends BaseController
         } else {
             $model = new EventoModel();
             $idUser = session()->get('id');
+            $firstnameUser = session()->get('firstname');
+            $lastnameUser = session()->get('lastname');
             $uri = current_url(true);
             $idEvento = $uri->getSegment(5);
 
 
-            $msg = $model->certificado($idUser, $idEvento);
+            $msg = $model->certificado($idUser, $idEvento, $firstnameUser, $lastnameUser );
             $session = session();
             $session->setFlashdata('success', $msg);
 
             $pdf = new PdfController();
             echo $pdf->gerarCertificado();
+       
             return redirect()->to(base_url('listarEventosUser'));
+
+
+            // $result = $model->find($idUser);
+
+            // try {
+            //     $msg = $model->certificado($idUser, $idEvento, $firstnameUser, $lastnameUser);
+            //     $session = session();
+            //     $session->setFlashdata('success', $msg);
+
+            //     $pdf = new PdfController();
+            //     echo $pdf->gerarCertificado();
+            // } catch (Exception $e) {
+            //     $session = session();
+            //     if ($e->getCode() == 1062) {
+            //         $session->setFlashdata('danger', 'Seu usuário' . "  (" . $result['firstname'] . ")  " . 'não pode ser excluído, pois possui vinculos no sistema!');
+            //     } else {
+            //         $session->setFlashdata('danger', 'Seu usuário' . "  (" . $result['firstname'] . ")  " . 'não pode ser excluido!');
+            //     }
+            //     return redirect()->to(base_url('listarEventosUser'));
+            // }
         }
     }
 
