@@ -130,7 +130,7 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button href='#' type="button" class="btn btn-secondary" id="cad" data-dismiss="modal"  onclick="document.location.reload(true)">Fechar</button>:
+                                        <button href='#' type="button" class="btn btn-secondary" id="cad" data-dismiss="modal"  onclick="document.location.reload(true)">Fechar</button>
                                         <a href="#" class="btn btn-primary emitir disabled" id="btnEmitir">Emita aqui seu certificado!</a>
                                     </div>
                                 </div>
