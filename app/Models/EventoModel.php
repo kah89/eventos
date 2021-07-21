@@ -51,8 +51,8 @@ public function certificado($idUser = null, $idEvento = null, $firstnameUser = n
         'lastname' => $lastnameUser,
     ];
 
-    $array = array('idUser' => $idUser, 'idEvento' => $idEvento, 'firstname' => $firstnameUser, 'lastname' => $lastnameUser);
-    $q = $this->db->table('certificado')->select('idUser, idEvento, firstname, lastname ')->where($array);
+    $array = array('idUser' => $idUser, 'idEvento' => $idEvento);
+    $q = $this->db->table('certificado')->select('*')->where($array);
     if ($q->countAllResults() < 1) {
         if ($this
             ->db
@@ -62,7 +62,7 @@ public function certificado($idUser = null, $idEvento = null, $firstnameUser = n
             $result = "Certificado gerado com sucesso!";
         }
     } else {
-        $result = "Certificado já foi gerado e não dá para alterar os dados!";
+        $result = $this->db->table('certificado')->select('*')->where($array)->get()->getResultArray();        
     }
     return $result;
 }

@@ -55,10 +55,10 @@
         border-radius: 8px;
         border: 2px solid;
     }
-    #cad:hover {
-        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-    }
 
+    #cad:hover {
+        box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+    }
 </style>
 <script type="text/javascript">
     $(function() {
@@ -156,10 +156,10 @@
 
                             <div class="form-label-group">
                                 <!-- Nome e sobrenome não deixar alterar e puxar do banco -->
-                                <input type="text" id="nome" name="nome" class="form-control" placeholder="Nome" autofocus value="<?= $firstname ?>" >
+                                <input type="text" id="nome" name="nome" class="form-control" placeholder="Nome" autofocus value="<?= $firstname ?>">
                             </div>
                             <div class="form-label-group">
-                                <input type="text" id="sobrenome" name="sobrenome" class="form-control" placeholder="Sobrenome" value="<?= $lastname ?>" >
+                                <input type="text" id="sobrenome" name="sobrenome" class="form-control" placeholder="Sobrenome" value="<?= $lastname ?>">
                             </div>
                             <div class="form-label-group">
                                 <input type="email" id="email" name="email" class="form-control" placeholder="Email" value="<?= $email ?>">
@@ -167,6 +167,15 @@
                             <div class="form-label-group">
                                 <select id="paises" name="paises" class="form-control" placeholder="Selecione o país" required style="height: calc(1.5em + .75rem + 14px);" value="<?= $pais ?>">
                                     <?php echo $options_paises; ?>
+                                    <?php
+                                    // foreach ($options_paises as $key => $pais) {
+                                    //     if ($pais['pais'] == $id) {
+                                    //         echo "<option value='" . $pais['pais'] . "' selected='selected' >" . $pais['pais'] . " - " . $pais['nome'] . "</option>";
+                                    //     } else {
+                                    //         echo "<option value='" . $pais['pais'] .  "'>" . $pais['pais'] . " - " . $pais['nome'] . "</option>";
+                                    //     }
+                                    // }
+                                    ?>
                                 </select>
                             </div>
                             <div class="form-label-group">
@@ -180,20 +189,43 @@
                                 </select>
                             </div>
                             <div class="form-label-group">
-                                <select id="categoria" name="categoria" class="form-control" style="height: calc(1.5em + .75rem + 14px);" value="<?= $type ?>">
-                                    <?php                       
-                                        if (
-                                            isset($_SESSION['id']) &&
-                                            $_SESSION['type'] == 0
-                                        ) {
-                                    ?>
-                                    <option value="0">Administrador</option>
-                                    <?php
-                                        } 
-                                    ?>
-                                    <option value="1">Estudante de Farmácia</option>
-                                    <option value="2">Farmacêutico</option>
-                                </select>
+                            <select id="categoria" name="categoria" class="form-control" style="height: calc(1.5em + .75rem + 14px);" value="<?= $type ?>">
+                                <?php
+                                 $ehAdmin = (isset($_SESSION['id']) && $_SESSION['type'] == 0); {
+                                    
+                                }
+
+                                foreach ($data as $key => $result) {
+                                    $selecionado = $data['type'] == $id;
+                                    if ($selecionado) {
+                                        $tipo = $result['type'];
+                                    }
+                                }
+
+                                $tipos[0] = '';
+                                $tipos[1] = '';
+                                $tipos[2] = '';
+
+
+                                if ($data == 0) {
+                                    $tipos[0] = 'selected="selected"';
+                                }if ($data == 1) {
+                                    $tipos[1] = 'selected="selected"';
+                                } else if ($data == 2 ){
+                                    $tipos[2] = 'selected="selected"';
+                                }
+
+                                if ($ehAdmin == true) {
+                                    echo '<option value="0" id="0" '. $tipos[0] .'>Administrador</option>';
+                                }
+
+                                echo '<option value="1" id="1" '. $tipos[1] .'>Estudante de Farmácia</option>';
+                                echo '<option value="2" id="2" '. $tipos[2] .'>Farmacêutico</option>';
+
+                                ?>
+
+                            </select>
+
                             </div>
                             <div class="form-label-group" id="farmaceutico" style="display: none">
                                 <div class="row justify-content-between" style="width: 100%;margin: 0;">

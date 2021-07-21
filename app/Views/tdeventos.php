@@ -135,8 +135,8 @@ img{
                                 </li>
                             </ul>
                             <?php 
-                            echo $evento['dtFim'];
-                            echo date("Y-m-d H:i:s");
+                            // echo $evento['dtFim'];
+                            // echo date("Y-m-d H:i:s");
                             ?>
                         </div>
                     </div>

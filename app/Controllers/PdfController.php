@@ -62,7 +62,7 @@ class PdfController extends Controller
     //---------------------------------------------------------------------------------------------
 
 
-    public function gerarCertificado ()
+    public function gerarCertificado ($user = null)
     {
 
         if (!session()->get('isLoggedIn')) {
@@ -83,7 +83,9 @@ class PdfController extends Controller
                     'title' => 'Certificado',
                     'data' => $model->find($evento_id),
                     'horas' => $horasTotalEvento,
-                    'minutos' => $horasTotalEvento
+                    'minutos' => $horasTotalEvento,
+                    'firstname' => $user['firstname'],
+                    'lastname' => $user['lastname']
                 ];
 
                 

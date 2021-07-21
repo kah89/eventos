@@ -100,7 +100,7 @@
 
 
             <section>
-                <p>Certificamos que <strong><?php echo $_SESSION['firstname'] . " "; ?><?php echo $_SESSION['lastname']; ?></strong></p>
+                <p>Certificamos que <strong><?php echo $firstname . " "; ?><?php echo $lastname; ?></strong></p>
                 <p>Participou do: <strong><?php echo $data['titulo']; ?></strong></p>
                 <p class="p">Com carga horária de <strong>
                 <?php echo $horas['horas']?> Horas e <?php echo $minutos['minutos'];?> minutos</strong>.</p>

@@ -396,7 +396,9 @@ class Users extends BaseController
                 'title' => 'Editar Usuário',
                 'options_paises' => $paises,
                 'options_uf' => $uf,
+                'data' =>  $result,
             ];
+            // var_dump($data['data']);exit;
 
             // var_dump($data); exit;
             helper(['form']);
@@ -435,7 +437,7 @@ class Users extends BaseController
                     if ($model->save($newData)) {
                         $session = session();
                         $session->setFlashdata('success', 'O usuário' . " ("  . $result['firstname'] . ") " .  'foi alterado com sucesso!');
-                        return redirect()->to(base_url('eventos'));
+                        return redirect()->to(base_url('logout'));
                     } else {
                         echo "Erro ao salvar";
                         exit;
