@@ -16,11 +16,13 @@ require_once APPPATH . 'ThirdParty' . DIRECTORY_SEPARATOR . 'dompdf' . DIRECTORY
 class PdfController extends Controller
 {
 
-    public function index ()
+    public function index ($user = null)
     {
         if (!session()->get('isLoggedIn')) {
             return redirect()->to(base_url(''));
         } else {
+
+            helper(['form']);
             $uri = current_url(true);
             $evento_id = $uri->getSegment(4);
             $model =  new EventoModel();
@@ -30,18 +32,24 @@ class PdfController extends Controller
 
             //var_dump($horasTotalEvento);exit;
             
+            if ( $model) {
                 $data = [
-                    'title' => 'Certificado',
+                    'title' => 'Vizualição de Certificado',
                     'data' => $model->find($evento_id),
                     'horas' => $horasTotalEvento,
-                    'minutos' => $horasTotalEvento
+                    'minutos' => $horasTotalEvento,
+                    
+                    'firstname' => $user['firstname'],
+                    'lastname' => $user['lastname']
 
                 ];
         
-                // var_dump($data['user']);exit;
+                var_dump($data['firstname']);
+                var_dump($data['lastname']);
+                exit;
                 
                 echo view('certificadoVizualizacao', $data);
-            
+            }
         }
         // $uri = current_url(true);
         // $idEvent = $uri->getSegment(4);

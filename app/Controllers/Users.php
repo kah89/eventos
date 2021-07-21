@@ -393,8 +393,9 @@ class Users extends BaseController
             $uf = $estadoModel->selectUF();
 
             $data = [
-                'title' => 'Editar Usuário',
+                'title' => 'Editar Usuário', 
                 'options_paises' => $paises,
+                'paises' => $paisModel->findall(),
                 'options_uf' => $uf,
                 'data' =>  $result,
             ];
