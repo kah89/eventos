@@ -151,11 +151,10 @@
                             <div class="alert alert-success" role="alert">
                                 <?= session()->get('success'); ?>
                             </div>
-                        <?php endif; ?>
+                        <?php endif;  ?>
                         <form class="form-signin" method="post">
 
                             <div class="form-label-group">
-                                <!-- Nome e sobrenome não deixar alterar e puxar do banco -->
                                 <input type="text" id="nome" name="nome" class="form-control" placeholder="Nome" autofocus value="<?= $firstname ?>">
                             </div>
                             <div class="form-label-group">
@@ -165,16 +164,16 @@
                                 <input type="email" id="email" name="email" class="form-control" placeholder="Email" value="<?= $email ?>">
                             </div>
                             <div class="form-label-group">
-                                <select id="paises" name="paises" class="form-control" placeholder="Selecione o país" required style="height: calc(1.5em + .75rem + 14px);" value="<?= $pais ?>">
-                                    <?php echo $options_paises; ?>
+                                <select id="paises" name="paises" class="form-control" placeholder="Selecione o país" required style="height: calc(1.5em + .75rem + 14px);" required>
                                     <?php
-                                    // foreach ($options_paises as $key => $pais) {
-                                    //     if ($pais['pais'] == $id) {
-                                    //         echo "<option value='" . $pais['pais'] . "' selected='selected' >" . $pais['pais'] . " - " . $pais['nome'] . "</option>";
-                                    //     } else {
-                                    //         echo "<option value='" . $pais['pais'] .  "'>" . $pais['pais'] . " - " . $pais['nome'] . "</option>";
-                                    //     }
-                                    // }
+                                    // var_dump($paises);exit;
+                                    foreach ($paises as $key => $pais) {                                    
+                                        if ($pais['id'] == $data['pais']) {
+                                            echo "<option value='" . $pais['id'] . "' selected='selected' >" . $pais['nome_pt'] . "</option>";
+                                        } else {
+                                            echo "<option value='" . $pais['id'] . "'>" . $pais['nome_pt'] . "</option>";
+                                        }
+                                    }
                                     ?>
                                 </select>
                             </div>

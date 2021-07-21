@@ -68,18 +68,18 @@ class Eventos extends BaseController
 
             $msg = $model->certificado($idUser, $idEvento, $firstnameUser, $lastnameUser);
             $session = session();
-            $session->setFlashdata('success', 'Certificado gerado com sucesso!');
-            $user['firstname'] = $msg['firstname'];
-            $user['lastname'] = $msg['lastname'];
-
+            $session->setFlashdata('success', 'Certificado gerado com sucesso!');            
+            if ($msg[0]['firstname']) {
+                $user['firstname'] = $msg[0]['firstname'];
+                $user['lastname'] = $msg[0]['lastname'];
+            }
             $pdf = new PdfController();
-            echo $pdf->gerarCertificado($msg);
+            echo $pdf->gerarCertificado($user);
 
             $session->set('firstname',  $firstnameUser);
             $session->set('lastname', $lastnameUser);
 
             return redirect()->to(base_url('listarEventosUser'));
-
         }
     }
 
