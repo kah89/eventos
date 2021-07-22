@@ -23,10 +23,11 @@
         width: 40px;
         background-color: #008CBA;
         font-size: 12px;
-        padding: 12px 28px;
+        padding: 11px 23px;
         border-radius: 8px;
         border: 2px solid;
         text-align: center;
+        margin-left: -5px;
     }
 
     #cad:hover {
@@ -90,7 +91,6 @@
                        Infelizmente está atividade já encerrou!
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary cad" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>

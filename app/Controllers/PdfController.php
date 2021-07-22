@@ -29,9 +29,11 @@ class PdfController extends Controller
             $newmodel = new AtividadeModel();
             $userModel = new UserModel();
             $horasTotalEvento = $newmodel->horasEvento($evento_id);
-            
+        
             $firstnameUser = session()->get('firstname');
             $lastnameUser = session()->get('lastname');
+
+        
 
             //var_dump($horasTotalEvento);exit;
             
@@ -47,6 +49,7 @@ class PdfController extends Controller
 
                 ];
         
+                
                 // var_dump($data['user']);
                 // exit;
                 

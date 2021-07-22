@@ -11,7 +11,7 @@
         color: red;
     }
 
-    #certificadoModalNC {
+    #certificadoModalNC, #certificadoModalN {
         color: red;
     }
 
@@ -66,11 +66,17 @@
         <div class="row">
             <div class="col-12">
                 <h2 style="text-align: center; font-size:30px">Eventos </h2>
-                <?php if (session()->get('success')) : ?>
-                    <div class="alert alert-success" role="alert">
-                        <?= session()->get('success'); ?>
-                    </div>
-                <?php endif; ?>
+                <?php if (session()->get('success')) { ?>
+                        <div class="alert alert-success" role="alert">
+                            <?= session()->get('success'); ?>
+                        </div>
+                    <?php } elseif (session()->get('info')) { ?>
+                        <div class="alert alert-info" role="alert">
+                            <?= session()->get('info'); ?>
+                        </div>
+
+                    <?php } ?>
+               
                 <?php if (count($data) > 0) { ?>
 
                     <table class="table table-hover " id="atividades">
@@ -86,16 +92,28 @@
                             <?php foreach ($data as $key => $evento) {
 
                                 $htm = '<tr><td>' . $evento['id'] . '</td><td>' . $evento['titulo'] . '</td><td id="p">' . $evento['resumo'] . '</td>                           
-                              <td><a class="btn btn-primary" id="cad" href=' . base_url('/atividades/verificarConclusao') . "/" . $evento['id'] . ' data-toggle="modal"';
-
-                                if ($evento['certificado'] == 'true') {
-                                    $htm .= 'data-target="#certificadoModal"';
-                                } else {
+                              <td>';
+                                if ($evento['certificado'] == 'Evento não gera certificado.') {    
+                                    $htm .= '<a id="cad" data-toggle="modal"';
+                                    $htm .= 'data-target="#certificadoModalN"';
+                                    $htm .= 'role="button" class="btn btn-primary" style="color:#fff">Info</a>';
+                                    $htm .= '</td></tr>';                                
+                                   
+                                } else if($evento['certificado'] == 'Não concluiu todas as atividades.') {
+                                    $htm .= '<a id="cad" data-toggle="modal"';
                                     $htm .= 'data-target="#certificadoModalNC"';
+                                    $htm .= 'role="button" class="btn btn-primary" style="color:#fff">Info</a>';
+                                    $htm .= '</td></tr>';
+                                }else{
+                                    $htm .= '<a id="cad" href=' . base_url('/atividades/verificarConclusao') . "/" . $evento['id'] . ' data-toggle="modal"';
+                                    $htm .= 'data-target="#certificadoModal"';
+                                    $htm .= 'onclick="setarCampos(' . $evento['id'] . ');" role="button" class="btn btn-primary">Gerar</a></td></tr>';
                                 }
-                                $htm .= 'onclick="setarCampos(' . $evento['id'] . ');" role="button">Gerar</a></td></tr>';
+                                
                                 echo ($htm);
                             }
+
+
                             ?>
 
                         </tbody>
@@ -152,7 +170,28 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <p style="text-align: justify;"> Infelizmente não é possivel gerar certificado para esse evento, pois o mesmo não concluiu todas as atividade</p>
+                                    <p style="text-align: justify;"> Infelizmente não é possivel gerar certificado para esse evento, pois todas as atividades não foram concluídas.</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" id="cad" data-dismiss="modal">Fechar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Modal não gera certificado -->
+                    <div class="modal fade" data-backdrop="static" id="certificadoModalN" tabindex="-1" role="dialog" aria-labelledby="certificadoModalN" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="certificadoModalN" style="text-align: center;">Olá <?= session()->get('firstname') ?>, </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p style="text-align: justify;"> Infelizmente esse evento não gera certificado!</p>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" id="cad" data-dismiss="modal">Fechar</button>

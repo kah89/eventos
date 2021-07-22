@@ -25,7 +25,7 @@
             <div>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="<?php echo base_url("eventos") ?>">Eventos</a></li>
-                    <li class="breadcrumb-item"><a href="<?php echo base_url("listarativ") ?>">Lista-Atividades</a></li>
+                    <li class="breadcrumb-item"><a href="<?php echo base_url("listarAtividades") ?>">Lista-Atividades</a></li>
                     <li class="active breadcrumb-item">Atividade</li>
                 </ol>
             </div>

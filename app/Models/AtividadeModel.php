@@ -73,19 +73,23 @@ class AtividadeModel extends Model
     
     public function verificarConclusao($idUser, $idEvento)
     {
-        $result = "false";
+        $result = "";
         $query = $this
         ->select('count(id) as total')
         ->where('idEvento', $idEvento)
+        ->where('atividade_evento.tipo', 1)
         ->first();
         
         $totalAtividadesEvento = $query['total'];
+
+        
         
        
         $query2 = $this
         ->select('count(usuario_atividade.idUser) as total')
         ->join('usuario_atividade', 'atividade_evento.id = usuario_atividade.idAtividade and atividade_evento.idEvento = '.$idEvento)        
         ->where('usuario_atividade.idUser', $idUser)
+        ->where('atividade_evento.tipo', 1)
         ->first();
         // var_dump($idUser);
         // var_dump($idEvento);exit;
@@ -93,9 +97,14 @@ class AtividadeModel extends Model
         $totalAtividadesConcluidas = $query2['total'];
 
         if ($totalAtividadesEvento <= $totalAtividadesConcluidas) {
-            $result = "true";
-          
+            $result = "Concluiu todas as atividades.";          
+        }else{
+            $result = "Não concluiu todas as atividades.";      
         }
+        if($totalAtividadesEvento == 0){
+            $result = "Evento não gera certificado."; 
+        }
+
         return $result;
         
     }

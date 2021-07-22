@@ -55,41 +55,41 @@ class Eventos extends BaseController
 
     public function gerarCertificado()
     {
+
         if (!session()->get('isLoggedIn')) {
             return redirect()->to(base_url(''));
-        }
-        if ($session = session()) {
+        } else {
             $model = new EventoModel();
             $idUser = session()->get('id');
             $firstnameUser = session()->get('firstname');
             $lastnameUser = session()->get('lastname');
             $uri = current_url(true);
             $idEvento = $uri->getSegment(5);
+        }
 
-            $msg = $model->certificado($idUser, $idEvento, $firstnameUser, $lastnameUser);
 
+        $session = session();
+        $msg = $model->certificado($idUser, $idEvento, $firstnameUser, $lastnameUser);
+
+        if ($msg[0]['firstname']) {
+            $user['firstname'] = $msg[0]['firstname'];
+            $user['lastname'] = $msg[0]['lastname'];
+            $session->setFlashdata('info', 'Certificado já foi gerado, não é possivel alterar mais os dados!');
+        } else {
+            $user['firstname'] = $firstnameUser;
+            $user['lastname'] = $lastnameUser;
             $session->setFlashdata('success', 'Certificado gerado com sucesso!');
-            if ($msg[0]['firstname']) {
-                $user['firstname'] = $msg[0]['firstname'];
-                $user['lastname'] = $msg[0]['lastname'];
-            }
-            $pdf = new PdfController();
-            echo $pdf->gerarCertificado($user);
-
-            $session->set('firstname',  $firstnameUser);
-            $session->set('lastname', $lastnameUser);
-
-            return redirect()->to(base_url('listarEventosUser'));
-        }else if($session){
-            
-            $session->setFlashdata('success', 'dados!');
-            
-            $pdf = new PdfController();
-            echo $pdf->gerarCertificado();
-
         }
-        }
-    
+
+        $pdf = new PdfController();
+        echo $pdf->gerarCertificado($user);
+
+        $session->set('firstname',  $firstnameUser);
+        $session->set('lastname', $lastnameUser);
+
+        return redirect()->to(base_url('listarEventosUser'));
+    }
+
 
     //------------------------------------------------------------------------------
 

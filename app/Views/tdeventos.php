@@ -13,8 +13,8 @@
 
     h3 {
         margin-top: 50px;
-      text-align: center;
-      color: red;
+        text-align: center;
+        color: red;
     }
 
     .resumo {
@@ -51,32 +51,34 @@
         box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
     }
 
-    
+
     .card-text {
-  /* max-width: 90ch; */
-  /* width: 20em;  */
-  /* max-width: 300px; */
-  margin-top: 20px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
+        /* max-width: 90ch; */
+        /* width: 20em;  */
+        /* max-width: 300px; */
+        margin-top: 20px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
 
-img{
-    max-height: 200px;
-}
-
-
-   
+    img {
+        max-height: 200px;
+    }
 </style>
 <main>
     <div class="container">
         <h1>Eventos</h1>
-        <?php if (session()->get('success')) : ?>
-            <div class="alert alert-success" role="alert">
-                <?= session()->get('success'); ?>
-            </div>
-        <?php endif; ?>
+        <?php if (session()->get('success')) { ?>
+                        <div class="alert alert-success" role="alert">
+                            <?= session()->get('success'); ?>
+                        </div>
+                    <?php } elseif (session()->get('info')) { ?>
+                        <div class="alert alert-info" role="alert">
+                            <?= session()->get('info'); ?>
+                        </div>
+
+                    <?php } ?>
         <div class="row">
 
             <?php
@@ -92,7 +94,7 @@ img{
                         <div class="card-body">
                             <img src="<?php echo base_url("/public/img") . "/" . $evento['imagem'] ?>" alt="" width="100%">
                             <p class="card-text"><?php echo $evento['resumo']; ?></p>
-                            <p> <strong>Data:</strong>  <?php echo date_format(new DateTime($evento['dtInicio']), "d-m-Y"); ?> até <?php echo date_format(new DateTime($evento['dtFim']), "d-m-Y"); ?></p>
+                            <p> <strong>Data:</strong> <?php echo date_format(new DateTime($evento['dtInicio']), "d-m-Y"); ?> até <?php echo date_format(new DateTime($evento['dtFim']), "d-m-Y"); ?></p>
                         </div>
                         <div class="card-footer text-muted">
                             <ul class="nav nav-pills ">
@@ -113,7 +115,7 @@ img{
                                                 </div>
                                                 <div class="modal-body">
                                                     <?php echo $evento['resumo'];  ?>
-                                                    </div>
+                                                </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary cad" data-dismiss="modal">Close</button>
                                                 </div>
@@ -129,42 +131,62 @@ img{
                                     if (Date($evento['dtFim']) >  date("Y-m-d H:i:s")) {
                                         echo '<button class="btn btn-primary cad" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " href="#" data-toggle="modal" data-target="#inscrevaModal" id="Btn" onclick="preenchermodal(' . $evento['id'] . ');">Inscreva-se</button>';
                                     } else {
-                                        echo '<button class="btn btn-primary cad1" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " disabled>Inscreva-se</button>';
+                                        echo '<button type="button" class="btn btn-primary cad1" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " data-toggle="modal" data-target="#desativado" disabled >Inscreva-se</button>';
                                     }
                                     ?>
                                 </li>
                             </ul>
-                            <?php 
+                            <?php
                             // echo $evento['dtFim'];
                             // echo date("Y-m-d H:i:s");
                             ?>
                         </div>
                     </div>
 
-           
 
-            <!-- Modal Inscreva-se -->
-            <div class="modal fade" data-backdrop="static" id="inscrevaModal" tabindex="-1" role="dialog" aria-labelledby="inscrevaModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="inscrevaModalLabel">Inscreva-se</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            Confirma a sua inscrição?
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary cad" data-dismiss="modal">Fechar</button>
-                            <a href="#" class="btn btn-primary cad" id="btnConfirmaInscricao">Confirma</a>
 
+                    <!-- Modal Inscreva-se -->
+                    <div class="modal fade" data-backdrop="static" id="inscrevaModal" tabindex="-1" role="dialog" aria-labelledby="inscrevaModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="inscrevaModalLabel">Inscreva-se</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Confirma a sua inscrição?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary cad" data-dismiss="modal">Fechar</button>
+                                    <a href="#" class="btn btn-primary cad" id="btnConfirmaInscricao">Confirma</a>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Modal Inscreva-se encerrado -->
+                    <div class="modal fade" data-backdrop="static" id="desativado" tabindex="-1" aria-labelledby="sobreModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="sobreModalLabel">Atividade</h5>
+                                    <button type="button" class="close cad" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Infelizmente este evento já encerrou!
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary cad" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-            </div>
 
             <?php
                 }
