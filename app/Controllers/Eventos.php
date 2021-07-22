@@ -57,7 +57,8 @@ class Eventos extends BaseController
     {
         if (!session()->get('isLoggedIn')) {
             return redirect()->to(base_url(''));
-        } else {
+        }
+        if ($session = session()) {
             $model = new EventoModel();
             $idUser = session()->get('id');
             $firstnameUser = session()->get('firstname');
@@ -65,10 +66,9 @@ class Eventos extends BaseController
             $uri = current_url(true);
             $idEvento = $uri->getSegment(5);
 
-
             $msg = $model->certificado($idUser, $idEvento, $firstnameUser, $lastnameUser);
-            $session = session();
-            $session->setFlashdata('success', 'Certificado gerado com sucesso!');            
+
+            $session->setFlashdata('success', 'Certificado gerado com sucesso!');
             if ($msg[0]['firstname']) {
                 $user['firstname'] = $msg[0]['firstname'];
                 $user['lastname'] = $msg[0]['lastname'];
@@ -80,9 +80,16 @@ class Eventos extends BaseController
             $session->set('lastname', $lastnameUser);
 
             return redirect()->to(base_url('listarEventosUser'));
-        }
-    }
+        }else if($session){
+            
+            $session->setFlashdata('success', 'dados!');
+            
+            $pdf = new PdfController();
+            echo $pdf->gerarCertificado();
 
+        }
+        }
+    
 
     //------------------------------------------------------------------------------
 

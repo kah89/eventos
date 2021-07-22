@@ -27,8 +27,11 @@ class PdfController extends Controller
             $evento_id = $uri->getSegment(4);
             $model =  new EventoModel();
             $newmodel = new AtividadeModel();
-            
+            $userModel = new UserModel();
             $horasTotalEvento = $newmodel->horasEvento($evento_id);
+            
+            $firstnameUser = session()->get('firstname');
+            $lastnameUser = session()->get('lastname');
 
             //var_dump($horasTotalEvento);exit;
             
@@ -38,15 +41,14 @@ class PdfController extends Controller
                     'data' => $model->find($evento_id),
                     'horas' => $horasTotalEvento,
                     'minutos' => $horasTotalEvento,
-                    
-                    'firstname' => $user['firstname'],
-                    'lastname' => $user['lastname']
+                    'user' => $userModel->findall(),
+                    'firstname' => $firstnameUser,
+                    'lastname' => $lastnameUser,
 
                 ];
         
-                var_dump($data['firstname']);
-                var_dump($data['lastname']);
-                exit;
+                // var_dump($data['user']);
+                // exit;
                 
                 echo view('certificadoVizualizacao', $data);
             }
