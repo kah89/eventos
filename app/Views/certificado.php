@@ -92,9 +92,9 @@
                 if ($data['assinatura'] == 1) {
                     echo base_url('/public/img/marcos.jpg');
                 } else if ($data['assinatura'] == 2) {
-                    echo base_url('/public/img/certificado_sem_brasao.jpg');;
+                    echo base_url('/public/img/assinatura1.jpg');;
                 } else {
-                    echo base_url('/public/img/certificado_Proibido2.jpg');;
+                    echo base_url('/public/img/assinatura2.jpg');;
                 }
                  ?>);
         }
