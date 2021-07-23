@@ -90,6 +90,13 @@
         text-align: center;
         color: red;
     }
+
+    #assinatura {
+        width: 200px;
+        float: right;
+        margin-right: 50px;
+        margin-top: -49px;
+    }
 </style>
 </style>
 
@@ -198,6 +205,16 @@
                                     <div class="form-label-group">
                                         <input type="time" name="hfinal" id="hora1" class="form-control" required />
 
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-label-group" required>
+                                        <select id="assinatura" name="assinatura" class="form-control" >
+                                            <option selected disabled>Assinatura</option>
+                                            <option value="1">Marcos</option>
+                                            <option value="2">Assinatura1</option>
+                                            <option value="3">Assinatura2</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group">

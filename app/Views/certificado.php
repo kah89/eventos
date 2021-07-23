@@ -87,7 +87,7 @@
         }
 
         article {
-            background-image: url(<?php echo (base_url('/public/img/certificado.jpg')); ?>);
+            background-image: url(<?php echo (base_url('/public/img/marcos.jpg')); ?>);
         }
     </style>
 </head>

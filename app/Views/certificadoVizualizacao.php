@@ -98,7 +98,10 @@
 
 <body>
     <article id="conteudo-certificado">
-        <?php if (count($data) > 0) {
+        
+        <?php
+        // var_dump($data); exit;
+         if (count($data) > 0) {
         ?>
             <section>
                 <p>Certificamos que <strong><?php echo $firstname . " "; ?><?php echo $lastname; ?></strong></p>

@@ -189,6 +189,8 @@
                             </div>
                             <div class="form-label-group">
                             <select id="categoria" name="categoria" class="form-control" style="height: calc(1.5em + .75rem + 14px);" value="<?= $type ?>">
+                        
+                               
                                 <?php
                                  $ehAdmin = (isset($_SESSION['id']) && $_SESSION['type'] == 0); {
                                     
@@ -197,30 +199,26 @@
                                 foreach ($data as $key => $result) {
                                     $selecionado = $data['type'] == $id;
                                     if ($selecionado) {
-                                        $tipo = $result['type'];
+                                        $type = $result['type'];
                                     }
                                 }
 
-                                $tipos[0] = '';
-                                $tipos[1] = '';
-                                $tipos[2] = '';
-
-
-                                if ($data == 0) {
-                                    $tipos[0] = 'selected="selected"';
-                                }if ($data == 1) {
-                                    $tipos[1] = 'selected="selected"';
-                                } else if ($data == 2 ){
-                                    $tipos[2] = 'selected="selected"';
-                                }
+                               
 
                                 if ($ehAdmin == true) {
-                                    echo '<option value="0" id="0" '. $tipos[0] .'>Administrador</option>';
+                                    echo '<option value="0" id="0">Administrador</option>';
                                 }
 
-                                echo '<option value="1" id="1" '. $tipos[1] .'>Estudante de Farmácia</option>';
-                                echo '<option value="2" id="2" '. $tipos[2] .'>Farmacêutico</option>';
+                                // echo '<option value="1" id="1" '. $tipos[1] .'>Estudante de Farmácia</option>';
+                                // echo '<option value="2" id="2" '. $tipos[2] .'>Farmacêutico</option>';
 
+                               else if ($type == 1) {
+                                    echo '<option value="1" id="1" selected="selected">Estudante de Farmácia</option>';
+                                    echo '<option value="2" id="2">Farmacêutico</option>';
+                                } else {
+                                    echo '<option value="1" id="1">Estudante de Farmácia</option>';
+                                    echo '<option value="2" id="2" selected="selected">Farmacêutico</option>';
+                                }
                                 ?>
 
                             </select>

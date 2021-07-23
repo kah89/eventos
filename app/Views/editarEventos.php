@@ -2,7 +2,7 @@
     h2 {
         color: #007BFF;
     }
-    
+
     #uploadbutton {
         width: 200px;
         background-color: #008CBA;
@@ -11,9 +11,9 @@
         border-radius: 8px;
         border: 2px solid;
     }
-    
+
     #uploadbutton:hover {
-        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+        box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
     }
 
 
@@ -22,7 +22,7 @@
         margin-left: 350px;
     }
 
-    
+
     .data {
         width: 200px;
         float: left;
@@ -45,6 +45,13 @@
         margin-right: 370px;
         margin-top: -54px;
     }
+
+    #assinatura {
+        width: 200px;
+        float: right;
+        margin-right: -400px;
+        margin-top: -54px;
+    }
 </style>
 <main>
     <div class="container">
@@ -63,7 +70,7 @@
             }
             ?>
         </div>
-        <div >
+        <div>
             <div class=" mx-auto">
                 <div class="card ">
                     <div class="card-body">
@@ -117,6 +124,35 @@
                                 <div class="form-label-group">
                                     <input type="time" name="hfinal" id="hora1" class="form-control" value="<?php echo date_format(new DateTime($dtFim), "H:i"); ?>" required />
 
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-7">
+                                <div class="form-label-group">
+
+                                    <select id="assinatura" name="assinatura" class="form-control">
+                                        <?php
+                                        foreach ($data as $key => $result) {
+                                            $selecionado = $data['assinatura'] == $id;
+                                            if ($selecionado) {
+                                                $assinatura = $result['assinatura'];
+                                            }
+                                        }
+                                        if ($assinatura == 1) {
+                                            echo '<option value="1" id="1" selected="selected">Marcos</option>';
+                                            echo '<option value="2" id="2">Assinatura1</option>';
+                                            echo '<option value="3" id="3">Assinatura2</option>';
+                                        } else if ($assinatura == 2) {
+                                            echo '<option value="1" id="1">Marcos</option>';
+                                            echo '<option value="2" id="2" selected="selected">Assinatura1</option>';
+                                            echo '<option value="3" id="3">Assinatura2</option>';
+                                        } else {
+                                            echo '<option value="1" id="1">Marcos</option>';
+                                            echo '<option value="2" id="2" >Assinatura1</option>';
+                                            echo '<option value="3" id="3" selected="selected">Assinatura2</option>';
+                                        }
+                                        ?>
+
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">

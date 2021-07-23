@@ -75,7 +75,7 @@
                         </div>
 
                     <?php } ?>
-                    <?php if (count($data) > 0) { ?>
+                    
                         <table class="table table-hover" id="tabela">
                             <thead>
                                 <tr>
@@ -95,7 +95,7 @@
                                 } ?>
                             </tbody>
                         </table>
-                    <?php } ?>
+                    
                 </div>
             </div>
         <?php

@@ -117,7 +117,7 @@ class Eventos extends BaseController
             // var_dump($eventos );exit;
 
             $data = [
-                'title' => 'Lista de eventos cadastrados',
+                'title' => 'Lista de eventos ',
                 'data' => $eventos
             ];
 
@@ -146,7 +146,7 @@ class Eventos extends BaseController
         } else {
             $model = new AtividadeModel();
             $data = [
-                'title' => 'Lista atividades cadastradas',
+                'title' => 'Lista de atividades ',
                 'data' => $model->where(['idEvento' => $id])->findAll()
 
                 //'data' => $model->where(['idEvento' => $id])
@@ -178,7 +178,7 @@ class Eventos extends BaseController
 
             $model = new EventoModel();
             $data = [
-                'title' => 'Cadastre-se',
+                'title' => 'Cadastrar eventos',
                 // 'data' => $model->findAll(),
             ];
 
@@ -207,6 +207,7 @@ class Eventos extends BaseController
                             'dtFim' => date($this->request->getVar('datafinal') . ' ' . $this->request->getVar('hfinal')),
                             'hora' => date('H:i:s', strtotime($this->request->getVar('datainicial') . ' ' . $this->request->getVar('hinicial'))),
                             'userCreated' => session()->get('id'),
+                            'assinatura' => $this->request->getVar('assinatura'),
                         ];
 
                         if ($model->save($newData)) {
@@ -264,9 +265,9 @@ class Eventos extends BaseController
 
             $data = [
                 'title' => 'Editar evento',
+                'data' => $result,
             ];
-
-
+            
             helper(['form']);
 
             if ($this->request->getMethod() == 'post') {
@@ -275,7 +276,7 @@ class Eventos extends BaseController
                 $rules = [
                     'titulo' => 'trim|required|min_length[3]|max_length[60]',
                     'imagem' => 'uploaded[profile_image]', 'mime_in[profile_image,image/jpg,image/jpeg,image/gif,image/png]', 'max_size[profile_image,4096]',
-                    'resumo' => 'trim|required|min_length[100]|max_length[500]',
+                    'resumo' => 'trim|required|min_length[100]|max_length[1000]',
                 ];
 
                 if (!$this->validate($rules)) {
@@ -293,11 +294,12 @@ class Eventos extends BaseController
                             'dtFim' => date($this->request->getVar('datafinal') . ' ' . $this->request->getVar('hfinal')),
                             'hora' => date('H:i:s', strtotime($this->request->getVar('datainicial') . ' ' . $this->request->getVar('hinicial'))),
                             'userCreated' => session()->get('id'),
+                            'assinatura' => $this->request->getVar('assinatura'),
                         ];
 
                         if ($model->save($newData)) {
                             $session = session();
-                            $session->setFlashdata('success', 'Seu evento' . " (" . "ID" . $result['id'] . " - " . $result['titulo'] . ") " .  ' foi alterado com sucesso!');
+                            $session->setFlashdata('success', 'Seu evento' . " (" . $result['titulo'] . ") " .  ' foi alterado com sucesso!');
                             return redirect()->to(base_url('eventos'));
                         } else {
                             echo "Erro ao salvar";
