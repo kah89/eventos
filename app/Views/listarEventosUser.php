@@ -92,23 +92,39 @@
 
                                 $htm = '<tr><td>' . $evento['id'] . '</td><td>' . $evento['titulo'] . '</td><td id="p">' . $evento['resumo'] . '</td>                           
                               <td>';
-                               
-                                    
+
                                     $htm .= '<a data-toggle="modal"';
                                     if ($evento['certificado'] == 'Evento não gera certificado.') {
-                                        $htm .= 'data-target="#certificadoModalN"';
-                                        $htm .= 'role="button" class="btn btn-primary cad" disabled>Info</a>';
+                                        if (Date($evento['dtFim']) >  date("Y-m-d H:i:s")) {
+                                            $htm .= 'data-target="#certificadoModalN"';
+                                            $htm .= 'role="button" class="btn btn-primary cad disabled" >Info</a>';
+                                        } else {
+                                            $htm .= 'data-target="#certificadoModalN"';
+                                            $htm .= 'role="button" class="btn btn-primary cad" >Info</a>'; 
+                                        }
                                     } else if ($evento['certificado'] == 'Não concluiu todas as atividades.') {
-                                        $htm .= 'data-target="#certificadoModalNC"';
-                                        $htm .= 'role="button" class="btn btn-primary cad" disabled>Info</a>';
+                                        if (Date($evento['dtFim']) >  date("Y-m-d H:i:s")) {
+                                            $htm .= 'data-target="#certificadoModalNC"';
+                                            $htm .= 'role="button" class="btn btn-primary cad disabled" >Info</a>';
+                                        } else {
+                                            $htm .= 'data-target="#certificadoModalNC"';
+                                            $htm .= 'role="button" class="btn btn-primary cad" >Info</a>'; 
+                                        }
                                     } else {
-                                        $htm .= 'data-target="#certificadoModal"';
-                                        $htm .= 'onclick="setarCampos(' . $evento['id'] . ');" role="button" class="btn btn-primary cad" disabled>Gerar</a>';
+                                        if (Date($evento['dtFim']) >  date("Y-m-d H:i:s")) {
+                                            $htm .= 'data-target="#certificadoModal"';
+                                            $htm .= 'onclick="setarCampos(' . $evento['id'] . ');" role="button" class="btn btn-primary cad disabled">Gerar</a>';
+                                        } else {
+                                            $htm .= 'data-target="#certificadoModal"';
+                                            $htm .= 'onclick="setarCampos(' . $evento['id'] . ');" role="button" class="btn btn-primary cad ">Gerar</a>';  
+                                        }
                                     }
                                     $htm .= '</td></tr>';
 
+
                                     echo ($htm);
                               
+
                             }
                             ?>
                         </tbody>
