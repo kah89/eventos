@@ -87,28 +87,39 @@
         }
 
         article {
-            background-image: url(<?php echo (base_url('/public/img/marcos.jpg')); ?>);
+            background-image: url(<?php
+                
+                if ($data['assinatura'] == 1) {
+                    echo base_url('/public/img/marcos.jpg');
+                } else if ($data['assinatura'] == 2) {
+                    echo base_url('/public/img/certificado_sem_brasao.jpg');;
+                } else {
+                    echo base_url('/public/img/certificado_Proibido2.jpg');;
+                }
+                 ?>);
         }
     </style>
 </head>
 
+
+
 <body>
-    <article id="conteudo-certificado">
+    <article id="conteudo-certificado" >
         <?php if (count($data) > 0) {
             // var_dump($data);exit;
         ?>
-
-
             <section>
                 <p>Certificamos que <strong><?php echo $firstname . " "; ?><?php echo $lastname; ?></strong></p>
                 <p>Participou do: <strong><?php echo $data['titulo']; ?></strong></p>
                 <p class="p">Com carga horária de <strong>
-                <?php echo $horas['horas']?> Horas e <?php echo $minutos['minutos'];?> minutos</strong>.</p>
+                        <?php echo $horas['horas'] ?> Horas e <?php echo $minutos['minutos']; ?> minutos</strong>.</p>
 
                 <p class="data">Realizado nos dias <?php echo date_format(new DateTime($data['dtInicio']), "d/m"); ?> a <?php echo date_format(new DateTime($data['dtFim']), "d/m"); ?> de <?php echo date_format(new DateTime($data['dtFim']), "Y"); ?> em São Paulo - SP.</p>
 
             </section>
+
         <?php } ?>
+
     </article>
 
 </body>
