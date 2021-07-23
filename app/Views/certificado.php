@@ -110,6 +110,7 @@
             </section>
         <?php } ?>
     </article>
+
 </body>
 
 </html>
