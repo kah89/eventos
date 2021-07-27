@@ -20,7 +20,7 @@ class Atividades extends BaseController
             return redirect()->to(base_url(''));
         } else {
             $uri = current_url(true);
-            $idAtividade = $uri->getSegment(4);
+            $idAtividade = $uri->getSegment(3);
             $model = new AtividadeModel();
             $data = [
                 'title' => 'Atividade',
@@ -47,7 +47,7 @@ class Atividades extends BaseController
             $model = new AtividadeModel();
             $idUser = session()->get('id');
             $uri = current_url(true);
-            $idAtividade = $uri->getSegment(5);
+            $idAtividade = $uri->getSegment(4);
             $msg = $model->inscricaoAtividade($idUser, $idAtividade);
             $session = session();
             $session->setFlashdata('success', $msg);
@@ -135,7 +135,7 @@ class Atividades extends BaseController
         } else {
 
             $uri = current_url(true);
-            $ativ_id = $uri->getSegment(4);
+            $ativ_id = $uri->getSegment(3);
             $model = new AtividadeModel();
             $model1 = new EventoModel();
             $atividades = $model->find($ativ_id);
@@ -175,7 +175,7 @@ class Atividades extends BaseController
                     if ($model->save($newData)) {
                         $session = session();
                         $session->setFlashdata('success', 'Sua atividade ');
-                        $session->setFlashdata('success', 'Sua atividade' . "  (" . "ID " . $atividades['id'] . " - " . $atividades['titulo'] . ") " .  'foi alterada com sucesso!');
+                        $session->setFlashdata('success', 'Sua atividade' . "  ("  . $atividades['titulo'] . ") " .  'foi alterada com sucesso!');
                         return redirect()->to(base_url('alterarAtividades'));
                     } else {
                         echo "Erro ao editar";
@@ -257,7 +257,7 @@ class Atividades extends BaseController
         } else {
 
             $uri = current_url(true);
-            $ativ_id = $uri->getSegment(5);
+            $ativ_id = $uri->getSegment(4);
             $model = new AtividadeModel();
             $result = $model->find($ativ_id);
 
