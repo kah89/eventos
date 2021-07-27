@@ -87,12 +87,22 @@
         }
 
         article {
-            background-image: url(<?php echo (base_url('/public/img/marcos.jpg')); ?>);
+            background-image: url(<?php
+                
+                if ($data['assinatura'] == 1) {
+                    echo base_url('/public/img/marcos.jpg');
+                } else if ($data['assinatura'] == 2) {
+                    echo base_url('/public/img/assinatura1.jpg');;
+                } else {
+                    echo base_url('/public/img/assinatura2.jpg');;
+                }
+                 ?>);
         }
     </style>
 </head>
 
 <body>
+    <?php //var_dump($data['assinatura']);exit;?>
     <article id="conteudo-certificado">
         <?php if (count($data) > 0) {
             // var_dump($data);exit;
