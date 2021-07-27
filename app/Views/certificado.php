@@ -105,6 +105,7 @@
 
 <body>
     <article id="conteudo-certificado" >
+
         <?php if (count($data) > 0) {
             // var_dump($data);exit;
         ?>
