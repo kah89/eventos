@@ -209,11 +209,53 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="form-label-group" required>
-                                        <select id="assinatura" name="assinatura" class="form-control" >
+                                        <select id="assinatura" name="assinatura" class="form-control">
                                             <option selected disabled>Assinatura</option>
                                             <option value="1">Marcos</option>
                                             <option value="2">Assinatura1</option>
                                             <option value="3">Assinatura2</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Destinado:</label>
+                                    <div class="form-label-group" required>
+                                        <input type="checkbox" id="checkbox1" name="checkbox1" value="1">
+                                        <label for="checkbox1">Farmacêuticos SP</label><br>
+                                        <input type="checkbox" id="checkbox2" name="checkbox2" value="2">
+                                        <label for="checkbox2">Farmacêuticos</label><br>
+                                        <input type="checkbox" id="checkbox3" name="checkbox3" value="3">
+                                        <label for="checkbox3">Estudantes</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-label-group" required>
+                                        <select id="" name="" class="form-control">
+                                            <option selected disabled>Destinado</option>
+                                            <option value="1">Farmacêuticos SP</option>
+                                            <option value="2">Farmacêuticos</option>
+                                            <option value="3">Estudantes</option>
+                                            <option value="4">Farmacêuticos SP/Estudantes</option>
+                                            <option value="5">Farmacêuticos/Estudantes</option>
+                                            <option value="6">todos</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-label-group" required>
+                                        <label for="">Evento:</label>
+                                        <input type="radio" id="radio1" name="radio" value="1">
+                                        <label for="radio1">Exclusivo</label><br>
+                                        <input type="radio" id="radio2" name="radio" value="2">
+                                        <label for="radio2">Não exclusivo</label><br>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-label-group" required>
+                                        <select id="" name="" class="form-control">
+                                            <option selected disabled>Região</option>
+                                            <option value="1">São Paulo</option>
+                                            <option value="2">todos</option>
                                         </select>
                                     </div>
                                 </div>

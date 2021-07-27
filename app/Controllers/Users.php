@@ -80,12 +80,7 @@ class Users extends BaseController
 
         session()->set($data);
 
-        
 
-        // session()->set($data);
-        // if (!session()->get('isLoggedIn')) {
-        //     return redirect()->to(base_url(''));
-        // } else {}
     }
     //--------------------------------------------------------------------
 
@@ -382,7 +377,7 @@ class Users extends BaseController
             return redirect()->to(base_url(''));
         } else {
             $uri = current_url(true);
-            $usuario_id = $uri->getSegment(4);
+            $usuario_id = $uri->getSegment(3);
             $model = new UserModel();
             $result = $model->find($usuario_id);
 
@@ -562,7 +557,7 @@ class Users extends BaseController
             return redirect()->to(base_url(''));
         } else {
             $uri = current_url(true);
-            $user_id = $uri->getSegment(5);
+            $user_id = $uri->getSegment(4);
             $model = new UserModel();
             $result = $model->find($user_id);
             // 

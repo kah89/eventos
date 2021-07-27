@@ -24,7 +24,7 @@ class PdfController extends Controller
 
             helper(['form']);
             $uri = current_url(true);
-            $evento_id = $uri->getSegment(4);
+            $evento_id = $uri->getSegment(3);
             $model =  new EventoModel();
             $newmodel = new AtividadeModel();
             $userModel = new UserModel();
@@ -84,7 +84,7 @@ class PdfController extends Controller
 
             helper(['form']);
             $uri = current_url(true);
-            $evento_id = $uri->getSegment(5);
+            $evento_id = $uri->getSegment(4);
             // var_dump($evento_id);exit;
             $model = new EventoModel();
             $newmodel = new AtividadeModel();

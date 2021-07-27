@@ -9,7 +9,7 @@ class EventoModel extends Model
     protected $table = 'eventos';
     protected $primaryKey = 'id';
     protected $returnType     = 'array';
-    protected $allowedFields = ['id', 'titulo', 'created_at', 'imagem', 'resumo', 'dtInicio', 'dtFim', 'userCreated', 'assinatura'];
+    protected $allowedFields = ['id', 'titulo', 'created_at', 'imagem', 'resumo', 'dtInicio', 'dtFim', 'userCreated', 'assinatura', 'tipo'];
 
     /**
      * Recebe como parâmetro o idUser e o idEvento e os insere no banco, registrando que a atividade X foi concluída pelo usuário Y na data e hora atual
