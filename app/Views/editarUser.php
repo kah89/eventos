@@ -204,20 +204,14 @@
                                 }
 
                                
-
-                                if ($ehAdmin == true) {
-                                    echo '<option value="0" id="0">Administrador</option>';
-                                }
-
-                                // echo '<option value="1" id="1" '. $tipos[1] .'>Estudante de Farmácia</option>';
-                                // echo '<option value="2" id="2" '. $tipos[2] .'>Farmacêutico</option>';
-
-                               else if ($type == 1) {
-                                    echo '<option value="1" id="1" selected="selected">Estudante de Farmácia</option>';
-                                    echo '<option value="2" id="2">Farmacêutico</option>';
-                                } else {
-                                    echo '<option value="1" id="1">Estudante de Farmácia</option>';
-                                    echo '<option value="2" id="2" selected="selected">Farmacêutico</option>';
+                                if ($type == 0) {
+                                    echo '<option value="0">Administrador</option>';
+                                }else if ($type == 1) {
+                                    echo '<option value="1"  selected="selected">Estudante de Farmácia</option>';
+                                    echo '<option value="2" >Farmacêutico</option>';
+                                } else if ($type == 2) {
+                                    echo '<option value="1" >Estudante de Farmácia</option>';
+                                    echo '<option value="2" selected="selected">Farmacêutico</option>';
                                 }
                                 ?>
 

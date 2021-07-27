@@ -88,6 +88,7 @@ class Eventos extends BaseController
         $session->set('lastname', $lastnameUser);
 
         return redirect()->to(base_url('listarEventosUser'));
+
     }
 
 

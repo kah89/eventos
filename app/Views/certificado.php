@@ -93,7 +93,7 @@
                     echo base_url('/public/img/marcos.jpg');
                 } else if ($data['assinatura'] == 2) {
                     echo base_url('/public/img/assinatura1.jpg');;
-                } else {
+                } else if ($data['assinatura'] == 3) {
                     echo base_url('/public/img/assinatura2.jpg');;
                 }
                  ?>);

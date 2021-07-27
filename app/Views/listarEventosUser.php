@@ -72,7 +72,7 @@
                     <div class="alert alert-success" role="alert">
                         <?= session()->get('success'); ?>
                     </div>
-                <?php } elseif (session()->get('info')) { ?>
+                <?php } else if (session()->get('info')) { ?>
                     <div class="alert alert-info" role="alert">
                         <?= session()->get('info'); ?>
                     </div>

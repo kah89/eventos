@@ -80,12 +80,7 @@ class Users extends BaseController
 
         session()->set($data);
 
-        
 
-        // session()->set($data);
-        // if (!session()->get('isLoggedIn')) {
-        //     return redirect()->to(base_url(''));
-        // } else {}
     }
     //--------------------------------------------------------------------
 
