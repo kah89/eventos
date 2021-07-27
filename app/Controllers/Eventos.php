@@ -41,7 +41,7 @@ class Eventos extends BaseController
             $model = new EventoModel();
             $idUser = session()->get('id');
             $uri = current_url(true);
-            $idEvento = $uri->getSegment(5);
+            $idEvento = $uri->getSegment(4);
             $msg = $model->inscricaoEvento($idUser, $idEvento);
             $session = session();
             $session->setFlashdata('success', $msg);
@@ -64,7 +64,7 @@ class Eventos extends BaseController
             $firstnameUser = session()->get('firstname');
             $lastnameUser = session()->get('lastname');
             $uri = current_url(true);
-            $idEvento = $uri->getSegment(5);
+            $idEvento = $uri->getSegment(4);
         }
 
 
@@ -259,10 +259,10 @@ class Eventos extends BaseController
             return redirect()->to(base_url(''));
         } else {
             $uri = current_url(true);
-            $evento_id = $uri->getSegment(4);
+            $evento_id = $uri->getSegment(3);
             $model = new EventoModel();
             $result = $model->find($evento_id);
-
+            
             $data = [
                 'title' => 'Editar evento',
                 'data' => $result,
@@ -328,8 +328,8 @@ class Eventos extends BaseController
             return redirect()->to(base_url(''));
         } else {
             $imageFile = $imagem;
-            $nome = md5(uniqid()) . '_' . time() . '.jpg';
-            if ($imageFile->move(WRITEPATH . '../public/img', $nome)) {
+            $nome = md5(uniqid()) . '_' . time() . '.jpg';            
+            if ($imageFile->move(ROOTPATH.'public/img/', $nome)) {
                 return $nome;
             } else {
                 return false;
@@ -343,7 +343,7 @@ class Eventos extends BaseController
 
     // deleta um eventos
 
-    public function alterareventos() //tras a lista de eventos
+    public function alterarEventos() //tras a lista de eventos
     {
         if (!session()->get('isLoggedIn')) {
             return redirect()->to(base_url(''));
@@ -354,7 +354,7 @@ class Eventos extends BaseController
                 'data' => $model->findAll(),
             ];
             echo view('templates/header', $data);
-            echo view('alterareventos');
+            echo view('alterarEventos');
             echo view('templates/footer');
         }
     }
@@ -369,7 +369,7 @@ class Eventos extends BaseController
         } else {
 
             $uri = current_url(true);
-            $product_id = $uri->getSegment(5); //verifica em qual campo esta o ID
+            $product_id = $uri->getSegment(4); //verifica em qual campo esta o ID
             $model = new EventoModel();
             $result = $model->find($product_id);
 

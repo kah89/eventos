@@ -92,7 +92,7 @@
 
                                 $htm = '<tr><td>' . $evento['id'] . '</td><td>' . $evento['titulo'] . '</td><td id="p">' . $evento['resumo'] . '</td>                           
                               <td>';
-  
+
                                     $htm .= '<a data-toggle="modal"';
                                     if ($evento['certificado'] == 'Evento não gera certificado.') {
                                         if (Date($evento['dtFim']) >  date("Y-m-d H:i:s")) {
@@ -121,7 +121,10 @@
                                     }
                                     $htm .= '</td></tr>';
 
-                                    echo ($htm);  
+
+                                    echo ($htm);
+                              
+
                             }
                             ?>
                         </tbody>
