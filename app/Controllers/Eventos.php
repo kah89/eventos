@@ -210,6 +210,8 @@ class Eventos extends BaseController
                             'userCreated' => session()->get('id'),
                             'assinatura' => $this->request->getVar('assinatura'),
                             'tipo' => $this->request->getVar('tipo'),
+                            'destinado' => $this->request->getVar('destinado'),
+                            'estado' => $this->request->getVar('estado'),
                         ];
 
                         if ($model->save($newData)) {
@@ -298,6 +300,8 @@ class Eventos extends BaseController
                             'userCreated' => session()->get('id'),
                             'assinatura' => $this->request->getVar('assinatura'),
                             'tipo' => $this->request->getVar('tipo'),
+                            'destinado' => $this->request->getVar('destinado'),
+                            'estado' => $this->request->getVar('estado'),
                         ];
 
                         if ($model->save($newData)) {
