@@ -97,9 +97,25 @@
         margin-right: 50px;
         margin-top: -49px;
     }
-</style>
-</style>
 
+    .radio {
+        float: right;
+        margin-top: -105px;
+        margin-right: 135px;
+    }
+
+    #estado {
+        width: 200px;
+        float: right;
+        margin-right: 454px;
+        margin-top: -105px;
+    }
+
+    .checkbox {
+        margin-top: 10px;
+        margin-left: 15px;
+    }
+</style>
 <script language='Javascript'>
     var today = new Date();
     var dd = today.getDate();
@@ -217,47 +233,43 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group checkbox">
                                     <label for="">Destinado:</label>
-                                    <div class="form-label-group" required>
-                                        <input type="checkbox" id="checkbox1" name="checkbox1" value="1">
-                                        <label for="checkbox1">Farmacêuticos SP</label><br>
-                                        <input type="checkbox" id="checkbox2" name="checkbox2" value="2">
-                                        <label for="checkbox2">Farmacêuticos</label><br>
-                                        <input type="checkbox" id="checkbox3" name="checkbox3" value="3">
-                                        <label for="checkbox3">Estudantes</label>
+                                    <div class="form-label-group" name="destinado" required>
+                                        <input type="checkbox" name="destinado[]" value="1">Estudantes<br>
+                                        <input type="checkbox" name="destinado[]" value="2">Farmacêuticos<br>
+                                        <input type="checkbox" name="destinado[]" value="3">Farmacêuticos SP<br 
+                                        <?php
+                                        if (isset($_POST['file_upload'])) {
+                                            $checkBox = array_filter($_POST['destinado'], 'ctype_digit');
+                                            // Segurança: apenas haverá números inteiros, dessa forma se houver: (1,2,3,biscoito,5,10,lasanha) irá ser: (1,2,3,5,10)
+
+                                            $sqlParcial = '';
+                                            // Remover o Warning
+
+                                            for ($i = 0; $i < count($checkBox); $i++) {
+
+                                                $sqlParcial .= '("' . $checkBox[$i] . '", (SELECT AUTO_INCREMENT FROM information_schema.tables WHERE table_name = "eventos" AND table_schema = DATABASE()) -' . $i . '),';
+                                                // O "- $i" era subtrair o AUTO_INCRMENT pelo o número da postagem, assim igualando com o número da primeira.
+                                                // O (SELECT AUTO_INCREMENT FROM information_schema.tables WHERE table_name = 'teste' AND table_schema = DATABASE()) irá pegar o AUTO_INCREMENT!
+                                                // O sqlParcial irá armazenar tudo um do lado do outro exemplo: $sqlParcial será (1, 0),(2, 0),(5, 0), EXEMPLO!
+
+                                            }
+                                        }
+                                        ?>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="form-label-group" required>
-                                        <select id="" name="" class="form-control">
-                                            <option selected disabled>Destinado</option>
-                                            <option value="1">Farmacêuticos SP</option>
-                                            <option value="2">Farmacêuticos</option>
-                                            <option value="3">Estudantes</option>
-                                            <option value="4">Farmacêuticos SP/Estudantes</option>
-                                            <option value="5">Farmacêuticos/Estudantes</option>
-                                            <option value="6">todos</option>
-                                        </select>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="form-label-group" required>
-                                        <label for="">Evento:</label>
-                                        <input type="radio" id="radio1" name="radio" value="1">
-                                        <label for="radio1">Exclusivo</label><br>
-                                        <input type="radio" id="radio2" name="radio" value="2">
-                                        <label for="radio2">Não exclusivo</label><br>
+
+                                    <div class="form-group">
+                                        <div class="form-label-group" required>
+                                            <select id="estado" name="estado" class="form-control">
+                                                <option selected disabled>Estado:</option>
+                                                <option value="26">São Paulo</option>
+                                                <option value="100">Todos</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="form-label-group" required>
-                                        <select id="" name="" class="form-control">
-                                            <option selected disabled>Região</option>
-                                            <option value="1">São Paulo</option>
-                                            <option value="2">todos</option>
-                                        </select>
-                                    </div>
+
                                 </div>
                                 <div class="form-group">
                                     <div class="form-label-group">
@@ -268,13 +280,27 @@
                                     <?php if (isset($validation)) : ?>
                                         <div class="alert alert-danger" roles="alert">
                                             <?= $validation->listErrors(); ?>
+
+                                    <div class="form-group radio">
+                                        <div class="form-check" name="tipo" required>
+                                            <label class="evento" for="">Evento:</label><br>
+                                            <input class="form-check-input " type="radio" id="radio1" name="tipo" value="1">
+                                            <label class="form-check-label " for="radio1">Exclusivo</label><br>
+                                            <input class="form-check-input " type="radio" id="radio2" name="tipo" value="2">
+                                            <label class="form-check-label" for="radio2">Não exclusivo</label><br>
                                         </div>
-                                    <?php endif; ?>
+                                    </div>
+                                    <div class="form-group">
+                                        <?php if (isset($validation)) : ?>
+                                            <div class="alert alert-danger" roles="alert">
+                                                <?= $validation->listErrors(); ?>
+                                            </div>
+                                        <?php endif; ?>
 
 
-                                    <button class="btn btn-primary  text-uppercase" name="file_upload" value="Upload File" id="uploadbutton" type="submit">Cadastrar</button>
+                                        <button class="btn btn-primary  text-uppercase" name="file_upload" value="Upload File" id="uploadbutton" type="submit">Cadastrar</button>
 
-                                </div>
+                                    </div>
                             </form>
                         </div>
                     </div>

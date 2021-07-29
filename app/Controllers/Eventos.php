@@ -195,7 +195,7 @@ class Eventos extends BaseController
                 if (!$this->validate($rules)) {
                     $data['validation'] = $this->validator;
                 } else {
-
+                    var_dump($this->request->getPostGet('destinado[]')); exit;
                     //salva no BD
                     $model =  new EventoModel();
                     $uploadImagem = $this->upload_image($this->request->getFile('profile_image'));
@@ -210,7 +210,10 @@ class Eventos extends BaseController
                             'userCreated' => session()->get('id'),
                             'assinatura' => $this->request->getVar('assinatura'),
                             'tipo' => $this->request->getVar('tipo'),
-                            'limite' => $this->request->getVar('limite'),
+                           'limite' => $this->request->getVar('limite'),
+                            'destinado' => $this->request->getVar('destinado'),
+                            'estado' => $this->request->getVar('estado'),
+
                         ];
 
                         if ($model->save($newData)) {
@@ -300,6 +303,9 @@ class Eventos extends BaseController
                             'assinatura' => $this->request->getVar('assinatura'),
                             'tipo' => $this->request->getVar('tipo'),
                             'limite' => $this->request->getVar('limite'),
+                            'destinado' => $this->request->getVar('destinado'),
+                            'estado' => $this->request->getVar('estado'),
+
                         ];
 
                         if ($model->save($newData)) {

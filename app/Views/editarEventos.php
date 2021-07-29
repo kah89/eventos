@@ -52,6 +52,24 @@
         margin-right: -400px;
         margin-top: -54px;
     }
+
+    .radio {
+        float: right;
+        margin-top: -130px;
+        margin-right: 135px;
+    }
+
+    #estado {
+        width: 200px;
+        float: right;
+        margin-right: 454px;
+        margin-top: -135px;
+    }
+
+    .checkbox {
+        margin-top: 10px;
+        margin-left: 15px;
+    }
 </style>
 <main>
     <div class="container">
@@ -153,6 +171,102 @@
                                         ?>
 
                                     </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group checkbox" name="destinado">
+                                <label for="">Destinado:</label>
+                                <div class="form-label-group" required>
+                                    <?php
+                                    foreach ($data as $key => $result) {
+                                        $selecionado = $data['destinado'] == $id;
+                                        if ($selecionado) {
+                                            $destinado = $result['destinado'];
+                                        }
+                                    }
+                                    if ($destinado == 1) {
+                                        echo '<input type="checkbox" id="checkbox1" name="destinado" value="1" checked="checked">
+                                              <label for="checkbox1">Estudantes </label><br>';
+                                        echo '<input type="checkbox" id="checkbox2" name="destinado" value="2">
+                                              <label for="checkbox2">Farmacêuticos</label><br>';
+                                        echo '<input type="checkbox" id="checkbox3" name="destinado" value="3">
+                                              <label for="checkbox3">Farmacêuticos SP</label>';
+                                    } else if ($destinado == 2) {
+                                        echo '<input type="checkbox" id="checkbox1" name="destinado" value="1">
+                                              <label for="checkbox1">Estudantes </label><br>';
+                                        echo '<input type="checkbox" id="checkbox2" name="destinado" value="2" checked="checked">
+                                              <label for="checkbox2">Farmacêuticos</label><br>';
+                                        echo '<input type="checkbox" id="checkbox3" name="destinado" value="3">
+                                              <label for="checkbox3">Farmacêuticos SP</label>';
+                                    } else if ($destinado == 3) {
+                                        echo '<input type="checkbox" id="checkbox1" name="destinado" value="1">
+                                              <label for="checkbox1">Estudantes </label><br>';
+                                        echo '<input type="checkbox" id="checkbox2" name="destinado" value="2">
+                                              <label for="checkbox2">Farmacêuticos</label><br>';
+                                        echo '<input type="checkbox" id="checkbox3" name="destinado" value="3" checked="checked">
+                                              <label for="checkbox3">Farmacêuticos SP</label>';
+                                    }else{
+                                        echo '<input type="checkbox" id="checkbox1" name="destinado" value="1" checked="checked">
+                                              <label for="checkbox1">Estudantes </label><br>';
+                                        echo '<input type="checkbox" id="checkbox2" name="destinado" value="2" checked="checked">
+                                              <label for="checkbox2">Farmacêuticos</label><br>';
+                                        echo '<input type="checkbox" id="checkbox3" name="destinado" value="3" checked="checked">
+                                              <label for="checkbox3">Farmacêuticos SP</label>';
+                                    }
+                                    ?>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="form-label-group" required>
+                                    <select id="estado" name="estado" class="form-control">
+                                        <option selected disabled>Estado:</option>
+
+                                        <?php
+                                        foreach ($data as $key => $result) {
+                                            $selecionado = $data['estado'] == $id;
+                                            if ($selecionado) {
+                                                $estado = $result['estado'];
+                                            }
+                                        }
+                                        if ($estado == 26) {
+                                            echo '<option value="26"  selected="selected">São Paulo</option>';
+                                            echo '<option value="100" >Todos</option>';
+                                        } else {
+                                            echo '<option value="26" >São Paulo</option>';
+                                            echo '<option value="100" selected="selected">Todos</option>';
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group radio">
+                                <div class="form-check" name="tipo" required>
+                                    <label class="evento" for="">Evento:</label><br>
+                                    <!-- <input class="form-check-input " type="radio" id="radio1" name="radio" value="1">
+                                    <label class="form-check-label " for="radio1">Exclusivo</label><br>
+                                    <input class="form-check-input " type="radio" id="radio2" name="radio" value="2">
+                                    <label class="form-check-label" for="radio2">Não exclusivo</label><br> -->
+                                    <?php
+                                    foreach ($data as $key => $result) {
+                                        $selecionado = $data['tipo'] == $id;
+                                        if ($selecionado) {
+                                            $tipo = $result['tipo'];
+                                        }
+                                    }
+                                    if ($tipo == 1) {
+                                        echo '<input class="form-check-input " type="radio" id="radio1" name="radio" value="1" checked="checked">
+                                              <label class="form-check-label " for="radio1">Exclusivo</label><br>';
+                                        echo '<input class="form-check-input " type="radio" id="radio2" name="radio" value="2">
+                                              <label class="form-check-label" for="radio2">Não exclusivo</label><br>';
+                                    } else if ($tipo == 2) {
+                                        echo '<input class="form-check-input " type="radio" id="radio1" name="radio" value="1">
+                                              <label class="form-check-label " for="radio1">Exclusivo</label><br>';
+                                        echo '<input class="form-check-input " type="radio" id="radio2" name="radio" value="2" checked="checked">
+                                              <label class="form-check-label" for="radio2">Não exclusivo</label><br>';
+                                    } 
+                                    ?>
                                 </div>
                             </div>
                             <div class="form-group">
