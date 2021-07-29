@@ -210,6 +210,7 @@ class Eventos extends BaseController
                             'userCreated' => session()->get('id'),
                             'assinatura' => $this->request->getVar('assinatura'),
                             'tipo' => $this->request->getVar('tipo'),
+                            'limite' => $this->request->getVar('limite'),
                         ];
 
                         if ($model->save($newData)) {
@@ -298,6 +299,7 @@ class Eventos extends BaseController
                             'userCreated' => session()->get('id'),
                             'assinatura' => $this->request->getVar('assinatura'),
                             'tipo' => $this->request->getVar('tipo'),
+                            'limite' => $this->request->getVar('limite'),
                         ];
 
                         if ($model->save($newData)) {
