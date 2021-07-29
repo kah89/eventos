@@ -63,12 +63,20 @@
         width: 200px;
         float: right;
         margin-right: 454px;
-        margin-top: -135px;
+        margin-top: -75px;
     }
 
     .checkbox {
         margin-top: 10px;
         margin-left: 15px;
+    }
+
+    #limite {
+        width: 200px;
+        float: right;
+        margin-right: 453px;
+        margin-top: -135px;
+        
     }
 </style>
 <main>
@@ -184,35 +192,29 @@
                                             $destinado = $result['destinado'];
                                         }
                                     }
-                                    if ($destinado == 1) {
+                                    
+                                    if (in_array("1", json_decode($destinado))) {
                                         echo '<input type="checkbox" id="checkbox1" name="destinado" value="1" checked="checked">
-                                              <label for="checkbox1">Estudantes </label><br>';
-                                        echo '<input type="checkbox" id="checkbox2" name="destinado" value="2">
-                                              <label for="checkbox2">Farmacêuticos</label><br>';
-                                        echo '<input type="checkbox" id="checkbox3" name="destinado" value="3">
-                                              <label for="checkbox3">Farmacêuticos SP</label>';
-                                    } else if ($destinado == 2) {
+                                        <label for="checkbox1">Estudantes </label><br>';
+                                    } else {
                                         echo '<input type="checkbox" id="checkbox1" name="destinado" value="1">
-                                              <label for="checkbox1">Estudantes </label><br>';
-                                        echo '<input type="checkbox" id="checkbox2" name="destinado" value="2" checked="checked">
-                                              <label for="checkbox2">Farmacêuticos</label><br>';
-                                        echo '<input type="checkbox" id="checkbox3" name="destinado" value="3">
-                                              <label for="checkbox3">Farmacêuticos SP</label>';
-                                    } else if ($destinado == 3) {
-                                        echo '<input type="checkbox" id="checkbox1" name="destinado" value="1">
-                                              <label for="checkbox1">Estudantes </label><br>';
-                                        echo '<input type="checkbox" id="checkbox2" name="destinado" value="2">
-                                              <label for="checkbox2">Farmacêuticos</label><br>';
-                                        echo '<input type="checkbox" id="checkbox3" name="destinado" value="3" checked="checked">
-                                              <label for="checkbox3">Farmacêuticos SP</label>';
-                                    }else{
-                                        echo '<input type="checkbox" id="checkbox1" name="destinado" value="1" checked="checked">
-                                              <label for="checkbox1">Estudantes </label><br>';
-                                        echo '<input type="checkbox" id="checkbox2" name="destinado" value="2" checked="checked">
-                                              <label for="checkbox2">Farmacêuticos</label><br>';
-                                        echo '<input type="checkbox" id="checkbox3" name="destinado" value="3" checked="checked">
-                                              <label for="checkbox3">Farmacêuticos SP</label>';
+                                        <label for="checkbox1">Estudantes </label><br>';
                                     }
+                                    if (in_array("2", json_decode($destinado))) {
+                                        echo '<input type="checkbox" id="checkbox2" name="destinado" value="2" checked="checked">
+                                        <label for="checkbox2">Farmacêuticos</label><br>';
+                                    } else {
+                                        echo '<input type="checkbox" id="checkbox2" name="destinado" value="2">
+                                        <label for="checkbox2">Farmacêuticos</label><br>';
+                                    }
+                                    if (in_array("3", json_decode($destinado))) {
+                                        echo '<input type="checkbox" id="checkbox3" name="destinado" value="3" checked="checked">
+                                        <label for="checkbox3">Farmacêuticos SP</label>';
+                                    } else {
+                                        echo '<input type="checkbox" id="checkbox3" name="destinado" value="3">
+                                        <label for="checkbox3">Farmacêuticos SP</label>';
+                                    }
+
                                     ?>
                                 </div>
                             </div>
@@ -265,8 +267,13 @@
                                               <label class="form-check-label " for="radio1">Exclusivo</label><br>';
                                         echo '<input class="form-check-input " type="radio" id="radio2" name="radio" value="2" checked="checked">
                                               <label class="form-check-label" for="radio2">Não exclusivo</label><br>';
-                                    } 
+                                    }
                                     ?>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-label-group">
+                                    <input type="text" id="limite" name="limite" class="form-control" placeholder="Limite de pessoas" value="<?= $limite ?>" required autofocus>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -277,11 +284,7 @@
                                 <?php endif; ?>
                                 <button class="btn btn-md btn-primary  text-uppercase" name="file_upload" value="Upload File" id="uploadbutton" type="submit">Alterar</button>
                             </div>
-                            <div class="form-group">
-                                <div class="form-label-group">
-                                    <input type="text" id="limite" name="limite" class="form-control" placeholder="Limite de pessoas" required autofocus>
-                                </div>
-                            </div>
+                            
                         </form>
                     </div>
                 </div>

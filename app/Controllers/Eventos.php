@@ -88,7 +88,6 @@ class Eventos extends BaseController
         $session->set('lastname', $lastnameUser);
 
         return redirect()->to(base_url('listarEventosUser'));
-
     }
 
 
@@ -115,16 +114,12 @@ class Eventos extends BaseController
                 $evento['certificado'] = $atividadeM->verificarConclusao(session()->get('id'), $evento['id']);
                 array_push($eventos, $evento);
             }
-            // var_dump($eventos );exit;
 
             $data = [
                 'title' => 'Lista de eventos ',
                 'data' => $eventos
             ];
 
-            // $atividade = new Atividades();
-            // $this->function->verificarConclusao();
-            // var_dump($atividade);exit;
 
             echo view('templates/header', $data);
             echo view('listarEventosUser');
@@ -148,16 +143,8 @@ class Eventos extends BaseController
             $model = new AtividadeModel();
             $data = [
                 'title' => 'Lista de atividades ',
-                'data' => $model->where(['idEvento' => $id])->findAll()
-
-                //'data' => $model->where(['idEvento' => $id])
-                // ->select('*')
-                // ->join('usuario_atividade','usuario_atividade.idAtividade = atividade_evento.id')
-                // ->where('usuario_atividade.idUser', 1)
-                // ->findAll()
+                'data' => $model->where(['idEvento' => $id])->findAll(),
             ];
-            // var_dump($data);exit;      
-
 
             echo view('templates/header', $data);
             echo view('listaEvento');
@@ -184,7 +171,6 @@ class Eventos extends BaseController
             ];
 
             if ($this->request->getMethod() == 'post') {
-
                 //VALIDAÇÕES
                 $rules = [
                     'titulo' => 'trim|required|min_length[3]|max_length[60]',
@@ -195,8 +181,8 @@ class Eventos extends BaseController
                 if (!$this->validate($rules)) {
                     $data['validation'] = $this->validator;
                 } else {
-                    var_dump($this->request->getPostGet('destinado[]')); exit;
                     //salva no BD
+                    
                     $model =  new EventoModel();
                     $uploadImagem = $this->upload_image($this->request->getFile('profile_image'));
                     if ($uploadImagem) {
@@ -210,10 +196,9 @@ class Eventos extends BaseController
                             'userCreated' => session()->get('id'),
                             'assinatura' => $this->request->getVar('assinatura'),
                             'tipo' => $this->request->getVar('tipo'),
-                           'limite' => $this->request->getVar('limite'),
-                            'destinado' => $this->request->getVar('destinado'),
                             'estado' => $this->request->getVar('estado'),
-
+                            'limite' => $this->request->getVar('limite'),
+                            'destinado' => json_encode($this->request->getVar('destinado')),
                         ];
 
                         if ($model->save($newData)) {
@@ -268,12 +253,12 @@ class Eventos extends BaseController
             $evento_id = $uri->getSegment(3);
             $model = new EventoModel();
             $result = $model->find($evento_id);
-            
+
             $data = [
                 'title' => 'Editar evento',
                 'data' => $result,
             ];
-            
+
             helper(['form']);
 
             if ($this->request->getMethod() == 'post') {
@@ -339,8 +324,8 @@ class Eventos extends BaseController
             return redirect()->to(base_url(''));
         } else {
             $imageFile = $imagem;
-            $nome = md5(uniqid()) . '_' . time() . '.jpg';            
-            if ($imageFile->move(ROOTPATH.'public/img/', $nome)) {
+            $nome = md5(uniqid()) . '_' . time() . '.jpg';
+            if ($imageFile->move(ROOTPATH . 'public/img/', $nome)) {
                 return $nome;
             } else {
                 return false;

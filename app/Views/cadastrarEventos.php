@@ -108,12 +108,20 @@
         width: 200px;
         float: right;
         margin-right: 454px;
-        margin-top: -105px;
+        margin-top: -49px;
     }
 
     .checkbox {
         margin-top: 10px;
         margin-left: 15px;
+    }
+
+    #limite {
+        width: 200px;
+        float: right;
+        margin-right: 453px;
+        margin-top: -105px;
+        
     }
 </style>
 <script language='Javascript'>
@@ -238,69 +246,50 @@
                                     <div class="form-label-group" name="destinado" required>
                                         <input type="checkbox" name="destinado[]" value="1">Estudantes<br>
                                         <input type="checkbox" name="destinado[]" value="2">Farmacêuticos<br>
-                                        <input type="checkbox" name="destinado[]" value="3">Farmacêuticos SP<br 
-                                        <?php
-                                        if (isset($_POST['file_upload'])) {
-                                            $checkBox = array_filter($_POST['destinado'], 'ctype_digit');
-                                            // Segurança: apenas haverá números inteiros, dessa forma se houver: (1,2,3,biscoito,5,10,lasanha) irá ser: (1,2,3,5,10)
+                                        <input type="checkbox" name="destinado[]" value="3">Farmacêuticos SP<br>
 
-                                            $sqlParcial = '';
-                                            // Remover o Warning
-
-                                            for ($i = 0; $i < count($checkBox); $i++) {
-
-                                                $sqlParcial .= '("' . $checkBox[$i] . '", (SELECT AUTO_INCREMENT FROM information_schema.tables WHERE table_name = "eventos" AND table_schema = DATABASE()) -' . $i . '),';
-                                                // O "- $i" era subtrair o AUTO_INCRMENT pelo o número da postagem, assim igualando com o número da primeira.
-                                                // O (SELECT AUTO_INCREMENT FROM information_schema.tables WHERE table_name = 'teste' AND table_schema = DATABASE()) irá pegar o AUTO_INCREMENT!
-                                                // O sqlParcial irá armazenar tudo um do lado do outro exemplo: $sqlParcial será (1, 0),(2, 0),(5, 0), EXEMPLO!
-                                                // SELECT AUTO_INCREMENT FROM information_schema.tables WHERE table_name = "teste" AND table_schema = DATABASE()) -'. $i .'
-                                            }
-                                        }
-                                        ?>
                                     </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <div class="form-label-group" required>
-                                            <select id="estado" name="estado" class="form-control">
-                                                <option selected disabled>Estado:</option>
-                                                <option value="26">São Paulo</option>
-                                                <option value="100">Todos</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
                                 </div>
+
+                                <div class="form-group">
+                                    <div class="form-label-group" required>
+                                        <select id="estado" name="estado" class="form-control">
+                                            <option selected disabled>Estado:</option>
+                                            <option value="26">São Paulo</option>
+                                            <option value="100">Todos</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group radio">
+                                    <div class="form-check" name="tipo" required>
+                                        <label class="evento" for="">Evento:</label><br>
+                                        <input class="form-check-input " type="radio" id="radio1" name="tipo" value="1">
+                                        <label class="form-check-label " for="radio1">Exclusivo</label><br>
+                                        <input class="form-check-input " type="radio" id="radio2" name="tipo" value="2">
+                                        <label class="form-check-label" for="radio2">Não exclusivo</label><br>
+                                    </div>
+                                </div>
+
                                 <div class="form-group">
                                     <div class="form-label-group">
                                         <input type="text" id="limite" name="limite" class="form-control" placeholder="Limite de pessoas" required autofocus>
                                     </div>
                                 </div>
+
+
+
                                 <div class="form-group">
                                     <?php if (isset($validation)) : ?>
                                         <div class="alert alert-danger" roles="alert">
                                             <?= $validation->listErrors(); ?>
-
-                                    <div class="form-group radio">
-                                        <div class="form-check" name="tipo" required>
-                                            <label class="evento" for="">Evento:</label><br>
-                                            <input class="form-check-input " type="radio" id="radio1" name="tipo" value="1">
-                                            <label class="form-check-label " for="radio1">Exclusivo</label><br>
-                                            <input class="form-check-input " type="radio" id="radio2" name="tipo" value="2">
-                                            <label class="form-check-label" for="radio2">Não exclusivo</label><br>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <?php if (isset($validation)) : ?>
-                                            <div class="alert alert-danger" roles="alert">
-                                                <?= $validation->listErrors(); ?>
-                                            </div>
-                                        <?php endif; ?>
+                                    <?php endif; ?>
 
 
-                                        <button class="btn btn-primary  text-uppercase" name="file_upload" value="Upload File" id="uploadbutton" type="submit">Cadastrar</button>
+                                    <button class="btn btn-primary  text-uppercase" name="file_upload" value="Upload File" id="uploadbutton" type="submit">Cadastrar</button>
 
-                                    </div>
+                                </div>
                             </form>
                         </div>
                     </div>

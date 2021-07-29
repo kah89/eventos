@@ -7,6 +7,21 @@ h1, th{
     margin-top: 20px;
     font: caption;
 }
+#cad,
+    #cad1 {
+        width: 40px;
+        background-color: #008CBA;
+        font-size: 12px;
+        padding: 11px 23px;
+        border-radius: 8px;
+        border: 2px solid;
+        text-align: center;
+        margin-left: -5px;
+    }
+
+    #cad:hover {
+        box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+    }
 
 </style>
 <main>
@@ -22,23 +37,28 @@ h1, th{
                             <th scope="col">Titulo</th>
                             <th scope="col">Data</th> <!-- abrir um popup ou card  / BD dt inicio-->
                             <th scope="col">Certificado</th> <!-- check box / BD tipo-->
+                            <th scope="col">Ação</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach($data as $key => $ativ){
-                            if ($ativ['tipo'] == '1') {
-                                $tipo = 'Sim';
-                            } else {
-                                $tipo = 'Não';
-                            }
-                            // var_dump($ativ);exit;
-                               echo '<tr><td>'. $ativ['id'].'</td><td>'.$ativ['titulo'].'</td><td>'.$ativ['dtInicio'].'</td>
-                              
-                               <td id="tipo">'. $tipo.'</td>
+                        <?php   foreach ($data as $key => $atividade) {
+                                if ($atividade['tipo'] == '1') {
+                                    $tipo = 'Sim';
+                                } else {
+                                    $tipo = 'Não';
+                                }
+                                echo '<tr><td>' . $atividade['id'] . '</td><td>' . $atividade['titulo'] . '</td><td>' . $atividade['dtInicio'] . '</td><td>' . $tipo . '</td>
 
-                               </tr>';
+                               ';
 
-                        } ?>
+                                if (date($atividade['dtFim']) > date("Y-m-d H:i:s")) {
+                                    echo '<td><a class="btn btn-primary" id="cad" href= ' . base_url('/atividades/inscreverAtividade') . "/" . $atividade['id'] . ' onclick="inscreverAtividade(' . $atividade['id'] . ');"  role="button" >Ir </a></td></tr>';
+                                } else {
+                                    echo '<td><a type="button" id="cad" class=" cad btn btn-primary" data-toggle="modal" data-target="#sobreModal">
+                                    Ir
+                                </a></td></tr>';
+                                }
+                            }?>
                     </tbody> 
                 </table>
             </div>    
