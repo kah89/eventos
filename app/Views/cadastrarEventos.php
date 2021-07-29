@@ -253,7 +253,7 @@
                                                 // O "- $i" era subtrair o AUTO_INCRMENT pelo o número da postagem, assim igualando com o número da primeira.
                                                 // O (SELECT AUTO_INCREMENT FROM information_schema.tables WHERE table_name = 'teste' AND table_schema = DATABASE()) irá pegar o AUTO_INCREMENT!
                                                 // O sqlParcial irá armazenar tudo um do lado do outro exemplo: $sqlParcial será (1, 0),(2, 0),(5, 0), EXEMPLO!
-
+                                                // SELECT AUTO_INCREMENT FROM information_schema.tables WHERE table_name = "teste" AND table_schema = DATABASE()) -'. $i .'
                                             }
                                         }
                                         ?>
