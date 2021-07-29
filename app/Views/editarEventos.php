@@ -277,6 +277,11 @@
                                 <?php endif; ?>
                                 <button class="btn btn-md btn-primary  text-uppercase" name="file_upload" value="Upload File" id="uploadbutton" type="submit">Alterar</button>
                             </div>
+                            <div class="form-group">
+                                <div class="form-label-group">
+                                    <input type="text" id="limite" name="limite" class="form-control" placeholder="Limite de pessoas" required autofocus>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>

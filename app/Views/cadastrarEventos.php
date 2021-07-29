@@ -270,6 +270,17 @@
                                         </div>
                                     </div>
 
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-label-group">
+                                        <input type="text" id="limite" name="limite" class="form-control" placeholder="Limite de pessoas" required autofocus>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <?php if (isset($validation)) : ?>
+                                        <div class="alert alert-danger" roles="alert">
+                                            <?= $validation->listErrors(); ?>
+
                                     <div class="form-group radio">
                                         <div class="form-check" name="tipo" required>
                                             <label class="evento" for="">Evento:</label><br>
