@@ -195,7 +195,7 @@ class Eventos extends BaseController
                 if (!$this->validate($rules)) {
                     $data['validation'] = $this->validator;
                 } else {
-
+                    var_dump($this->request->getPostGet('destinado[]')); exit;
                     //salva no BD
                     $model =  new EventoModel();
                     $uploadImagem = $this->upload_image($this->request->getFile('profile_image'));
