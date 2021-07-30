@@ -50,18 +50,45 @@ h1, th{
                                 echo '<tr><td>' . $atividade['id'] . '</td><td>' . $atividade['titulo'] . '</td><td>' . $atividade['dtInicio'] . '</td><td>' . $tipo . '</td>
 
                                ';
-
-                                if (date($atividade['dtFim']) > date("Y-m-d H:i:s")) {
+                            }
+                            
+                            foreach ($ativ as $key => $atividades) {
+                                if ($atividades['idUser'] == $_SESSION['id']) {
+                                // if ($ativ == $_SESSION['id']) {
                                     echo '<td><a class="btn btn-primary" id="cad" href= ' . base_url('/atividades/inscreverAtividade') . "/" . $atividade['id'] . ' onclick="inscreverAtividade(' . $atividade['id'] . ');"  role="button" >Ir </a></td></tr>';
                                 } else {
                                     echo '<td><a type="button" id="cad" class=" cad btn btn-primary" data-toggle="modal" data-target="#sobreModal">
                                     Ir
                                 </a></td></tr>';
                                 }
+                            
                             }?>
                     </tbody> 
                 </table>
             </div>    
         </div>    
+        <div class="modal fade" data-backdrop="static" id="sobreModal" tabindex="-1" aria-labelledby="sobreModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="sobreModalLabel">Atividade</h5>
+                        <button type="button" class="close cad" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                       Infelizmente você não esta inscrito nesse evento!
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </main>
+<script>
+    function inscreverAtividade($id) {
+        var link = '<?php echo (base_url("/atividades/inscreverAtividade") . "/");  ?>';
+        document.getElementById("cad").href = link + $id;
+    }
+</script>

@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\AtividadeModel;
 use CodeIgniter\API\ResponseTrait;
 use App\Models\EventoModel;
+use App\Models\UserEvento;
 use Exception;
 
 class Eventos extends BaseController
@@ -141,9 +142,11 @@ class Eventos extends BaseController
             return redirect()->to(base_url(''));
         } else {
             $model = new AtividadeModel();
+            $newModel = new UserEvento();
             $data = [
                 'title' => 'Lista de atividades ',
                 'data' => $model->where(['idEvento' => $id])->findAll(),
+                'ativ' => $newModel->findAll(),
             ];
 
             echo view('templates/header', $data);
