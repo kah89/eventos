@@ -35,14 +35,13 @@ class EventoModel extends Model
 
         $limite = (int)$limite['limite'];
         $count = (int)$count['count'];
-        
+
         //var_dump($limite); var_dump($count);var_dump(($count < $limite));exit;
         $array = array('idUser' => $idUser, 'idEvento' => $idEvento);
         $q = $this->db->table('usuario_evento')->select('idUser, idEvento')->where($array);
 
-        if ($count < $limite) {
-            if ($q->countAllResults() < 1) {
-
+        if ($q->countAllResults() < 1) {
+            if ($count < $limite) {
                 if ($this
                     ->db
                     ->table('usuario_evento')
@@ -51,10 +50,10 @@ class EventoModel extends Model
                     $result = "Inscrição efetuada com sucesso!";
                 }
             } else {
-                $result = "Inscrição já foi efetuada!";
+                $result = "Limite de inscrições para este evento atingido!";
             }
         } else {
-            $result = "Limite de inscrições para este evento atingido!";
+            $result = "Inscrição já foi efetuada!";
         }
         // var_dump($result);exit;
         return $result;
