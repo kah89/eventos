@@ -21,20 +21,23 @@ class EventoModel extends Model
 
         $data = [
             'idUser' => $idUser,
-            'idEvento'    => $idEvento
+            'idEvento' => $idEvento,
         ];
 
-        // var_dump($idEvento);exit;
+        
         $count = $this
             ->db->table('usuario_evento')
             ->select('count(usuario_evento.idEvento) as total')
             ->where('idEvento', $idEvento)->get(1)->getRowArray();
-
+ 
 
         $array = array('idUser' => $idUser, 'idEvento' => $idEvento);
         $q = $this->db->table('usuario_evento')->select('idUser, idEvento')->where($array);
-        if ($q->countAllResults() < $limite) {
-            if ($count < 1) {
+        $limitar = $this->db->table('eventos')->select('limite')->where('id', $idEvento);
+        var_dump($q->countAllResults() < 1);  exit;
+        if ($q->countAllResults() < 1) {
+            if ($count < $limitar) {
+              
                 if ($this
                     ->db
                     ->table('usuario_evento')
