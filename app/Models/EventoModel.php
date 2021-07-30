@@ -10,31 +10,38 @@ class EventoModel extends Model
     protected $primaryKey = 'id';
     protected $returnType     = 'array';
 
-    protected $allowedFields = ['id', 'titulo', 'created_at', 'imagem', 'resumo', 'dtInicio', 'dtFim', 'userCreated','assinatura', 'tipo' , 'estado' , 'destinado', 'limite'];
+    protected $allowedFields = ['id', 'titulo', 'created_at', 'imagem', 'resumo', 'dtInicio', 'dtFim', 'userCreated', 'assinatura', 'tipo', 'estado', 'destinado', 'limite'];
 
 
     /**
      * Recebe como parâmetro o idUser e o idEvento e os insere no banco, registrando que a atividade X foi concluída pelo usuário Y na data e hora atual
      */
-    public function inscricaoEvento($idUser = null, $idEvento = null, $limite = null)
+    public function inscricaoEvento($idUser = null, $idEvento = null)
     {
+        $limite = $this
+            ->select('limite')
+            ->where('id', $idEvento)->get(1)->getRowArray();
 
         $data = [
             'idUser' => $idUser,
-            'idEvento'    => $idEvento
+            'idEvento'  => $idEvento,
+
         ];
 
-        // var_dump($idEvento);exit;
+
         $count = $this
             ->db->table('usuario_evento')
-            ->select('count(usuario_evento.idEvento) as total')
+            ->select('count(usuario_evento.idEvento) as count')
             ->where('idEvento', $idEvento)->get(1)->getRowArray();
 
-
+        $limite = (int)$limite['limite'];
+        $count = (int)$count['count'];
+        //var_dump($limite); var_dump($count);var_dump(($count < $limite));exit;
         $array = array('idUser' => $idUser, 'idEvento' => $idEvento);
         $q = $this->db->table('usuario_evento')->select('idUser, idEvento')->where($array);
-        if ($q->countAllResults() < $limite) {
-            if ($count < 1) {
+
+        if ($count < $limite) {
+            if ($q->countAllResults() < 1) {
                 if ($this
                     ->db
                     ->table('usuario_evento')
@@ -42,12 +49,13 @@ class EventoModel extends Model
                 ) {
                     $result = "Inscrição efetuada com sucesso!";
                 }
-            }else {
-                $result = "Limite de inscrições atingido!";
+            } else {
+                $result = "Inscrição já foi efetuada!";
             }
         } else {
-            $result = "Inscrição já foi efetuada!";
+            $result = "Limite de inscrições para este evento atingido!";
         }
+        // var_dump($result);exit;
         return $result;
     }
 
