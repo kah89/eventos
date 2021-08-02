@@ -64,6 +64,7 @@
         ::-webkit-scrollbar-thumb {
             background: #0a346d;
         }
+        
 
         /* Handle on hover */
         ::-webkit-scrollbar-thumb:hover {
@@ -118,7 +119,7 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav mr-auto inicio">
                         <li class="nav-item <?= ($uri->getSegment(1) == 'dashboard' ? 'active' : null) ?>">
-                            <a class="nav-link" href="eventos"><i class="fa fa-home"></i> Início</a>
+                            <a class="nav-link" href="<?= base_url('eventos') ?>"><i class="fa fa-home"></i> Início</a>
                         </li>
                         <!-- <li class="nav-item <?= ($uri->getSegment(1) == 'profile' ? 'active' : null) ?>">
                             <a class="nav-link" href="/eventos/profile"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Conta</a>
@@ -179,13 +180,13 @@
                     <ul class="navbar-nav my-2 my-lg-0" id="user">
                         <li class="nav-item dropdown nav1">
                             <a class="nav-link dropdown-toggle fa fa-sign-out" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <?php 
-                                 
-                                 echo $_SESSION['firstname']; 
+                                <?php
+
+                                echo $_SESSION['firstname'];
                                 // echo session_start(['firstname']);
-                                
+
                                 ?>
-                               
+
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="<?php echo base_url('editarUser') . '/' . $_SESSION['id'] ?>">Editar</a>

@@ -26,7 +26,7 @@ class Eventos extends BaseController
             $allevents = array();
             foreach ($eventos as $evento) {
                 $evento['vagas'] = $model->quantidadeVagas($evento['id']);
-                array_push($allevents,$evento);
+                array_push($allevents, $evento);
             }
             $data = [
                 'title' => 'Eventos',
@@ -148,13 +148,19 @@ class Eventos extends BaseController
         if (!session()->get('isLoggedIn')) {
             return redirect()->to(base_url(''));
         } else {
-            $model = new AtividadeModel();
-            $newModel = new UserEvento();
+            $uri = current_url(true);
+            $idEvento = $uri->getSegment(4);
+
+            $atividadeModel = new AtividadeModel();
+            $userModel = new UserEvento();
+            $modelEvento = new EventoModel();
             $data = [
                 'title' => 'Lista de atividades ',
-                'data' => $model->where(['idEvento' => $id])->findAll(),
-                'ativ' => $newModel->findAll(),
-            ];
+                'data' => $atividadeModel->where('idEvento = ' . $idEvento)->findAll(),
+                'users' => $userModel->findAll(),
+                'color' => $modelEvento->select('cor')->where('id = ' . $idEvento)->find()[0]['cor'],
+            ];            
+
 
             echo view('templates/header', $data);
             echo view('listaEvento');
@@ -209,6 +215,7 @@ class Eventos extends BaseController
                             'estado' => $this->request->getVar('estado'),
                             'limite' => $this->request->getVar('limite'),
                             'destinado' => json_encode($this->request->getVar('destinado')),
+                            'cor' => $this->request->getVar('favcolor'),
                         ];
 
                         if ($model->save($newData)) {
@@ -300,6 +307,7 @@ class Eventos extends BaseController
                             'limite' => $this->request->getVar('limite'),
                             'destinado' => $this->request->getVar('destinado'),
                             'estado' => $this->request->getVar('estado'),
+                            'cor' => $this->request->getVar('favcolor'),
 
                         ];
 

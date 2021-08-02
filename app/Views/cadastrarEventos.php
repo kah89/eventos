@@ -31,7 +31,13 @@
 
     .data1 {
         width: 200px;
-        margin-left: 400px;
+        margin-left: 350px;
+    }
+
+    .favcolor {
+        width: 80px;
+        float: right;
+        margin-top: -87px;
     }
 
     #hora {
@@ -43,7 +49,7 @@
     #hora1 {
         width: 100px;
         float: right;
-        margin-right: 370px;
+        margin-right: 420px;
         margin-top: -54px;
     }
 
@@ -94,8 +100,8 @@
     #assinatura {
         width: 200px;
         float: right;
-        margin-right: 50px;
-        margin-top: -49px;
+        margin-right: 150px;
+        margin-top: -54px;
     }
 
     .radio {
@@ -121,7 +127,7 @@
         float: right;
         margin-right: 453px;
         margin-top: -105px;
-        
+
     }
 </style>
 <script language='Javascript'>
@@ -226,11 +232,17 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <div class="form-label-group">
-                                        <input type="time" name="hfinal" id="hora1" class="form-control" required />
-
+                                    <div class="form-label-group favcolor">
+                                    <label for="">Editar:</label>
+                                        <input type="color" id="favcolor" name="favcolor" value="#ff0000" class="form-control" />
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <div class="form-label-group">
+                                        <input type="time" name="hfinal" id="hora1" class="form-control" required />
+                                    </div>
+                                </div>
+
                                 <div class="form-group">
                                     <div class="form-label-group" required>
                                         <select id="assinatura" name="assinatura" class="form-control">

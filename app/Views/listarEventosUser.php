@@ -62,6 +62,11 @@
         text-overflow: ellipsis;
         white-space: nowrap;
     }
+
+    #flexCheckDefault:checked ~ .box {
+    color: red;
+    text-align: justify;
+}
 </style>
 <main>
     <div class="container bg-white" style="padding-bottom: 10em;">
@@ -153,7 +158,7 @@
                     <!-- <p style="text-align: justify;"><strong>lembrando que após a emissão não pode ser alterados os dados!</strong></p> -->
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
+                        <label class="form-check-label box" for="flexCheckDefault">
                             Declaro para os devidos fins que participei desse evento e estou ciente que não poderei alterar os dados após ser feita emissão.
                         </label>
                     </div>
