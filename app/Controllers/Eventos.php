@@ -20,10 +20,17 @@ class Eventos extends BaseController
         if (!session()->get('isLoggedIn')) {
             return redirect()->to(base_url(''));
         } else {
+            // var_dump("HEY");exit;
             $model = new EventoModel();
+            $eventos = $model->findAll();
+            $allevents = array();
+            foreach ($eventos as $evento) {
+                $evento['vagas'] = $model->quantidadeVagas($evento['id']);
+                array_push($allevents,$evento);
+            }
             $data = [
                 'title' => 'Eventos',
-                'data' => $model->findAll(),
+                'data' => $allevents,
             ];
 
             echo view('templates/header', $data);
@@ -185,7 +192,7 @@ class Eventos extends BaseController
                     $data['validation'] = $this->validator;
                 } else {
                     //salva no BD
-                    
+
                     $model =  new EventoModel();
                     $uploadImagem = $this->upload_image($this->request->getFile('profile_image'));
                     if ($uploadImagem) {

@@ -95,6 +95,8 @@
                             <img src="<?php echo base_url("/public/img") . "/" . $evento['imagem'] ?>" alt="" width="100%">
                             <p class="card-text"><?php echo $evento['resumo']; ?></p>
                             <p> <strong>Data:</strong> <?php echo date_format(new DateTime($evento['dtInicio']), "d-m-Y"); ?> até <?php echo date_format(new DateTime($evento['dtFim']), "d-m-Y"); ?></p>
+                            <p> <strong>Quantidade de inscrição:</strong> <?php echo $evento['limite']; ?></p>
+                            <p> Restam apenas<strong> <?php echo $evento['vagas']; ?> </strong>vagas.</p>
                         </div>
                         <div class="card-footer text-muted">
                             <ul class="nav nav-pills ">

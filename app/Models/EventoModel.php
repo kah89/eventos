@@ -88,14 +88,37 @@ class EventoModel extends Model
         return $result;
     }
 
+
+    //---------------------------------------------------------------------------------------------
+
     // Função para restringir quem pode se inscrever no evento de acordo com o tipo de usuario
     public function verificaInscricao($tipo = null)
     {
         /*
             Tipo de usuario 
-                Farmaceutico / SP = 1
+                Farmaceutico/SP = 3
                 Todos os farmaceuticos = 2
-                Estudantes = 3
+                Estudantes = 1
         */
+    }
+
+    //---------------------------------------------------------------------------------------------
+    public function quantidadeVagas($idEvento = null)
+    {
+        $limite = $this
+            ->select('limite')
+            ->where('id', $idEvento)->get(1)->getRowArray();
+      
+        $count = $this
+            ->db->table('usuario_evento')
+            ->select('count(usuario_evento.idEvento) as count')
+            ->where('idEvento', $idEvento)->get(1)->getRowArray();
+
+        $limite = (int)$limite['limite'];
+        $count = (int)$count['count'];
+
+        $result =   $limite - $count;
+
+        return $result;
     }
 }
