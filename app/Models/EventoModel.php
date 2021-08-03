@@ -97,11 +97,14 @@ class EventoModel extends Model
 
     //---------------------------------------------------------------------------------------------
 
-
+// Verifica se a inscrição é valida de acordo com os criterios do evento
     public function verificaInscricao($data = null)
     {
         $q = $this->select('*')->where('id=' . $data['idEvento'])->get(1)->getRowArray();
+
+        //Verifica se a data de um evento que é exclusivo conflita com a data de outros eventos.
         if ($q['tipo'] == 2) {
+
             if ($a = $this->inscritoEventoExclusivo($data['idUser'])) {
                 foreach ($a as $eventosInscritos) {
                     if (!($q['dtInicio'] < $eventosInscritos['dtInicio'] && $q['dtFim'] < $eventosInscritos['dtInicio']) || ($q['dtInicio'] > $eventosInscritos['dtInicio'] && $eventosInscritos['dtFim'] < $q['dtInicio'])) {
@@ -109,6 +112,7 @@ class EventoModel extends Model
                     }
                 }
             }
+
         } else {
             if ($a = $this->inscritoTodosEvento($data['idUser'])) {
                 foreach ($a as $eventosInscritos) {
@@ -118,6 +122,15 @@ class EventoModel extends Model
                 }
             }
         }
+
+
+
+        // Verifica se o evento é destinado para determinado usuario 
+        /*
+        Tipos de evento : 1 evento para estudantes
+                          2 evento somente para farmaceuticos
+                          3 evento somente para farmaceuticos de SP
+        */
         if (in_array("2", json_decode($q['destinado'])) && in_array("1", json_decode($q['destinado']))) {
             if (session()->get('type') == 1 || session()->get('type') == 2) {
                 return true;
@@ -135,8 +148,6 @@ class EventoModel extends Model
         if (in_array("3", json_decode($q['destinado']))) {
             if (session()->get('type') == 2 && session()->get('estado') == '26') {
                 return true;
-            //    var_dump(session()->get('type') == 2 && session()->get('estado') == '26');
-               var_dump(json_decode($q['destinado']));exit;
             } 
         }
     }
