@@ -40,6 +40,12 @@
         margin-top: -87px;
     }
 
+    .favcolor1 {
+        width: 80px;
+        float: right;
+        margin-top: 15px;
+    }
+
     #hora {
         width: 100px;
         float: left;
@@ -49,7 +55,7 @@
     #hora1 {
         width: 100px;
         float: right;
-        margin-right: 420px;
+        margin-right: 335px;
         margin-top: -54px;
     }
 
@@ -100,20 +106,20 @@
     #assinatura {
         width: 200px;
         float: right;
-        margin-right: 150px;
+        margin-right: 50px;
         margin-top: -54px;
     }
 
     .radio {
         float: right;
         margin-top: -105px;
-        margin-right: 135px;
+        margin-right: 170px;
     }
 
     #estado {
         width: 200px;
         float: right;
-        margin-right: 454px;
+        margin-right: 503px;
         margin-top: -49px;
     }
 
@@ -125,7 +131,7 @@
     #limite {
         width: 200px;
         float: right;
-        margin-right: 453px;
+        margin-right: 503px;
         margin-top: -105px;
 
     }
@@ -233,8 +239,14 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="form-label-group favcolor">
-                                    <label for="">Editar:</label>
-                                        <input type="color" id="favcolor" name="favcolor" value="#ff0000" class="form-control" />
+                                        <label for="">Primaria:</label>
+                                        <input type="color" id="favcolor" name="favcolor" value="#1598ef" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-label-group favcolor1">
+                                        <label for="">Secundaria:</label>
+                                        <input type="color" id="favcolor" name="favcolor1" value="#0a346d" class="form-control" />
                                     </div>
                                 </div>
                                 <div class="form-group">

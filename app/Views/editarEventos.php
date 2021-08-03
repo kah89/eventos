@@ -30,7 +30,7 @@
 
     .data1 {
         width: 200px;
-        margin-left: 400px;
+        margin-left: 350px;
     }
 
     #hora {
@@ -42,28 +42,28 @@
     #hora1 {
         width: 100px;
         float: right;
-        margin-right: 370px;
+        margin-right: 415px;
         margin-top: -54px;
     }
 
     #assinatura {
         width: 200px;
         float: right;
-        margin-right: -400px;
+        margin-right: -330px;
         margin-top: -54px;
     }
 
     .radio {
         float: right;
-        margin-top: -130px;
-        margin-right: 135px;
+        margin-top: -105px;
+        margin-right: 170px;
     }
 
     #estado {
         width: 200px;
         float: right;
-        margin-right: 454px;
-        margin-top: -75px;
+        margin-right: 503px;
+        margin-top: -49px;
     }
 
     .checkbox {
@@ -74,9 +74,21 @@
     #limite {
         width: 200px;
         float: right;
-        margin-right: 453px;
-        margin-top: -135px;
-        
+        margin-right: 503px;
+        margin-top: -105px;
+
+    }
+
+    .favcolor {
+        width: 80px;
+        float: right;
+        margin-top: -87px;
+    }
+
+    .favcolor1 {
+        width: 80px;
+        float: right;
+        margin-top: 15px;
     }
 </style>
 <main>
@@ -152,6 +164,18 @@
 
                                 </div>
                             </div>
+                            <div class="form-group">
+                                    <div class="form-label-group favcolor">
+                                        <label for="">Primaria:</label>
+                                        <input type="color" id="favcolor" name="favcolor" value="<?= $corPrimaria ?>" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-label-group favcolor1">
+                                        <label for="">Secundaria:</label>
+                                        <input type="color" id="favcolor" name="favcolor1" value="<?= $corSecundaria ?>" class="form-control" />
+                                    </div>
+                                </div>
                             <div class="form-group col-sm-7">
                                 <div class="form-label-group">
 

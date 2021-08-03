@@ -14,7 +14,6 @@
         width: 40px;
         background-color: #008CBA;
         font-size: 12px;
-        padding: 11px 23px;
         border-radius: 8px;
         border: 2px solid;
         text-align: center;

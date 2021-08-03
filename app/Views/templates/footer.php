@@ -12,16 +12,16 @@
 
 
     <?php if (isset($color)) {
-        echo ('a, h2, h1,th {                
+        echo ('h2, h1,th {                
                 color: ' . $color . ';
         }');
 
-        echo ('btn {                
-            background-color: ' . $color . ';
+        echo ('#cad, .btn, #card-footer, #card-header  {                
+            background-color: ' . $colorSecundaria . ';
         }');
 
         echo ('.bg-custom, .footer {
-            background-image: linear-gradient(15deg,  ' . $color . '  0%, #1598ef 100%);
+            background-image: linear-gradient(15deg,  ' . $colorFH . '  0%, ' . $colorSecundariaFH . ' 100%);
         }');
     } ?>
 </style>

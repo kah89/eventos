@@ -24,6 +24,7 @@ class Eventos extends BaseController
             $model = new EventoModel();
             $eventos = $model->findAll();
             $allevents = array();
+            
             foreach ($eventos as $evento) {
                 $evento['vagas'] = $model->quantidadeVagas($evento['id']);
                 array_push($allevents, $evento);
@@ -31,7 +32,10 @@ class Eventos extends BaseController
             $data = [
                 'title' => 'Eventos',
                 'data' => $allevents,
+                'colorSecundaria' => $evento['corSecundaria'],
             ];
+            
+            // var_dump($data ['colorSecundaria']);exit;
 
             echo view('templates/header', $data);
             echo view('tdeventos');
@@ -108,15 +112,17 @@ class Eventos extends BaseController
         if (!session()->get('isLoggedIn')) {
             return redirect()->to(base_url(''));
         } else {
-            $model = new EventoModel();
-            $eventosM = $model
+            $uri = current_url(true);
+            $idEvento = $uri->getSegment(3);
+            $modelEvento = new EventoModel();
+            $eventosM = $modelEvento
                 ->select('*')
                 ->join('usuario_evento', 'usuario_evento.idEvento = eventos.id')
                 ->where('usuario_evento.idUser', session()->get('id'))
                 ->findAll();
 
             $eventos = [];
-
+            $eventoatual = $modelEvento->select('corSecundaria, corPrimaria ')->where('id = ' . $idEvento)->find()[0];
             foreach ($eventosM as $evento) {
                 $atividadeM = new AtividadeModel();
                 $evento['certificado'] = $atividadeM->verificarConclusao(session()->get('id'), $evento['id']);
@@ -125,8 +131,10 @@ class Eventos extends BaseController
 
             $data = [
                 'title' => 'Lista de eventos ',
-                'data' => $eventos
-            ];
+                'data' => $eventos,
+                'color' => $eventoatual['corPrimaria'],
+                'colorSecundaria' => $eventoatual['corSecundaria'],
+           ];
 
 
             echo view('templates/header', $data);
@@ -154,12 +162,17 @@ class Eventos extends BaseController
             $atividadeModel = new AtividadeModel();
             $userModel = new UserEvento();
             $modelEvento = new EventoModel();
+            $eventoatual = $modelEvento->select('corSecundaria, corPrimaria ')->where('id = ' . $idEvento)->find()[0];
+            
             $data = [
                 'title' => 'Lista de atividades ',
                 'data' => $atividadeModel->where('idEvento = ' . $idEvento)->findAll(),
                 'users' => $userModel->findAll(),
-                'color' => $modelEvento->select('cor')->where('id = ' . $idEvento)->find()[0]['cor'],
-            ];            
+                'color' => $eventoatual['corPrimaria'],
+                'colorSecundaria' => $eventoatual['corSecundaria'],
+                'colorFH' => $eventoatual['corPrimaria'],
+                'colorSecundariaFH' => $eventoatual['corSecundaria'],
+            ];
 
 
             echo view('templates/header', $data);
@@ -215,7 +228,8 @@ class Eventos extends BaseController
                             'estado' => $this->request->getVar('estado'),
                             'limite' => $this->request->getVar('limite'),
                             'destinado' => json_encode($this->request->getVar('destinado')),
-                            'cor' => $this->request->getVar('favcolor'),
+                            'corPrimaria' => $this->request->getVar('favcolor'),
+                            'corSecundaria' => $this->request->getVar('favcolor1'),
                         ];
 
                         if ($model->save($newData)) {
@@ -307,7 +321,8 @@ class Eventos extends BaseController
                             'limite' => $this->request->getVar('limite'),
                             'destinado' => $this->request->getVar('destinado'),
                             'estado' => $this->request->getVar('estado'),
-                            'cor' => $this->request->getVar('favcolor'),
+                            'corPrimaria' => $this->request->getVar('favcolor'),
+                            'corSecundaria' => $this->request->getVar('favcolor1'),
 
                         ];
 

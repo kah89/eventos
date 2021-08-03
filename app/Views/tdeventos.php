@@ -36,8 +36,8 @@
         margin: 5px;
     }
 
-    .cad,
-    #cad,
+    .cad2,
+    #cad2,
     .cad1 {
         background-color: #008CBA;
         font-size: 12px;
@@ -46,8 +46,8 @@
         border: 2px solid;
     }
 
-    .cad:hover,
-    #cad:hover {
+    .cad2:hover,
+    #cad2:hover {
         box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
     }
 
@@ -88,7 +88,7 @@
             ?>
 
                     <div class="card col-4">
-                        <div class="card-header">
+                        <div class="card-header" id="card-header">
                             <h4 class="card-title"><?php echo $evento['titulo'] ?></h4>
                         </div>
                         <div class="card-body">
@@ -98,10 +98,10 @@
                             <p> <strong>Quantidade de inscrição:</strong> <?php echo $evento['limite']; ?></p>
                             <p> Restam apenas<strong> <?php echo $evento['vagas']; ?> </strong>vagas.</p>
                         </div>
-                        <div class="card-footer text-muted">
+                        <div class="card-footer text-muted" id="card-footer" >
                             <ul class="nav nav-pills ">
                                 <li class="nav-item">
-                                    <button type="button" id="sobremodal" class=" cad btn btn-primary" data-toggle="modal" data-target="#sobreModal<?php echo $evento['id'] ?>" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px ">
+                                    <button type="button" id="sobremodal" class=" cad2 btn btn-primary" data-toggle="modal" data-target="#sobreModal<?php echo $evento['id'] ?>" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px ">
                                         Sobre
                                     </button>
 
@@ -111,7 +111,7 @@
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title" id="sobreModalLabel">Sobre</h5>
-                                                    <button type="button" class="close cad" data-dismiss="modal" aria-label="Close">
+                                                    <button type="button" class="close cad2" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
@@ -119,19 +119,19 @@
                                                     <?php echo $evento['resumo'];  ?>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary cad" data-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-secondary cad2" data-dismiss="modal">Close</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link active" id="cad" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " href="<?php echo base_url("/eventos/listaEvento") . "/" . $evento['id'] ?>">Atividades</a>
+                                    <a class="nav-link active" id="cad2" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " href="<?php echo base_url("/eventos/listaEvento") . "/" . $evento['id'] ?>">Atividades</a>
                                 </li>
                                 <li class="nav-item">
                                     <?php
                                     if (Date($evento['dtFim']) >  date("Y-m-d H:i:s")) {
-                                        echo '<button class="btn btn-primary cad" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " href="#" data-toggle="modal" data-target="#inscrevaModal" id="Btn" onclick="preenchermodal(' . $evento['id'] . ');">Inscreva-se</button>';
+                                        echo '<button class="btn btn-primary cad2" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " href="#" data-toggle="modal" data-target="#inscrevaModal" id="Btn" onclick="preenchermodal(' . $evento['id'] . ');">Inscreva-se</button>';
                                     } else {
                                         echo '<button type="button" class="btn btn-primary cad1" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " data-toggle="modal" data-target="#desativado" disabled >Inscreva-se</button>';
                                     }

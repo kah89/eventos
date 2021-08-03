@@ -12,8 +12,8 @@ class Atividades extends BaseController
 
     use ResponseTrait;
 
-// Carrega a pagina de uma atividade cadastrada 
-// NECESSARIO ESTAR CADASTRADO EM UM EVENTO QUE TENHA UMA ATIVIDADE
+    // Carrega a pagina de uma atividade cadastrada 
+    // NECESSARIO ESTAR CADASTRADO EM UM EVENTO QUE TENHA UMA ATIVIDADE
     public function index()
     {
         if (!session()->get('isLoggedIn')) {
@@ -22,9 +22,17 @@ class Atividades extends BaseController
             $uri = current_url(true);
             $idAtividade = $uri->getSegment(3);
             $model = new AtividadeModel();
+            $modelEvento = new EventoModel();
+            $id = $model->find($idAtividade['idEvento']);
+            // var_dump($model['idEvento']);exit;
+
+            $eventoatual = $modelEvento->select('corSecundaria, corPrimaria ')->where('id = ' . $id)->find()[0];
+
             $data = [
                 'title' => 'Atividade',
                 'data' => $model->find($idAtividade),
+                'color' => $eventoatual['corPrimaria'],
+                'colorSecundaria' => $eventoatual['corSecundaria'],
             ];
 
 
@@ -58,7 +66,7 @@ class Atividades extends BaseController
 
     //------------------------------------------------------------------------------
 
-// Cadastra a atividade para um evento
+    // Cadastra a atividade para um evento
     public function cadastrarAtividades()
     {
         // Verifica de o usuario está logado * Presente em todas as funções
@@ -76,7 +84,7 @@ class Atividades extends BaseController
                 'data' =>  $eventos,
                 'atividade' => $atividades,
             ];
-            
+
 
 
             if ($this->request->getMethod() == 'post') {
@@ -106,7 +114,7 @@ class Atividades extends BaseController
 
                     $newData['atividade'] = htmlspecialchars($newData['atividade'], ENT_QUOTES, 'UTF-8');
 
-                    
+
                     if ($model->save($newData)) {
                         $session = session();
                         $session->setFlashdata('success', 'Sua atividade foi cadastrada com sucesso!');
@@ -127,7 +135,7 @@ class Atividades extends BaseController
 
     //--------------------------------------------------------------------
 
-// Edita uma atividade de um evento
+    // Edita uma atividade de um evento
     public function editarAtividades()
     {
         if (!session()->get('isLoggedIn')) {
@@ -140,13 +148,13 @@ class Atividades extends BaseController
             $model1 = new EventoModel();
             $atividades = $model->find($ativ_id);
             $eventos = $model1->findall();
-            
+
             $data = [
                 'title' => 'Editar atividade',
                 'data' => $eventos,
                 'ativ' =>  $atividades,
             ];
-            
+
             helper(['form']);
 
             if ($this->request->getMethod() == 'post') {
@@ -199,17 +207,21 @@ class Atividades extends BaseController
         if (!session()->get('isLoggedIn')) {
             return redirect()->to(base_url(''));
         } else {
-
+            $uri = current_url(true);
+            $idEvento = $uri->getSegment(3);
+            $modelEvento = new EventoModel();
             $model = new AtividadeModel();
             $data = [
                 'title' => 'Lista de Atividades',
+                'color' => $modelEvento->select('corPrimaria')->where('id = ' . $idEvento),
+                'colorSecundaria' => $modelEvento->select('corSecundaria')->where('id = ' . $idEvento),
                 'data' => $model
                     ->select('*')
                     ->join('usuario_evento', 'usuario_evento.idEvento = atividade_evento.idEvento')
                     ->where('usuario_evento.idUser', session()->get('id'))
                     ->findAll()
+                
             ];
-            // var_dump($data);exit;
 
             echo view('templates/header', $data);
             echo view('listarAtividades');

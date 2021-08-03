@@ -43,7 +43,6 @@
         height: 40px;
         background-color: #008CBA;
         font-size: 12px;
-        padding: 8px 20px;
         border-radius: 8px;
         color: #fff !important;
         border: 2px solid;
