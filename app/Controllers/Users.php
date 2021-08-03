@@ -74,6 +74,7 @@ class Users extends BaseController
             'lastname' => $user['lastname'],
             'email' => $user['email'],
             'type' => $user['type'],
+            'estado' => $user['estado'],
             'isLoggedIn' => true,
             'data' => $model->findAll(),
         ];

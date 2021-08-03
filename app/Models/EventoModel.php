@@ -42,12 +42,19 @@ class EventoModel extends Model
 
         if ($q->countAllResults() < 1) {
             if ($count < $limite) {
-                if ($this
-                    ->db
-                    ->table('usuario_evento')
-                    ->insert($data)
-                ) {
-                    $result = "Inscrição efetuada com sucesso!";
+                if ($this->verificaInscricao($data)) {
+                    if ($this
+                        ->db
+                        ->table('usuario_evento')
+                        ->insert($data)
+                    ) {
+                        $result = "Inscrição efetuada com sucesso!";
+                    } else {
+                        $result = "Erro ao efetuar inscrição";
+                    }
+                } else {
+                    $result = "Não é possivel inscrever nesse evento pois
+                     conflita com outro evento desse usuario ou este evento não é destinado para seu usuario.";
                 }
             } else {
                 $result = "Limite de inscrições para este evento atingido!";
@@ -55,7 +62,6 @@ class EventoModel extends Model
         } else {
             $result = "Inscrição já foi efetuada!";
         }
-        // var_dump($result);exit;
         return $result;
     }
 
@@ -91,15 +97,48 @@ class EventoModel extends Model
 
     //---------------------------------------------------------------------------------------------
 
-    // Função para restringir quem pode se inscrever no evento de acordo com o tipo de usuario
-    public function verificaInscricao($tipo = null)
+
+    public function verificaInscricao($data = null)
     {
-        /*
-            Tipo de usuario 
-                Farmaceutico/SP = 3
-                Todos os farmaceuticos = 2
-                Estudantes = 1
-        */
+        $q = $this->select('*')->where('id=' . $data['idEvento'])->get(1)->getRowArray();
+        if ($q['tipo'] == 2) {
+            if ($a = $this->inscritoEventoExclusivo($data['idUser'])) {
+                foreach ($a as $eventosInscritos) {
+                    if (!($q['dtInicio'] < $eventosInscritos['dtInicio'] && $q['dtFim'] < $eventosInscritos['dtInicio']) || ($q['dtInicio'] > $eventosInscritos['dtInicio'] && $eventosInscritos['dtFim'] < $q['dtInicio'])) {
+                        return false;
+                    }
+                }
+            }
+        } else {
+            if ($a = $this->inscritoTodosEvento($data['idUser'])) {
+                foreach ($a as $eventosInscritos) {
+                    if (!($q['dtInicio'] < $eventosInscritos['dtInicio'] && $q['dtFim'] < $eventosInscritos['dtInicio']) || ($q['dtInicio'] > $eventosInscritos['dtInicio'] && $eventosInscritos['dtFim'] < $q['dtInicio'])) {
+                        return false;
+                    }
+                }
+            }
+        }
+        if (in_array("2", json_decode($q['destinado'])) && in_array("1", json_decode($q['destinado']))) {
+            if (session()->get('type') == 1 || session()->get('type') == 2) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        if (in_array("2", json_decode($q['destinado']))) {
+            if (session()->get('type') == 2) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        if (in_array("3", json_decode($q['destinado']))) {
+            if (session()->get('type') == 2 && session()->get('estado' == '26')) {
+                return true;
+            } else {
+                return 'false';
+            }
+        }
     }
 
     //---------------------------------------------------------------------------------------------
@@ -108,17 +147,34 @@ class EventoModel extends Model
         $limite = $this
             ->select('limite')
             ->where('id', $idEvento)->get(1)->getRowArray();
-      
+
         $count = $this
             ->db->table('usuario_evento')
             ->select('count(usuario_evento.idEvento) as count')
             ->where('idEvento', $idEvento)->get(1)->getRowArray();
-
         $limite = (int)$limite['limite'];
         $count = (int)$count['count'];
-
         $result =   $limite - $count;
+        return $result;
+    }
 
+    public function inscritoEventoExclusivo($idUser = null)
+    {
+
+        $result = $this
+            ->select('*')
+            ->join('usuario_evento', 'eventos.id = usuario_evento.idEvento')
+            ->where('eventos.tipo', 1)
+            ->where('usuario_evento.idUser', $idUser)->get()->getResultArray();
+        return $result;
+    }
+
+    public function inscritoTodosEvento($idUser = null)
+    {
+        $result = $this
+            ->select('*')
+            ->join('usuario_evento', 'eventos.id = usuario_evento.idEvento')
+            ->where('usuario_evento.idUser', $idUser)->get()->getResultArray();
         return $result;
     }
 }
