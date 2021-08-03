@@ -54,7 +54,7 @@ class EventoModel extends Model
                     }
                 } else {
                     $result = "Não é possivel inscrever nesse evento pois
-                     conflita com outro evento desse usuario ou este evento não é destinado para seu usuario.";
+                     conflita com outro evento ou este evento não é destinado para seu usuario.";
                 }
             } else {
                 $result = "Limite de inscrições para este evento atingido!";
@@ -133,11 +133,11 @@ class EventoModel extends Model
             }
         }
         if (in_array("3", json_decode($q['destinado']))) {
-            if (session()->get('type') == 2 && session()->get('estado' == '26')) {
+            if (session()->get('type') == 2 && session()->get('estado') == '26') {
                 return true;
-            } else {
-                return 'false';
-            }
+            //    var_dump(session()->get('type') == 2 && session()->get('estado') == '26');
+               var_dump(json_decode($q['destinado']));exit;
+            } 
         }
     }
 
