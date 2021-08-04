@@ -32,7 +32,7 @@ class Eventos extends BaseController
             $data = [
                 'title' => 'Eventos',
                 'data' => $allevents,
-                'colorSecundaria' => $evento['corSecundaria'],
+                // 'colorSecundaria' => $evento['corSecundaria'],
             ];
             
             // var_dump($data ['colorSecundaria']);exit;
@@ -112,8 +112,6 @@ class Eventos extends BaseController
         if (!session()->get('isLoggedIn')) {
             return redirect()->to(base_url(''));
         } else {
-            $uri = current_url(true);
-            $idEvento = $uri->getSegment(3);
             $modelEvento = new EventoModel();
             $eventosM = $modelEvento
                 ->select('*')
@@ -122,18 +120,20 @@ class Eventos extends BaseController
                 ->findAll();
 
             $eventos = [];
-            $eventoatual = $modelEvento->select('corSecundaria, corPrimaria ')->where('id = ' . $idEvento)->find()[0];
+
             foreach ($eventosM as $evento) {
                 $atividadeM = new AtividadeModel();
                 $evento['certificado'] = $atividadeM->verificarConclusao(session()->get('id'), $evento['id']);
                 array_push($eventos, $evento);
             }
+            $eventoatual = $evento['corSecundaria, corPrimaria']->where('id = ' . $evento['id'])->find();
+            // var_dump($eventoatual);exit;
 
             $data = [
                 'title' => 'Lista de eventos ',
                 'data' => $eventos,
-                'color' => $eventoatual['corPrimaria'],
-                'colorSecundaria' => $eventoatual['corSecundaria'],
+                // 'color' => $eventoatual['corPrimaria'],
+                // 'colorSecundaria' => $eventoatual['corSecundaria'],
            ];
 
 

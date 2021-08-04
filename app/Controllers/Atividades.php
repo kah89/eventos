@@ -23,11 +23,10 @@ class Atividades extends BaseController
             $idAtividade = $uri->getSegment(3);
             $model = new AtividadeModel();
             $modelEvento = new EventoModel();
-            $id = $model->find($idAtividade['idEvento']);
-            // var_dump($model['idEvento']);exit;
+            $idEvento = $model->select('idEvento')->findall();
 
-            $eventoatual = $modelEvento->select('corSecundaria, corPrimaria ')->where('id = ' . $id)->find()[0];
-
+            $eventoatual = $modelEvento->select('corSecundaria, corPrimaria ')->where('id = ' . $idEvento)->find()[0];
+ var_dump($eventoatual );exit;
             $data = [
                 'title' => 'Atividade',
                 'data' => $model->find($idAtividade),
@@ -207,14 +206,19 @@ class Atividades extends BaseController
         if (!session()->get('isLoggedIn')) {
             return redirect()->to(base_url(''));
         } else {
-            $uri = current_url(true);
-            $idEvento = $uri->getSegment(3);
+           
             $modelEvento = new EventoModel();
             $model = new AtividadeModel();
+
+            $idEvento = $model->select('idEvento')->findall();
+
+
+            // $eventoatual = $modelEvento->select('corSecundaria, corPrimaria ')->where('id = '.$idEvento)->find();
+           
             $data = [
                 'title' => 'Lista de Atividades',
-                'color' => $modelEvento->select('corPrimaria')->where('id = ' . $idEvento),
-                'colorSecundaria' => $modelEvento->select('corSecundaria')->where('id = ' . $idEvento),
+                // 'color' => $eventoatual['corPrimaria'],
+                // 'colorSecundaria' => $eventoatual['corSecundaria'],
                 'data' => $model
                     ->select('*')
                     ->join('usuario_evento', 'usuario_evento.idEvento = atividade_evento.idEvento')
