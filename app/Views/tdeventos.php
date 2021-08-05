@@ -36,6 +36,8 @@
         margin: 5px;
     }
 
+
+
     .cad2,
     #cad2,
     .cad1 {
@@ -65,20 +67,31 @@
     img {
         max-height: 200px;
     }
+
+    <?php
+//     if (count($data) > 0) {
+//         foreach ($data as $key => $evento) {
+//             echo "#card-header" . $evento['id'] . "{
+// background-color:" . $evento['corPrimaria'] . ";
+//                     }
+//                     ";
+//         }
+//     }
+    ?>
 </style>
 <main>
     <div class="container">
         <h1>Eventos</h1>
         <?php if (session()->get('success')) { ?>
-                        <div class="alert alert-success" role="alert">
-                            <?= session()->get('success'); ?>
-                        </div>
-                    <?php } elseif (session()->get('info')) { ?>
-                        <div class="alert alert-info" role="alert">
-                            <?= session()->get('info'); ?>
-                        </div>
+            <div class="alert alert-success" role="alert">
+                <?= session()->get('success'); ?>
+            </div>
+        <?php } elseif (session()->get('info')) { ?>
+            <div class="alert alert-info" role="alert">
+                <?= session()->get('info'); ?>
+            </div>
 
-                    <?php } ?>
+        <?php } ?>
         <div class="row">
 
             <?php
@@ -88,12 +101,15 @@
             ?>
 
                     <div class="card col-4">
-                        <div class="card-header" id="card-header">
+                        <div class="card-header" id="card-header" style="background-color: <?php echo $evento['corPrimaria'] ?>;">
                             <h4 class="card-title"><?php echo $evento['titulo'] ?></h4>
                         </div>
                         <div class="card-body">
+
                             <img src="<?php echo base_url("/public/img") . "/" . $evento['imagem'] ?>" alt="" width="100%">
-                            <p class="card-text"><?php echo $evento['resumo']; ?></p>
+                            <p class="card-text"><?php
+                            //  echo $evento['resumo'];
+                             ?></p>
                             <p> <strong>Data:</strong> <?php echo date_format(new DateTime($evento['dtInicio']), "d-m-Y"); ?> até <?php echo date_format(new DateTime($evento['dtFim']), "d-m-Y"); ?></p>
                             <p> <strong>Quantidade de inscrição:</strong> <?php echo $evento['limite']; ?></p>
                             <p> Restam apenas<strong> <?php echo $evento['vagas']; ?> </strong>vagas.</p>

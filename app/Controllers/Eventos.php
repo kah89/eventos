@@ -29,13 +29,17 @@ class Eventos extends BaseController
                 $evento['vagas'] = $model->quantidadeVagas($evento['id']);
                 array_push($allevents, $evento);
             }
+
+            $eventoatual = $model->select('corSecundaria, corPrimaria ')->findall();
+            $eventoId = $model->select('id')->findall();
+            // var_dump($eventoId);exit;
             $data = [
                 'title' => 'Eventos',
                 'data' => $allevents,
-                // 'colorSecundaria' => $evento['corSecundaria'],
+                // 'colorSecundaria' => $eventoatual->
             ];
+            //  var_dump($data['colorSecundaria']);exit;
             
-            // var_dump($data ['colorSecundaria']);exit;
 
             echo view('templates/header', $data);
             echo view('tdeventos');
@@ -83,7 +87,7 @@ class Eventos extends BaseController
         $session = session();
         $msg = $model->certificado($idUser, $idEvento, $firstnameUser, $lastnameUser);
 
-        if ($msg[0]['firstname']) {
+        if (isset($msg[0]['firstname'])) {
             $user['firstname'] = $msg[0]['firstname'];
             $user['lastname'] = $msg[0]['lastname'];
             $session->setFlashdata('info', 'Certificado já foi gerado, não é possivel alterar mais os dados!');
@@ -126,7 +130,7 @@ class Eventos extends BaseController
                 $evento['certificado'] = $atividadeM->verificarConclusao(session()->get('id'), $evento['id']);
                 array_push($eventos, $evento);
             }
-            $eventoatual = $evento['corSecundaria, corPrimaria']->where('id = ' . $evento['id'])->find();
+            // $eventoatual = $evento['corSecundaria, corPrimaria']->where('id = ' . $evento['id'])->find();
             // var_dump($eventoatual);exit;
 
             $data = [
@@ -225,7 +229,7 @@ class Eventos extends BaseController
                             'userCreated' => session()->get('id'),
                             'assinatura' => $this->request->getVar('assinatura'),
                             'tipo' => $this->request->getVar('tipo'),
-                            'estado' => $this->request->getVar('estado'),
+                            // 'estado' => $this->request->getVar('estado'),
                             'limite' => $this->request->getVar('limite'),
                             'destinado' => json_encode($this->request->getVar('destinado')),
                             'corPrimaria' => $this->request->getVar('favcolor'),
@@ -320,7 +324,7 @@ class Eventos extends BaseController
                             'tipo' => $this->request->getVar('tipo'),
                             'limite' => $this->request->getVar('limite'),
                             'destinado' => $this->request->getVar('destinado'),
-                            'estado' => $this->request->getVar('estado'),
+                            // 'estado' => $this->request->getVar('estado'),
                             'corPrimaria' => $this->request->getVar('favcolor'),
                             'corSecundaria' => $this->request->getVar('favcolor1'),
 

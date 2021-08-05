@@ -275,7 +275,7 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <div class="form-label-group" required>
                                         <select id="estado" name="estado" class="form-control">
                                             <option selected disabled>Estado:</option>
@@ -283,7 +283,7 @@
                                             <option value="100">Todos</option>
                                         </select>
                                     </div>
-                                </div>
+                                </div> -->
 
                                 <div class="form-group radio">
                                     <div class="form-check" name="tipo" required>

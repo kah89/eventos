@@ -49,11 +49,11 @@
                             }
                             echo '<tr><td>' . $atividade['id'] . '</td><td>' . $atividade['titulo'] . '</td><td>' . $atividade['dtInicio'] . '</td><td>' . $tipo . '</td>';
                             echo '<td>';
-                            $inscrito = false;                            
-                            foreach ($users as $userEvento) {                                
-                                if ($userEvento['idUser'] == $_SESSION['id'] && $userEvento['idEvento'] == $atividade['idEvento'] ) {
-                                    $inscrito = true; 
-                                } 
+                            $inscrito = false;
+                            foreach ($users as $userEvento) {
+                                if (($userEvento['idUser'] == $_SESSION['id']) && ($userEvento['idEvento'] == $atividade['idEvento'])) {
+                                    $inscrito = true;
+                                }
                             }
 
                             if ($inscrito == true) {

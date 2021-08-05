@@ -5,25 +5,24 @@
         width: 100%;
         height: 60px;
         line-height: 60px;
-        /* background-image: linear-gradient(15deg, #80d0c7 0%, #13547a 100%);
-        background-image: linear-gradient(15deg, #0a346d 0%, #1598ef 100%); */
         background-image: linear-gradient(15deg, #1598ef 0%, #0a346d 100%);
     }
 
 
     <?php if (isset($color)) {
-        echo ('h2, h1,th {                
+        echo ('h2, h1,th, #cad {                
                 color: ' . $color . ';
         }');
-
-        echo ('#cad, .btn, #card-footer, #card-header  {                
+    } ?><?php if (isset($colorSecundaria)) {
+            echo (' .btn, #card-footer, #card-header , .card-footer, .card-header  {                
             background-color: ' . $colorSecundaria . ';
         }');
-
-        echo ('.bg-custom, .footer {
+        } ?>
+        <?php if (isset($colorFH) && isset($colorSecundariaFH)) {
+            echo ('.bg-custom, .footer {
             background-image: linear-gradient(15deg,  ' . $colorFH . '  0%, ' . $colorSecundariaFH . ' 100%);
         }');
-    } ?>
+        } ?>
 </style>
 <?php
 if (session()->get('isLoggedIn')) : ?>

@@ -58,6 +58,20 @@
         text-align: center;
         color: red;
     }
+
+    #cad {
+        width: 100px;
+        background-color: #008CBA;
+        font-size: 12px;
+        border-radius: 8px;
+        border: 2px solid;
+        float: right;
+        margin: 10px;
+    }
+
+    #cad:hover {
+        box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+    }
 </style>
 <script>
     $(document).ready(function() {
@@ -98,6 +112,8 @@
             <div class="row">
                 <div class="col-12" id="divConteudo">
                     <h2 style="text-align: center; font-size:30px">Usuários</h2>
+                    <a class="btn btn-primary  text-uppercase" id="cad" type="submit" href="<?= base_url('cadastrarUser') ?>" >Cadastrar</a>
+                   
                     <?php if (session()->get('success')) { ?>
                         <div class="alert alert-success" role="alert">
                             <?= session()->get('success'); ?>

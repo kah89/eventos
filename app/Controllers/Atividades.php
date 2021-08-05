@@ -23,10 +23,11 @@ class Atividades extends BaseController
             $idAtividade = $uri->getSegment(3);
             $model = new AtividadeModel();
             $modelEvento = new EventoModel();
-            $idEvento = $model->select('idEvento')->findall();
-
+            $idEvento = $model->select('idEvento')->where('id',$idAtividade)->get(1)->getRowArray()['idEvento'];
+            
             $eventoatual = $modelEvento->select('corSecundaria, corPrimaria ')->where('id = ' . $idEvento)->find()[0];
- var_dump($eventoatual );exit;
+            
+
             $data = [
                 'title' => 'Atividade',
                 'data' => $model->find($idAtividade),
@@ -222,7 +223,7 @@ class Atividades extends BaseController
                 'data' => $model
                     ->select('*')
                     ->join('usuario_evento', 'usuario_evento.idEvento = atividade_evento.idEvento')
-                    ->where('usuario_evento.idUser', session()->get('id'))
+                    ->where('usuario_evento.idUser', session()->get('id'))                    
                     ->findAll()
                 
             ];

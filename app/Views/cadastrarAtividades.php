@@ -54,23 +54,20 @@
         margin-top: -49px;
     }
 
-    .eventos,
-    #user {
-        margin-left: 150px;
-    }
-
-    #navbarNav {
-        font-size: 16px;
-    }
-
-    .inicio {
-        margin-left: 40px;
-    }
-
     h3 {
         margin-top: 50px;
         text-align: center;
         color: red;
+    }
+
+    .menu1{
+        margin-left: 260px;
+    }
+    #user{
+        margin-left: 260px;
+    }
+    #navbarNav{
+        font-size: 16px;
     }
 </style>
 
