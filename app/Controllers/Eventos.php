@@ -117,6 +117,13 @@ class Eventos extends BaseController
             return redirect()->to(base_url(''));
         } else {
             $modelEvento = new EventoModel();
+            $modelAtividades = new AtividadeModel();
+
+            $atividades = [
+                'atividades' => $modelAtividades->findAll(),
+            ];
+            
+
             $eventosM = $modelEvento
                 ->select('*')
                 ->join('usuario_evento', 'usuario_evento.idEvento = eventos.id')
@@ -133,16 +140,17 @@ class Eventos extends BaseController
             // $eventoatual = $evento['corSecundaria, corPrimaria']->where('id = ' . $evento['id'])->find();
             // var_dump($eventoatual);exit;
 
+
+
+
             $data = [
                 'title' => 'Lista de eventos ',
-                'data' => $eventos,
-                // 'color' => $eventoatual['corPrimaria'],
-                // 'colorSecundaria' => $eventoatual['corSecundaria'],
+                'data' => $eventos, 
            ];
 
 
             echo view('templates/header', $data);
-            echo view('listarEventosUser');
+            echo view('listarEventosUser', $atividades);
             echo view('templates/footer');
         }
     }
@@ -323,7 +331,7 @@ class Eventos extends BaseController
                             'assinatura' => $this->request->getVar('assinatura'),
                             'tipo' => $this->request->getVar('tipo'),
                             'limite' => $this->request->getVar('limite'),
-                            'destinado' => $this->request->getVar('destinado'),
+                            'destinado' => json_encode($this->request->getVar('destinado')),
                             // 'estado' => $this->request->getVar('estado'),
                             'corPrimaria' => $this->request->getVar('favcolor'),
                             'corSecundaria' => $this->request->getVar('favcolor1'),

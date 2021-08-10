@@ -67,17 +67,6 @@
     img {
         max-height: 200px;
     }
-
-    <?php
-//     if (count($data) > 0) {
-//         foreach ($data as $key => $evento) {
-//             echo "#card-header" . $evento['id'] . "{
-// background-color:" . $evento['corPrimaria'] . ";
-//                     }
-//                     ";
-//         }
-//     }
-    ?>
 </style>
 <main>
     <div class="container">
@@ -93,14 +82,36 @@
 
         <?php } ?>
         <div class="row">
+            <script>
+                $("#selectUser").on("change", function() {
 
+                    userSelecionado = $("#selectUser").val();
+                    alert(userSelecionado);
+                    $.ajax({});
+
+                });
+            </script>
+            <select id="selectUser" name="selectUser" class="form-control" required onchange="atribuir(this)">
+                <option selected disabled>Filtrar eventos por: </option>
+                <option value="0">Todos</option>
+                <option value="1">Estudante</option>
+                <option value="2">Farmacêutico</option>
+                <option value="3">Farmacêutico de São Paulo</option>
+            </select>
             <?php
             // var_dump($data);exit;
             if (count($data) > 0) {
                 foreach ($data as $key => $evento) {
+                  
             ?>
-
-                    <div class="card col-4">
+                    <div class="card col-4 eventCard <?php 
+                     $destinos = json_decode($evento['destinado']);
+                    //  var_dump($destinos);exit;
+                     foreach($destinos as $detinado){
+                         echo " destinado".$detinado;
+                     } 
+                     
+                     ?>">
                         <div class="card-header" id="card-header" style="background-color: <?php echo $evento['corPrimaria'] ?>;">
                             <h4 class="card-title"><?php echo $evento['titulo'] ?></h4>
                         </div>
@@ -108,19 +119,19 @@
 
                             <img src="<?php echo base_url("/public/img") . "/" . $evento['imagem'] ?>" alt="" width="100%">
                             <p class="card-text"><?php
-                            //  echo $evento['resumo'];
-                             ?></p>
+                                                    //  echo $evento['resumo'];
+                                                    ?></p>
                             <p> <strong>Data:</strong> <?php echo date_format(new DateTime($evento['dtInicio']), "d-m-Y"); ?> até <?php echo date_format(new DateTime($evento['dtFim']), "d-m-Y"); ?></p>
                             <p> <strong>Quantidade de inscrição:</strong> <?php echo $evento['limite']; ?></p>
                             <p> Restam apenas<strong> <?php echo $evento['vagas']; ?> </strong>vagas.</p>
                         </div>
-                        <div class="card-footer text-muted" id="card-footer" >
+                        <div class="card-footer text-muted" id="card-footer">
                             <ul class="nav nav-pills ">
                                 <li class="nav-item">
                                     <button type="button" id="sobremodal" class=" cad2 btn btn-primary" data-toggle="modal" data-target="#sobreModal<?php echo $evento['id'] ?>" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px ">
                                         Sobre
                                     </button>
-
+                 
                                     <!-- Modal sobre -->
                                     <div class="modal fade" data-backdrop="static" id="sobreModal<?php echo $evento['id'] ?>" tabindex="-1" aria-labelledby="sobreModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -154,10 +165,6 @@
                                     ?>
                                 </li>
                             </ul>
-                            <?php
-                            // echo $evento['dtFim'];
-                            // echo date("Y-m-d H:i:s");
-                            ?>
                         </div>
                     </div>
 
@@ -205,7 +212,7 @@
                             </div>
                         </div>
                     </div>
-
+                                      
             <?php
                 }
             } else {
@@ -221,10 +228,13 @@
                 document.getElementById("btnConfirmaInscricao").href = link + id;
             }
 
-            // function sobremodal(id) {
-            //     var link = '<?php echo (base_url("/certificadoVizualizacao") . "/");  ?>';
-            //         document.getElementById("vizualizar").href = link + $id;
-            // }
+            function atribuir() {
+                var select = document.getElementById('selectUser');
+                var user = select.options[select.selectedIndex].value;
+                
+                
+            }
         </script>
     </div>
+
 </main>
