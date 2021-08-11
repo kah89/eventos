@@ -95,10 +95,6 @@
                         <script>
                             $msg = '<?= session()->get('success'); ?>';
                         </script>
-                    <?php } elseif (session()->get('danger')) { ?>
-                        <div class="alert alert-danger" role="alert">
-                            <?= session()->get('danger'); ?>
-                        </div>
                     <?php } ?>
                     <table class="table table-hover" id="tabela">
                         <thead>
@@ -109,21 +105,6 @@
                                 <th>Nível</th>
                                 <th>Ações</th> <!-- botão-->
                             </tr>
-                            <!-- <tr>
-                            <th><input type="text" id="txtColuna1" /></th>
-                            <th><input type="text" id="txtColuna2" /></th>
-                            <th><input type="text" id="txtColuna3" /></th>
-                            <th><input type="text" /></th>
-                            <th><input type="text" disabled /></th>
-
-                        </tr>
-                        <nav aria-label="Navegação de página exemplo">
-
-                            <button id="anterior" disabled>&lsaquo; Anterior</button>
-                            <span id="numeracao"></span>
-                            <button id="proximo" disabled>Próximo &rsaquo;</button>
-
-                        </nav> -->
                         </thead>
                         <tbody>
                             <?php foreach ($data as $key => $user) {
@@ -139,7 +120,6 @@
         </div>
     <?php
     } else {
-        // return redirect()->to(base_url('eventos'));
         echo "<h3>Não tem permissão para acessar essa página!</h3>";
     }
     ?>
@@ -151,13 +131,14 @@
                 url: 'https://cdn.datatables.net/plug-ins/1.10.25/i18n/Portuguese-Brasil.json'
             }
         });
+    });
 
         toastr.options = {
             "closeButton": true,
             "newestOnTop": false,
             "progressBar": true,
-            "positionClass": "toast-left-center",
             "preventDuplicates": false,
+            "positionClass": "toast-top-right",
             "onclick": null,
             "showDuration": "300",
             "hideDuration": "1000",
@@ -166,11 +147,11 @@
             "showEasing": "swing",
             "hideEasing": "linear",
             "showMethod": "fadeIn",
-            "hideMethod": "fadeOut"
+            "hideMethod": "fadeOut",
         }
 
         if ($msg) {
-            toastr.success($msg);
+            toastr.info($msg);
         }
-    });
+    
 </script>

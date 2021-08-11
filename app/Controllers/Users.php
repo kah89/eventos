@@ -433,15 +433,24 @@ class Users extends BaseController
                         'telefone' => $this->request->getVar('telefone'),
                         'celular' => $this->request->getVar('celular'),
                         'cpf' => $this->request->getVar('cpf'),
-                        'password' => $this->request->getVar('senha'),
                     ];
+
+                    $password = $this->request->getVar('senha');
+                    if($password != null){
+                        $newData['password'] = $password;
+                    }
 
 
 
                     if ($model->save($newData)) {
                         $session = session();
                         $session->setFlashdata('success', 'O usuário' . " ("  . $result['firstname'] . ") " .  'foi alterado com sucesso!');
-                        return redirect()->to(base_url('alterarUser'));
+                        if($result['type'] == 0){
+                            return redirect()->to(base_url('alterarUser'));
+                        }else{
+                            return redirect()->to(base_url('eventos'));
+                        }
+                        
                     } else {
                         echo "Erro ao salvar";
                         exit;

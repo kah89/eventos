@@ -123,7 +123,7 @@ class Eventos extends BaseController
             $atividades = [
                 'atividades' => $modelAtividades->findAll(),
             ];
-            
+
 
             $eventosM = $modelEvento
                 ->select('*')
@@ -326,7 +326,6 @@ class Eventos extends BaseController
                         $newData = [
                             'id' => $evento_id,
                             'titulo' => $this->request->getVar('titulo'),
-                            'imagem' => $uploadImagem,
                             'resumo' => $this->request->getVar('resumo'),
                             'dtInicio' => date($this->request->getVar('datainicial') . ' ' . $this->request->getVar('hinicial')),
                             'dtFim' => date($this->request->getVar('datafinal') . ' ' . $this->request->getVar('hfinal')),
@@ -342,10 +341,15 @@ class Eventos extends BaseController
 
                         ];
 
+                        $imagem = $uploadImagem;
+                        if ($imagem != null) {
+                            $newData['imagem'] = $imagem;
+                        }
+
                         if ($model->save($newData)) {
                             $session = session();
                             $session->setFlashdata('success', 'Seu evento' . " (" . $result['titulo'] . ") " .  ' foi alterado com sucesso!');
-                            return redirect()->to(base_url('eventos'));
+                            return redirect()->to(base_url('alterarEventos'));
                         } else {
                             echo "Erro ao salvar";
                             exit;
@@ -449,7 +453,7 @@ class Eventos extends BaseController
         }
     }
 
-      //------------------------------------------------------------------------------
+    //------------------------------------------------------------------------------
     // public function exportar()
     // {
     //     if (!session()->get('isLoggedIn')) {

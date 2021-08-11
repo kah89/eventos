@@ -181,9 +181,9 @@ class Atividades extends BaseController
                     ];
 
                     if ($model->save($newData)) {
-                        // $session = session();
-                        // $session->setFlashdata('success', 'Sua atividade ');
-                        // $session->setFlashdata('success', 'Sua atividade' . "  ("  . $atividades['titulo'] . ") " .  'foi alterada com sucesso!');
+                        $session = session();
+                        $session->setFlashdata('success', 'Sua atividade ');
+                        $session->setFlashdata('success', 'Sua atividade' . "  ("  . $atividades['titulo'] . ") " .  'foi alterada com sucesso!');
                         return redirect()->to(base_url('alterarAtividades'));
                     } else {
                         echo "Erro ao editar";

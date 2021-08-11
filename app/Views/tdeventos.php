@@ -96,22 +96,19 @@
     }
 </style>
 <script>
-$(document).ready(function(){
-  $('[data-toggle="tooltip"]').tooltip();   
-});
+    $(document).ready(function() {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+
+    $msg = "";
 </script>
 <main>
     <div class="container">
         <h1>Eventos</h1>
         <?php if (session()->get('success')) { ?>
-            <div class="alert alert-success" role="alert">
-                <?= session()->get('success'); ?>
-            </div>
-        <?php } elseif (session()->get('info')) { ?>
-            <div class="alert alert-info" role="alert">
-                <?= session()->get('info'); ?>
-            </div>
-
+            <script>
+                $msg = '<?= session()->get('success'); ?>';
+            </script>
         <?php } ?>
         <div class="row">
             <div id="myBtnContainer">
@@ -136,13 +133,13 @@ $(document).ready(function(){
                                                                     echo " destinado" . $detinado;
                                                                 }
                                                                 ?>">
-                       
+
                         <div class="card-header" id="card-header" style="background-color: <?php echo $evento['corPrimaria'] ?>;">
                             <h4 class="card-title"><?php echo $evento['titulo'] ?></h4>
                         </div>
-                     
+
                         <div class="card-body">
-                        <!-- <a href="#" data-toggle="tooltip" title="evento encerrado!"> </a> -->
+                            <!-- <a href="#" data-toggle="tooltip" title="evento encerrado!"> </a> -->
                             <img src="<?php echo base_url("/public/img") . "/" . $evento['imagem'] ?>" alt="" width="100%">
                             <p> <strong>Data:</strong> <?php echo date_format(new DateTime($evento['dtInicio']), "d-m-Y"); ?> até <?php echo date_format(new DateTime($evento['dtFim']), "d-m-Y"); ?></p>
                             <p> <strong>Quantidade de inscrição:</strong> <?php echo $evento['limite']; ?></p>
@@ -196,8 +193,7 @@ $(document).ready(function(){
                                     <?php
                                     if (session()->get('type') != $detinado) {
                                         echo '<button type="button" class="btn btn-primary cad1" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " data-toggle="modal" data-target="#desativado" disabled >Inscreva-se</button>';
-                                    }
-                                    elseif (Date($evento['dtFim']) >  date("Y-m-d H:i:s")) {
+                                    } elseif (Date($evento['dtFim']) >  date("Y-m-d H:i:s")) {
                                         echo '<button class="btn btn-primary cad2" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " href="#" data-toggle="modal" data-target="#inscrevaModal" id="Btn" onclick="preenchermodal(' . $evento['id'] . ');">Inscreva-se</button>';
                                     } else {
                                         echo '<button type="button" class="btn btn-primary cad1" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " data-toggle="modal" data-target="#desativado" disabled >Inscreva-se</button>';
@@ -319,6 +315,29 @@ $(document).ready(function(){
                     current[0].className = current[0].className.replace(" active", "");
                     this.className += " active";
                 });
+            }
+
+
+
+            toastr.options = {
+                "closeButton": true,
+                "newestOnTop": false,
+                "progressBar": true,
+                "preventDuplicates": false,
+                "positionClass": "toast-top-right",
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut",
+            }
+
+            if ($msg) {
+                toastr.info($msg);
             }
         </script>
     </div>

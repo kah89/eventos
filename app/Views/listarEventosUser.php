@@ -70,11 +70,7 @@
         box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19) !important;
     }
 
-
     .card-text {
-        /* max-width: 90ch; */
-        /* width: 20em;  */
-        /* max-width: 300px; */
         margin-top: 20px;
         overflow: hidden;
         text-overflow: ellipsis;

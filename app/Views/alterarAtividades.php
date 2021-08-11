@@ -77,6 +77,8 @@
             }
         });
     });
+
+    $msg = "";
 </script>
 <main>
     <?php
@@ -92,14 +94,9 @@
                     <h2 style="text-align: center; font-size:30px">Atividades</h2>
                     <a class="btn btn-primary  text-uppercase" id="cad" type="submit" href="<?= base_url('cadastrarAtividades') ?>" >Cadastrar</a>
                     <?php if (session()->get('success')) { ?>
-                        <div class="alert alert-success" role="alert">
-                            <?= session()->get('success'); ?>
-                        </div>
-                    <?php } elseif (session()->get('danger')) { ?>
-                        <div class="alert alert-danger" role="alert">
-                            <?= session()->get('danger'); ?>
-                        </div>
-
+                        <script>
+                            $msg = '<?= session()->get('success'); ?>';
+                        </script>
                     <?php } ?>
                     <table class="table table-hover" id="tabela">
                    
@@ -110,7 +107,7 @@
                                 <th>Titulo</th>
                                 <th>Data</th>
                                 <th>Certificado</th>
-                                <th>Ações</th> <!-- botão-->
+                                <th>Ações</th> 
                             </tr>
                         </thead>
                         <tbody>
@@ -127,8 +124,30 @@
         </div>
     <?php
     } else {
-        // return redirect()->to(base_url('eventos'));
         echo "<h3>Não tem permissão para acessar essa página!</h3>";
     }
     ?>
 </main>
+<script>
+        toastr.options = {
+            "closeButton": true,
+            "newestOnTop": false,
+            "progressBar": true,
+            "preventDuplicates": false,
+            "positionClass": "toast-top-right",
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut",
+        }
+
+        if ($msg) {
+            toastr.info($msg);
+        }
+    
+</script>

@@ -163,11 +163,6 @@
         <div class="card card-signin my-5">
             <div class="card-body">
                 <h2 class="card-title text-center">Alteração de Usuários</h2>
-                <?php if (session()->get('success')) : ?>
-                    <div class="alert alert-success" role="alert">
-                        <?= session()->get('success'); ?>
-                    </div>
-                <?php endif;  ?>
                 <form class="form-signin " method="post">
 
                     <div class="form-label-group ">
@@ -182,7 +177,6 @@
                     <div class="form-label-group ">
                         <select id="paises" name="paises" class="form-control" placeholder="Selecione o país" required style="height: calc(1.5em + .75rem + 14px);" required>
                             <?php
-                            // var_dump($paises);exit;
                             foreach ($paises as $key => $pais) {
                                 if ($pais['id'] == $data['pais']) {
                                     echo "<option value='" . $pais['id'] . "' selected='selected' >" . $pais['nome_pt'] . "</option>";
@@ -197,7 +191,6 @@
                         <select id="estados" name="estados" class="form-control" style="height: calc(1.5em + .75rem + 14px);" disabled value="<?= $estado ?>">
                             <option>Selecione o estado acima</option>
                             <?php
-                            // var_dump($paises);exit;
                             foreach ($estados as $key => $estado) {
                                 if ($estado['id'] == $data['estado']) {
                                     echo "<option value='" . $estado['id'] . "' selected='selected' >" . $estado['nome'] . "</option>";
@@ -212,7 +205,6 @@
                         <select id="cidades" name="cidades" class="form-control" style="height: calc(1.5em + .75rem + 14px);" disabled value="<?= $cidade ?>">
                             <option>Selecione o cidade acima</option>
                             <?php
-                            // var_dump($paises);exit;
                             foreach ($cidades as $key => $cidade) {
                                 if ($cidade['id'] == $data['cidade']) {
                                     echo "<option value='" . $cidade['id'] . "' selected='selected' >" . $cidade['nome'] . "</option>";
@@ -292,35 +284,3 @@
         </div>
     </div>
 </main>
-<script>
-    // $(document).ready(function() {
-    //     $('.edit').click(function() {
-    //         toastr.success("Usuário alterado com sucesso!");
-    //     });
-
-    // });
-</script>
-<!-- <script type="text/javascript">
-    toastr.options = {
-        "closeButton": true,
-        "newestOnTop": false,
-        "progressBar": true,
-        "positionClass": "toast-left-center",
-        "preventDuplicates": false,
-        "onclick": null,
-        "showDuration": "300",
-        "hideDuration": "1000",
-        "timeOut": "5000",
-        "extendedTimeOut": "1000",
-        "showEasing": "swing",
-        "hideEasing": "linear",
-        "showMethod": "fadeIn",
-        "hideMethod": "fadeOut"
-    }
-    $(document).ready(function() {
-        $('#cad').click(function(e) {
-            // e.preventDefault();
-            toastr.success("Usuário alterado com sucesso");
-        });
-    });
-</script> -->

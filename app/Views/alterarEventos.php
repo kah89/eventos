@@ -80,15 +80,8 @@
         box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
     }
 </style>
-<script language="javascript">
-    $(document).ready(function() {
-        $('#tabela').DataTable({
-            language: {
-                url: 'https://cdn.datatables.net/plug-ins/1.10.25/i18n/Portuguese-Brasil.json'
-            }
-        });
-    });
-
+<script>
+   $msg = "";
 </script>
 <main>
     <?php
@@ -105,14 +98,9 @@
                     <a class="btn btn-primary  text-uppercase" id="cad" type="submit" href="<?= base_url('cadastrarEventos') ?>">Cadastrar</a>
 
                     <?php if (session()->get('success')) { ?>
-                        <div class="alert alert-success" role="alert">
-                            <?= session()->get('success'); ?>
-                        </div>
-                    <?php } elseif (session()->get('danger')) { ?>
-                        <div class="alert alert-danger" role="alert">
-                            <?= session()->get('danger'); ?>
-                        </div>
-
+                        <script>
+                            $msg = '<?= session()->get('success'); ?>';
+                        </script>
                     <?php } ?>
 
                     <table class="table table-hover display" id="tabela" style="width:100%">
@@ -148,3 +136,33 @@
         ?>
         </div>
 </main>
+<script>
+       $(document).ready(function() {
+        $('#tabela').DataTable({
+            language: {
+                url: 'https://cdn.datatables.net/plug-ins/1.10.25/i18n/Portuguese-Brasil.json'
+            }
+        });
+    });
+
+     toastr.options = {
+            "closeButton": true,
+            "newestOnTop": false,
+            "progressBar": true,
+            "preventDuplicates": false,
+            "positionClass": "toast-top-right",
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut",
+        }
+
+        if ($msg) {
+            toastr.info($msg);
+        }
+</script>

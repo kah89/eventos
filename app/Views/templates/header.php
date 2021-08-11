@@ -78,7 +78,7 @@
             color: #fff;
         }
 
-        #user {
+        #session {
             color: #B5B5B5;
             text-transform: uppercase;
         }
@@ -96,7 +96,6 @@
             cursor: default;
         }
     </style>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ST5941BK0S"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -119,13 +118,10 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav mr-auto inicio" id="inicio">
+                    <ul class="navbar-nav mr-auto" id="inicio">
                         <li class="nav-item <?= ($uri->getSegment(1) == 'dashboard' ? 'active' : null) ?>">
                             <a class="nav-link" href="<?= base_url('eventos'); ?>"><i class="fa fa-home"></i> Início</a>
                         </li>
-                        <!-- <li class="nav-item <?= ($uri->getSegment(1) == 'profile' ? 'active' : null) ?>">
-                            <a class="nav-link" href="/eventos/profile"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Conta</a>
-                        </li> -->
                     </ul>
                     <ul class="navbar-nav mr-auto ">
 
@@ -135,46 +131,38 @@
                             $_SESSION['type'] == 0
                         ) {
                         ?>
-                            <li class="nav-item dropdown nav1 menu1">
-                                <a class="nav-link" href="<?= base_url('alterarEventos') ?>"></i>Eventos</a>
-                                <!--DB eventos -->
-                            </li>
-                            <li class="nav-item dropdown nav1 menu">
-                                <a class="nav-link" href="<?= base_url('alterarAtividades') ?>"></i>Atividades</a>
-                                <!--DB eventos -->
-                            </li>
-                            <li class="nav-item dropdown nav1 menu">
-                                <a class="nav-link" href="<?= base_url('alterarUser') ?>"></i>Usuários</a>
-                                <!--DB eventos -->
-                            </li>
+                                <li class="nav-item dropdown nav1 eventos">
+                                    <a class="nav-link evento"  href="<?= base_url('alterarEventos') ?>"></i>Eventos</a>
+                                </li>
+                                <li class="nav-item dropdown nav1 ">
+                                    <a class="nav-link" href="<?= base_url('alterarAtividades') ?>"></i>Atividades</a>
+                                </li>
+                                <li class="nav-item dropdown nav1 ">
+                                    <a class="nav-link user"  href="<?= base_url('alterarUser') ?>"></i>Usuários</a>
+                                </li>
                         <?php
                         } else {
                         ?>
-                            <li class="nav-item dropdown nav1 eventos">
+                            <li class="nav-item dropdown nav1 ">
                                 <a class="nav-link" href="<?= base_url('eventos') ?>"></i>Inscreva-se</a>
-                                <!--DB eventos -->
                             </li>
-                            <li class="nav-item dropdown nav1 eventos">
+                            <li class="nav-item dropdown nav1 ">
                                 <a class="nav-link" href="<?= base_url('listarEventosUser') ?>"></i>Eventos inscritos</a>
-                                <!--DB eventos -->
                             </li>
-                            <li class="nav-item dropdown nav1 eventos">
+                            <li class="nav-item dropdown nav1 ">
                                 <a class="nav-link" href="<?= base_url('listarAtividades') ?>"></i>Atividades</a>
-                                <!--DB eventos -->
                             </li>
-                            
+
                         <?php
                         }
                         ?>
                     </ul>
-                    <ul class="navbar-nav my-2 my-lg-0" id="user">
+
+                    <ul class="navbar-nav my-2 my-lg-0" id="session">
                         <li class="nav-item dropdown nav1">
                             <a class="nav-link dropdown-toggle fa fa-sign-out" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <?php
-
                                 echo $_SESSION['firstname'];
-                                // echo session_start(['firstname']);
-
                                 ?>
 
                             </a>
@@ -190,22 +178,3 @@
     <?php
     endif;
     ?>
-    <!-- <script>
-        let mensagem = document.querySelector(".mensagem") ;
-
-// mostra a mensagem
-function showMessage(){   
-   mensagem.style.display = "block";   
- }
-// esconde a mensagem
-function hideMessage(){
-  mensagem.style.display = "none"; 
-}
-
-    </script> -->
-    <!-- <script>
-function funcao1()
-{
-alert("Você não tem permissão!");
-}
-</script> -->
