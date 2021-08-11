@@ -210,32 +210,33 @@
                                 <label for="">Destinado:</label>
                                 <div class="form-label-group" required>
                                     <?php
-                                    foreach ($data as $key => $result) {
-                                        $selecionado = $data['destinado'] == $id;
-                                        if ($selecionado) {
-                                            $destinado = $result['destinado'];
-                                        }
-                                    }
+                                    // foreach ($data as $key => $result) {
+                                    //     $selecionado = $data['destinado'] == $id;
+                                    //     if ($selecionado) {
+                                    //         $destinado = $result['destinado'];
+                                    //     }
+                                    // }
+                                    // var_dump(json_decode($destinado)); exit;
                                     
                                     if (in_array("1", json_decode($destinado))) {
-                                        echo '<input type="checkbox" id="checkbox1" name="destinado" value="1" checked="checked">
+                                        echo '<input type="checkbox" id="checkbox1" name="destinado[]" value="1" checked="checked">
                                         <label for="checkbox1">Estudantes </label><br>';
                                     } else {
-                                        echo '<input type="checkbox" id="checkbox1" name="destinado" value="1">
+                                        echo '<input type="checkbox" id="checkbox1" name="destinado[]" value="1">
                                         <label for="checkbox1">Estudantes </label><br>';
                                     }
                                     if (in_array("2", json_decode($destinado))) {
-                                        echo '<input type="checkbox" id="checkbox2" name="destinado" value="2" checked="checked">
+                                        echo '<input type="checkbox" id="checkbox2" name="destinado[]" value="2" checked="checked">
                                         <label for="checkbox2">Farmacêuticos</label><br>';
                                     } else {
-                                        echo '<input type="checkbox" id="checkbox2" name="destinado" value="2">
+                                        echo '<input type="checkbox" id="checkbox2" name="destinado[]" value="2">
                                         <label for="checkbox2">Farmacêuticos</label><br>';
                                     }
                                     if (in_array("3", json_decode($destinado))) {
-                                        echo '<input type="checkbox" id="checkbox3" name="destinado" value="3" checked="checked">
+                                        echo '<input type="checkbox" id="checkbox3" name="destinado[]" value="3" checked="checked">
                                         <label for="checkbox3">Farmacêuticos SP</label>';
                                     } else {
-                                        echo '<input type="checkbox" id="checkbox3" name="destinado" value="3">
+                                        echo '<input type="checkbox" id="checkbox3" name="destinado[]" value="3">
                                         <label for="checkbox3">Farmacêuticos SP</label>';
                                     }
 

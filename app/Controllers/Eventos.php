@@ -118,6 +118,13 @@ class Eventos extends BaseController
             return redirect()->to(base_url(''));
         } else {
             $modelEvento = new EventoModel();
+            $modelAtividades = new AtividadeModel();
+
+            $atividades = [
+                'atividades' => $modelAtividades->findAll(),
+            ];
+            
+
             $eventosM = $modelEvento
                 ->select('*')
                 ->join('usuario_evento', 'usuario_evento.idEvento = eventos.id')
@@ -134,6 +141,9 @@ class Eventos extends BaseController
             // $eventoatual = $evento['corSecundaria, corPrimaria']->where('id = ' . $evento['id'])->find();
             // var_dump($eventoatual);exit;
 
+
+
+
             $data = [
                 'title' => 'Lista de eventos ',
                 'data' => $eventos,
@@ -142,8 +152,9 @@ class Eventos extends BaseController
             ];
 
 
+
             echo view('templates/header', $data);
-            echo view('listarEventosUser');
+            echo view('listarEventosUser', $atividades);
             echo view('templates/footer');
         }
     }

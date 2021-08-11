@@ -60,13 +60,15 @@
         color: red;
     }
 
-    .menu1{
+    .menu1 {
         margin-left: 260px;
     }
-    #user{
+
+    #user {
         margin-left: 260px;
     }
-    #navbarNav{
+
+    #navbarNav {
         font-size: 16px;
     }
 </style>
@@ -137,64 +139,60 @@
                                 <div class="form-group  data" id="inicial">
                                     <div class="form-label-group">
                                         <label for="">Inicial :</label>
-                                        <input  type="date" name="datainicial" id="dtAgenda" min="
+                                        <input type="date" name="datainicial" id="dtAgenda" min="
                                 <?php foreach ($data as $key => $evento) {
-                                   
+
                                     echo date_format(new DateTime($evento['dtInicio']), "Y-m-d");
-                                    
                                 } ?>" max="
                                 <?php foreach ($data as $key => $evento) {
-                                    
+
                                     echo date_format(new DateTime($evento['dtFim']), "Y-m-d");
-                                   
-                                } ?>" class="form-control"  required />
+                                } ?>" class="form-control" required />
                                     </div>
                                 </div>
                                 <div class="form-group ">
                                     <div class="form-label-group">
-                                        <input  type="time" name="hinicial" id="hora" class="form-control"" required />
+                                        <input type="time" name="hinicial" id="hora" class="form-control"" required />
                                     </div>
                                 </div>
-                                <div class="form-group data1" id="final">
-                                    <div class="form-label-group">
-                                        <label for="">Final:</label>
-                                        <input type="date" name="datafinal" id="dtAgenda1" min="
+                                <div class=" form-group data1" id="final">
+                                        <div class="form-label-group">
+                                            <label for="">Final:</label>
+                                            <input type="date" name="datafinal" id="dtAgenda1" min="
                                     <?php foreach ($data as $key => $evento) {
-                                        // if ($evento['id'] == 21) {
+
                                         echo date_format(new DateTime($evento['dtInicio']), "Y-m-d");
-                                        // }
                                     } ?>" max="  
                                     <?php foreach ($data as $key => $evento) {
-                                        // if ($evento['id'] == 21) {
+
                                         echo date_format(new DateTime($evento['dtFim']), "Y-m-d");
-                                        // }
-                                    } ?>"  class="form-control" required />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="form-label-group">
-                                        <input type="time" name="hfinal" id="hora2" class="form-control"  required />
-
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="form-label-group" required>
-                                        <select id="certificado" name="certificado" class="form-control" >
-                                            <option selected disabled>Certificado</option>
-                                            <option value="1">Gera certificado</option>
-                                            <option value="2">Não gera certificado</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <?php if (isset($validation)) : ?>
-                                        <div class="alert alert-danger" roles="alert">
-                                            <?= $validation->listErrors(); ?>
+                                    } ?>" class="form-control" required />
                                         </div>
-                                    <?php endif; ?>
-                                    <button class="btn btn-primary  text-uppercase" id="cad" type="submit">Cadastrar</button>
-                                </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="form-label-group">
+                                            <input type="time" name="hfinal" id="hora2" class="form-control" required />
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="form-label-group" required>
+                                            <select id="certificado" name="certificado" class="form-control">
+                                                <option selected disabled>Certificado</option>
+                                                <option value="1">Gera certificado</option>
+                                                <option value="2">Não gera certificado</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <?php if (isset($validation)) : ?>
+                                            <div class="alert alert-danger" roles="alert">
+                                                <?= $validation->listErrors(); ?>
+                                            </div>
+                                        <?php endif; ?>
+                                        <button class="btn btn-primary  text-uppercase" id="cad" type="submit">Cadastrar</button>
+                                    </div>
                             </form>
                         </div>
                     </div>
@@ -213,13 +211,13 @@
     });
 
 
-    
+
 
     function atribuir(elem) {
         var datas = elem.options[elem.selectedIndex].getAttribute("title").split("|");
         var dtINI = document.getElementById("dtAgenda");
         var dtFIM = document.getElementById("dtAgenda1");
-        
+
         var min = new Date(datas[0]);
         min = (min.getFullYear() + "-" + adicionaZero(((min.getMonth() + 1))) + "-" + adicionaZero((min.getDate())));
 
