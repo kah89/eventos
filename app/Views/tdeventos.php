@@ -140,6 +140,11 @@
                             <p> <strong>Data:</strong> <?php echo date_format(new DateTime($evento['dtInicio']), "d-m-Y"); ?> até <?php echo date_format(new DateTime($evento['dtFim']), "d-m-Y"); ?></p>
                             <p> <strong>Quantidade de inscrição:</strong> <?php echo $evento['limite']; ?></p>
                             <p> Restam apenas<strong> <?php echo $evento['vagas']; ?> </strong>vagas.</p>
+                            <p>Evento destinado: 
+                            <?php  foreach ($destinos as $detinado) {
+                            if($detinado == "2"){echo "Farmacêuticos ";}
+                                if($detinado == "3"){echo "Farmacêuticos de São Paulo ";}
+                                    if($detinado == "1"){echo "Estudante ";}} ?></p>
                         </div>
                         <div class="card-footer text-muted" id="card-footer">
                             <ul class="nav nav-pills ">
