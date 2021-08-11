@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\EstadoModel;
 use App\Models\PaisModel;
 use App\Models\UserModel;
+use App\Models\CidadeModel;
 use App\Models\TokenModel;
 use App\Models\LogAcesso;
 use DateTime;
@@ -388,11 +389,17 @@ class Users extends BaseController
             $estadoModel = new EstadoModel();
             $uf = $estadoModel->selectUF();
 
+            $cidadeModel = new CidadeModel();
+            $cidade = $cidadeModel->selectCidades();
+
             $data = [
                 'title' => 'Editar Usuário', 
                 'options_paises' => $paises,
                 'paises' => $paisModel->findall(),
+                'estados' => $estadoModel->findall(),
+                'cidades' => $cidadeModel->findall(),
                 'options_uf' => $uf,
+                'options_cidade' => $cidade,
                 'data' =>  $result,
             ];
             // var_dump($data['data']);exit;
@@ -403,8 +410,8 @@ class Users extends BaseController
             if ($this->request->getMethod() == 'post') {
                 //VALIDAÇÕES
                 $rules = [
-                    'senha' => 'required|min_length[8]|max_length[255]',
-                    'senha_confirmacao' => 'matches[senha]',
+                    'nome' => 'min_length[3]|max_length[20]',
+                    'sobrenome' => 'min_length[3]|max_length[100]',
                 ];
 
 
@@ -432,9 +439,9 @@ class Users extends BaseController
 
 
                     if ($model->save($newData)) {
-                        $session = session();
-                        $session->setFlashdata('success', 'O usuário' . " ("  . $result['firstname'] . ") " .  'foi alterado com sucesso!');
-                        return redirect()->to(base_url('logout'));
+                        // $session = session();
+                        // $session->setFlashdata('success', 'O usuário' . " ("  . $result['firstname'] . ") " .  'foi alterado com sucesso!');
+                        return redirect()->to(base_url('alterarUser'));
                     } else {
                         echo "Erro ao salvar";
                         exit;

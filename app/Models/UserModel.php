@@ -107,4 +107,25 @@ class UserModel extends Model
 
         return $data;
     }
+
+      //------------------------------------------------------------------------------
+
+    // public function relatorioEvento($id = null)
+    // {
+    //     $result = $this
+    //         ->select('users.id, concat(users.firstname," ", users.lastname) as nome, users.email, atividade_evento.idEvento, eventos.titulo, pais.nome as pais, estado.nome as estado, users.`type`, group_concat(usuario_atividade.idAtividade) as atividadesconcluidas, usuario_evento.created_at AS "dtInscricao", certificado.created_at AS "dataCertificado"')
+    //         ->join('usuario_atividade', 'users.id = usuario_atividade.idUser', 'left')
+    //         ->join('atividade_evento', 'usuario_atividade.idAtividade = atividade_evento.id', 'left')
+    //         ->join('eventos', 'atividade_evento.idEvento =  eventos.id', 'left')
+    //         ->join('usuario_evento', 'usuario_evento.idEvento =  eventos.id', 'left')
+    //         ->join('estado', 'users.estado = estado.id', 'left')
+    //         ->join('certificado', 'certificado.idUser = users.id AND certificado.idEvento = eventos.id', 'left')
+    //         ->join('pais', 'users.pais = pais.id')
+    //         ->where('eventos.id', $id)
+    //         ->groupBy('users.id')
+    //         ->get()->getResultArray();
+            
+    //     var_dump($result);exit;
+    //     return $result;
+    // }
 }

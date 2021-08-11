@@ -6,16 +6,13 @@
         margin-top: 20px;
     }
 
-
-    thead {
+    th {
         color: white;
-        text-align: center;
-        margin-top: 20px;
-        font: caption;
     }
 
     .fa-trash {
-        margin-left: 20%;
+        margin-left: 10px;
+        margin-right: 10px;
     }
 
     #certificado {
@@ -108,18 +105,20 @@
                    
                         <thead>
                             <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Titulo</th>
-                                <th scope="col">Data</th>
-                                <th scope="col">Certificado</th>
-                                <th scope="col">Ações</th> <!-- botão-->
+                                <th>ID</th>
+                                <th>ID Evento</th> 
+                                <th>Titulo</th>
+                                <th>Data</th>
+                                <th>Certificado</th>
+                                <th>Ações</th> <!-- botão-->
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach ($data as $key => $evento) {
-                                echo '<tr><td>' . $evento['id'] . '</td><td>' . $evento['titulo'] . '</td><td>' . $evento['dtInicio'] . '</td><td>' . $evento['tipo'] . '</td>
+                                echo '<tr><td>' . $evento['id'] . '</td><td>' . $evento['idEvento'] . '</td><td>' . $evento['titulo'] . '</td><td>' . $evento['dtInicio'] . '</td><td>' . $evento['tipo'] . '</td>
                                <td><a href=' . base_url('editarAtividades') . "/" . $evento['id'] . '><i class="fa fa-edit" style="color: blue"></a></i>
-                               <a href=' . base_url('atividades/deletar') . "/" . $evento['id'] . '><i class="fa fa-trash"  style="color: red"></a></i></td></tr>';
+                               <a href=' . base_url('atividades/deletar') . "/" . $evento['id'] . '><i class="fa fa-trash"  style="color: red"></a></i>
+                              </td></tr>';
                             } ?>
                         </tbody>
                     </table>

@@ -63,7 +63,40 @@
         font-size: 15px;
     }
 </style>
+<script>
+    $(document).ready(function() {
+        $('#summernote').summernote();
+    });
+    </script>
+    <script>
 
+    $(document).ready(function() {
+        $('.edit').click(function() {
+            toastr.success("Atividade alterada!");
+        });
+        toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+
+    });
+
+
+  
+</script>
 <main>
     <div class="container">
         <div>
@@ -111,11 +144,15 @@
                             <div class="form-group col-sm-6 data" id="inicial">
                                 <div class="form-label-group">
                                     <label for="">Inicial :</label>
-                                    <input type="date" name="datainicial" id="dtAgenda" min="<?php  foreach ($data as $key => $evento) { 
-                                        if ($evento['id'] == $idEvento) { echo date_format(new DateTime($evento['dtInicio']), "Y-m-d"); } }?>" 
-                                        max="<?php   foreach ($data as $key => $evento) { if ($evento['id'] == $idEvento) {
-                                        echo date_format(new DateTime($evento['dtFim']), "Y-m-d"); }}?>" class="form-control" 
-                                        value="<?php echo date_format(new DateTime($dtInicio), "Y-m-d"); ?>" required />
+                                    <input type="date" name="datainicial" id="dtAgenda" min="<?php foreach ($data as $key => $evento) {
+                                                                                                    if ($evento['id'] == $idEvento) {
+                                                                                                        echo date_format(new DateTime($evento['dtInicio']), "Y-m-d");
+                                                                                                    }
+                                                                                                } ?>" max="<?php foreach ($data as $key => $evento) {
+                                                                                                                                                        if ($evento['id'] == $idEvento) {
+                                                                                                                                                            echo date_format(new DateTime($evento['dtFim']), "Y-m-d");
+                                                                                                                                                        }
+                                                                                                                                                    } ?>" class="form-control" value="<?php echo date_format(new DateTime($dtInicio), "Y-m-d"); ?>" required />
                                 </div>
                             </div>
                             <div class="form-group">
@@ -126,22 +163,26 @@
                             <div class="form-group col-sm-6 data1" id="final">
                                 <div class="form-label-group">
                                     <label for="">Final:</label>
-                                    <input type="date" name="datafinal" id="dtAgenda1"  min="<?php  foreach ($data as $key => $evento) { 
-                                        if ($evento['id'] == $idEvento) { echo date_format(new DateTime($evento['dtInicio']), "Y-m-d"); } }?>" 
-                                        max="<?php   foreach ($data as $key => $evento) { if ($evento['id'] == $idEvento) {
-                                        echo date_format(new DateTime($evento['dtFim']), "Y-m-d"); }}?>"  class="form-control"
-                                        value="<?php echo date_format(new DateTime($dtFim), "Y-m-d"); ?>" required />
+                                    <input type="date" name="datafinal" id="dtAgenda1" min="<?php foreach ($data as $key => $evento) {
+                                                                                                if ($evento['id'] == $idEvento) {
+                                                                                                    echo date_format(new DateTime($evento['dtInicio']), "Y-m-d");
+                                                                                                }
+                                                                                            } ?>" max="<?php foreach ($data as $key => $evento) {
+                                                                                                                                                        if ($evento['id'] == $idEvento) {
+                                                                                                                                                            echo date_format(new DateTime($evento['dtFim']), "Y-m-d");
+                                                                                                                                                        }
+                                                                                                                                                    } ?>" class="form-control" value="<?php echo date_format(new DateTime($dtFim), "Y-m-d"); ?>" required />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="form-label-group">
-                                    <input type="time" name="hfinal" id="hora2" class="form-control"  value="<?php echo date_format(new DateTime($dtFim), "H:i"); ?>" required />
+                                    <input type="time" name="hfinal" id="hora2" class="form-control" value="<?php echo date_format(new DateTime($dtFim), "H:i"); ?>" required />
 
                                 </div>
                             </div>
                             <div class="form-group col-sm-7">
                                 <div class="form-label-group">
-                             
+
                                     <select id="certificado" name="certificado" class="form-control">
                                         <?php
                                         // $tipo = 1;
@@ -165,7 +206,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <button class="btn btn-md btn-primary  text-uppercase" id="cad" type="submit">Alterar</button>
+                                <button class="btn btn-md btn-primary  text-uppercase edit" id="cad" type="submit">Alterar</button>
                             </div>
                         </form>
                     </div>
@@ -174,8 +215,3 @@
         </div>
     </div>
 </main>
-<script>
-    $(document).ready(function() {
-        $('#summernote').summernote();
-    });
-</script>

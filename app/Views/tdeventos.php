@@ -95,6 +95,11 @@
         box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
     }
 </style>
+<script>
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();   
+});
+</script>
 <main>
     <div class="container">
         <h1>Eventos</h1>
@@ -135,8 +140,9 @@
                         <div class="card-header" id="card-header" style="background-color: <?php echo $evento['corPrimaria'] ?>;">
                             <h4 class="card-title"><?php echo $evento['titulo'] ?></h4>
                         </div>
+                     
                         <div class="card-body">
-
+                        <!-- <a href="#" data-toggle="tooltip" title="evento encerrado!"> </a> -->
                             <img src="<?php echo base_url("/public/img") . "/" . $evento['imagem'] ?>" alt="" width="100%">
                             <p> <strong>Data:</strong> <?php echo date_format(new DateTime($evento['dtInicio']), "d-m-Y"); ?> até <?php echo date_format(new DateTime($evento['dtFim']), "d-m-Y"); ?></p>
                             <p> <strong>Quantidade de inscrição:</strong> <?php echo $evento['limite']; ?></p>
