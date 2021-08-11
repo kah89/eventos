@@ -68,7 +68,7 @@
         max-height: 200px;
     }
 
-    
+
 
     .destinado {
         float: left;
@@ -76,13 +76,12 @@
     }
 
     .show {
-        display: block ;
+        display: block;
     }
-    .btn {
 
-        /* border-radius: 8px;
-        border: 2px solid; */
-    }
+    /* .btn {
+
+    } */
 
     .btn:hover {
 
@@ -117,11 +116,12 @@ $(document).ready(function(){
         <div class="row">
             <div id="myBtnContainer">
                 <button class="btn active" onclick="filterSelection('all')">Todos</button>
-                <button class="btn" onclick="filterSelection('destinado2')"> Farmacêuticos</button>
+                <button class="btn " onclick="filterSelection('destinado2')"> Farmacêuticos</button>
                 <button class="btn" onclick="filterSelection('destinado3')"> Farmacêuticos - SP</button>
                 <button class="btn" onclick="filterSelection('destinado1')"> Estudantes</button>
             </div>
         </div>
+
         <div class="row">
 
             <?php
@@ -131,11 +131,12 @@ $(document).ready(function(){
 
             ?>
                     <div class="card col-4 destinado eventCard <?php
-                        $destinos = json_decode($evento['destinado']);
-                        foreach ($destinos as $detinado) {
-                            echo " destinado" . $detinado;
-                        }
-                        ?>">
+                                                                $destinos = json_decode($evento['destinado']);
+                                                                foreach ($destinos as $detinado) {
+                                                                    echo " destinado" . $detinado;
+                                                                }
+                                                                ?>">
+                       
                         <div class="card-header" id="card-header" style="background-color: <?php echo $evento['corPrimaria'] ?>;">
                             <h4 class="card-title"><?php echo $evento['titulo'] ?></h4>
                         </div>
@@ -146,6 +147,18 @@ $(document).ready(function(){
                             <p> <strong>Data:</strong> <?php echo date_format(new DateTime($evento['dtInicio']), "d-m-Y"); ?> até <?php echo date_format(new DateTime($evento['dtFim']), "d-m-Y"); ?></p>
                             <p> <strong>Quantidade de inscrição:</strong> <?php echo $evento['limite']; ?></p>
                             <p> Restam apenas<strong> <?php echo $evento['vagas']; ?> </strong>vagas.</p>
+                            <p><strong> Evento destinado: </strong>
+                                <?php foreach ($destinos as $detinado) {
+                                    if ($detinado == "2") {
+                                        echo "Farmacêuticos | ";
+                                    }
+                                    if ($detinado == "3") {
+                                        echo "Farmacêuticos de São Paulo |";
+                                    }
+                                    if ($detinado == "1") {
+                                        echo "Estudante | ";
+                                    }
+                                } ?></p>
                         </div>
                         <div class="card-footer text-muted" id="card-footer">
                             <ul class="nav nav-pills ">
@@ -165,7 +178,7 @@ $(document).ready(function(){
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <?php echo $evento['resumo'];  ?>
+                                                    <?php echo $evento['resumo']; ?>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary cad2" data-dismiss="modal">Close</button>
@@ -174,12 +187,17 @@ $(document).ready(function(){
                                         </div>
                                     </div>
                                 </li>
+
                                 <li class="nav-item">
                                     <a class="nav-link active" id="cad2" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " href="<?php echo base_url("/eventos/listaEvento") . "/" . $evento['id'] ?>">Atividades</a>
                                 </li>
                                 <li class="nav-item">
+
                                     <?php
-                                    if (Date($evento['dtFim']) >  date("Y-m-d H:i:s")) {
+                                    if (session()->get('type') != $detinado) {
+                                        echo '<button type="button" class="btn btn-primary cad1" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " data-toggle="modal" data-target="#desativado" disabled >Inscreva-se</button>';
+                                    }
+                                    elseif (Date($evento['dtFim']) >  date("Y-m-d H:i:s")) {
                                         echo '<button class="btn btn-primary cad2" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " href="#" data-toggle="modal" data-target="#inscrevaModal" id="Btn" onclick="preenchermodal(' . $evento['id'] . ');">Inscreva-se</button>';
                                     } else {
                                         echo '<button type="button" class="btn btn-primary cad1" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " data-toggle="modal" data-target="#desativado" disabled >Inscreva-se</button>';
@@ -189,9 +207,6 @@ $(document).ready(function(){
                             </ul>
                         </div>
                     </div>
-
-
-
                     <!-- Modal Inscreva-se -->
                     <div class="modal fade" data-backdrop="static" id="inscrevaModal" tabindex="-1" role="dialog" aria-labelledby="inscrevaModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
