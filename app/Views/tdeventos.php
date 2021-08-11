@@ -67,6 +67,34 @@
     img {
         max-height: 200px;
     }
+
+    
+
+    .destinado {
+        float: left;
+        display: none;
+    }
+
+    .show {
+        display: block ;
+    }
+    .btn {
+
+        /* border-radius: 8px;
+        border: 2px solid; */
+    }
+
+    .btn:hover {
+
+        border-radius: 8px;
+        box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    .btn.active {
+        background-color: #666;
+        color: white;
+        box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+    }
 </style>
 <main>
     <div class="container">
@@ -82,45 +110,33 @@
 
         <?php } ?>
         <div class="row">
-            <script>
-                $("#selectUser").on("change", function() {
+            <div id="myBtnContainer">
+                <button class="btn active" onclick="filterSelection('all')">Todos</button>
+                <button class="btn" onclick="filterSelection('destinado2')"> Farmacêuticos</button>
+                <button class="btn" onclick="filterSelection('destinado3')"> Farmacêuticos - SP</button>
+                <button class="btn" onclick="filterSelection('destinado1')"> Estudantes</button>
+            </div>
+        </div>
+        <div class="row">
 
-                    userSelecionado = $("#selectUser").val();
-                    alert(userSelecionado);
-                    $.ajax({});
-
-                });
-            </script>
-            <select id="selectUser" name="selectUser" class="form-control" required onchange="atribuir(this)">
-                <option selected disabled>Filtrar eventos por: </option>
-                <option value="0">Todos</option>
-                <option value="1">Estudante</option>
-                <option value="2">Farmacêutico</option>
-                <option value="3">Farmacêutico de São Paulo</option>
-            </select>
             <?php
             // var_dump($data);exit;
             if (count($data) > 0) {
                 foreach ($data as $key => $evento) {
-                  
+
             ?>
-                    <div class="card col-4 eventCard <?php 
-                     $destinos = json_decode($evento['destinado']);
-                    //  var_dump($destinos);exit;
-                     foreach($destinos as $detinado){
-                         echo " destinado".$detinado;
-                     } 
-                     
-                     ?>">
+                    <div class="card col-4 destinado eventCard <?php
+                        $destinos = json_decode($evento['destinado']);
+                        foreach ($destinos as $detinado) {
+                            echo " destinado" . $detinado;
+                        }
+                        ?>">
                         <div class="card-header" id="card-header" style="background-color: <?php echo $evento['corPrimaria'] ?>;">
                             <h4 class="card-title"><?php echo $evento['titulo'] ?></h4>
                         </div>
                         <div class="card-body">
 
                             <img src="<?php echo base_url("/public/img") . "/" . $evento['imagem'] ?>" alt="" width="100%">
-                            <p class="card-text"><?php
-                                                    //  echo $evento['resumo'];
-                                                    ?></p>
                             <p> <strong>Data:</strong> <?php echo date_format(new DateTime($evento['dtInicio']), "d-m-Y"); ?> até <?php echo date_format(new DateTime($evento['dtFim']), "d-m-Y"); ?></p>
                             <p> <strong>Quantidade de inscrição:</strong> <?php echo $evento['limite']; ?></p>
                             <p> Restam apenas<strong> <?php echo $evento['vagas']; ?> </strong>vagas.</p>
@@ -131,7 +147,7 @@
                                     <button type="button" id="sobremodal" class=" cad2 btn btn-primary" data-toggle="modal" data-target="#sobreModal<?php echo $evento['id'] ?>" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px ">
                                         Sobre
                                     </button>
-                 
+
                                     <!-- Modal sobre -->
                                     <div class="modal fade" data-backdrop="static" id="sobreModal<?php echo $evento['id'] ?>" tabindex="-1" aria-labelledby="sobreModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -212,7 +228,7 @@
                             </div>
                         </div>
                     </div>
-                                      
+
             <?php
                 }
             } else {
@@ -231,8 +247,57 @@
             function atribuir() {
                 var select = document.getElementById('selectUser');
                 var user = select.options[select.selectedIndex].value;
-                
-                
+
+
+            }
+
+            filterSelection("all")
+
+            function filterSelection(c) {
+                var x, i;
+                x = document.getElementsByClassName("destinado");
+                if (c == "all") c = "";
+                // Add the "show" class (display:block) to the filtered elements, and remove the "show" class from the elements that are not selected
+                for (i = 0; i < x.length; i++) {
+                    w3RemoveClass(x[i], "show");
+                    if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+                }
+            }
+
+            // Show filtered elements
+            function w3AddClass(element, name) {
+                var i, arr1, arr2;
+                arr1 = element.className.split(" ");
+                arr2 = name.split(" ");
+                for (i = 0; i < arr2.length; i++) {
+                    if (arr1.indexOf(arr2[i]) == -1) {
+                        element.className += " " + arr2[i];
+                    }
+                }
+            }
+
+            // Hide elements that are not selected
+            function w3RemoveClass(element, name) {
+                var i, arr1, arr2;
+                arr1 = element.className.split(" ");
+                arr2 = name.split(" ");
+                for (i = 0; i < arr2.length; i++) {
+                    while (arr1.indexOf(arr2[i]) > -1) {
+                        arr1.splice(arr1.indexOf(arr2[i]), 1);
+                    }
+                }
+                element.className = arr1.join(" ");
+            }
+
+            // Add active class to the current control button (highlight it)
+            var btnContainer = document.getElementById("myBtnContainer");
+            var btns = btnContainer.getElementsByClassName("btn");
+            for (var i = 0; i < btns.length; i++) {
+                btns[i].addEventListener("click", function() {
+                    var current = document.getElementsByClassName("active");
+                    current[0].className = current[0].className.replace(" active", "");
+                    this.className += " active";
+                });
             }
         </script>
     </div>

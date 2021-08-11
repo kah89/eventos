@@ -146,7 +146,7 @@
                                 <!--DB eventos -->
                             </li>
                             <li class="nav-item dropdown nav1 eventos">
-                                <a class="nav-link" href="<?= base_url('listarEventosUser') ?>"></i>Eventos inscritos</a>
+                                <a class="nav-link" href="<?= base_url('listarEventosUser') ?>"></i>Meus eventos</a>
                                 <!--DB eventos -->
                             </li>
                         <?php
@@ -157,7 +157,7 @@
                                 <!--DB eventos -->
                             </li>
                             <li class="nav-item dropdown nav1 eventos">
-                                <a class="nav-link" href="<?= base_url('listarEventosUser') ?>"></i>Eventos inscritos</a>
+                                <a class="nav-link" href="<?= base_url('listarEventosUser') ?>"></i>Meus eventos</a>
                                 <!--DB eventos -->
                             </li>
                             <li class="nav-item dropdown nav1 eventos">

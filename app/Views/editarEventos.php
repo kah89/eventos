@@ -210,12 +210,13 @@
                                 <label for="">Destinado:</label>
                                 <div class="form-label-group" required>
                                     <?php
-                                    foreach ($data as $key => $result) {
-                                        $selecionado = $data['destinado'] == $id;
-                                        if ($selecionado) {
-                                            $destinado = $result['destinado'];
-                                        }
-                                    }
+                                    // foreach ($data as $key => $result) {
+                                    //     $selecionado = $data['destinado'] == $id;
+                                    //     if ($selecionado) {
+                                    //         $destinado = $result['destinado'];
+                                    //     }
+                                    // }
+                                    // var_dump(json_decode($destinado)); exit;
                                     
                                     if (in_array("1", json_decode($destinado))) {
                                         echo '<input type="checkbox" id="checkbox1" name="destinado[]" value="1" checked="checked">
