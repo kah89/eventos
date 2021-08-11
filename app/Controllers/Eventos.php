@@ -6,6 +6,7 @@ use App\Models\AtividadeModel;
 use CodeIgniter\API\ResponseTrait;
 use App\Models\EventoModel;
 use App\Models\UserEvento;
+use App\Models\UserModel;
 use Exception;
 
 class Eventos extends BaseController
@@ -24,7 +25,7 @@ class Eventos extends BaseController
             $model = new EventoModel();
             $eventos = $model->findAll();
             $allevents = array();
-            
+
             foreach ($eventos as $evento) {
                 $evento['vagas'] = $model->quantidadeVagas($evento['id']);
                 array_push($allevents, $evento);
@@ -39,7 +40,7 @@ class Eventos extends BaseController
                 // 'colorSecundaria' => $eventoatual->
             ];
             //  var_dump($data['colorSecundaria']);exit;
-            
+
 
             echo view('templates/header', $data);
             echo view('tdeventos');
@@ -138,7 +139,7 @@ class Eventos extends BaseController
                 'data' => $eventos,
                 // 'color' => $eventoatual['corPrimaria'],
                 // 'colorSecundaria' => $eventoatual['corSecundaria'],
-           ];
+            ];
 
 
             echo view('templates/header', $data);
@@ -167,7 +168,7 @@ class Eventos extends BaseController
             $userModel = new UserEvento();
             $modelEvento = new EventoModel();
             $eventoatual = $modelEvento->select('corSecundaria, corPrimaria ')->where('id = ' . $idEvento)->find()[0];
-            
+
             $data = [
                 'title' => 'Lista de atividades ',
                 'data' => $atividadeModel->where('idEvento = ' . $idEvento)->findAll(),
@@ -323,7 +324,7 @@ class Eventos extends BaseController
                             'assinatura' => $this->request->getVar('assinatura'),
                             'tipo' => $this->request->getVar('tipo'),
                             'limite' => $this->request->getVar('limite'),
-                            'destinado' => $this->request->getVar('destinado'),
+                            'destinado' => json_encode($this->request->getVar('destinado')),
                             // 'estado' => $this->request->getVar('estado'),
                             'corPrimaria' => $this->request->getVar('favcolor'),
                             'corSecundaria' => $this->request->getVar('favcolor1'),
@@ -436,4 +437,19 @@ class Eventos extends BaseController
             }
         }
     }
+
+      //------------------------------------------------------------------------------
+    // public function exportar()
+    // {
+    //     if (!session()->get('isLoggedIn')) {
+    //         return redirect()->to(base_url(''));
+    //     } else {
+    //         $uri = current_url(true);
+    //         $eventID = $uri->getSegment(4); 
+    //         $model = new UserModel();
+    //         $result = $model->relatorioEvento($eventID);
+    //         return $result;
+
+    //     }
+    // }
 }

@@ -59,6 +59,22 @@
     #cad:hover {
         box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
     }
+
+    .form {
+        width: 300px;
+    }
+
+    .form1 {
+        width: 300px;
+        margin-left: 385px;
+        margin-top: -65px;
+    }
+
+    .form2 {
+        width: 300px;
+        float: right;
+        margin-top: -65px;
+    }
 </style>
 <script type="text/javascript">
     $(function() {
@@ -140,120 +156,163 @@
 
     });
 </script>
+
+
 <main>
     <div class="container">
-        <div class="row">
-            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-                <div class="card card-signin my-5">
-                    <div class="card-body">
-                        <h2 class="card-title text-center">Alteração de Usuários</h2>
-                        <?php if (session()->get('success')) : ?>
-                            <div class="alert alert-success" role="alert">
-                                <?= session()->get('success'); ?>
-                            </div>
-                        <?php endif;  ?>
-                        <form class="form-signin" method="post">
-
-                            <div class="form-label-group">
-                                <input type="text" id="nome" name="nome" class="form-control" placeholder="Nome" autofocus value="<?= $firstname ?>">
-                            </div>
-                            <div class="form-label-group">
-                                <input type="text" id="sobrenome" name="sobrenome" class="form-control" placeholder="Sobrenome" value="<?= $lastname ?>">
-                            </div>
-                            <div class="form-label-group">
-                                <input type="email" id="email" name="email" class="form-control" placeholder="Email" value="<?= $email ?>">
-                            </div>
-                            <div class="form-label-group">
-                                <select id="paises" name="paises" class="form-control" placeholder="Selecione o país" required style="height: calc(1.5em + .75rem + 14px);" required>
-                                    <?php
-                                    // var_dump($paises);exit;
-                                    foreach ($paises as $key => $pais) {                                    
-                                        if ($pais['id'] == $data['pais']) {
-                                            echo "<option value='" . $pais['id'] . "' selected='selected' >" . $pais['nome_pt'] . "</option>";
-                                        } else {
-                                            echo "<option value='" . $pais['id'] . "'>" . $pais['nome_pt'] . "</option>";
-                                        }
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-                            <div class="form-label-group">
-                                <select id="estados" name="estados" class="form-control" style="height: calc(1.5em + .75rem + 14px);" disabled value="<?= $estado ?>">
-                                    <option>Selecione o estado acima</option>
-                                </select>
-                            </div>
-                            <div class="form-label-group">
-                                <select id="cidades" name="cidades" class="form-control" style="height: calc(1.5em + .75rem + 14px);" disabled value="<?= $cidade ?>">
-                                    <option>Selecione o cidade acima</option>
-                                </select>
-                            </div>
-                            <div class="form-label-group">
-                            <select id="categoria" name="categoria" class="form-control" style="height: calc(1.5em + .75rem + 14px);" value="<?= $type ?>">
-                        
-                               
-                                <?php
-                                 $ehAdmin = (isset($_SESSION['id']) && $_SESSION['type'] == 0); {
-                                    
-                                }
-
-                                foreach ($data as $key => $result) {
-                                    $selecionado = $data['type'] == $id;
-                                    if ($selecionado) {
-                                        $type = $result['type'];
-                                    }
-                                }
-
-                               
-                                if ($type == 0) {
-                                    echo '<option value="0">Administrador</option>';
-                                }else if ($type == 1) {
-                                    echo '<option value="1"  selected="selected">Estudante de Farmácia</option>';
-                                    echo '<option value="2" >Farmacêutico</option>';
-                                } else if ($type == 2) {
-                                    echo '<option value="1" >Estudante de Farmácia</option>';
-                                    echo '<option value="2" selected="selected">Farmacêutico</option>';
-                                }
-                                ?>
-
-                            </select>
-
-                            </div>
-                            <div class="form-label-group" id="farmaceutico" style="display: none">
-                                <div class="row justify-content-between" style="width: 100%;margin: 0;">
-                                    <select id="uf" name="uf" class="form-control col-3" style="height: calc(1.5em + .75rem + 14px);" value="<?= $uf ?>">
-                                        <?php echo $options_uf; ?>
-                                    </select>
-                                    <input type="number" id="crf" name="crf" class="form-control col-8" placeholder="CRF" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" value="<?= $crf ?>">
-                                </div>
-                            </div>
-
-                            <div class="form-label-group">
-                                <input type="text" id="telefone" name="telefone" class="form-control" placeholder="Telefone" value="<?= $telefone ?>">
-                            </div>
-                            <div class="form-label-group">
-                                <input type="text" id="celular" name="celular" class="form-control" placeholder="Celular" value="<?= $celular ?>">
-                            </div>
-                            <div class="form-label-group">
-                                <input type="text" id="cpf" name="cpf" class="form-control" placeholder="CPF" value="<?= $cpf ?>">
-                            </div>
-
-                            <div class="form-label-group">
-                                <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" required>
-                            </div>
-                            <div class="form-label-group">
-                                <input type="password" id="senha_confirmacao" name="senha_confirmacao" class="form-control" placeholder="Confirme a Senha" required>
-                            </div>
-                            <?php if (isset($validation)) : ?>
-                                <div class="alert alert-danger" roles="alert">
-                                    <?= $validation->listErrors(); ?>
-                                </div>
-                            <?php endif; ?>
-                            <button class="btn btn-md btn-primary  text-uppercase" id="cad" type="submit">Alterar</button>
-                            <hr class="my-4">
-                        </form>
+        <div class="card card-signin my-5">
+            <div class="card-body">
+                <h2 class="card-title text-center">Alteração de Usuários</h2>
+                <?php if (session()->get('success')) : ?>
+                    <div class="alert alert-success" role="alert">
+                        <?= session()->get('success'); ?>
                     </div>
-                </div>
+                <?php endif;  ?>
+                <form class="form-signin " method="post">
+
+                    <div class="form-label-group ">
+                        <input type="text" id="nome" name="nome" class="form-control" placeholder="Nome" autofocus value="<?= $firstname ?>">
+                    </div>
+                    <div class="form-label-group ">
+                        <input type="text" id="sobrenome" name="sobrenome" class="form-control" placeholder="Sobrenome" value="<?= $lastname ?>">
+                    </div>
+                    <div class="form-label-group ">
+                        <input type="email" id="email" name="email" class="form-control" placeholder="Email" value="<?= $email ?>">
+                    </div>
+                    <div class="form-label-group ">
+                        <select id="paises" name="paises" class="form-control" placeholder="Selecione o país" required style="height: calc(1.5em + .75rem + 14px);" required>
+                            <?php
+                            // var_dump($paises);exit;
+                            foreach ($paises as $key => $pais) {
+                                if ($pais['id'] == $data['pais']) {
+                                    echo "<option value='" . $pais['id'] . "' selected='selected' >" . $pais['nome_pt'] . "</option>";
+                                } else {
+                                    echo "<option value='" . $pais['id'] . "'>" . $pais['nome_pt'] . "</option>";
+                                }
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="form-label-group ">
+                        <select id="estados" name="estados" class="form-control" style="height: calc(1.5em + .75rem + 14px);" disabled value="<?= $estado ?>">
+                            <option>Selecione o estado acima</option>
+                            <?php
+                            // var_dump($paises);exit;
+                            foreach ($estados as $key => $estado) {
+                                if ($estado['id'] == $data['estado']) {
+                                    echo "<option value='" . $estado['id'] . "' selected='selected' >" . $estado['nome'] . "</option>";
+                                } else {
+                                    echo "<option value='" . $estado['id'] . "'>" . $estado['nome'] . "</option>";
+                                }
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="form-label-group ">
+                        <select id="cidades" name="cidades" class="form-control" style="height: calc(1.5em + .75rem + 14px);" disabled value="<?= $cidade ?>">
+                            <option>Selecione o cidade acima</option>
+                            <?php
+                            // var_dump($paises);exit;
+                            foreach ($cidades as $key => $cidade) {
+                                if ($cidade['id'] == $data['cidade']) {
+                                    echo "<option value='" . $cidade['id'] . "' selected='selected' >" . $cidade['nome'] . "</option>";
+                                } else {
+                                    echo "<option value='" . $cidade['id'] . "'>" . $cidade['nome'] . "</option>";
+                                }
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="form-label-group ">
+                        <select id="categoria" name="categoria" class="form-control" style="height: calc(1.5em + .75rem + 14px);" value="<?= $type ?>">
+
+
+                            <?php
+                            $ehAdmin = (isset($_SESSION['id']) && $_SESSION['type'] == 0); {
+                            }
+
+                            foreach ($data as $key => $result) {
+                                $selecionado = $data['type'] == $id;
+                                if ($selecionado) {
+                                    $type = $result['type'];
+                                }
+                            }
+
+
+                            if ($type == 0) {
+                                echo '<option value="0" selected="selected">Administrador</option>';
+                                echo '<option value="1" >Estudante de Farmácia</option>';
+                                echo '<option value="2" >Farmacêutico</option>';
+                            } else if ($type == 1) {
+                                echo '<option value="1"  selected="selected">Estudante de Farmácia</option>';
+                                echo '<option value="2" >Farmacêutico</option>';
+                            } else if ($type == 2) {
+                                echo '<option value="1" >Estudante de Farmácia</option>';
+                                echo '<option value="2" selected="selected">Farmacêutico</option>';
+                            }
+                            ?>
+
+                        </select>
+
+                    </div>
+                    <div class="form-label-group form" id="farmaceutico" style="display: none">
+                        <div class="row justify-content-between" style="width: 100%;margin: 0;">
+                            <select id="uf" name="uf" class="form-control col-3" style="height: calc(1.5em + .75rem + 14px);" value="<?= $uf ?>">
+                                <?php echo $options_uf; ?>
+                            </select>
+                            <input type="number" id="crf" name="crf" class="form-control col-8 " placeholder="CRF" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" value="<?= $crf ?>">
+                        </div>
+                    </div>
+
+                    <div class="form-label-group ">
+                        <input type="text" id="telefone" name="telefone" class="form-control" placeholder="Telefone" value="<?= $telefone ?>">
+                    </div>
+                    <div class="form-label-group ">
+                        <input type="text" id="celular" name="celular" class="form-control" placeholder="Celular" value="<?= $celular ?>">
+                    </div>
+                    <div class="form-label-group ">
+                        <input type="text" id="cpf" name="cpf" class="form-control" placeholder="CPF" value="<?= $cpf ?>">
+                    </div>
+
+                    <div class="form-label-group ">
+                        <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha">
+                    </div>
+                    <div class="form-label-group ">
+                        <input type="password" id="senha_confirmacao" name="senha_confirmacao" class="form-control" placeholder="Confirme a Senha">
+                    </div>
+                    <?php if (isset($validation)) : ?>
+                        <div class="alert alert-danger" roles="alert">
+                            <?= $validation->listErrors(); ?>
+                        </div>
+                    <?php endif; ?>
+                    <button class="btn btn-md btn-primary  text-uppercase" id="cad" type="submit">Alterar</button>
+                    <hr class="my-4">
+                </form>
             </div>
         </div>
     </div>
 </main>
+<script>
+    // $(document).ready(function() {
+    //     $('.edit').click(function() {
+    //         toastr.success("Usuário alterado com sucesso!");
+    //     });
+
+    // });
+</script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#cad').click(function(e) {
+            e.preventDefault();
+            toastr.success("Usuário alterado com sucesso");
+
+            window.setTimeout(function() {
+                toastr.clear();
+
+            }, 1000);
+
+
+        });
+
+    });
+</script>

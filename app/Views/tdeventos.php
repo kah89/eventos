@@ -79,6 +79,11 @@
 //     }
     ?>
 </style>
+<script>
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();   
+});
+</script>
 <main>
     <div class="container">
         <h1>Eventos</h1>
@@ -104,8 +109,9 @@
                         <div class="card-header" id="card-header" style="background-color: <?php echo $evento['corPrimaria'] ?>;">
                             <h4 class="card-title"><?php echo $evento['titulo'] ?></h4>
                         </div>
+                     
                         <div class="card-body">
-
+                        <!-- <a href="#" data-toggle="tooltip" title="evento encerrado!"> </a> -->
                             <img src="<?php echo base_url("/public/img") . "/" . $evento['imagem'] ?>" alt="" width="100%">
                             <p class="card-text"><?php
                             //  echo $evento['resumo'];

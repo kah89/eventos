@@ -54,7 +54,7 @@ $routes->match(['get','post'],'/cadastrarAtividades', 'Atividades::cadastrarAtiv
 $routes->match(['get','post'],'/listarAtividades', 'Atividades::listarAtividades');
 $routes->match(['get','post'],'/atividades/(:num)', 'Atividades::index');
 
-$routes->match(['get','post'],'/inscritos', 'Inscritos::index');
+$routes->match(['get','post'],'/inscritos', 'Inscritos::relatorioEvento');
 $routes->match(['get','post'],'/emitirCertificado', 'Inscritos::emitirCertificado');
 
 /* AJAX */
@@ -66,8 +66,6 @@ $routes->match(['get','post'],'/verificarConclusao/(:num)', 'Atividades::verific
 
 $routes->get('/certificadoVizualizacao/(:num)', 'PdfController::index');
 $routes->get('/certificado/(:num)', 'PdfController::gerarCertificado');
-
-$routes->match(['get','post'],'/chats', 'Chat::index');
 
 
 

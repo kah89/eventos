@@ -18,7 +18,8 @@
     }
 
     .fa-trash {
-        margin-left: 10%;
+        margin-left: 10px;
+        margin-right: 10px;
     }
 
     #tabela {
@@ -127,11 +128,11 @@
                     <table class="table table-hover" id="tabela">
                         <thead>
                             <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Nome</th>
-                                <th scope="col">Sobrenome</th>
-                                <th scope="col">Nível</th>
-                                <th scope="col">Ações</th> <!-- botão-->
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>Sobrenome</th>
+                                <th>Nível</th>
+                                <th>Ações</th> <!-- botão-->
                             </tr>
                             <!-- <tr>
                             <th><input type="text" id="txtColuna1" /></th>
@@ -153,7 +154,8 @@
                             <?php foreach ($data as $key => $user) {
                                 echo '<tr><td>' . $user['id'] . '</td><td>' . $user['firstname'] . '</td><td>' . $user['lastname'] . '</td><td>' . $user['type'] . '</td>
                                <td><a href=' . base_url('editarUser') . "/" . $user['id'] . '><i class="fa fa-edit" style="color: blue"></a></i>
-                               <a href=' . base_url('users/deletar') . "/" . $user['id'] . '><i class="fa fa-trash"  style="color: red"></a></i></td></tr>';
+                               <a href=' . base_url('users/deletar') . "/" . $user['id'] . '><i class="fa fa-trash"  style="color: red"></a></i>
+                               </td></tr>';
                             } ?>
                         </tbody>
                     </table>
@@ -167,46 +169,3 @@
     }
     ?>
 </main>
-<script>
-    //script para criar paginação
-    // var dados = $user;
-    // var tamanhoPagina = 30;
-    // var pagina = 0;
-
-    // function paginar() {
-    //     $('table > tbody > tr').remove();
-    //     var tbody = $('table > tbody');
-    //     for (var i = pagina * tamanhoPagina; i < dados.length && i < (pagina + 1) * tamanhoPagina; i++) {
-    //         tbody.append(
-    //             $('<tr>')
-    //             .append($('<td>').append(dados[i][0]))
-    //             .append($('<td>').append(dados[i][1]))
-    //         )
-    //     }
-    //     $('#numeracao').text('Página ' + (pagina + 1) + ' de ' + Math.ceil(dados.length / tamanhoPagina));
-    // }
-
-    // function ajustarBotoes() {
-    //     $('#proximo').prop('disabled', dados.length <= tamanhoPagina || pagina >= Math.ceil(dados.length / tamanhoPagina) - 1);
-    //     $('#anterior').prop('disabled', dados.length <= tamanhoPagina || pagina == 0);
-    // }
-
-    // $(function() {
-    //     $('#proximo').click(function() {
-    //         if (pagina < dados.length / tamanhoPagina - 1) {
-    //             pagina++;
-    //             paginar();
-    //             ajustarBotoes();
-    //         }
-    //     });
-    //     $('#anterior').click(function() {
-    //         if (pagina > 0) {
-    //             pagina--;
-    //             paginar();
-    //             ajustarBotoes();
-    //         }
-    //     });
-    //     paginar();
-    //     ajustarBotoes();
-    // });
-</script>

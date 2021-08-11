@@ -174,6 +174,8 @@ class EventoModel extends Model
         return $result;
     }
 
+      //------------------------------------------------------------------------------ 
+      
     public function inscritoEventoExclusivo($idUser = null)
     {
 
@@ -185,6 +187,8 @@ class EventoModel extends Model
         return $result;
     }
 
+      //------------------------------------------------------------------------------
+
     public function inscritoTodosEvento($idUser = null)
     {
         $result = $this
@@ -193,4 +197,6 @@ class EventoModel extends Model
             ->where('usuario_evento.idUser', $idUser)->get()->getResultArray();
         return $result;
     }
+
+
 }

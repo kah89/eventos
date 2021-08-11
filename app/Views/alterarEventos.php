@@ -1,5 +1,15 @@
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.css" />
-<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.js"></script>
+<!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.css" /> -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.dataTables.min.css" />
+<!-- <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.js"></script> -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script> 
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script> 
+
 <style>
     h2 {
         color: #007BFF;
@@ -13,8 +23,20 @@
         font: caption;
     }
 
+    thead {
+        text-align: center;
+    }
+
     .fa-trash {
-        margin-left: 20%;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    #tabela {
+        width: 100%;
+        border: solid 2px;
+        text-align: left;
+        border-collapse: collapse;
     }
 
     #tabela tbody tr {
@@ -58,7 +80,7 @@
         box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
     }
 </style>
-<script>
+<script language="javascript">
     $(document).ready(function() {
         $('#tabela').DataTable({
             language: {
@@ -66,21 +88,22 @@
             }
         });
     });
+
 </script>
 <main>
-<?php
-        if (
-            isset($_SESSION['id']) &&
-            $_SESSION['type'] == 0
-        ) {
-        ?>
-    <div class="container bg-white" style="padding-bottom: 10em;">
-       
+    <?php
+    if (
+        isset($_SESSION['id']) &&
+        $_SESSION['type'] == 0
+    ) {
+    ?>
+        <div class="container bg-white" style="padding-bottom: 10em;">
+
             <div class="row">
                 <div class="col-12" id="divConteudo">
                     <h2 style="text-align: center; font-size:30px">Eventos</h2>
-                    <a class="btn btn-primary  text-uppercase" id="cad" type="submit" href="<?= base_url('cadastrarEventos') ?>" >Cadastrar</a>
-                   
+                    <a class="btn btn-primary  text-uppercase" id="cad" type="submit" href="<?= base_url('cadastrarEventos') ?>">Cadastrar</a>
+
                     <?php if (session()->get('success')) { ?>
                         <div class="alert alert-success" role="alert">
                             <?= session()->get('success'); ?>
@@ -91,34 +114,37 @@
                         </div>
 
                     <?php } ?>
-                    
-                        <table class="table table-hover" id="tabela">
-                            <thead>
-                                <tr>
-                                    <th scope="col">ID</th>
-                                    <th scope="col">Titulo</th>
-                                    <th scope="col">Resumo</th>
-                                    <th scope="col">Ações</th> <!-- botão-->
-                                </tr>
 
-                            </thead>
-                            </thead>
-                            <tbody>
-                                <?php foreach ($data as $key => $evento) {
-                                    echo '<tr><td>' . $evento['id'] . '</td><td>' . $evento['titulo'] . '</td><td>' . $evento['resumo'] . '</td>
+                    <table class="table table-hover display" id="tabela" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Titulo</th>
+                                <th>Data Inicio</th>
+                                <th>Data Fim</th>
+                                <th>criado</th>
+                                <th>Ações</th> <!-- botão-->
+                            </tr>
+
+                        </thead>
+                        <tbody>
+                            <?php foreach ($data as $key => $evento) {
+                                echo '<tr><td>' . $evento['id'] . '</td><td>' . $evento['titulo'] . '</td><td>' . $evento['dtInicio'] . '</td><td>' . $evento['dtFim'] . '</td><td>' . $evento['userCreated'] . '</td>
                                <td><a href=' . base_url('editarEventos') . "/" . $evento['id'] . '  ><i class="fa fa-edit" style="color: blue"></a></i>
-                               <a href=' . base_url('eventos/deletar') . "/" . $evento['id'] . '><i class="fa fa-trash"  style="color: red"></a></i></td></tr>';
-                                } ?>
-                            </tbody>
-                        </table>
-                    
+                               <a href=' . base_url('eventos/deletar') . "/" . $evento['id'] . '><i class="fa fa-trash"  style="color: red"></a></i>
+                               <a href=' . base_url('inscritos/relatorioEvento') . "/" . $evento['id'] . ' id="baixar" ><i class="fa fa-file-excel-o"    style="color: black"></i></a></td></tr>';
+                            } ?>
+                            
+                            
+                        </tbody>
+                    </table>
                 </div>
             </div>
         <?php
-        } else {
-            // return redirect()->to(base_url('eventos'));
-            echo "<h3>Não tem permissão para acessar essa página!</h3>";
-        }
+    } else {
+        // return redirect()->to(base_url('eventos'));
+        echo "<h3>Não tem permissão para acessar essa página!</h3>";
+    }
         ?>
-    </div>
+        </div>
 </main>

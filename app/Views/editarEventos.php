@@ -127,7 +127,7 @@
                         <form class="form-signin" id="file" method="post" enctype="multipart/form-data">
                             <div class="form-group">
                                 <div class="mb-3">
-                                    <input class="form-control" onchange="readURL(this);" type="file" name="profile_image" id="formFile" accept="image/*" readonly="true" required autofocus>
+                                    <input class="form-control" onchange="readURL(this);" type="file" name="profile_image" id="formFile" accept="image/*" readonly="true"  autofocus>
                                     <img id="blah" type="file" alt="imagem" src="<?php echo base_url("public/img") . "/" . $imagem ?>" />
                                 </div>
                             </div>
