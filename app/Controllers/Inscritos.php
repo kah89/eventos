@@ -47,30 +47,32 @@ class Inscritos extends BaseController
 
 
         $certificados = $certificado
-            ->select('count(id) as total')
+            ->select('count(idUser) as total')
             ->where('certificado.idEvento', $eventID)
+            // ->get()->getResultArray();
             ->first();
+
+        // var_dump($certificados);exit;
 
         $totalAtividade = $atividade
             ->select('count(id) as total')
             ->where('atividade_evento.idEvento', $eventID)
             ->first();
-           
-        $totalConcluida = $inscrito
-            ->select('count(idUser) as total')
-            ->join('atividade_evento', 'atividade_evento.id = usuario_atividade.idAtividade AND atividade_evento.idEvento = ', $eventID)
-            ->where('usuario_atividade.idUser', $eventID);
-            // var_dump($totalConcluida);exit;
-            
 
-        $result =  ($totalConcluida == $totalAtividade);
+        $totalConcluida = $inscrito
+            ->select('COUNT(idAtividade) AS total')
+            ->join('atividade_evento', 'atividade_evento.id = usuario_atividade.idAtividade AND atividade_evento.idEvento = ' . $eventID)
+            ->groupBy('usuario_atividade.idUser')
+            ->having('total', (int)$totalAtividade['total'])
+            ->get()->getResultArray();
+
+        $result = count($totalConcluida);
 
         $data = [
             'title' =>  'Relatório',
             'users' => $users,
             'certificado' => $certificados,
             'inscritos' => $result,
-
         ];
 
         if (!session()->get('isLoggedIn')) {

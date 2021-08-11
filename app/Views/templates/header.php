@@ -147,10 +147,6 @@
                                 <a class="nav-link" href="<?= base_url('alterarUser') ?>"></i>Usuários</a>
                                 <!--DB eventos -->
                             </li>
-                            <li class="nav-item dropdown nav1 eventos">
-                                <a class="nav-link" href="<?= base_url('listarEventosUser') ?>"></i>Meus eventos</a>
-                                <!--DB eventos -->
-                            </li>
                         <?php
                         } else {
                         ?>
@@ -159,7 +155,7 @@
                                 <!--DB eventos -->
                             </li>
                             <li class="nav-item dropdown nav1 eventos">
-                                <a class="nav-link" href="<?= base_url('listarEventosUser') ?>"></i>Meus eventos</a>
+                                <a class="nav-link" href="<?= base_url('listarEventosUser') ?>"></i>Eventos inscritos</a>
                                 <!--DB eventos -->
                             </li>
                             <li class="nav-item dropdown nav1 eventos">

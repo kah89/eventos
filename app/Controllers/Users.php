@@ -439,8 +439,8 @@ class Users extends BaseController
 
 
                     if ($model->save($newData)) {
-                        // $session = session();
-                        // $session->setFlashdata('success', 'O usuário' . " ("  . $result['firstname'] . ") " .  'foi alterado com sucesso!');
+                        $session = session();
+                        $session->setFlashdata('success', 'O usuário' . " ("  . $result['firstname'] . ") " .  'foi alterado com sucesso!');
                         return redirect()->to(base_url('alterarUser'));
                     } else {
                         echo "Erro ao salvar";

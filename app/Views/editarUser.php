@@ -300,19 +300,27 @@
 
     // });
 </script>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
+    toastr.options = {
+        "closeButton": true,
+        "newestOnTop": false,
+        "progressBar": true,
+        "positionClass": "toast-left-center",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
     $(document).ready(function() {
         $('#cad').click(function(e) {
-            e.preventDefault();
+            // e.preventDefault();
             toastr.success("Usuário alterado com sucesso");
-
-            window.setTimeout(function() {
-                toastr.clear();
-
-            }, 1000);
-
-
         });
-
     });
-</script>
+</script> -->

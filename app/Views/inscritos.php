@@ -102,8 +102,13 @@
                             // "<td>" . $usuario['type']."</td>" .
                             "<td>" . $cat . "</td>" .
                             "<td>" . $usuario['atividadesconcluidas'] . "</td>" .
-                            "<td>" . date_format(date_create($usuario['dataCertificado']), 'd/m/Y H:i:s') . "</td>" .
-                            "<td>" . date_format(date_create($usuario['dtInscricao']), 'd/m/Y H:i:s') . "</td>" . "</tr>";
+                            "<td>";
+                        if ($usuario['dataCertificado']) {
+                            echo date_format(date_create($usuario['dataCertificado']), 'd/m/Y H:i:s') . "</td>";
+                        } else {
+                            echo "</td>";
+                        }
+                        echo "<td>" . date_format(date_create($usuario['dtInscricao']), 'd/m/Y H:i:s') . "</td>" . "</tr>";
                     endforeach;
                     // $ativ1 = $ativ1 + $ativ12;
                     // $ativ2 = $ativ2 + $ativ12;
@@ -112,8 +117,8 @@
                 </tbody>
             </table>
             <p style="text-align: right;">Total de Inscritos que assistiram todas atividades: <?php echo $inscritos; ?></p>
-            <!-- <p style="text-align: right;">Total de Inscritos que assistiram a atividade 2: </p> -->
-            <p style="text-align: right;">Total de Inscritos que geraram certificados: <?php echo count($certificado); ?></p>
+            
+            <p style="text-align: right;">Total de Inscritos que geraram certificados: <?php echo $certificado['total']; ?></p>
 
         </div>
     <?php

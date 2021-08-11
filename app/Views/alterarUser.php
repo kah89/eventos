@@ -75,31 +75,7 @@
     }
 </style>
 <script>
-    $(document).ready(function() {
-        $('#tabela').DataTable({
-            language: {
-                url: 'https://cdn.datatables.net/plug-ins/1.10.25/i18n/Portuguese-Brasil.json'
-            }
-        });
-    });
-
-    // $(function() {
-    //     $("#tabela input").keyup(function() {
-    //         var index = $(this).parent().index();
-    //         var nth = "#tabela td:nth-child(" + (index + 1).toString() + ")";
-    //         var valor = $(this).val().toUpperCase();
-    //         $("#tabela tbody tr").show();
-    //         $(nth).each(function() {
-    //             if ($(this).text().toUpperCase().indexOf(valor) < 0) {
-    //                 $(this).parent().hide();
-    //             }
-    //         });
-    //     });
-
-    //     $("#tabela input").blur(function() {
-    //         $(this).val("");
-    //     });
-    // });
+    $msg = "";
 </script>
 <main>
     <?php
@@ -113,17 +89,16 @@
             <div class="row">
                 <div class="col-12" id="divConteudo">
                     <h2 style="text-align: center; font-size:30px">Usuários</h2>
-                    <a class="btn btn-primary  text-uppercase" id="cad" type="submit" href="<?= base_url('cadastrarUser') ?>" >Cadastrar</a>
-                   
+                    <a class="btn btn-primary  text-uppercase" id="cad" type="submit" href="<?= base_url('cadastrarUser') ?>">Cadastrar</a>
+
                     <?php if (session()->get('success')) { ?>
-                        <div class="alert alert-success" role="alert">
-                            <?= session()->get('success'); ?>
-                        </div>
+                        <script>
+                            $msg = '<?= session()->get('success'); ?>';
+                        </script>
                     <?php } elseif (session()->get('danger')) { ?>
                         <div class="alert alert-danger" role="alert">
                             <?= session()->get('danger'); ?>
                         </div>
-
                     <?php } ?>
                     <table class="table table-hover" id="tabela">
                         <thead>
@@ -169,3 +144,33 @@
     }
     ?>
 </main>
+<script>
+    $(document).ready(function() {
+        $('#tabela').DataTable({
+            language: {
+                url: 'https://cdn.datatables.net/plug-ins/1.10.25/i18n/Portuguese-Brasil.json'
+            }
+        });
+
+        toastr.options = {
+            "closeButton": true,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-left-center",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+
+        if ($msg) {
+            toastr.success($msg);
+        }
+    });
+</script>
