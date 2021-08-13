@@ -118,7 +118,8 @@
                                 <button type="button" class="close" data-dismiss="alert"><span>×</span></button>
                             </div>
                         <?php endif ?>
-                        <h2 class="card-title text-center">Alteração de Evento</h2> <!-- utilizar a tabela eventos-->
+                        <a href="<?= base_url('alterarEventos') ?>">Voltar</a>
+                        <h2 class="card-title text-center">Alteração de Evento</h2>
                         <?php if (session()->get('success')) : ?>
                             <div class="alert alert-success" role="alert">
                                 <?= session()->get('success'); ?>
@@ -127,7 +128,7 @@
                         <form class="form-signin" id="file" method="post" enctype="multipart/form-data">
                             <div class="form-group">
                                 <div class="mb-3">
-                                    <input class="form-control" onchange="readURL(this);" type="file" name="profile_image" id="formFile" accept="image/*" readonly="true"  autofocus>
+                                    <input class="form-control" onchange="readURL(this);" type="file" name="profile_image" id="formFile" accept="image/*" readonly="true" >
                                     <img id="blah" type="file" alt="imagem" src="<?php echo base_url("public/img") . "/" . $imagem ?>" />
                                 </div>
                             </div>
@@ -165,17 +166,17 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                    <div class="form-label-group favcolor">
-                                        <label for="">Primaria:</label>
-                                        <input type="color" id="favcolor" name="favcolor" value="<?= $corPrimaria ?>" class="form-control" />
-                                    </div>
+                                <div class="form-label-group favcolor">
+                                    <label for="">Primaria:</label>
+                                    <input type="color" id="favcolor" name="favcolor" value="<?= $corPrimaria ?>" class="form-control" />
                                 </div>
-                                <div class="form-group">
-                                    <div class="form-label-group favcolor1">
-                                        <label for="">Secundaria:</label>
-                                        <input type="color" id="favcolor" name="favcolor1" value="<?= $corSecundaria ?>" class="form-control" />
-                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-label-group favcolor1">
+                                    <label for="">Secundaria:</label>
+                                    <input type="color" id="favcolor" name="favcolor1" value="<?= $corSecundaria ?>" class="form-control" />
                                 </div>
+                            </div>
                             <div class="form-group col-sm-7">
                                 <div class="form-label-group">
 
@@ -210,14 +211,6 @@
                                 <label for="">Destinado:</label>
                                 <div class="form-label-group" required>
                                     <?php
-                                    // foreach ($data as $key => $result) {
-                                    //     $selecionado = $data['destinado'] == $id;
-                                    //     if ($selecionado) {
-                                    //         $destinado = $result['destinado'];
-                                    //     }
-                                    // }
-                                    // var_dump(json_decode($destinado)); exit;
-                                    
                                     if (in_array("1", json_decode($destinado))) {
                                         echo '<input type="checkbox" id="checkbox1" name="destinado[]" value="1" checked="checked">
                                         <label for="checkbox1">Estudantes </label><br>';
@@ -239,11 +232,9 @@
                                         echo '<input type="checkbox" id="checkbox3" name="destinado[]" value="3">
                                         <label for="checkbox3">Farmacêuticos SP</label>';
                                     }
-
                                     ?>
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 <div class="form-label-group" required>
                                     <select id="estado" name="estado" class="form-control">
@@ -271,10 +262,6 @@
                             <div class="form-group radio">
                                 <div class="form-check" name="tipo" required>
                                     <label class="evento" for="">Evento:</label><br>
-                                    <!-- <input class="form-check-input " type="radio" id="radio1" name="radio" value="1">
-                                    <label class="form-check-label " for="radio1">Exclusivo</label><br>
-                                    <input class="form-check-input " type="radio" id="radio2" name="radio" value="2">
-                                    <label class="form-check-label" for="radio2">Não exclusivo</label><br> -->
                                     <?php
                                     foreach ($data as $key => $result) {
                                         $selecionado = $data['tipo'] == $id;
@@ -309,7 +296,7 @@
                                 <?php endif; ?>
                                 <button class="btn btn-md btn-primary  text-uppercase" name="file_upload" value="Upload File" id="uploadbutton" type="submit">Alterar</button>
                             </div>
-                            
+
                         </form>
                     </div>
                 </div>

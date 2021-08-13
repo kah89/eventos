@@ -54,13 +54,22 @@
         margin-top: -47px;
     }
 
-  #session{
-    margin-left: 190px; 
-  }
+    #session {
+        margin-left: 260px;
+    }
 
-  .eventos{
-      margin-left: 190px;
-  }
+    .eventos {
+        margin-left: 260px;
+    }
+
+    #navbarNav {
+        font-size: 16px;
+    }
+
+    body {
+
+        background-color: #F5F5F5;
+    }
 </style>
 
 <main>
@@ -69,6 +78,7 @@
             <div class=" mx-auto">
                 <div class="card">
                     <div class="card-body">
+                        <a href="<?= base_url('alterarAtividades') ?>">Voltar</a>
                         <h2 class="card-title text-center">Alteração de Atividade</h2>
 
                         <form class="form-signin" method="post">
@@ -142,7 +152,6 @@
 
                                     <select id="certificado" name="certificado" class="form-control">
                                         <?php
-                                        // $tipo = 1;
                                         foreach ($ativ as $key => $atividades) {
                                             $selecionado = $ativ['tipo'] == $idEvento;
                                             if ($selecionado) {

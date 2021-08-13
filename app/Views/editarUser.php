@@ -60,21 +60,7 @@
         box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
     }
 
-    .form {
-        width: 300px;
-    }
 
-    .form1 {
-        width: 300px;
-        margin-left: 385px;
-        margin-top: -65px;
-    }
-
-    .form2 {
-        width: 300px;
-        float: right;
-        margin-top: -65px;
-    }
 </style>
 <script type="text/javascript">
     $(function() {
@@ -162,6 +148,7 @@
     <div class="container">
         <div class="card card-signin my-5">
             <div class="card-body">
+            <a href="<?= base_url('alterarUser') ?>">Voltar</a>
                 <h2 class="card-title text-center">Alteração de Usuários</h2>
                 <form class="form-signin " method="post">
 

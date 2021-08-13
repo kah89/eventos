@@ -10,11 +10,11 @@
 
 
     <?php if (isset($color)) {
-        echo ('h2, h1,th, #cad {                
+        echo ('h2, h1,th {                
                 color: ' . $color . ';
         }');
     } ?><?php if (isset($colorSecundaria)) {
-            echo (' .btn, #card-footer, #card-header , .card-footer, .card-header  {                
+            echo (' .btn, #card-footer, #card-header , .card-footer, .card-header {                
             background-color: ' . $colorSecundaria . ';
         }');
         } ?>

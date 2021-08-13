@@ -176,21 +176,6 @@
     ) {
     ?>
         <div class="container">
-            <div class="message_box">
-                <?php
-                if (isset($success) && strlen($success)) {
-                    echo '<div class="success">';
-                    echo '<p>' . esc($success) . '</p>';
-                    echo '</div>';
-                }
-
-                if (isset($error) && strlen($error)) {
-                    echo '<div class="error">';
-                    echo '<p>' . esc($error) . '</p>';
-                    echo '</div>';
-                }
-                ?>
-            </div>
             <div>
                 <div class=" mx-auto">
                     <div class="card">
@@ -201,7 +186,8 @@
                                     <button type="button" class="close" data-dismiss="alert"><span>×</span></button>
                                 </div>
                             <?php endif ?>
-                            <h2 class="card-title text-center">Cadastro de Evento </h2> <!-- utilizar a tabela eventos-->
+                            <a href="<?= base_url('alterarEventos') ?>">Voltar</a>
+                            <h2 class="card-title text-center">Cadastro de Evento </h2>
                             <form class="form-signin" id="file" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <div class="mb-3">
@@ -254,7 +240,6 @@
                                         <input type="time" name="hfinal" id="hora1" class="form-control" required />
                                     </div>
                                 </div>
-
                                 <div class="form-group">
                                     <div class="form-label-group" required>
                                         <select id="assinatura" name="assinatura" class="form-control">
@@ -274,7 +259,6 @@
 
                                     </div>
                                 </div>
-
                                 <!-- <div class="form-group">
                                     <div class="form-label-group" required>
                                         <select id="estado" name="estado" class="form-control">
@@ -284,7 +268,6 @@
                                         </select>
                                     </div>
                                 </div> -->
-
                                 <div class="form-group radio">
                                     <div class="form-check" name="tipo" required>
                                         <label class="evento" for="">Evento:</label><br>
@@ -294,23 +277,17 @@
                                         <label class="form-check-label" for="radio2">Não exclusivo</label><br>
                                     </div>
                                 </div>
-
                                 <div class="form-group">
                                     <div class="form-label-group">
                                         <input type="text" id="limite" name="limite" class="form-control" placeholder="Limite de pessoas" required autofocus>
                                     </div>
                                 </div>
-
-
-
                                 <div class="form-group">
                                     <?php if (isset($validation)) : ?>
                                         <div class="alert alert-danger" roles="alert">
                                             <?= $validation->listErrors(); ?>
                                         </div>
                                     <?php endif; ?>
-
-
                                     <button class="btn btn-primary  text-uppercase" name="file_upload" value="Upload File" id="uploadbutton" type="submit">Cadastrar</button>
 
                                 </div>
@@ -323,7 +300,6 @@
         </div>
     <?php
     } else {
-        // return redirect()->to(base_url('eventos'));
         echo "<h3>Não tem permissão para acessar essa página!</h3>";
     }
     ?>

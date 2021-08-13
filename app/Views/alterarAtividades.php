@@ -1,5 +1,15 @@
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.css" />
-<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.js"></script>
+<!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.css" />
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.js"></script> -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.dataTables.min.css" />
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script> 
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script> 
+
 <style>
     h2 {
         color: #007BFF;
@@ -98,23 +108,29 @@
                             $msg = '<?= session()->get('success'); ?>';
                         </script>
                     <?php } ?>
-                    <table class="table table-hover" id="tabela">
+                    <table class="table-hover display" id="tabela">
                    
                         <thead>
                             <tr>
                                 <th>ID</th>
                                 <th>ID Evento</th> 
                                 <th>Titulo</th>
-                                <th>Data</th>
+                                <th>Data Inicio</th>
+                                <th>Data Fim</th>
                                 <th>Certificado</th>
                                 <th>Ações</th> 
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($data as $key => $evento) {
-                                echo '<tr><td>' . $evento['id'] . '</td><td>' . $evento['idEvento'] . '</td><td>' . $evento['titulo'] . '</td><td>' . $evento['dtInicio'] . '</td><td>' . $evento['tipo'] . '</td>
-                               <td><a href=' . base_url('editarAtividades') . "/" . $evento['id'] . '><i class="fa fa-edit" style="color: blue"></a></i>
-                               <a href=' . base_url('atividades/deletar') . "/" . $evento['id'] . '><i class="fa fa-trash"  style="color: red"></a></i>
+                            <?php foreach ($data as $key => $atividade) {
+                            if ($atividade['tipo'] == '1') {
+                                $tipo = 'Sim';
+                            } else {
+                                $tipo = 'Não';
+                            }
+                                echo '<tr><td>' . $atividade['id'] . '</td><td>' . $atividade['idEvento'] . '</td><td>' . $atividade['titulo'] . '</td><td>' . date_format(new DateTime($atividade['dtInicio']), "d/m/Y  - H:i") . '</td><td>' . date_format(new DateTime($atividade['dtFim']), "d/m/Y  - H:i") . '</td><td>' .  $tipo . '</td>
+                               <td><a href=' . base_url('editarAtividades') . "/" . $atividade['id'] . '><i class="fa fa-edit" style="color: blue"></a></i>
+                               <a href=' . base_url('atividades/deletar') . "/" . $atividade['id'] . '><i class="fa fa-trash"  style="color: red"></a></i>
                               </td></tr>';
                             } ?>
                         </tbody>
