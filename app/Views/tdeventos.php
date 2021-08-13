@@ -40,7 +40,7 @@
         min-height: 450px;
     }
 
-    .card-footer{
+    .card-footer {
         margin-top: -30px;
     }
 
@@ -155,12 +155,12 @@
         z-index: 2;
     }
 
-    #p1{
+    #p1 {
         margin-top: 10px;
     }
 
-    #p2{
-        margin-top: -10px; 
+    #p2 {
+        margin-top: -10px;
     }
 </style>
 <script>
@@ -218,7 +218,15 @@
                         <div class="card-body">
                             <div class="image">
                                 <div class="info" id=txt>
-                                    <span>Aberto</span>
+                                    <span> <?php
+                                    if (Date($evento['dtInicio'])> date("Y-m-d H:i:s")){
+                                        echo 'Aberto';
+                                    } else if (Date($evento['dtFim']) > date("Y-m-d H:i:s"))  {
+                                        echo ' Próx. Evento';
+                                    }else  if (Date($evento['dtFim']) < date("Y-m-d H:i:s")) {
+                                        echo 'Encerrado';
+                                    }
+                                    ?></span>
                                 </div>
                                 <img src="<?php echo base_url("/public/img") . "/" . $evento['imagem'] ?>" alt="" width="100%">
                             </div>
@@ -478,9 +486,6 @@
                 toastr.info($msg);
             }
 
-            //trocar menssagem na faixa
-            document.querySelector("#txt").innerHTML = "Encerrado";
-            // document.querySelector("#txt").innerHTML = "Próx. Evento";
         </script>
     </div>
 
