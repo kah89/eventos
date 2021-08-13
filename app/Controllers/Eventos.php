@@ -47,6 +47,50 @@ class Eventos extends BaseController
             echo view('templates/footer');
         }
     }
+    public function inscrevase()
+    {
+        if (!session()->get('isLoggedIn')) {
+            return redirect()->to(base_url(''));
+        } else {
+            $model = new EventoModel();
+            $user = new UserModel();
+
+            $users = $user->findAll();
+            $eventos = $model->findAll();
+            $allevents = array();
+
+            
+            foreach ($eventos as $evento) {
+                $evento['vagas'] = $model->quantidadeVagas($evento['id']);
+                
+                
+                //var_dump($allevents);
+                if($model->eventosDisponiveis(session()->get('id'), $evento['id'])){
+
+                array_push($allevents, $evento);     
+                }
+                
+            }
+           
+           
+            
+
+            
+            $data = [
+                'title' => 'Eventos para inscrição',
+                'data' => $allevents,
+            ];
+
+           
+            
+            
+         
+
+            echo view('templates/header', $data);
+            echo view('inscrevase');
+            echo view('templates/footer');
+        }
+    }
 
     //------------------------------------------------------------------------------
 

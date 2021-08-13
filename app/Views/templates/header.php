@@ -144,7 +144,7 @@
                         } else {
                         ?>
                             <li class="nav-item dropdown nav1 ">
-                                <a class="nav-link" href="<?= base_url('eventos') ?>"></i>Inscreva-se</a>
+                                <a class="nav-link" href="<?= base_url('inscrevase') ?>"></i>Inscreva-se</a>
                             </li>
                             <li class="nav-item dropdown nav1 ">
                                 <a class="nav-link" href="<?= base_url('listarEventosUser') ?>"></i>Eventos inscritos</a>
