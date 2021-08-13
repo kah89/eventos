@@ -27,16 +27,14 @@
         margin-top: 5px;
     }
 
-
     .card {
         padding: 5px;
         border-width: medium;
         border-radius: 10px;
         max-width: 370px;
         margin: 5px;
+        box-shadow: 1px 13px 8px -4px DarkGray;
     }
-
-
 
     .cad2,
     #cad2,
@@ -53,11 +51,7 @@
         box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
     }
 
-
     .card-text {
-        /* max-width: 90ch; */
-        /* width: 20em;  */
-        /* max-width: 300px; */
         margin-top: 20px;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -66,9 +60,27 @@
 
     img {
         max-height: 200px;
+        width: 100%;
+        height: 100%;
     }
 
+    .image {
+        border: 2px solid #fff;
+        width: 100%;
+        height: 184px;
+        overflow: hidden
+    }
 
+    .image img {
+        width: 100%;
+        height: 300;
+        transition: all 2s ease-in-out
+    }
+
+    .image:hover img {
+        transform: scale(2, 2);
+        cursor: pointer
+    }
 
     .destinado {
         float: left;
@@ -78,10 +90,6 @@
     .show {
         display: block;
     }
-
-    /* .btn {
-
-    } */
 
     .btn:hover {
 
@@ -93,6 +101,50 @@
         background-color: #666;
         color: white;
         box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    .info {
+        background: black;
+        color: #fff;
+        position: absolute;
+        top: 30px;
+        left: 240px;
+        padding: 4px 8px;
+        font-family: Quicksand, sans-serif;
+        font-weight: 700;
+        line-height: 20px;
+        transform: rotate(45deg);
+        overflow: visible;
+        width: 160px;
+        text-align: center;
+    }
+
+    .info::after {
+        content: "";
+        position: absolute;
+        z-index: 1;
+        top: -15px;
+        right: -19px;
+        width: 50px;
+        height: 30px;
+        transform: rotate(45deg);
+        background-color: #F5F5F5;
+    }
+
+    .info::before {
+        content: "";
+        position: absolute;
+        z-index: 1;
+        top: -50px;
+        right: 142px;
+        width: 50px;
+        height: 100px;
+        transform: rotate(45deg);
+        background-color: #F5F5F5;
+    }
+
+    #myBtnContainer {
+        z-index: 2;
     }
 </style>
 <script>
@@ -122,28 +174,30 @@
         <div class="row">
 
             <?php
-            // var_dump($data);exit;
             if (count($data) > 0) {
                 foreach ($data as $key => $evento) {
 
             ?>
-                    <div class="card col-4 destinado eventCard <?php
-                                                                $destinos = json_decode($evento['destinado']);
-                                                                foreach ($destinos as $detinado) {
-                                                                    echo " destinado" . $detinado;
-                                                                }
-                                                                ?>">
+                    <div class="card card-trip__thumbnail col-4 destinado eventCard <?php
+                                                                                    $destinos = json_decode($evento['destinado']);
+                                                                                    foreach ($destinos as $detinado) {
+                                                                                        echo " destinado" . $detinado;
+                                                                                    }
+                                                                                    ?>">
 
                         <div class="card-header" id="card-header" style="background-color: <?php echo $evento['corPrimaria'] ?>;">
                             <h4 class="card-title"><?php echo $evento['titulo'] ?></h4>
                         </div>
 
                         <div class="card-body">
-                            <!-- <a href="#" data-toggle="tooltip" title="evento encerrado!"> </a> -->
-                            <img src="<?php echo base_url("/public/img") . "/" . $evento['imagem'] ?>" alt="" width="100%">
-                            <p> <strong>Data:</strong> <?php echo date_format(new DateTime($evento['dtInicio']), "d-m-Y"); ?> até <?php echo date_format(new DateTime($evento['dtFim']), "d-m-Y"); ?></p>
+                            <div class="image">
+                                <div class="info" id=txt x="5" y="35" font-family="Verdana" font-size="11" fill="white">
+                                    <span>Aberto</span>
+                                </div>
+                                <img src="<?php echo base_url("/public/img") . "/" . $evento['imagem'] ?>" alt="" width="100%">
+                            </div>
+                            <p> <strong>Data:</strong> <?php echo date_format(new DateTime($evento['dtInicio']), "d/m/Y"); ?> até <?php echo date_format(new DateTime($evento['dtFim']), "d/m/Y"); ?></p>
                             <p> <strong>Quantidade de inscrição:</strong> <?php echo $evento['limite']; ?></p>
-                            <p> Restam apenas<strong> <?php echo $evento['vagas']; ?> </strong>vagas.</p>
                             <p><strong> Evento destinado: </strong>
                                 <?php foreach ($destinos as $detinado) {
                                     if ($detinado == "2") {
@@ -156,7 +210,19 @@
                                         echo "Estudante | ";
                                     }
                                 } ?></p>
+                            <p><strong> Evento: </strong><?php
+                                                                if ($evento['tipo'] == '1') {
+                                                            
+                                                                    echo 'Exclusivo';
+                                                                } else {
+                                                                    echo 'Não exclusivo';
+                                                                }
+                                                            ?>
+
+                            </p>
+                            <p> Restam apenas<strong> <?php echo $evento['vagas']; ?> </strong>vagas.</p>
                         </div>
+
                         <div class="card-footer text-muted" id="card-footer">
                             <ul class="nav nav-pills ">
                                 <li class="nav-item">
@@ -191,24 +257,29 @@
                                 <li class="nav-item">
 
                                     <?php
-                                    if (session()->get('type') != $detinado) {
-                                        echo '<button type="button" class="btn btn-primary cad1" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " data-toggle="modal" data-target="#desativado" disabled >Inscreva-se</button>';
-                                    } elseif (Date($evento['dtFim']) >  date("Y-m-d H:i:s")) {
+                                    // if ($_SESSION['type'] != json_decode($evento['destinado'])) {
+                                    //     echo '<button type="button" class="btn btn-primary cad1" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " data-toggle="modal" data-target="#exclusivo">Informação</button>';
+                                    // } else if ($limite) {
+                                    //     echo '<button class="btn btn-primary cad2" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " href="#" data-toggle="modal" data-target="#limite" id="Btn" onclick="preenchermodal(' . $evento['id'] . ');">Inscreva-se</button>';
+                                    // } else
+                                    if (Date($evento['dtFim']) >  date("Y-m-d H:i:s")) {
                                         echo '<button class="btn btn-primary cad2" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " href="#" data-toggle="modal" data-target="#inscrevaModal" id="Btn" onclick="preenchermodal(' . $evento['id'] . ');">Inscreva-se</button>';
                                     } else {
-                                        echo '<button type="button" class="btn btn-primary cad1" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " data-toggle="modal" data-target="#desativado" disabled >Inscreva-se</button>';
+                                        echo '<button type="button" class="btn btn-primary cad1" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " data-toggle="modal" data-target="#desativado">Informação</button>';
                                     }
+
                                     ?>
                                 </li>
                             </ul>
                         </div>
                     </div>
+
                     <!-- Modal Inscreva-se -->
                     <div class="modal fade" data-backdrop="static" id="inscrevaModal" tabindex="-1" role="dialog" aria-labelledby="inscrevaModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="inscrevaModalLabel">Inscreva-se</h5>
+                                    <h5 class="modal-title" id="inscrevaModalLabel">Olá <?= session()->get('firstname') ?>, </h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -231,13 +302,54 @@
                         <div class="modal-dialog modal-dialog-centered modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="sobreModalLabel">Atividade</h5>
+                                    <h5 class="modal-title" id="sobreModalLabel">Olá <?= session()->get('firstname') ?>,</h5>
                                     <button type="button" class="close cad" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
                                     Infelizmente este evento já encerrou!
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary cad" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal evento exclusivo -->
+                    <div class="modal fade" data-backdrop="static" id="exclusivo" tabindex="-1" aria-labelledby="sobreModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="sobreModalLabel">Olá <?= session()->get('firstname') ?>,</h5>
+                                    <button type="button" class="close cad" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Infelizmente este evento é exclusivo !
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary cad" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Modal limite evento -->
+                    <div class="modal fade" data-backdrop="static" id="limite" tabindex="-1" aria-labelledby="sobreModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="sobreModalLabel">Olá <?= session()->get('firstname') ?>,</h5>
+                                    <button type="button" class="close cad" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Infelizmente este evento já atingiu o limite máximo de participante!
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary cad" data-dismiss="modal">Close</button>
@@ -339,6 +451,11 @@
             if ($msg) {
                 toastr.info($msg);
             }
+
+            //trocar menssagem na faixa
+            document.querySelector("#txt").innerHTML = "Encerrado";
+            function paraColorChange() {  
+            Document.querySelector("#txt").style.color = ' red ';}
         </script>
     </div>
 

@@ -1,19 +1,22 @@
-<!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.css" /> -->
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" />
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.dataTables.min.css" />
-<!-- <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.js"></script> -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script> 
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script> 
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script>
 
 <style>
     h2 {
         color: #007BFF;
         margin-top: 20px;
+    }
+
+    .fa-trash {
+        margin-left: 10px;
+        margin-right: 10px;
     }
 
     th {
@@ -25,11 +28,6 @@
 
     thead {
         text-align: center;
-    }
-
-    .fa-trash {
-        margin-left: 10px;
-        margin-right: 10px;
     }
 
     #tabela {
@@ -81,7 +79,7 @@
     }
 </style>
 <script>
-   $msg = "";
+    $msg = "";
 </script>
 <main>
     <?php
@@ -117,27 +115,26 @@
                         </thead>
                         <tbody>
                             <?php foreach ($data as $key => $evento) {
-                                echo '<tr><td>' . $evento['id'] . '</td><td>' . $evento['titulo'] . '</td><td>' . $evento['dtInicio'] . '</td><td>' . $evento['dtFim'] . '</td><td>' . $evento['userCreated'] . '</td>
+                                echo '<tr><td>' . $evento['id'] . '</td><td>' . $evento['titulo'] . '</td><td>' . date_format(new DateTime( $evento['dtInicio']), "d/m/Y - H:i") . '</td><td>' . date_format(new DateTime( $evento['dtFim']), "d/m/Y - H:i") . '</td><td>' . $evento['userCreated'] . '</td>
                                <td><a href=' . base_url('editarEventos') . "/" . $evento['id'] . '  ><i class="fa fa-edit" style="color: blue"></a></i>
                                <a href=' . base_url('eventos/deletar') . "/" . $evento['id'] . '><i class="fa fa-trash"  style="color: red"></a></i>
                                <a href=' . base_url('inscritos/relatorioEvento') . "/" . $evento['id'] . ' id="baixar" ><i class="fa fa-file-excel-o"    style="color: black"></i></a></td></tr>';
                             } ?>
-                            
-                            
+
+
                         </tbody>
                     </table>
                 </div>
             </div>
         <?php
     } else {
-        // return redirect()->to(base_url('eventos'));
         echo "<h3>Não tem permissão para acessar essa página!</h3>";
     }
         ?>
         </div>
 </main>
 <script>
-       $(document).ready(function() {
+    $(document).ready(function() {
         $('#tabela').DataTable({
             language: {
                 url: 'https://cdn.datatables.net/plug-ins/1.10.25/i18n/Portuguese-Brasil.json'
@@ -145,24 +142,24 @@
         });
     });
 
-     toastr.options = {
-            "closeButton": true,
-            "newestOnTop": false,
-            "progressBar": true,
-            "preventDuplicates": false,
-            "positionClass": "toast-top-right",
-            "onclick": null,
-            "showDuration": "300",
-            "hideDuration": "1000",
-            "timeOut": "5000",
-            "extendedTimeOut": "1000",
-            "showEasing": "swing",
-            "hideEasing": "linear",
-            "showMethod": "fadeIn",
-            "hideMethod": "fadeOut",
-        }
+    toastr.options = {
+        "closeButton": true,
+        "newestOnTop": false,
+        "progressBar": true,
+        "preventDuplicates": false,
+        "positionClass": "toast-top-right",
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut",
+    }
 
-        if ($msg) {
-            toastr.info($msg);
-        }
+    if ($msg) {
+        toastr.info($msg);
+    }
 </script>

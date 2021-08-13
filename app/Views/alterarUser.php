@@ -1,5 +1,14 @@
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.css" />
-<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.dataTables.min.css" />
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script> 
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script> 
+
 
 <style>
     h2 {
@@ -96,7 +105,7 @@
                             $msg = '<?= session()->get('success'); ?>';
                         </script>
                     <?php } ?>
-                    <table class="table table-hover" id="tabela">
+                    <table class="table table-hover display" id="tabela">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -108,7 +117,14 @@
                         </thead>
                         <tbody>
                             <?php foreach ($data as $key => $user) {
-                                echo '<tr><td>' . $user['id'] . '</td><td>' . $user['firstname'] . '</td><td>' . $user['lastname'] . '</td><td>' . $user['type'] . '</td>
+                                 if ($user['type'] == '0') {
+                                    $type = 'Administrador';
+                                }else if ($user['type'] == '1') {
+                                    $type = 'Estudante';
+                                } else {
+                                    $type = 'Farmacêutico';
+                                }
+                                echo '<tr><td>' . $user['id'] . '</td><td>' . $user['firstname'] . '</td><td>' . $user['lastname'] . '</td><td>' . $type. '</td>
                                <td><a href=' . base_url('editarUser') . "/" . $user['id'] . '><i class="fa fa-edit" style="color: blue"></a></i>
                                <a href=' . base_url('users/deletar') . "/" . $user['id'] . '><i class="fa fa-trash"  style="color: red"></a></i>
                                </td></tr>';

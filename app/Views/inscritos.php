@@ -22,6 +22,46 @@
         margin-left: 200px;
         padding: 20px;
     }
+
+    th {
+        color: white;
+        text-align: left;
+        margin-top: 20px;
+        font: caption;
+    }
+
+    thead {
+        text-align: center;
+    }
+
+    #inscritos {
+        border: solid 2px;
+        border-collapse: collapse;
+        margin-left: -12px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+    #inscritos tbody tr {
+        border: solid 1px;
+        height: 30px;
+        cursor: pointer;
+    }
+
+    #inscritos thead {
+        background: #0174DF;
+        border: solid 2px;
+        opacity: 0.7;
+    }
+
+    #inscritos thead th:nth-child(1) {
+        width: 100px;
+    }
+
+    #inscritos input {
+        color: navy;
+        width: 100%;
+    }
 </style>
 <script>
     //gerar arquivo em excel
@@ -48,9 +88,9 @@
             <a href="<?= base_url('alterarEventos') ?>">Voltar</a>
             <p style="text-align: right;">Total de Inscritos: <?php echo count($users); ?></p>
 
-            <table class="table" id="inscritos">
+            <table class="table-hover display" id="inscritos" >
 
-                <thead class="thead-dark">
+                <thead class="thead">
                     <tr>
                         <th>#</th>
                         <th>Nome</th>
@@ -117,21 +157,13 @@
                 </tbody>
             </table>
             <p style="text-align: right;">Total de Inscritos que assistiram todas atividades: <?php echo $inscritos; ?></p>
-            
+
             <p style="text-align: right;">Total de Inscritos que geraram certificados: <?php echo $certificado['total']; ?></p>
 
         </div>
     <?php
     } else {
-        // return redirect()->to(base_url('eventos'));
         echo "<h3>Não tem permissão para acessar essa página!</h3>";
     }
     ?>
 </main>
-<script>
-    // $(document).ready(function() {
-    //     $('#inscritos').DataTable({
-    //         paging: false
-    //     });
-    // });
-</script>

@@ -31,16 +31,15 @@ class Eventos extends BaseController
                 array_push($allevents, $evento);
             }
 
+            // $limite = $model->quantidadeVagas();
             $eventoatual = $model->select('corSecundaria, corPrimaria ')->findall();
             $eventoId = $model->select('id')->findall();
-            // var_dump($eventoId);exit;
             $data = [
                 'title' => 'Eventos',
                 'data' => $allevents,
+                // 'limite' => $limite,
                 // 'colorSecundaria' => $eventoatual->
             ];
-            //  var_dump($data['colorSecundaria']);exit;
-
 
             echo view('templates/header', $data);
             echo view('tdeventos');
@@ -186,8 +185,8 @@ class Eventos extends BaseController
                 'users' => $userModel->findAll(),
                 'color' => $eventoatual['corPrimaria'],
                 'colorSecundaria' => $eventoatual['corSecundaria'],
-                'colorFH' => $eventoatual['corPrimaria'],
-                'colorSecundariaFH' => $eventoatual['corSecundaria'],
+                // 'colorFH' => $eventoatual['corPrimaria'],
+                // 'colorSecundariaFH' => $eventoatual['corSecundaria'],
             ];
 
 
@@ -313,7 +312,7 @@ class Eventos extends BaseController
                 //VALIDAÇÕES
                 $rules = [
                     'titulo' => 'trim|required|min_length[3]|max_length[60]',
-                    'imagem' => 'uploaded[profile_image]', 'mime_in[profile_image,image/jpg,image/jpeg,image/gif,image/png]', 'max_size[profile_image,4096]',
+                    // 'imagem' => 'uploaded[profile_image]', 'mime_in[profile_image,image/jpg,image/jpeg,image/gif,image/png]', 'max_size[profile_image,4096]',
                     'resumo' => 'trim|required|min_length[100]|max_length[1000]',
                 ];
 
@@ -321,8 +320,47 @@ class Eventos extends BaseController
                     $data['validation'] = $this->validator;
                 } else {
                     //salva no BD
-                    $uploadImagem = $this->carregamento_image($this->request->getFile('profile_image'));
-                    if ($uploadImagem) {
+
+                    if ($this->request->getFile('profile_image')->isValid()) {
+                        $uploadImagem = $this->carregamento_image($this->request->getFile('profile_image'));
+                        if ($uploadImagem) {
+                            $newData = [
+                                'id' => $evento_id,
+                                'titulo' => $this->request->getVar('titulo'),
+                                'resumo' => $this->request->getVar('resumo'),
+                                'dtInicio' => date($this->request->getVar('datainicial') . ' ' . $this->request->getVar('hinicial')),
+                                'dtFim' => date($this->request->getVar('datafinal') . ' ' . $this->request->getVar('hfinal')),
+                                'hora' => date('H:i:s', strtotime($this->request->getVar('datainicial') . ' ' . $this->request->getVar('hinicial'))),
+                                'userCreated' => session()->get('id'),
+                                'assinatura' => $this->request->getVar('assinatura'),
+                                'tipo' => $this->request->getVar('tipo'),
+                                'limite' => $this->request->getVar('limite'),
+                                'destinado' => json_encode($this->request->getVar('destinado')),
+                                // 'estado' => $this->request->getVar('estado'),
+                                'corPrimaria' => $this->request->getVar('favcolor'),
+                                'corSecundaria' => $this->request->getVar('favcolor1'),
+
+                            ];
+
+                            $imagem = $uploadImagem;
+                            if ($imagem != null) {
+                                $newData['imagem'] = $imagem;
+                            }
+
+                            if ($model->save($newData)) {
+                                $session = session();
+                                $session->setFlashdata('success', 'Seu evento' . " (" . $result['titulo'] . ") " .  ' foi alterado com sucesso!');
+                                return redirect()->to(base_url('alterarEventos'));
+                            } else {
+                                echo "Erro ao salvar";
+                                exit;
+                            }
+                        } else {
+                            echo "Erro no upload";
+                            exit;
+                        }
+                    }
+                    else{
                         $newData = [
                             'id' => $evento_id,
                             'titulo' => $this->request->getVar('titulo'),
@@ -334,17 +372,10 @@ class Eventos extends BaseController
                             'assinatura' => $this->request->getVar('assinatura'),
                             'tipo' => $this->request->getVar('tipo'),
                             'limite' => $this->request->getVar('limite'),
-                            'destinado' => json_encode($this->request->getVar('destinado')),
-                            // 'estado' => $this->request->getVar('estado'),
+                            'destinado' => json_encode($this->request->getVar('destinado')),                            
                             'corPrimaria' => $this->request->getVar('favcolor'),
                             'corSecundaria' => $this->request->getVar('favcolor1'),
-
-                        ];
-
-                        $imagem = $uploadImagem;
-                        if ($imagem != null) {
-                            $newData['imagem'] = $imagem;
-                        }
+                        ];                       
 
                         if ($model->save($newData)) {
                             $session = session();
@@ -354,9 +385,6 @@ class Eventos extends BaseController
                             echo "Erro ao salvar";
                             exit;
                         }
-                    } else {
-                        echo "Erro no upload";
-                        exit;
                     }
                 }
             }

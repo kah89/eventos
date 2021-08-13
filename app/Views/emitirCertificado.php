@@ -41,7 +41,6 @@
     </div>
     <?php
     }else{
-        // return redirect()->to(base_url('eventos'));
        echo "<h3>Não tem permissão para acessar essa página!</h3>";
     }
     ?>

@@ -1,11 +1,15 @@
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
-
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
 
 <style>
+    body {
+
+        background-color: #F5F5F5;
+    }
+
     h2 {
         color: #007BFF;
     }
@@ -60,11 +64,13 @@
         color: red;
     }
 
-    .menu1 {
+
+
+    #session {
         margin-left: 260px;
     }
 
-    #user {
+    .eventos {
         margin-left: 260px;
     }
 
@@ -81,25 +87,11 @@
     ) {
     ?>
         <div class="container">
-
-
             <div>
-                <?php
-                if (session()->get("success")) {
-                ?>
-                    <h3><?= session()->get("success") ?></h3>
-                <?php
-                }
-                if (session()->get("error")) {
-                ?>
-                    <h3><?= session()->get("error") ?></h3>
-                <?php
-                }
-                ?>
                 <div class="mx-auto">
-
                     <div class="card">
                         <div class="card-body">
+                            <a href="<?= base_url('alterarAtividades') ?>">Voltar</a>
                             <h2 class="card-title text-center">Cadastro de Atividade</h2>
                             <?php
                             foreach ($data as $key => $evento) {
