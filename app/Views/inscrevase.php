@@ -235,7 +235,7 @@
             <?php
                 }
             } else {
-                echo "<h3>Nenhum disponivel para inscrição!</h3>";
+                echo "<h3>Nenhum evento disponivel para inscrição!</h3>";
             }
 
             ?>

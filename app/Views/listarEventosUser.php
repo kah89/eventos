@@ -113,7 +113,7 @@
 
                         . '<img src="' .  base_url("/public/img") . "/" . $evento['imagem'] . '" alt="" width="100%">'
 
-                        . '<p> <strong>Evento encerra em:</strong> ' .date_format(new DateTime($evento['dtFim']), "d-m-Y") . '</p>'
+                        . '<p> <strong>Evento encerra:</strong> ' .date_format(new DateTime($evento['dtFim']), "d-m-Y") .' ' .'às'.' ' .date_format(new DateTime($evento['dtFim']), "h:i") . ' ' .'horas.</p>'
                         . '</div>'
                         . '<div class="card-footer text-muted" id="card-footer" >'
                         . '<ul class="nav nav-pills ">'

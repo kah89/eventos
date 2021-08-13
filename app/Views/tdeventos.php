@@ -36,6 +36,14 @@
         box-shadow: 1px 13px 8px -4px DarkGray;
     }
 
+    .card-body {
+        min-height: 450px;
+    }
+
+    .card-footer{
+        margin-top: -30px;
+    }
+
     .cad2,
     #cad2,
     .cad1 {
@@ -146,6 +154,14 @@
     #myBtnContainer {
         z-index: 2;
     }
+
+    #p1{
+        margin-top: 10px;
+    }
+
+    #p2{
+        margin-top: -10px; 
+    }
 </style>
 <script>
     $(document).ready(function() {
@@ -168,6 +184,16 @@
                 <button class="btn " onclick="filterSelection('destinado2')"> Farmacêuticos</button>
                 <button class="btn" onclick="filterSelection('destinado3')"> Farmacêuticos - SP</button>
                 <button class="btn" onclick="filterSelection('destinado1')"> Estudantes</button>
+                <?php
+                if (
+                    isset($_SESSION['id']) &&
+                    $_SESSION['type'] == 0
+                ) {
+                ?>
+                    <a class="btn" href="<?= base_url('listarEventosUser') ?>" style="color:#007BFF; margin-left:520px"></i> Eventos inscritos</a>
+                <?php
+                }
+                ?>
             </div>
         </div>
 
@@ -191,12 +217,12 @@
 
                         <div class="card-body">
                             <div class="image">
-                                <div class="info" id=txt x="5" y="35" font-family="Verdana" font-size="11" fill="white">
+                                <div class="info" id=txt>
                                     <span>Aberto</span>
                                 </div>
                                 <img src="<?php echo base_url("/public/img") . "/" . $evento['imagem'] ?>" alt="" width="100%">
                             </div>
-                            <p> <strong>Data:</strong> <?php echo date_format(new DateTime($evento['dtInicio']), "d/m/Y"); ?> até <?php echo date_format(new DateTime($evento['dtFim']), "d/m/Y"); ?></p>
+                            <p id="p1"> <strong>Data:</strong> <?php echo date_format(new DateTime($evento['dtInicio']), "d/m/Y"); ?> até <?php echo date_format(new DateTime($evento['dtFim']), "d/m/Y"); ?></p>
                             <p> <strong>Quantidade de inscrição:</strong> <?php echo $evento['limite']; ?></p>
                             <p><strong> Evento destinado: </strong>
                                 <?php foreach ($destinos as $detinado) {
@@ -211,16 +237,16 @@
                                     }
                                 } ?></p>
                             <p><strong> Evento: </strong><?php
-                                                                if ($evento['tipo'] == '1') {
-                                                            
-                                                                    echo 'Exclusivo';
-                                                                } else {
-                                                                    echo 'Não exclusivo';
-                                                                }
+                                                            if ($evento['tipo'] == '1') {
+
+                                                                echo 'Exclusivo';
+                                                            } else {
+                                                                echo 'Não exclusivo';
+                                                            }
                                                             ?>
 
                             </p>
-                            <p> Restam apenas<strong> <?php echo $evento['vagas']; ?> </strong>vagas.</p>
+                            <p id="p2"> Restam apenas<strong> <?php echo $evento['vagas']; ?> </strong>vagas.</p>
                         </div>
 
                         <div class="card-footer text-muted" id="card-footer">
@@ -454,8 +480,7 @@
 
             //trocar menssagem na faixa
             document.querySelector("#txt").innerHTML = "Encerrado";
-            function paraColorChange() {  
-            Document.querySelector("#txt").style.color = ' red ';}
+            // document.querySelector("#txt").innerHTML = "Próx. Evento";
         </script>
     </div>
 
