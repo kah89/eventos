@@ -273,7 +273,7 @@
                                         <label class="evento" for="">Evento:</label><br>
                                         <input class="form-check-input " type="radio" id="radio1" name="tipo" value="1">
                                         <label class="form-check-label " for="radio1">Exclusivo</label><br>
-                                        <input class="form-check-input " type="radio" id="radio2" name="tipo" value="2">
+                                        <input class="form-check-input " type="radio" id="radio2" name="tipo" value="2" checked="checked">
                                         <label class="form-check-label" for="radio2">Não exclusivo</label><br>
                                     </div>
                                 </div>

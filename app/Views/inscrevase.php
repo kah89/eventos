@@ -96,10 +96,6 @@
     }
 </style>
 <script>
-    $(document).ready(function() {
-        $('[data-toggle="tooltip"]').tooltip();
-    });
-
     $msg = "";
 </script>
 <main>
@@ -125,7 +121,6 @@
                         </div>
 
                         <div class="card-body">
-                            <!-- <a href="#" data-toggle="tooltip" title="evento encerrado!"> </a> -->
                             <img src="<?php echo base_url("/public/img") . "/" . $evento['imagem'] ?>" alt="" width="100%">
                             <p> <strong>Data:</strong> <?php echo date_format(new DateTime($evento['dtInicio']), "d-m-Y"); ?> até <?php echo date_format(new DateTime($evento['dtFim']), "d-m-Y"); ?></p>
                             <p> <strong>Quantidade de inscrição:</strong> <?php echo $evento['limite']; ?></p>

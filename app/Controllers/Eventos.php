@@ -16,7 +16,7 @@ class Eventos extends BaseController
 
 
 
-    public function index()
+    public function index($idUser = null, $idEvento = null)
     {
         if (!session()->get('isLoggedIn')) {
             return redirect()->to(base_url(''));
@@ -24,21 +24,23 @@ class Eventos extends BaseController
             // var_dump("HEY");exit;
             $model = new EventoModel();
             $eventos = $model->findAll();
+            $newmodel = new UserEvento();
             $allevents = array();
-
             foreach ($eventos as $evento) {
                 $evento['vagas'] = $model->quantidadeVagas($evento['id']);
                 array_push($allevents, $evento);
             }
 
-            // $limite = $model->quantidadeVagas();
+            // escolha de cor
             $eventoatual = $model->select('corSecundaria, corPrimaria ')->findall();
             $eventoId = $model->select('id')->findall();
+            
             $data = [
                 'title' => 'Eventos',
                 'data' => $allevents,
-                // 'limite' => $limite,
-                // 'colorSecundaria' => $eventoatual->
+                'user' =>  $newmodel->findAll(),
+                'limite' =>$newmodel->countAll(),
+                // 'colorSecundaria' => $eventoatual,
             ];
 
             echo view('templates/header', $data);
@@ -46,6 +48,9 @@ class Eventos extends BaseController
             echo view('templates/footer');
         }
     }
+
+    //------------------------------------------------------------------------------
+
     public function inscrevase()
     {
         if (!session()->get('isLoggedIn')) {
@@ -58,32 +63,22 @@ class Eventos extends BaseController
             $eventos = $model->findAll();
             $allevents = array();
 
-            
+
             foreach ($eventos as $evento) {
                 $evento['vagas'] = $model->quantidadeVagas($evento['id']);
-                
-                
+
+
                 //var_dump($allevents);
-                if($model->eventosDisponiveis(session()->get('id'), $evento['id'])){
+                if ($model->eventosDisponiveis(session()->get('id'), $evento['id'])) {
 
-                array_push($allevents, $evento);     
+                    array_push($allevents, $evento);
                 }
-                
             }
-           
-           
-            
 
-            
             $data = [
                 'title' => 'Eventos para inscrição',
                 'data' => $allevents,
             ];
-
-           
-            
-            
-         
 
             echo view('templates/header', $data);
             echo view('inscrevase');
@@ -127,7 +122,6 @@ class Eventos extends BaseController
             $idEvento = $uri->getSegment(4);
         }
 
-
         $session = session();
         $msg = $model->certificado($idUser, $idEvento, $firstnameUser, $lastnameUser);
 
@@ -167,7 +161,6 @@ class Eventos extends BaseController
                 'atividades' => $modelAtividades->findAll(),
             ];
 
-
             $eventosM = $modelEvento
                 ->select('*')
                 ->join('usuario_evento', 'usuario_evento.idEvento = eventos.id')
@@ -181,12 +174,6 @@ class Eventos extends BaseController
                 $evento['certificado'] = $atividadeM->verificarConclusao(session()->get('id'), $evento['id']);
                 array_push($eventos, $evento);
             }
-            // $eventoatual = $evento['corSecundaria, corPrimaria']->where('id = ' . $evento['id'])->find();
-            // var_dump($eventoatual);exit;
-
-
-
-
             $data = [
                 'title' => 'Lista de eventos ',
                 'data' => $eventos,
@@ -194,20 +181,13 @@ class Eventos extends BaseController
                 // 'colorSecundaria' => $eventoatual['corSecundaria'],
             ];
 
-
-
             echo view('templates/header', $data);
             echo view('listarEventosUser', $atividades);
             echo view('templates/footer');
         }
     }
 
-
-
-
-
     //------------------------------------------------------------------------------
-
 
     // lista as atividades do evento selecionado 
     public function listaEvento($id = null)
@@ -233,16 +213,13 @@ class Eventos extends BaseController
                 // 'colorSecundariaFH' => $eventoatual['corSecundaria'],
             ];
 
-
             echo view('templates/header', $data);
             echo view('listaEvento');
             echo view('templates/footer');
         }
     }
 
-
     //------------------------------------------------------------------------------
-
 
     // adiciona um eventos
     public function cadastrarEventos()
@@ -255,7 +232,6 @@ class Eventos extends BaseController
             $model = new EventoModel();
             $data = [
                 'title' => 'Cadastrar eventos',
-                // 'data' => $model->findAll(),
             ];
 
             if ($this->request->getMethod() == 'post') {
@@ -265,12 +241,11 @@ class Eventos extends BaseController
                     'imagem' => 'uploaded[profile_image]', 'mime_in[profile_image,image/jpg,image/jpeg,image/gif,image/png]', 'max_size[profile_image,4096]',
                     'resumo' => 'trim|required|min_length[100]|max_length[1000]',
                 ];
-                // echo './public/img';exit;
                 if (!$this->validate($rules)) {
                     $data['validation'] = $this->validator;
                 } else {
-                    //salva no BD
 
+                    //salva no BD
                     $model =  new EventoModel();
                     $uploadImagem = $this->upload_image($this->request->getFile('profile_image'));
                     if ($uploadImagem) {
@@ -312,6 +287,7 @@ class Eventos extends BaseController
         }
     }
 
+    //------------------------------------------------------------------------------
 
     public function upload_image($imagem)
     {
@@ -327,7 +303,6 @@ class Eventos extends BaseController
             }
         }
     }
-
 
     //------------------------------------------------------------------------------
 
@@ -363,8 +338,8 @@ class Eventos extends BaseController
                 if (!$this->validate($rules)) {
                     $data['validation'] = $this->validator;
                 } else {
-                    //salva no BD
 
+                    //salva no BD
                     if ($this->request->getFile('profile_image')->isValid()) {
                         $uploadImagem = $this->carregamento_image($this->request->getFile('profile_image'));
                         if ($uploadImagem) {
@@ -403,8 +378,7 @@ class Eventos extends BaseController
                             echo "Erro no upload";
                             exit;
                         }
-                    }
-                    else{
+                    } else {
                         $newData = [
                             'id' => $evento_id,
                             'titulo' => $this->request->getVar('titulo'),
@@ -416,10 +390,10 @@ class Eventos extends BaseController
                             'assinatura' => $this->request->getVar('assinatura'),
                             'tipo' => $this->request->getVar('tipo'),
                             'limite' => $this->request->getVar('limite'),
-                            'destinado' => json_encode($this->request->getVar('destinado')),                            
+                            'destinado' => json_encode($this->request->getVar('destinado')),
                             'corPrimaria' => $this->request->getVar('favcolor'),
                             'corSecundaria' => $this->request->getVar('favcolor1'),
-                        ];                       
+                        ];
 
                         if ($model->save($newData)) {
                             $session = session();
@@ -439,9 +413,7 @@ class Eventos extends BaseController
         }
     }
 
-
     //------------------------------------------------------------------------------
-
 
     public function carregamento_image($imagem)
     {
@@ -458,12 +430,9 @@ class Eventos extends BaseController
         }
     }
 
-
     //------------------------------------------------------------------------------
 
-
     // deleta um eventos
-
     public function alterarEventos() //tras a lista de eventos
     {
         if (!session()->get('isLoggedIn')) {
@@ -479,7 +448,6 @@ class Eventos extends BaseController
             echo view('templates/footer');
         }
     }
-
 
     //------------------------------------------------------------------------------
 
@@ -524,19 +492,4 @@ class Eventos extends BaseController
             }
         }
     }
-
-    //------------------------------------------------------------------------------
-    // public function exportar()
-    // {
-    //     if (!session()->get('isLoggedIn')) {
-    //         return redirect()->to(base_url(''));
-    //     } else {
-    //         $uri = current_url(true);
-    //         $eventID = $uri->getSegment(4); 
-    //         $model = new UserModel();
-    //         $result = $model->relatorioEvento($eventID);
-    //         return $result;
-
-    //     }
-    // }
 }

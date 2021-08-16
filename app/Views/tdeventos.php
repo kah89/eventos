@@ -27,13 +27,11 @@
         margin-top: 5px;
     }
 
-    .card {
-        padding: 5px;
-        border-width: medium;
-        border-radius: 10px;
-        max-width: 370px;
-        margin: 5px;
-        box-shadow: 1px 13px 8px -4px DarkGray;
+    .card-text {
+        margin-top: 20px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
     .card-body {
@@ -44,8 +42,18 @@
         margin-top: -30px;
     }
 
+    .card {
+        padding: 5px;
+        border-width: medium;
+        border-radius: 10px;
+        max-width: 370px;
+        margin: 5px;
+        box-shadow: -11px 7px 8px -4px darkgrey;
+        margin-bottom: 21px;
+    }
+
     .cad2,
-    #cad2,
+    #btn,
     .cad1 {
         background-color: #008CBA;
         font-size: 12px;
@@ -55,16 +63,10 @@
     }
 
     .cad2:hover,
-    #cad2:hover {
+    #btn:hover {
         box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
     }
 
-    .card-text {
-        margin-top: 20px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
 
     img {
         max-height: 200px;
@@ -111,6 +113,14 @@
         box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
     }
 
+    #btn,
+    #sobremodal {
+        margin-left: 5px;
+        margin-top: 10px;
+        text-align: center;
+        height: 40px
+    }
+
     .info {
         background: black;
         color: #fff;
@@ -132,7 +142,7 @@
         position: absolute;
         z-index: 1;
         top: -15px;
-        right: -19px;
+        right: -18px;
         width: 50px;
         height: 30px;
         transform: rotate(45deg);
@@ -142,17 +152,16 @@
     .info::before {
         content: "";
         position: absolute;
-        z-index: 1;
-        top: -50px;
+        top: -45px;
         right: 142px;
-        width: 50px;
+        width: 20px;
         height: 100px;
         transform: rotate(45deg);
-        background-color: #F5F5F5;
+        background-color: #f5f5f5;
     }
 
     #myBtnContainer {
-        z-index: 2;
+        z-index: 7;
     }
 
     #p1 {
@@ -164,10 +173,6 @@
     }
 </style>
 <script>
-    $(document).ready(function() {
-        $('[data-toggle="tooltip"]').tooltip();
-    });
-
     $msg = "";
 </script>
 <main>
@@ -195,21 +200,21 @@
                 }
                 ?>
             </div>
-        </div>
 
-        <div class="row">
 
             <?php
             if (count($data) > 0) {
+                rsort($data);
                 foreach ($data as $key => $evento) {
 
             ?>
-                    <div class="card card-trip__thumbnail col-4 destinado eventCard <?php
-                                                                                    $destinos = json_decode($evento['destinado']);
-                                                                                    foreach ($destinos as $detinado) {
-                                                                                        echo " destinado" . $detinado;
-                                                                                    }
-                                                                                    ?>">
+                    <div class="card card-trip__thumbnail col-4 destinado eventCard 
+                    <?php
+                    $destinos = json_decode($evento['destinado']);
+                    foreach ($destinos as $detinado) {
+                        echo " destinado" . $detinado;
+                    }
+                    ?>">
 
                         <div class="card-header" id="card-header" style="background-color: <?php echo $evento['corPrimaria'] ?>;">
                             <h4 class="card-title"><?php echo $evento['titulo'] ?></h4>
@@ -219,14 +224,18 @@
                             <div class="image">
                                 <div class="info" id=txt>
                                     <span> <?php
-                                    if (Date($evento['dtInicio'])> date("Y-m-d H:i:s")){
-                                        echo 'Aberto';
-                                    } else if (Date($evento['dtFim']) > date("Y-m-d H:i:s"))  {
-                                        echo ' Próx. Evento';
-                                    }else  if (Date($evento['dtFim']) < date("Y-m-d H:i:s")) {
-                                        echo 'Encerrado';
-                                    }
-                                    ?></span>
+                                            if ($limite > $evento['limite']) {
+                                                echo 'Esgotado';
+                                            } else if ((Date($evento['dtInicio']) > date("Y-m-d H:i:s")) && (Date($evento['dtFim']) > date("Y-m-d H:i:s"))) {
+                                                echo ' Próx. Evento';
+                                            } else if (((Date($evento['dtInicio'])) > date("Y-m-d H:i:s") && (Date($evento['dtFim'])) > date("Y-m-d H:i:s"))
+                                                || ((Date($evento['dtInicio'])) < date("Y-m-d H:i:s") && (Date($evento['dtFim'])) > date("Y-m-d H:i:s"))
+                                            ) {
+                                                echo 'Aberto';
+                                            } else {
+                                                echo 'Encerrado';
+                                            }
+                                            ?></span>
                                 </div>
                                 <img src="<?php echo base_url("/public/img") . "/" . $evento['imagem'] ?>" alt="" width="100%">
                             </div>
@@ -244,14 +253,15 @@
                                         echo "Estudante | ";
                                     }
                                 } ?></p>
-                            <p><strong> Evento: </strong><?php
-                                                            if ($evento['tipo'] == '1') {
+                            <p><strong> Evento: </strong>
+                                <?php
+                                if ($evento['tipo'] == '1') {
 
-                                                                echo 'Exclusivo';
-                                                            } else {
-                                                                echo 'Não exclusivo';
-                                                            }
-                                                            ?>
+                                    echo 'Exclusivo';
+                                } else {
+                                    echo 'Não exclusivo';
+                                }
+                                ?>
 
                             </p>
                             <p id="p2"> Restam apenas<strong> <?php echo $evento['vagas']; ?> </strong>vagas.</p>
@@ -260,7 +270,7 @@
                         <div class="card-footer text-muted" id="card-footer">
                             <ul class="nav nav-pills ">
                                 <li class="nav-item">
-                                    <button type="button" id="sobremodal" class=" cad2 btn btn-primary" data-toggle="modal" data-target="#sobreModal<?php echo $evento['id'] ?>" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px ">
+                                    <button type="button" id="sobremodal" class=" cad2 btn btn-primary" data-toggle="modal" data-target="#sobreModal<?php echo $evento['id'] ?>">
                                         Sobre
                                     </button>
 
@@ -286,22 +296,21 @@
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link active" id="cad2" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " href="<?php echo base_url("/eventos/listaEvento") . "/" . $evento['id'] ?>">Atividades</a>
+                                    <a class="nav-link active cad2" id="btn" href="<?php echo base_url("/eventos/listaEvento") . "/" . $evento['id'] ?>">Atividades</a>
                                 </li>
                                 <li class="nav-item">
 
                                     <?php
-                                    // if ($_SESSION['type'] != json_decode($evento['destinado'])) {
-                                    //     echo '<button type="button" class="btn btn-primary cad1" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " data-toggle="modal" data-target="#exclusivo">Informação</button>';
-                                    // } else if ($limite) {
-                                    //     echo '<button class="btn btn-primary cad2" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " href="#" data-toggle="modal" data-target="#limite" id="Btn" onclick="preenchermodal(' . $evento['id'] . ');">Inscreva-se</button>';
-                                    // } else
-                                    if (Date($evento['dtFim']) >  date("Y-m-d H:i:s")) {
-                                        echo '<button class="btn btn-primary cad2" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " href="#" data-toggle="modal" data-target="#inscrevaModal" id="Btn" onclick="preenchermodal(' . $evento['id'] . ');">Inscreva-se</button>';
+                                    if ($_SESSION['id'] == $user[0]['idUser'] && ($evento['id']) == $user[0]['idEvento']) {
+                                        echo '<button type="button" class="btn btn-primary cad1" id="btn" data-toggle="modal" data-target="#eventoinscrito">Informação</button>';
+                                    } else if ($evento['limite'] <=  $limite) {
+                                        echo '<button class="btn btn-primary cad2" id="btn"  data-toggle="modal" data-target="#limite" id="Btn">Informação</button>';
+                                    } else if (((Date($evento['dtInicio'])) > date("Y-m-d H:i:s") && (Date($evento['dtFim'])) > date("Y-m-d H:i:s"))
+                                        || ((Date($evento['dtInicio'])) < date("Y-m-d H:i:s") && (Date($evento['dtFim'])) > date("Y-m-d H:i:s"))) {
+                                        echo '<button class="btn btn-primary cad2" id="btn"  data-toggle="modal" data-target="#inscrevaModal" id="Btn" onclick="preenchermodal(' . $evento['id'] . ');">Inscreva-se</button>';
                                     } else {
-                                        echo '<button type="button" class="btn btn-primary cad1" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " data-toggle="modal" data-target="#desativado">Informação</button>';
+                                        echo '<button type="button" class="btn btn-primary cad1" id="btn" data-toggle="modal" data-target="#desativado" disabled>Encerrado</button>';
                                     }
-
                                     ?>
                                 </li>
                             </ul>
@@ -323,16 +332,15 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary cad" data-dismiss="modal">Fechar</button>
-                                    <a href="#" class="btn btn-primary cad" id="btnConfirmaInscricao">Confirma</a>
+                                    <a class="btn btn-primary cad" id="btnConfirmaInscricao">Confirma</a>
 
                                 </div>
                             </div>
                         </div>
-
                     </div>
 
-                    <!-- Modal Inscreva-se encerrado -->
-                    <div class="modal fade" data-backdrop="static" id="desativado" tabindex="-1" aria-labelledby="sobreModalLabel" aria-hidden="true">
+                    <!-- Modal evento inscrito -->
+                    <div class="modal fade" data-backdrop="static" id="eventoinscrito" tabindex="-1" aria-labelledby="sobreModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -342,27 +350,7 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    Infelizmente este evento já encerrou!
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary cad" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Modal evento exclusivo -->
-                    <div class="modal fade" data-backdrop="static" id="exclusivo" tabindex="-1" aria-labelledby="sobreModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="sobreModalLabel">Olá <?= session()->get('firstname') ?>,</h5>
-                                    <button type="button" class="close cad" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    Infelizmente este evento é exclusivo !
+                                    Você ja se inscreveu para esse evento !
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary cad" data-dismiss="modal">Close</button>
@@ -485,7 +473,6 @@
             if ($msg) {
                 toastr.info($msg);
             }
-
         </script>
     </div>
 
