@@ -262,31 +262,6 @@ class EventoModel extends Model
     }
 
 
-    public function verificaDisponibilidadeEvento($idUser = null, $idEvento = null)
-    {
-        $eventos = $this->select('*')->where('id=' . $idEvento)->get(1)->getRowArray(); 
-
-        $q = $this->db->table('eventos') 
-        ->SELECT('SELECT * from eventos 
-        LEFT JOIN usuario_evento 
-        ON usuario_evento.idEvento = eventos.id 
-        LEFT JOIN users 
-        ON usuario_evento.idUser = users.id
-        
-        WHERE eventos.id NOT IN (SELECT idEvento from usuario_evento 
-        WHERE usuario_evento.idUser = '.$idUser.')
-        AND eventos.dtFim > NOW()
-        
-        AND  eventos.limite > ( 
-        SELECT COUNT(idUser) AS inscritos FROM usuario_evento WHERE usuario_evento.idEvento = '.$idEvento.')
-        AND INSTR(eventos.destinado, "3")');       
-
-        if ($q){
-            return true;
-        }else{
-            return false;
-        }
-    }
 
     public function eventosDisponiveis($idUser = null, $destinado = null)
     {        
@@ -302,16 +277,9 @@ class EventoModel extends Model
         
         AND  eventos.limite > ( 
         SELECT COUNT(idUser) AS inscritos FROM usuario_evento WHERE usuario_evento.idEvento = eventos.id)
-        AND INSTR(eventos.destinado, "'.$destinado.'")');     
+        AND INSTR(eventos.destinado, "'.$destinado.'")  ');     
         
 return $q->getResultArray();
-
-        // var_dump($q->getResultArray());
-        // if ($q){
-        //     return true;
-        // }else{
-        //     return false;
-        // }
     }
 
 }

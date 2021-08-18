@@ -71,6 +71,7 @@ class Eventos extends BaseController
             } else {
                 $destinado = 1;
             }
+            
             $model = new EventoModel();
 
             $eventos = $model->eventosDisponiveis($user['id'], $destinado);

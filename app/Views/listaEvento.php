@@ -48,7 +48,7 @@
                             } else {
                                 $tipo = 'Não';
                             }
-                            echo '<tr><td>' . $atividade['id'] . '</td><td>' . $atividade['titulo'] . '</td><td>' . $atividade['dtInicio'] . '</td><td>' . $tipo . '</td>';
+                            echo '<tr><td>' . $atividade['id'] . '</td><td>' . $atividade['titulo'] . '</td><td>' . date_format(new DateTime($atividade['dtInicio']), "d/m/Y  - H:i") . '</td><td>' . $tipo . '</td>';
                             echo '<td>';
                             $inscrito = false;
                             foreach ($users as $userEvento) {
