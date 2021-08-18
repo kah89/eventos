@@ -168,14 +168,16 @@ class EventoModel extends Model
             ->db->table('usuario_evento')
             ->select('count(usuario_evento.idEvento) as count')
             ->where('idEvento', $idEvento)->get(1)->getRowArray();
+
+            // var_dump($limite['limite']);exit;
         $limite = (int)$limite['limite'];
         $count = (int)$count['count'];
         $result =   $limite - $count;
         return $result;
     }
 
-      //------------------------------------------------------------------------------ 
-      
+    //------------------------------------------------------------------------------ 
+
     public function inscritoEventoExclusivo($idUser = null)
     {
 
@@ -187,7 +189,7 @@ class EventoModel extends Model
         return $result;
     }
 
-      //------------------------------------------------------------------------------
+    //------------------------------------------------------------------------------
 
     public function inscritoTodosEvento($idUser = null)
     {
@@ -198,13 +200,12 @@ class EventoModel extends Model
         return $result;
     }
 
-    public function eventosDisponiveis($iduser = null, $idEvento = null)
+    public function teste($idUser = null, $idEvento = null)
     {
         $q = $this->select('*')->where('id=' . $idEvento)->get(1)->getRowArray();
-
         //Verifica se a data de um evento que é exclusivo conflita com a data de outros eventos.
         if ($q['tipo'] == 2) {
-            if ($a = $this->inscritoEventoExclusivo($iduser)) {
+            if ($a = $this->inscritoEventoExclusivo($idUser)) {
                 foreach ($a as $eventosInscritos) {
                     if (!($q['dtInicio'] < $eventosInscritos['dtInicio'] && $q['dtFim'] < $eventosInscritos['dtInicio']) || ($q['dtInicio'] > $eventosInscritos['dtInicio'] && $eventosInscritos['dtFim'] < $q['dtInicio'])) {
                         return false;
@@ -212,7 +213,7 @@ class EventoModel extends Model
                 }
             }
         } else {
-            if ($a = $this->inscritoTodosEvento($iduser)) {
+            if ($a = $this->inscritoTodosEvento($idUser)) {
                 foreach ($a as $eventosInscritos) {
                     if (
                         !(($q['dtInicio'] < $eventosInscritos['dtInicio'] && $q['dtFim'] < $eventosInscritos['dtInicio'])
@@ -224,44 +225,93 @@ class EventoModel extends Model
                 }
             }
         }
+        if (Date($q['dtFim']) < date("Y-m-d H:i:s")) {
+            return false;
+        }
 
-
-
-        // Verifica se o evento é destinado para determinado usuario 
-        /*
-        Tipos de evento : 1 evento para estudantes
-                          2 evento somente para farmaceuticos
-                          3 evento somente para farmaceuticos de SP
-        */
         if (in_array("2", json_decode($q['destinado'])) && in_array("1", json_decode($q['destinado']))) {
-            if (session()->get('type') == 1 || session()->get('type') == 2 || session()->get('type') == 0) {
-                return true;
-            } else {
+            if (!(session()->get('type') == 1 || session()->get('type') == 2 || session()->get('type') == 0)) {
                 return false;
             }
         }
         if (in_array("2", json_decode($q['destinado']))) {
-            if (session()->get('type') == 2 || session()->get('type') == 0) {
-                return true;
-            }else {
+            if (!(session()->get('type') == 2 || session()->get('type') == 0)) {
                 return false;
             }
         }
-
         if (in_array("3", json_decode($q['destinado']))) {
-            if (session()->get('type') == 2 && session()->get('estado') == '26' || session()->get('type') == 0) {
-                return true;
-            }else {
+            if (!(session()->get('type') == 2 && session()->get('estado') == '26' || session()->get('type') == 0)) {
                 return false;
             }
         }
         if (in_array("1", json_decode($q['destinado']))) {
-            if (session()->get('type') == 1 || session()->get('type') == 0) {
-                return true;
-            }else {
+            if (!(session()->get('type') == 1 || session()->get('type') == 0)) {
                 return false;
             }
         }
+        $jaInscrito = $this
+            ->select('*')
+            ->join('usuario_evento', 'eventos.id = usuario_evento.idEvento')
+            ->where('usuario_evento.idUser', $idUser)
+            ->where('eventos.id', $idEvento)
+            ->get()->getResultArray();
+        if (count($jaInscrito) > 0) {
+            return false;
+        }
+        return true;
+    }
+
+
+    public function verificaDisponibilidadeEvento($idUser = null, $idEvento = null)
+    {
+        $eventos = $this->select('*')->where('id=' . $idEvento)->get(1)->getRowArray(); 
+
+        $q = $this->db->table('eventos') 
+        ->SELECT('SELECT * from eventos 
+        LEFT JOIN usuario_evento 
+        ON usuario_evento.idEvento = eventos.id 
+        LEFT JOIN users 
+        ON usuario_evento.idUser = users.id
+        
+        WHERE eventos.id NOT IN (SELECT idEvento from usuario_evento 
+        WHERE usuario_evento.idUser = '.$idUser.')
+        AND eventos.dtFim > NOW()
+        
+        AND  eventos.limite > ( 
+        SELECT COUNT(idUser) AS inscritos FROM usuario_evento WHERE usuario_evento.idEvento = '.$idEvento.')
+        AND INSTR(eventos.destinado, "3")');       
+
+        if ($q){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function eventosDisponiveis($idUser = null, $destinado = null)
+    {        
+        $q = $this->db->query('SELECT eventos.id, eventos.titulo, eventos.tipo, eventos.destinado, eventos.resumo, eventos.imagem, eventos.assinatura, eventos.dtInicio, eventos.dtFim, eventos.limite, eventos.corPrimaria, eventos.corSecundaria from eventos 
+        LEFT JOIN usuario_evento 
+        ON usuario_evento.idEvento = eventos.id 
+        LEFT JOIN users 
+        ON usuario_evento.idUser = users.id
+        
+        WHERE eventos.id NOT IN (SELECT idEvento from usuario_evento 
+        WHERE usuario_evento.idUser = '.$idUser.')
+        AND eventos.dtFim > NOW()
+        
+        AND  eventos.limite > ( 
+        SELECT COUNT(idUser) AS inscritos FROM usuario_evento WHERE usuario_evento.idEvento = eventos.id)
+        AND INSTR(eventos.destinado, "'.$destinado.'")');     
+        
+return $q->getResultArray();
+
+        // var_dump($q->getResultArray());
+        // if ($q){
+        //     return true;
+        // }else{
+        //     return false;
+        // }
     }
 
 }

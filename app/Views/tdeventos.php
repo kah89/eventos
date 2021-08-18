@@ -160,8 +160,14 @@
         background-color: #f5f5f5;
     }
 
-    #myBtnContainer {
+    #myBtnContainer,
+    #a-inscritos {
         z-index: 7;
+    }
+
+    #a-inscritos {
+        margin-top: -40px;
+        margin-left: 450px;
     }
 
     #p1 {
@@ -184,11 +190,14 @@
             </script>
         <?php } ?>
         <div class="row">
-            <div id="myBtnContainer">
+            <div id="myBtnContainer" class="col-12">
                 <button class="btn active" onclick="filterSelection('all')">Todos</button>
                 <button class="btn " onclick="filterSelection('destinado2')"> Farmacêuticos</button>
                 <button class="btn" onclick="filterSelection('destinado3')"> Farmacêuticos - SP</button>
                 <button class="btn" onclick="filterSelection('destinado1')"> Estudantes</button>
+            </div>
+
+            <div id="a-inscritos" class="col-12">
                 <?php
                 if (
                     isset($_SESSION['id']) &&
@@ -201,20 +210,19 @@
                 ?>
             </div>
 
-
             <?php
             if (count($data) > 0) {
                 rsort($data);
                 foreach ($data as $key => $evento) {
 
             ?>
-                    <div class="card card-trip__thumbnail col-4 destinado eventCard 
-                    <?php
-                    $destinos = json_decode($evento['destinado']);
-                    foreach ($destinos as $detinado) {
-                        echo " destinado" . $detinado;
-                    }
-                    ?>">
+                    <div class="card card-trip__thumbnail col-4 destinado eventCard                    
+                        <?php
+                        $destinos = json_decode($evento['destinado']);
+                        foreach ($destinos as $detinado) {
+                            echo " destinado" . $detinado;
+                        }
+                        ?>">
 
                         <div class="card-header" id="card-header" style="background-color: <?php echo $evento['corPrimaria'] ?>;">
                             <h4 class="card-title"><?php echo $evento['titulo'] ?></h4>
@@ -224,7 +232,7 @@
                             <div class="image">
                                 <div class="info" id=txt>
                                     <span> <?php
-                                            if ($limite > $evento['limite']) {
+                                            if ((int)$evento['vagas'] <= 0) {
                                                 echo 'Esgotado';
                                             } else if ((Date($evento['dtInicio']) > date("Y-m-d H:i:s")) && (Date($evento['dtFim']) > date("Y-m-d H:i:s"))) {
                                                 echo ' Próx. Evento';
@@ -301,19 +309,37 @@
                                 <li class="nav-item">
 
                                     <?php
-                                    if ($_SESSION['id'] == $user[0]['idUser'] && ($evento['id']) == $user[0]['idEvento']) {
-                                        echo '<button type="button" class="btn btn-primary cad1" id="btn" data-toggle="modal" data-target="#eventoinscrito">Informação</button>';
-                                    } else if ($evento['limite'] <=  $limite) {
-                                        echo '<button class="btn btn-primary cad2" id="btn"  data-toggle="modal" data-target="#limite" id="Btn">Informação</button>';
-                                    } else if (((Date($evento['dtInicio'])) > date("Y-m-d H:i:s") && (Date($evento['dtFim'])) > date("Y-m-d H:i:s"))
-                                        || ((Date($evento['dtInicio'])) < date("Y-m-d H:i:s") && (Date($evento['dtFim'])) > date("Y-m-d H:i:s"))) {
-                                        echo '<button class="btn btn-primary cad2" id="btn"  data-toggle="modal" data-target="#inscrevaModal" id="Btn" onclick="preenchermodal(' . $evento['id'] . ');">Inscreva-se</button>';
+
+                                    if ($user < 0) {
+                                        if ($_SESSION['id'] == $user[0]['idUser'] && ($evento['id']) == $user[0]['idEvento']) {
+                                            echo '<button type="button" class="btn btn-primary cad1" id="btn" data-toggle="modal" data-target="#eventoinscrito">Informação</button>';
+                                        } else if ((int)$evento['vagas'] <= 0) {
+                                            echo '<button class="btn btn-primary cad2" id="btn"  data-toggle="modal" data-target="#limite" id="Btn">Informação</button>';
+                                        } else if (((Date($evento['dtInicio'])) > date("Y-m-d H:i:s") && (Date($evento['dtFim'])) > date("Y-m-d H:i:s"))
+                                            || ((Date($evento['dtInicio'])) < date("Y-m-d H:i:s") && (Date($evento['dtFim'])) > date("Y-m-d H:i:s"))
+                                        ) {
+                                            echo '<button class="btn btn-primary cad2" id="btn"  data-toggle="modal" data-target="#inscrevaModal" id="Btn" onclick="preenchermodal(' . $evento['id'] . ');">Inscreva-se</button>';
+                                        } else if ((Date($evento['dtFim'])) < date("Y-m-d H:i:s")) {
+                                            echo '<button type="button" class="btn btn-primary cad1" id="btn" data-toggle="modal" data-target="#desativado" disabled>Encerrado</button>';
+                                        }
                                     } else {
-                                        echo '<button type="button" class="btn btn-primary cad1" id="btn" data-toggle="modal" data-target="#desativado" disabled>Encerrado</button>';
+                                        if ($_SESSION['id'] == $user[0]['idUser'] && ($evento['id']) == $user[0]['idEvento']) {
+                                            echo '<button type="button" class="btn btn-primary cad1" id="btn" data-toggle="modal" data-target="#eventoinscrito">Informação</button>';
+                                        } else if ((int)$evento['vagas'] <= 0) {
+                                            echo '<button class="btn btn-primary cad2" id="btn"  data-toggle="modal" data-target="#limite" id="Btn">Informação </button>';
+                                        } else if (((Date($evento['dtInicio'])) > date("Y-m-d H:i:s") && (Date($evento['dtFim'])) > date("Y-m-d H:i:s"))
+                                            || ((Date($evento['dtInicio'])) < date("Y-m-d H:i:s") && (Date($evento['dtFim'])) > date("Y-m-d H:i:s"))
+                                        ) {
+                                            echo '<button class="btn btn-primary cad2" id="btn"  data-toggle="modal" data-target="#inscrevaModal" id="Btn" onclick="preenchermodal(' . $evento['id'] . ');">Inscreva-se</button>';
+                                        } else if ((Date($evento['dtFim'])) < date("Y-m-d H:i:s")) {
+                                            echo '<button type="button" class="btn btn-primary cad1" id="btn" data-toggle="modal" data-target="#desativado" disabled>Encerrado</button>';
+                                        }
                                     }
+
                                     ?>
                                 </li>
                             </ul>
+                           
                         </div>
                     </div>
 

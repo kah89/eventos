@@ -34,14 +34,17 @@ class Eventos extends BaseController
             // escolha de cor
             $eventoatual = $model->select('corSecundaria, corPrimaria ')->findall();
             $eventoId = $model->select('id')->findall();
-            
+
+            // var_dump($allevents);exit;
+
             $data = [
                 'title' => 'Eventos',
                 'data' => $allevents,
                 'user' =>  $newmodel->findAll(),
-                'limite' =>$newmodel->countAll(),
+                // 'limite' => $newmodel->countAll(),
                 // 'colorSecundaria' => $eventoatual,
             ];
+            // var_dump($data['user']); exit;
 
             echo view('templates/header', $data);
             echo view('tdeventos');
@@ -56,23 +59,25 @@ class Eventos extends BaseController
         if (!session()->get('isLoggedIn')) {
             return redirect()->to(base_url(''));
         } else {
+
+            $usuario = new UserModel();
+            $user = $usuario->find(session()->get('id'));
+
+            if ($user['type'] == 2 && $user['estado'] == 26) {
+                $destinado = 3;
+            } else if ($user['type'] == 2) {
+                $destinado = 2;
+            } else {
+                $destinado = 1;
+            }
             $model = new EventoModel();
-            $user = new UserModel();
 
-            $users = $user->findAll();
-            $eventos = $model->findAll();
-            $allevents = array();
+            $eventos = $model->eventosDisponiveis($user['id'], $destinado);
 
-
+            $allevents = [];
             foreach ($eventos as $evento) {
                 $evento['vagas'] = $model->quantidadeVagas($evento['id']);
-
-
-                //var_dump($allevents);
-                if ($model->eventosDisponiveis(session()->get('id'), $evento['id'])) {
-
-                    array_push($allevents, $evento);
-                }
+                array_push($allevents, $evento);
             }
 
             $data = [

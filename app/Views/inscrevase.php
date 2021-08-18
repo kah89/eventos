@@ -112,6 +112,7 @@
             // var_dump($data);exit;
             if (count($data) > 0) {
                 foreach ($data as $key => $evento) {
+                    $destinos = json_decode($evento['destinado']);
 
             ?>
                     <div class="card col-4 destinado eventCard">
@@ -126,14 +127,14 @@
                             <p> <strong>Quantidade de inscrição:</strong> <?php echo $evento['limite']; ?></p>
                             <p> Restam apenas<strong> <?php echo $evento['vagas']; ?> </strong>vagas.</p>
                             <p><strong> Evento destinado: </strong>
-                                <?php foreach ($destinos as $detinado) {
-                                    if ($detinado == "2") {
+                                <?php foreach ($destinos as $destinado) {
+                                    if ($destinado == "2") {
                                         echo "Farmacêuticos | ";
                                     }
-                                    if ($detinado == "3") {
+                                    if ($destinado == "3") {
                                         echo "Farmacêuticos de São Paulo |";
                                     }
-                                    if ($detinado == "1") {
+                                    if ($destinado == "1") {
                                         echo "Estudante | ";
                                     }
                                 } ?></p>
@@ -172,7 +173,7 @@
                                 <li class="nav-item">
 
                                     <?php
-                                    if (session()->get('type') != $detinado) {
+                                    if (session()->get('type') != $destinado) {
                                         echo '<button type="button" class="btn btn-primary cad1" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " data-toggle="modal" data-target="#desativado" disabled >Inscreva-se</button>';
                                     } elseif (Date($evento['dtFim']) >  date("Y-m-d H:i:s")) {
                                         echo '<button class="btn btn-primary cad2" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " href="#" data-toggle="modal" data-target="#inscrevaModal" id="Btn" onclick="preenchermodal(' . $evento['id'] . ');">Inscreva-se</button>';

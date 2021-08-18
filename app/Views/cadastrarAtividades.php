@@ -67,15 +67,15 @@
 
 
     #session {
-        margin-left: 260px;
+        margin-left: 275px;
     }
 
     .eventos {
-        margin-left: 260px;
+        margin-left: 275px;
     }
 
     #navbarNav {
-        font-size: 16px;
+        font-size: 15px;
     }
 </style>
 
