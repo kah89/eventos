@@ -62,6 +62,7 @@ class Eventos extends BaseController
 
             $usuario = new UserModel();
             $user = $usuario->find(session()->get('id'));
+            $newmodel = new UserEvento();
 
             if ($user['type'] == 2 && $user['estado'] == 26) {
                 $destinado = 3;
@@ -83,6 +84,7 @@ class Eventos extends BaseController
             $data = [
                 'title' => 'Eventos para inscrição',
                 'data' => $allevents,
+                'user' =>  $newmodel->findAll(),
             ];
 
             echo view('templates/header', $data);

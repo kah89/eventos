@@ -310,7 +310,7 @@
 
                                     <?php
 
-                                    if ($user < 0) {
+                                    // if ($user < 0) {
                                         if ($_SESSION['id'] == $user[0]['idUser'] && ($evento['id']) == $user[0]['idEvento']) {
                                             echo '<button type="button" class="btn btn-primary cad1" id="btn" data-toggle="modal" data-target="#eventoinscrito">Informação</button>';
                                         } else if ((int)$evento['vagas'] <= 0) {
@@ -322,19 +322,19 @@
                                         } else if ((Date($evento['dtFim'])) < date("Y-m-d H:i:s")) {
                                             echo '<button type="button" class="btn btn-primary cad1" id="btn" data-toggle="modal" data-target="#desativado" disabled>Encerrado</button>';
                                         }
-                                    } else {
-                                        if ($_SESSION['id'] == $user[0]['idUser'] && ($evento['id']) == $user[0]['idEvento']) {
-                                            echo '<button type="button" class="btn btn-primary cad1" id="btn" data-toggle="modal" data-target="#eventoinscrito">Informação</button>';
-                                        } else if ((int)$evento['vagas'] <= 0) {
-                                            echo '<button class="btn btn-primary cad2" id="btn"  data-toggle="modal" data-target="#limite" id="Btn">Informação </button>';
-                                        } else if (((Date($evento['dtInicio'])) > date("Y-m-d H:i:s") && (Date($evento['dtFim'])) > date("Y-m-d H:i:s"))
-                                            || ((Date($evento['dtInicio'])) < date("Y-m-d H:i:s") && (Date($evento['dtFim'])) > date("Y-m-d H:i:s"))
-                                        ) {
-                                            echo '<button class="btn btn-primary cad2" id="btn"  data-toggle="modal" data-target="#inscrevaModal" id="Btn" onclick="preenchermodal(' . $evento['id'] . ');">Inscreva-se</button>';
-                                        } else if ((Date($evento['dtFim'])) < date("Y-m-d H:i:s")) {
-                                            echo '<button type="button" class="btn btn-primary cad1" id="btn" data-toggle="modal" data-target="#desativado" disabled>Encerrado</button>';
-                                        }
-                                    }
+                                    // } else {
+                                    //     if ($_SESSION['id'] == $user[0]['idUser'] && ($evento['id']) == $user[0]['idEvento']) {
+                                    //         echo '<button type="button" class="btn btn-primary cad1" id="btn" data-toggle="modal" data-target="#eventoinscrito">Informação</button>';
+                                    //     } else if ((int)$evento['vagas'] <= 0) {
+                                    //         echo '<button class="btn btn-primary cad2" id="btn"  data-toggle="modal" data-target="#limite" id="Btn">Informação </button>';
+                                    //     } else if (((Date($evento['dtInicio'])) > date("Y-m-d H:i:s") && (Date($evento['dtFim'])) > date("Y-m-d H:i:s"))
+                                    //         || ((Date($evento['dtInicio'])) < date("Y-m-d H:i:s") && (Date($evento['dtFim'])) > date("Y-m-d H:i:s"))
+                                    //     ) {
+                                    //         echo '<button class="btn btn-primary cad2" id="btn"  data-toggle="modal" data-target="#inscrevaModal" id="Btn" onclick="preenchermodal(' . $evento['id'] . ');">Inscreva-se</button>';
+                                    //     } else if ((Date($evento['dtFim'])) < date("Y-m-d H:i:s")) {
+                                    //         echo '<button type="button" class="btn btn-primary cad1" id="btn" data-toggle="modal" data-target="#desativado" disabled>Encerrado</button>';
+                                    //     }
+                                    // }
 
                                     ?>
                                 </li>

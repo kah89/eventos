@@ -94,6 +94,14 @@
         color: white;
         box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
     }
+
+    #btn,
+    #sobremodal, #cad2 {
+        margin-left: 5px;
+        margin-top: 10px;
+        text-align: center;
+        height: 40px
+    }
 </style>
 <script>
     $msg = "";
@@ -142,7 +150,7 @@
                         <div class="card-footer text-muted" id="card-footer">
                             <ul class="nav nav-pills ">
                                 <li class="nav-item">
-                                    <button type="button" id="sobremodal" class=" cad2 btn btn-primary" data-toggle="modal" data-target="#sobreModal<?php echo $evento['id'] ?>" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px ">
+                                    <button type="button" id="sobremodal" class=" cad2 btn btn-primary" data-toggle="modal" data-target="#sobreModal<?php echo $evento['id'] ?>" >
                                         Sobre
                                     </button>
 
@@ -168,18 +176,22 @@
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link active" id="cad2" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " href="<?php echo base_url("/eventos/listaEvento") . "/" . $evento['id'] ?>">Atividades</a>
+                                    <a class="nav-link active" id="cad2"  href="<?php echo base_url("/eventos/listaEvento") . "/" . $evento['id'] ?>">Atividades</a>
                                 </li>
                                 <li class="nav-item">
 
                                     <?php
-                                    if (session()->get('type') != $destinado) {
-                                        echo '<button type="button" class="btn btn-primary cad1" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " data-toggle="modal" data-target="#desativado" disabled >Inscreva-se</button>';
-                                    } elseif (Date($evento['dtFim']) >  date("Y-m-d H:i:s")) {
-                                        echo '<button class="btn btn-primary cad2" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " href="#" data-toggle="modal" data-target="#inscrevaModal" id="Btn" onclick="preenchermodal(' . $evento['id'] . ');">Inscreva-se</button>';
-                                    } else {
-                                        echo '<button type="button" class="btn btn-primary cad1" style="margin-left: 5px; margin-top: 10px; text-align: center; height: 40px " data-toggle="modal" data-target="#desativado" disabled >Inscreva-se</button>';
-                                    }
+                                  if ($_SESSION['id'] == $user[0]['idUser'] && ($evento['id']) == $user[0]['idEvento']) {
+                                    echo '<button type="button" class="btn btn-primary cad1" id="btn" data-toggle="modal" data-target="#eventoinscrito">Informação</button>';
+                                } else if ((int)$evento['vagas'] <= 0) {
+                                    echo '<button class="btn btn-primary cad2" id="btn"  data-toggle="modal" data-target="#limite" id="Btn">Informação</button>';
+                                } else if (((Date($evento['dtInicio'])) > date("Y-m-d H:i:s") && (Date($evento['dtFim'])) > date("Y-m-d H:i:s"))
+                                    || ((Date($evento['dtInicio'])) < date("Y-m-d H:i:s") && (Date($evento['dtFim'])) > date("Y-m-d H:i:s"))
+                                ) {
+                                    echo '<button class="btn btn-primary cad2" id="btn"  data-toggle="modal" data-target="#inscrevaModal" id="Btn" onclick="preenchermodal(' . $evento['id'] . ');">Inscreva-se</button>';
+                                } else if ((Date($evento['dtFim'])) < date("Y-m-d H:i:s")) {
+                                    echo '<button type="button" class="btn btn-primary cad1" id="btn" data-toggle="modal" data-target="#desativado" disabled>Encerrado</button>';
+                                }
                                     ?>
                                 </li>
                             </ul>
@@ -208,18 +220,39 @@
 
                     </div>
 
-                    <!-- Modal Inscreva-se encerrado -->
-                    <div class="modal fade" data-backdrop="static" id="desativado" tabindex="-1" aria-labelledby="sobreModalLabel" aria-hidden="true">
+                    <!-- Modal evento inscrito -->
+                    <div class="modal fade" data-backdrop="static" id="eventoinscrito" tabindex="-1" aria-labelledby="sobreModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="sobreModalLabel">Atividade</h5>
+                                    <h5 class="modal-title" id="sobreModalLabel">Olá <?= session()->get('firstname') ?>,</h5>
                                     <button type="button" class="close cad" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    Infelizmente este evento já encerrou!
+                                    Você ja se inscreveu para esse evento !
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary cad" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Modal limite evento -->
+                    <div class="modal fade" data-backdrop="static" id="limite" tabindex="-1" aria-labelledby="sobreModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="sobreModalLabel">Olá <?= session()->get('firstname') ?>,</h5>
+                                    <button type="button" class="close cad" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Infelizmente este evento já atingiu o limite máximo de participante!
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary cad" data-dismiss="modal">Close</button>
