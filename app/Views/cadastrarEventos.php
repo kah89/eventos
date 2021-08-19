@@ -123,6 +123,13 @@
         margin-top: -49px;
     }
 
+    #certificado{
+        width: 200px;
+        float: right;
+        margin-right: 503px;
+        margin-top: -80px;
+    }
+
     .checkbox {
         margin-top: 10px;
         margin-left: 15px;
@@ -268,6 +275,12 @@
                                         </select>
                                     </div>
                                 </div> -->
+
+                                <div class="form-group">
+                                    <div class="form-label-group">
+                                        <input type="text" id="certificado" name="certificado" class="form-control" placeholder="Total de horas" required autofocus>
+                                    </div>
+                                </div>
                                 <div class="form-group radio">
                                     <div class="form-check" name="tipo" required>
                                         <label class="evento" for="">Evento:</label><br>

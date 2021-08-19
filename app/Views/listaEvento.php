@@ -19,7 +19,7 @@
         text-align: center;
         margin-left: -5px;
     }
-    
+
 
     #cad:hover {
         box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
@@ -37,7 +37,7 @@
                             <th scope="col">ID</th>
                             <th scope="col">Titulo</th>
                             <th scope="col">Data Início</th>
-                            <th scope="col">Data Término</th> 
+                            <th scope="col">Data Término</th>
                             <th scope="col">Ação</th>
                         </tr>
                     </thead>
@@ -58,7 +58,11 @@
                             }
 
                             if ($inscrito == true) {
-                                echo '<a class="btn btn-primary" id="cad" href= ' . base_url('/atividades/inscreverAtividade') . "/" . $atividade['id'] . ' onclick="inscreverAtividade(' . $atividade['id'] . ');"  role="button" >Ir</a>';
+                                if ($atividade['dtInicio'] > date("d-m-Y H:i:s")) {
+                                    echo '<a class="btn btn-primary" id="cad" href= ' . base_url('/atividades/inscreverAtividade') . "/" . $atividade['id'] . ' onclick="inscreverAtividade(' . $atividade['id'] . ');"  role="button" >Ir</a>';
+                                } else {
+                                    echo '<a class="btn btn-primary" id="cad" disabled>Ir</a>';
+                                }
                             } else {
                                 echo '<a class="btn btn-primary" id="cad" data-toggle="modal" data-target="#sobreModal">Ir</a>';
                             }

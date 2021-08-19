@@ -10,7 +10,7 @@ class EventoModel extends Model
     protected $primaryKey = 'id';
     protected $returnType     = 'array';
 
-    protected $allowedFields = ['id', 'titulo', 'created_at', 'imagem', 'resumo', 'dtInicio', 'dtFim', 'userCreated', 'assinatura', 'tipo', 'estado', 'destinado', 'limite', 'corPrimaria', 'corSecundaria'];
+    protected $allowedFields = ['id', 'titulo', 'created_at', 'imagem', 'resumo', 'dtInicio', 'dtFim', 'userCreated', 'assinatura', 'tipo', 'certificado', 'destinado', 'limite', 'corPrimaria', 'corSecundaria'];
 
 
     /**

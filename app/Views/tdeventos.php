@@ -35,7 +35,7 @@
     }
 
     .card-body {
-        min-height: 450px;
+        min-height: 500px;
     }
 
     .card-footer {
@@ -57,7 +57,7 @@
     .cad1 {
         background-color: #008CBA;
         font-size: 12px;
-        /* padding: 10px 22px; */
+        padding: 8px 15px;
         border-radius: 8px;
         border: 2px solid;
     }
@@ -249,25 +249,29 @@
                             </div>
                             <p id="p1"> <strong>Data:</strong> <?php echo date_format(new DateTime($evento['dtInicio']), "d/m/Y"); ?> até <?php echo date_format(new DateTime($evento['dtFim']), "d/m/Y"); ?></p>
                             <p> <strong>Quantidade de inscrição:</strong> <?php echo $evento['limite']; ?></p>
-                            <p><strong> Evento destinado: </strong>
+                            <p><strong> Evento destinado: </strong></br>
                                 <?php foreach ($destinos as $detinado) {
                                     if ($detinado == "2") {
-                                        echo "Farmacêuticos | ";
+                                        echo "Farmacêuticos inscritos em outros estados; " . '</br>';
                                     }
                                     if ($detinado == "3") {
-                                        echo "Farmacêuticos de São Paulo |";
+                                        echo "Farmacêutico inscrito no CRF-SP;" . '</br>';
                                     }
                                     if ($detinado == "1") {
-                                        echo "Estudante | ";
+                                        echo "Estudantes de Farmácia; " . '</br>';
+                                    }
+                                    if ($detinado == "4") {
+                                        echo "Outros profissionais; " . '</br>';
                                     }
                                 } ?></p>
                             <p>
-                                <?php
-                                if ($evento['tipo'] == '1') {
+                            <p> <strong>Carga horária:</strong> <?php echo $evento['certificado']; ?> horas</p>
+                            <?php
+                            if ($evento['tipo'] == '1') {
 
-                                    echo '<strong> Evento: </strong> Exclusivo';
-                                }
-                                ?>
+                                echo '<strong> Evento: </strong> Exclusivo';
+                            }
+                            ?>
                             </p>
                             <p id="p2"> Restam apenas<strong> <?php echo $evento['vagas']; ?> </strong>vagas.</p>
                         </div>
@@ -276,7 +280,7 @@
                             <ul class="nav nav-pills ">
                                 <li class="nav-item">
                                     <button type="button" id="sobremodal" class=" cad2 btn btn-primary" data-toggle="modal" data-target="#sobreModal<?php echo $evento['id'] ?>">
-                                    Informações
+                                        Informações
                                     </button>
 
                                     <!-- Modal sobre -->
@@ -308,35 +312,35 @@
                                     <?php
 
                                     // if ($user < 0) {
-                                        if ($_SESSION['id'] == $user[0]['idUser'] && ($evento['id']) == $user[0]['idEvento']) {
-                                            echo '<button type="button" class="btn btn-primary cad1" id="btn" data-toggle="modal" data-target="#eventoinscrito">Informação</button>';
-                                        } else if ((int)$evento['vagas'] <= 0) {
-                                            echo '<button class="btn btn-primary cad2" id="btn"  data-toggle="modal" data-target="#limite" id="Btn">Informação</button>';
-                                        } else if (((Date($evento['dtInicio'])) > date("Y-m-d H:i:s") && (Date($evento['dtFim'])) > date("Y-m-d H:i:s"))
-                                            || ((Date($evento['dtInicio'])) < date("Y-m-d H:i:s") && (Date($evento['dtFim'])) > date("Y-m-d H:i:s"))
-                                        ) {
-                                            echo '<button class="btn btn-primary cad2" id="btn"  data-toggle="modal" data-target="#inscrevaModal" id="Btn" onclick="preenchermodal(' . $evento['id'] . ');">Inscreva-se</button>';
-                                        } else if ((Date($evento['dtFim'])) < date("Y-m-d H:i:s")) {
-                                            echo '<button type="button" class="btn btn-primary cad1" id="btn" data-toggle="modal" data-target="#desativado" disabled>Encerrado</button>';
-                                        }
+                                    if ($_SESSION['id'] == $user[0]['idUser'] && ($evento['id']) == $user[0]['idEvento']) {
+                                        echo '<button type="button" class="btn btn-primary cad1" id="btn" data-toggle="modal" data-target="#eventoinscrito">Informação</button>';
+                                    } else if ((int)$evento['vagas'] <= 0) {
+                                        echo '<button class="btn btn-primary cad2" id="btn"  data-toggle="modal" data-target="#limite" id="Btn">esgotado </button>';
+                                    } else if (((Date($evento['dtInicio'])) > date("Y-m-d H:i:s") && (Date($evento['dtFim'])) > date("Y-m-d H:i:s"))
+                                        || ((Date($evento['dtInicio'])) < date("Y-m-d H:i:s") && (Date($evento['dtFim'])) > date("Y-m-d H:i:s"))
+                                    ) {
+                                        echo '<button class="btn btn-primary cad2" id="btn"  data-toggle="modal" data-target="#inscrevaModal" id="Btn" onclick="preenchermodal(' . $evento['id'] . ');">Inscreva-se</button>';
+                                    } else if ((Date($evento['dtFim'])) < date("Y-m-d H:i:s")) {
+                                        echo '<button type="button" class="btn btn-primary cad1" id="btn" data-toggle="modal" data-target="#desativado" disabled>Encerrado</button>';
+                                    }
                                     // } else {
-                                    //     if ($_SESSION['id'] == $user[0]['idUser'] && ($evento['id']) == $user[0]['idEvento']) {
-                                    //         echo '<button type="button" class="btn btn-primary cad1" id="btn" data-toggle="modal" data-target="#eventoinscrito">Informação</button>';
-                                    //     } else if ((int)$evento['vagas'] <= 0) {
-                                    //         echo '<button class="btn btn-primary cad2" id="btn"  data-toggle="modal" data-target="#limite" id="Btn">Informação </button>';
-                                    //     } else if (((Date($evento['dtInicio'])) > date("Y-m-d H:i:s") && (Date($evento['dtFim'])) > date("Y-m-d H:i:s"))
-                                    //         || ((Date($evento['dtInicio'])) < date("Y-m-d H:i:s") && (Date($evento['dtFim'])) > date("Y-m-d H:i:s"))
-                                    //     ) {
-                                    //         echo '<button class="btn btn-primary cad2" id="btn"  data-toggle="modal" data-target="#inscrevaModal" id="Btn" onclick="preenchermodal(' . $evento['id'] . ');">Inscreva-se</button>';
-                                    //     } else if ((Date($evento['dtFim'])) < date("Y-m-d H:i:s")) {
-                                    //         echo '<button type="button" class="btn btn-primary cad1" id="btn" data-toggle="modal" data-target="#desativado" disabled>Encerrado</button>';
-                                    //     }
+                                    // if ($_SESSION['id'] == $user[0]['idUser'] && ($evento['id']) == $user[0]['idEvento']) {
+                                    //     echo '<button type="button" class="btn btn-primary cad1" id="btn" data-toggle="modal" data-target="#eventoinscrito">Informação</button>';
+                                    // } else if ((int)$evento['vagas'] <= 0) {
+                                    //     echo '<button class="btn btn-primary cad2" id="btn"  data-toggle="modal" data-target="#limite" id="Btn">esgotado </button>';
+                                    // } else if (((Date($evento['dtInicio'])) > date("Y-m-d H:i:s") && (Date($evento['dtFim'])) > date("Y-m-d H:i:s"))
+                                    //     || ((Date($evento['dtInicio'])) < date("Y-m-d H:i:s") && (Date($evento['dtFim'])) > date("Y-m-d H:i:s"))
+                                    // ) {
+                                    //     echo '<button class="btn btn-primary cad2" id="btn"  data-toggle="modal" data-target="#inscrevaModal" id="Btn" onclick="preenchermodal(' . $evento['id'] . ');">Inscreva-se</button>';
+                                    // } else if ((Date($evento['dtFim'])) < date("Y-m-d H:i:s")) {
+                                    //     echo '<button type="button" class="btn btn-primary cad1" id="btn" data-toggle="modal" data-target="#desativado" disabled>Encerrado</button>';
+                                    // }
                                     // }
 
                                     ?>
                                 </li>
                             </ul>
-                           
+
                         </div>
                     </div>
 

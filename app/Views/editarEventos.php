@@ -79,6 +79,13 @@
 
     }
 
+    #certificado{
+        width: 200px;
+        float: right;
+        margin-right: 503px;
+        margin-top: -80px;
+    }
+
     .favcolor {
         width: 80px;
         float: right;
@@ -266,6 +273,12 @@
                                     <!-- </select>
                                 </div>
                             </div> -->
+
+                            <div class="form-group">
+                                    <div class="form-label-group">
+                                        <input type="text" id="certificado" name="certificado" class="form-control" placeholder="Total de horas" value="<?= $certificado ?>" required autofocus>
+                                    </div>
+                                </div>
 
                             <div class="form-group radio">
                                 <div class="form-check" name="tipo" required>

@@ -118,59 +118,81 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav mr-auto" id="inicio">
-                        <li class="nav-item <?= ($uri->getSegment(1) == 'dashboard' ? 'active' : null) ?>">
-                            <a class="nav-link" href="<?= base_url('eventos'); ?>"><i class="fa fa-home"></i> Início</a>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav mr-auto ">
 
-                        <?php
-                        if (
-                            isset($_SESSION['id']) &&
-                            $_SESSION['type'] == 0
-                        ) {
-                        ?>
-                                <li class="nav-item dropdown nav1 eventos">
-                                    <a class="nav-link evento"  href="<?= base_url('alterarEventos') ?>"></i>Eventos</a>
-                                </li>
-                                <li class="nav-item dropdown nav1 ">
-                                    <a class="nav-link" href="<?= base_url('alterarAtividades') ?>"></i>Atividades</a>
-                                </li>
-                                <li class="nav-item dropdown nav1 ">
-                                    <a class="nav-link user"  href="<?= base_url('alterarUser') ?>"></i>Usuários</a>
-                                </li>
-                        <?php
-                        } else {
-                        ?>
-                            <li class="nav-item dropdown nav1 ">
-                                <a class="nav-link" href="<?= base_url('inscrevase') ?>"></i>Inscreva-se</a>
+
+                    <?php
+                    if (
+                        isset($_SESSION['id']) &&
+                        $_SESSION['type'] == 0
+                    ) {
+                    ?><ul class="navbar-nav mr-auto" id="inicio">
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?= base_url('eventos'); ?>"><i class="fa fa-home"></i> Início</a>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav mr-auto ">
+                            <li class="nav-item dropdown nav1 eventos">
+                                <a class="nav-link evento" href="<?= base_url('alterarEventos') ?>"></i>Eventos</a>
                             </li>
                             <li class="nav-item dropdown nav1 ">
-                                <a class="nav-link" href="<?= base_url('listarEventosUser') ?>"></i>Minhas inscrições</a>
+                                <a class="nav-link" href="<?= base_url('alterarAtividades') ?>"></i>Atividades</a>
                             </li>
-                            <!-- <li class="nav-item dropdown nav1 ">
+                            <li class="nav-item dropdown nav1 ">
+                                <a class="nav-link user" href="<?= base_url('alterarUser') ?>"></i>Usuários</a>
+                            </li>
+                            </ul>
+
+                            <ul class="navbar-nav my-2 my-lg-0" id="session">
+                                <li class="nav-item dropdown nav1">
+                                    <a class="nav-link dropdown-toggle fa fa-sign-out" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <?php
+                                        echo $_SESSION['firstname'];
+                                        ?>
+
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                        <a class="dropdown-item" href="<?php echo base_url('editarUser') . '/' . $_SESSION['id'] ?>">Editar</a>
+                                        <a class="dropdown-item" href="<?= base_url('logout') ?>">Sair</a>
+                                    </div>
+                            </ul>
+                        <?php
+                    } else {
+                        ?>
+                            <ul class="navbar-nav mr-auto" id="inicio">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="<?= base_url('eventos'); ?>"><i class="fa fa-home"></i> Início</a>
+                                </li>
+                            </ul>
+                            <ul class="navbar-nav mr-auto ">
+                                <li class="nav-item dropdown nav1 ">
+                                    <a class="nav-link" href="<?= base_url('inscrevase') ?>"></i>Inscreva-se</a>
+                                </li>
+                                <li class="nav-item dropdown nav1 ">
+                                    <a class="nav-link" href="<?= base_url('listarEventosUser') ?>"></i>Minhas inscrições</a>
+                                </li>
+                                <!-- <li class="nav-item dropdown nav1 ">
                                 <a class="nav-link" href="<?= base_url('listarAtividades') ?>"></i>Atividades</a>
                             </li> -->
+                            </ul>
 
-                        <?php
+                            <ul class="navbar-nav my-2 my-lg-0" id="session">
+                                <li class="nav-item dropdown nav1">
+                                    <a class="nav-link dropdown-toggle fa fa-sign-out" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <?php
+                                        echo $_SESSION['firstname'];
+                                        ?>
+
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                        <a class="dropdown-item" href="<?php echo base_url('editarUser') . '/' . $_SESSION['id'] ?>">Editar</a>
+                                        <a class="dropdown-item" href="<?= base_url('logout') ?>">Sair</a>
+                                    </div>
+                            </ul>
+
+                            <?php
                         }
-                        ?>
-                    </ul>
-
-                    <ul class="navbar-nav my-2 my-lg-0" id="session">
-                        <li class="nav-item dropdown nav1">
-                            <a class="nav-link dropdown-toggle fa fa-sign-out" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <?php
-                                echo $_SESSION['firstname'];
-                                ?>
-
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="<?php echo base_url('editarUser') . '/' . $_SESSION['id'] ?>">Editar</a>
-                                <a class="dropdown-item" href="<?= base_url('logout') ?>">Sair</a>
-                            </div>
-                    </ul>
+                            ?>
+                            
                 </div>
             </div>
         </nav>

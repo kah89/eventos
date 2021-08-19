@@ -82,6 +82,10 @@
     img {
         max-height: 200px;
     }
+
+    #encerramento{
+        margin-top: 10px;
+    }
 </style>
 <main>
     <div class="container" style="padding-bottom: 10em;">
@@ -114,51 +118,49 @@
 
                         . '<img src="' .  base_url("/public/img") . "/" . $evento['imagem'] . '" alt="" width="100%">'
 
-                        . '<p> <strong>Evento encerra:</strong> ' . date_format(new DateTime($evento['dtFim']), "d-m-Y") . ' ' . 'às' . ' ' . date_format(new DateTime($evento['dtFim']), "h:i") . ' ' . 'horas.</p>'
+                        . '<p id="encerramento"> <strong>Evento encerra:</strong> ' . date_format(new DateTime($evento['dtFim']), "d-m-Y") . ' ' . 'às' . ' ' . date_format(new DateTime($evento['dtFim']), "h:i") . ' ' . 'horas.</p>'
                         . '</div>'
                         . '<div class="card-footer text-muted" id="card-footer" >'
                         . '<ul class="nav nav-pills ">'
 
                         . '<li class="nav-item">'
                         . '<a class="nav-link active" id="cad2"  href="' . base_url("/eventos/listaEvento") . "/" . $evento['id'] . '">Ingressar</a>'
-                        . '</li>'
-
-                        . '<li class="nav-item">';
+                        . '</li>';
+                            if(Date($evento['dtFim']) <  date("d-m-Y H:i:s")){
+                         '<li class="nav-item">';
                     $htm .= '<a  data-toggle="modal"';
-                    if ((Date($evento['dtFim']) >  date("d-m-Y H:i:s"))) {
-                        if ($evento['certificado'] == 'Evento não gera certificado.') {
-                            if (Date($evento['dtFim']) >  date("d-m-Y H:i:s")) {
-                                $htm .= 'data-target="#certificadoModalN"'
-                                    . ' class="nav-link active btn1" id="cad2" >Info</a>';
-                            } else {
-                                $htm .= 'data-target="#certificadoModalN"'
-                                    . ' class="nav-link active btn1" id="cad2"" >Info</a>';
-                            }
-                        } else if ($evento['certificado'] == 'Não concluiu todas as atividades.') {
-                            if (Date($evento['dtFim']) >  date("d-m-Y H:i:s")) {
-                                $htm .= 'data-target="#certificadoModalNC"'
-                                    . ' class="nav-link active btn1" id="cad2" >Info</a>';
-                            } else {
-                                $htm .= 'data-target="#certificadoModalNC"'
-                                    . ' class="nav-link active btn1" id="cad2"" >Info</a>';
-                            }
+                    if ($evento['certificado'] == 'Evento não gera certificado.') {
+                        if (Date($evento['dtFim']) >  date("d-m-Y H:i:s")) {
+                            $htm .= 'data-target="#certificadoModalN"'
+                                . ' class="nav-link active btn1" id="cad2" >Info</a>';
                         } else {
-                            if (Date($evento['dtFim']) >  date("d-m-Y H:i:s")) {
-                                $htm .= 'data-target="#certificadoModal"'
-                                    . 'onclick="setarCampos(' . $evento['id'] . ');"  class="nav-link active btn1" id="cad2">Gerar</a>';
-                            } else {
-                                $htm .= 'data-target="#certificadoModal"'
-                                    . 'onclick="setarCampos(' . $evento['id'] . ');"  class="nav-link active btn1" id="cad2">Gerar</a>';
-                            }
+                            $htm .= 'data-target="#certificadoModalN"'
+                                . ' class="nav-link active btn1" id="cad2"" >Info</a>';
+                        }
+                    } else if ($evento['certificado'] == 'Não concluiu todas as atividades.') {
+                        if (Date($evento['dtFim']) >  date("d-m-Y H:i:s")) {
+                            $htm .= 'data-target="#certificadoModalNC"'
+                                . ' class="nav-link active btn1" id="cad2" >Info</a>';
+                        } else {
+                            $htm .= 'data-target="#certificadoModalNC"'
+                                . ' class="nav-link active btn1" id="cad2"" >Info</a>';
+                        }
+                    } else {
+                        if (Date($evento['dtFim']) >  date("d-m-Y H:i:s")) {
+                            $htm .= 'data-target="#certificadoModal"'
+                                . 'onclick="setarCampos(' . $evento['id'] . ');"  class="nav-link active btn1" id="cad2">Gerar</a>';
+                        } else {
+                            $htm .= 'data-target="#certificadoModal"'
+                                . 'onclick="setarCampos(' . $evento['id'] . ');"  class="nav-link active btn1" id="cad2">Gerar</a>';
                         }
                     }
-
+                }
                     $htm .= '</li></ul>'
                         . '</div>'
                         . '</div>';
 
                     echo $htm;
-
+                }
                 ?>
 
         </div>
@@ -167,8 +169,8 @@
     </div>
 
 <?php
-                }
-            } else {
+            
+        } else {
                 echo "<h3>Não esta cadastrado em nenhum evento!</h3>";
             }
 ?>
@@ -185,13 +187,13 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p style="text-align: justify;"> Se os dados estiverem corretos, basta somente emitir. Caso precise editar volte e vá no editar do seu usuário.</p>
+                <p style="text-align: justify;"> Antes de emitir o certificado, clique no link abaixo e confira se o seu nome está correto. Caso queira alterar, clique no canto superior direito no seu nome e clique em editar.</p>
                 <a href="" target="_blank" id="vizualizar">vizualização do certificado</a>
 
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                     <label class="form-check-label box" for="flexCheckDefault">
-                        Declaro para os devidos fins que participei desse evento e estou ciente que não poderei alterar os dados após ser feita emissão.
+                        Declaro para os devidos fins que participei desse evento e não poderei alterar os dados após a emissão do certificado.
                     </label>
                 </div>
             </div>
