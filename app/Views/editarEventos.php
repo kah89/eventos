@@ -55,7 +55,7 @@
 
     .radio {
         float: right;
-        margin-top: -105px;
+        margin-top: -165px;
         margin-right: 170px;
     }
 
@@ -63,7 +63,7 @@
         width: 200px;
         float: right;
         margin-right: 503px;
-        margin-top: -49px;
+        margin-top: -105px;
     }
 
     .checkbox {
@@ -75,7 +75,7 @@
         width: 200px;
         float: right;
         margin-right: 503px;
-        margin-top: -105px;
+        margin-top: -165px;
 
     }
 
@@ -211,53 +211,61 @@
                                 <label for="">Destinado:</label>
                                 <div class="form-label-group" required>
                                     <?php
-                                    if (in_array("1", json_decode($destinado))) {
-                                        echo '<input type="checkbox" id="checkbox1" name="destinado[]" value="1" checked="checked">
-                                        <label for="checkbox1">Estudantes </label><br>';
+                                    if (in_array("3", json_decode($destinado))) {
+                                        echo '<input type="checkbox" id="checkbox3" name="destinado[]" value="3" checked="checked">
+                                        <label for="checkbox3">Farmacêutico inscrito no CRF-SP</label><br>';
                                     } else {
-                                        echo '<input type="checkbox" id="checkbox1" name="destinado[]" value="1">
-                                        <label for="checkbox1">Estudantes </label><br>';
+                                        echo '<input type="checkbox" id="checkbox3" name="destinado[]" value="3">
+                                        <label for="checkbox3">Farmacêutico inscrito no CRF-SP </label><br>';
                                     }
                                     if (in_array("2", json_decode($destinado))) {
                                         echo '<input type="checkbox" id="checkbox2" name="destinado[]" value="2" checked="checked">
-                                        <label for="checkbox2">Farmacêuticos</label><br>';
+                                        <label for="checkbox2">Farmacêuticos inscritos em outros estados</label><br>';
                                     } else {
                                         echo '<input type="checkbox" id="checkbox2" name="destinado[]" value="2">
-                                        <label for="checkbox2">Farmacêuticos</label><br>';
+                                        <label for="checkbox2">Farmacêuticos inscritos em outros estados</label><br>';
                                     }
-                                    if (in_array("3", json_decode($destinado))) {
-                                        echo '<input type="checkbox" id="checkbox3" name="destinado[]" value="3" checked="checked">
-                                        <label for="checkbox3">Farmacêuticos SP</label>';
+                                    if (in_array("1", json_decode($destinado))) {
+                                        echo '<input type="checkbox" id="checkbox1" name="destinado[]" value="1" checked="checked">
+                                        <label for="checkbox1">Estudantes de Farmácia</label><br>';
                                     } else {
-                                        echo '<input type="checkbox" id="checkbox3" name="destinado[]" value="3">
-                                        <label for="checkbox3">Farmacêuticos SP</label>';
+                                        echo '<input type="checkbox" id="checkbox1" name="destinado[]" value="1">
+                                        <label for="checkbox1">Estudantes de Farmácia</label><br>';
                                     }
+                                    if (in_array("4", json_decode($destinado))) {
+                                        echo '<input type="checkbox" id="checkbox4" name="destinado[]" value="4" checked="checked">
+                                        <label for="checkbox4">Outros profissionais</label>';
+                                    } else {
+                                        echo '<input type="checkbox" id="checkbox4" name="destinado[]" value="4">
+                                        <label for="checkbox4">Outros profissionais</label>';
+                                    }
+
                                     ?>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <div class="form-label-group" required>
                                     <select id="estado" name="estado" class="form-control">
-                                        <option selected disabled>Estado:</option>
+                                        <option selected disabled>Estado:</option> -->
 
                                         <?php
-                                        foreach ($data as $key => $result) {
-                                            $selecionado = $data['estado'] == $id;
-                                            if ($selecionado) {
-                                                $estado = $result['estado'];
-                                            }
-                                        }
-                                        if ($estado == 26) {
-                                            echo '<option value="26"  selected="selected">São Paulo</option>';
-                                            echo '<option value="100" >Todos</option>';
-                                        } else {
-                                            echo '<option value="26" >São Paulo</option>';
-                                            echo '<option value="100" selected="selected">Todos</option>';
-                                        }
+                                        // foreach ($data as $key => $result) {
+                                        //     $selecionado = $data['estado'] == $id;
+                                        //     if ($selecionado) {
+                                        //         $estado = $result['estado'];
+                                        //     }
+                                        // }
+                                        // if ($estado == 26) {
+                                        //     echo '<option value="26"  selected="selected">São Paulo</option>';
+                                        //     echo '<option value="100" >Todos</option>';
+                                        // } else {
+                                        //     echo '<option value="26" >São Paulo</option>';
+                                        //     echo '<option value="100" selected="selected">Todos</option>';
+                                        // }
                                         ?>
-                                    </select>
+                                    <!-- </select>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <div class="form-group radio">
                                 <div class="form-check" name="tipo" required>

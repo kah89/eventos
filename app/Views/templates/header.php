@@ -147,11 +147,11 @@
                                 <a class="nav-link" href="<?= base_url('inscrevase') ?>"></i>Inscreva-se</a>
                             </li>
                             <li class="nav-item dropdown nav1 ">
-                                <a class="nav-link" href="<?= base_url('listarEventosUser') ?>"></i>Eventos inscritos</a>
+                                <a class="nav-link" href="<?= base_url('listarEventosUser') ?>"></i>Minhas inscrições</a>
                             </li>
-                            <li class="nav-item dropdown nav1 ">
+                            <!-- <li class="nav-item dropdown nav1 ">
                                 <a class="nav-link" href="<?= base_url('listarAtividades') ?>"></i>Atividades</a>
-                            </li>
+                            </li> -->
 
                         <?php
                         }

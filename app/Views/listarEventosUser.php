@@ -1,9 +1,10 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.css" />
 <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.js"></script>
 <style>
-    a link{
+    a link {
         text-decoration: none;
     }
+
     h1 {
         text-align: center;
         margin-top: 30px;
@@ -52,9 +53,10 @@
     }
 
     .btn1:hover {
-        color: white !important; 
+        color: white !important;
         cursor: pointer !important;
     }
+
     .cad2,
     #cad2,
     .cad1 {
@@ -103,7 +105,6 @@
 
             <?php if (count($data) > 0) { ?>
                 <?php foreach ($data as $key => $evento) {
-
                     $htm =
                         '<div class="card col-4">'
                         . '<div class="card-header" id="card-header" style="background-color:' .  $evento['corPrimaria'] . '">'
@@ -113,48 +114,51 @@
 
                         . '<img src="' .  base_url("/public/img") . "/" . $evento['imagem'] . '" alt="" width="100%">'
 
-                        . '<p> <strong>Evento encerra:</strong> ' .date_format(new DateTime($evento['dtFim']), "d-m-Y") .' ' .'às'.' ' .date_format(new DateTime($evento['dtFim']), "h:i") . ' ' .'horas.</p>'
+                        . '<p> <strong>Evento encerra:</strong> ' . date_format(new DateTime($evento['dtFim']), "d-m-Y") . ' ' . 'às' . ' ' . date_format(new DateTime($evento['dtFim']), "h:i") . ' ' . 'horas.</p>'
                         . '</div>'
                         . '<div class="card-footer text-muted" id="card-footer" >'
                         . '<ul class="nav nav-pills ">'
 
                         . '<li class="nav-item">'
-                        . '<a class="nav-link active" id="cad2"  href="' . base_url("/eventos/listaEvento") . "/" . $evento['id'] . '">Atividades</a>'
+                        . '<a class="nav-link active" id="cad2"  href="' . base_url("/eventos/listaEvento") . "/" . $evento['id'] . '">Ingressar</a>'
                         . '</li>'
 
                         . '<li class="nav-item">';
                     $htm .= '<a  data-toggle="modal"';
-                    if ($evento['certificado'] == 'Evento não gera certificado.') {
-                        if (Date($evento['dtFim']) >  date("d-m-Y H:i:s")) {
-                            $htm .= 'data-target="#certificadoModalN"'
-                                . ' class="nav-link active btn1" id="cad2" >Info</a>';
+                    if ((Date($evento['dtFim']) >  date("d-m-Y H:i:s"))) {
+                        if ($evento['certificado'] == 'Evento não gera certificado.') {
+                            if (Date($evento['dtFim']) >  date("d-m-Y H:i:s")) {
+                                $htm .= 'data-target="#certificadoModalN"'
+                                    . ' class="nav-link active btn1" id="cad2" >Info</a>';
+                            } else {
+                                $htm .= 'data-target="#certificadoModalN"'
+                                    . ' class="nav-link active btn1" id="cad2"" >Info</a>';
+                            }
+                        } else if ($evento['certificado'] == 'Não concluiu todas as atividades.') {
+                            if (Date($evento['dtFim']) >  date("d-m-Y H:i:s")) {
+                                $htm .= 'data-target="#certificadoModalNC"'
+                                    . ' class="nav-link active btn1" id="cad2" >Info</a>';
+                            } else {
+                                $htm .= 'data-target="#certificadoModalNC"'
+                                    . ' class="nav-link active btn1" id="cad2"" >Info</a>';
+                            }
                         } else {
-                            $htm .= 'data-target="#certificadoModalN"'
-                                . ' class="nav-link active btn1" id="cad2"" >Info</a>';
-                        }
-                    } else if ($evento['certificado'] == 'Não concluiu todas as atividades.') {
-                        if (Date($evento['dtFim']) >  date("d-m-Y H:i:s")) {
-                            $htm .= 'data-target="#certificadoModalNC"'
-                            .' class="nav-link active btn1" id="cad2" >Info</a>';
-                        } else {
-                            $htm .= 'data-target="#certificadoModalNC"'
-                                . ' class="nav-link active btn1" id="cad2"" >Info</a>';
-                        }
-                    } else {
-                        if (Date($evento['dtFim']) >  date("d-m-Y H:i:s")) {
-                            $htm .= 'data-target="#certificadoModal"'
-                                . 'onclick="setarCampos(' . $evento['id'] . ');"  class="nav-link active btn1" id="cad2">Gerar</a>';
-                        } else {
-                            $htm .= 'data-target="#certificadoModal"'
-                                . 'onclick="setarCampos(' . $evento['id'] . ');"  class="nav-link active btn1" id="cad2">Gerar</a>';
+                            if (Date($evento['dtFim']) >  date("d-m-Y H:i:s")) {
+                                $htm .= 'data-target="#certificadoModal"'
+                                    . 'onclick="setarCampos(' . $evento['id'] . ');"  class="nav-link active btn1" id="cad2">Gerar</a>';
+                            } else {
+                                $htm .= 'data-target="#certificadoModal"'
+                                    . 'onclick="setarCampos(' . $evento['id'] . ');"  class="nav-link active btn1" id="cad2">Gerar</a>';
+                            }
                         }
                     }
+
                     $htm .= '</li></ul>'
                         . '</div>'
                         . '</div>';
 
                     echo $htm;
-                }
+
                 ?>
 
         </div>
@@ -163,6 +167,7 @@
     </div>
 
 <?php
+                }
             } else {
                 echo "<h3>Não esta cadastrado em nenhum evento!</h3>";
             }

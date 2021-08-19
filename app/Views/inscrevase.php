@@ -223,7 +223,6 @@
                                     <a class="nav-link active" id="cad2" href="<?php echo base_url("/eventos/listaEvento") . "/" . $evento['id'] ?>">Atividades</a>
                                 </li>
                                 <li class="nav-item">
-
                                     <?php
                                     if ($_SESSION['id'] == $user[0]['idUser'] && ($evento['id']) == $user[0]['idEvento']) {
                                         echo '<button type="button" class="btn btn-primary cad1" id="btn" data-toggle="modal" data-target="#eventoinscrito">Informação</button>';

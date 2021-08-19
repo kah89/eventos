@@ -36,8 +36,8 @@
                         <tr>
                             <th scope="col">ID</th>
                             <th scope="col">Titulo</th>
-                            <th scope="col">Data</th> <!-- abrir um popup ou card  / BD dt inicio-->
-                            <th scope="col">Certificado</th> <!-- check box / BD tipo-->
+                            <th scope="col">Data Início</th>
+                            <th scope="col">Data Término</th> 
                             <th scope="col">Ação</th>
                         </tr>
                     </thead>
@@ -48,7 +48,7 @@
                             } else {
                                 $tipo = 'Não';
                             }
-                            echo '<tr><td>' . $atividade['id'] . '</td><td>' . $atividade['titulo'] . '</td><td>' . date_format(new DateTime($atividade['dtInicio']), "d/m/Y  - H:i") . '</td><td>' . $tipo . '</td>';
+                            echo '<tr><td>' . $atividade['id'] . '</td><td>' . $atividade['titulo'] . '</td><td>' . date_format(new DateTime($atividade['dtInicio']), "d/m/Y  - H:i") . '</td><td>' . date_format(new DateTime($atividade['dtFim']), "d/m/Y  - H:i") . '</td>';
                             echo '<td>';
                             $inscrito = false;
                             foreach ($users as $userEvento) {

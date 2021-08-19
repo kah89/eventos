@@ -112,7 +112,7 @@
 
     .radio {
         float: right;
-        margin-top: -105px;
+        margin-top: -140px;
         margin-right: 170px;
     }
 
@@ -132,7 +132,7 @@
         width: 200px;
         float: right;
         margin-right: 503px;
-        margin-top: -105px;
+        margin-top: -140px;
 
     }
 </style>
@@ -253,10 +253,10 @@
                                 <div class="form-group checkbox">
                                     <label for="">Destinado:</label>
                                     <div class="form-label-group" name="destinado" required>
-                                        <input type="checkbox" name="destinado[]" value="1">Estudantes<br>
-                                        <input type="checkbox" name="destinado[]" value="2">Farmacêuticos<br>
-                                        <input type="checkbox" name="destinado[]" value="3">Farmacêuticos SP<br>
-
+                                        <input type="checkbox" name="destinado[]" value="3">Farmacêutico inscrito no CRF-SP<br>
+                                        <input type="checkbox" name="destinado[]" value="2">Farmacêuticos inscritos em outros estados<br>
+                                        <input type="checkbox" name="destinado[]" value="1">Estudantes de Farmácia<br>
+                                        <input type="checkbox" name="destinado[]" value="4">Outros profissionais<br>
                                     </div>
                                 </div>
                                 <!-- <div class="form-group">

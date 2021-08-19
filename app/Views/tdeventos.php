@@ -57,7 +57,7 @@
     .cad1 {
         background-color: #008CBA;
         font-size: 12px;
-        padding: 10px 22px;
+        /* padding: 10px 22px; */
         border-radius: 8px;
         border: 2px solid;
     }
@@ -190,12 +190,12 @@
             </script>
         <?php } ?>
         <div class="row">
-            <div id="myBtnContainer" class="col-12">
+            <!-- <div id="myBtnContainer" class="col-12">
                 <button class="btn active" onclick="filterSelection('all')">Todos</button>
                 <button class="btn " onclick="filterSelection('destinado2')"> Farmacêuticos</button>
                 <button class="btn" onclick="filterSelection('destinado3')"> Farmacêuticos - SP</button>
                 <button class="btn" onclick="filterSelection('destinado1')"> Estudantes</button>
-            </div>
+            </div> -->
 
             <div id="a-inscritos" class="col-12">
                 <?php
@@ -261,16 +261,13 @@
                                         echo "Estudante | ";
                                     }
                                 } ?></p>
-                            <p><strong> Evento: </strong>
+                            <p>
                                 <?php
                                 if ($evento['tipo'] == '1') {
 
-                                    echo 'Exclusivo';
-                                } else {
-                                    echo 'Não exclusivo';
+                                    echo '<strong> Evento: </strong> Exclusivo';
                                 }
                                 ?>
-
                             </p>
                             <p id="p2"> Restam apenas<strong> <?php echo $evento['vagas']; ?> </strong>vagas.</p>
                         </div>
@@ -279,7 +276,7 @@
                             <ul class="nav nav-pills ">
                                 <li class="nav-item">
                                     <button type="button" id="sobremodal" class=" cad2 btn btn-primary" data-toggle="modal" data-target="#sobreModal<?php echo $evento['id'] ?>">
-                                        Sobre
+                                    Informações
                                     </button>
 
                                     <!-- Modal sobre -->
