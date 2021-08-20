@@ -7,7 +7,7 @@
     h2 {
         text-align: center;
         padding: 40px;
-        color: #007BFF;
+        color: #092e48;
     }
 
     p {

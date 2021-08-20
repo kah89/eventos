@@ -8,7 +8,7 @@
     h1 {
         text-align: center;
         margin-top: 30px;
-        color: #007BFF;
+        color: #092e48;
     }
 
     h4 {

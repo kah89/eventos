@@ -3,7 +3,7 @@
     h1 {
         text-align: center;
         margin-top: 30px;
-        color: #007BFF;
+        color: #092e48;
     }
 
     h4 {
@@ -60,6 +60,7 @@
         padding: 8px 15px;
         border-radius: 8px;
         border: 2px solid;
+        color: white;
     }
 
     .cad2:hover,
@@ -75,7 +76,6 @@
     }
 
     .image {
-        border: 2px solid #fff;
         width: 100%;
         height: 184px;
         overflow: hidden
@@ -88,8 +88,8 @@
     }
 
     .image:hover img {
-        transform: scale(2, 2);
-        cursor: pointer
+        transform: scale(1.2, 1.2);
+        /* cursor: pointer */
     }
 
     .destinado {
@@ -118,7 +118,8 @@
         margin-left: 5px;
         margin-top: 10px;
         text-align: center;
-        height: 40px
+        height: 40px;
+        color: white;
     }
 
     .info {
@@ -166,8 +167,8 @@
     }
 
     #a-inscritos {
-        margin-top: -40px;
-        margin-left: 450px;
+        /* margin-top: -40px;
+        margin-left: 450px; */
     }
 
     #p1 {
@@ -177,6 +178,70 @@
     #p2 {
         margin-top: -10px;
     }
+
+    .card.eventCard {
+        border: none;
+        box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%);
+    }
+
+    .card,
+    .card-body {
+        padding: 0;
+    }
+
+    .info::before {
+        content: "";
+        position: absolute;
+        top: -70px;
+        right: 99px;
+        width: 21px;
+        height: 137px;
+        transform: rotate(45deg);
+        background-color: #f4f4f4;
+    }
+
+    .info::after {
+        content: "";
+        position: absolute;
+        z-index: 1;
+        top: -15px;
+        right: -19px;
+        width: 50px;
+        height: 30px;
+        transform: rotate(45deg);
+        background-color: #F5F5F5;
+    }
+
+    .info {
+        background: black;
+        color: #fff;
+        position: absolute;
+        top: 20px;
+        left: 278px;
+        padding: 4px 10px;
+        font-family: Quicksand, sans-serif;
+        font-weight: 700;
+        line-height: 13px;
+        transform: rotate(45deg);
+        overflow: visible;
+        width: 123px;
+        text-align: center;
+        font-size: 11px;
+    }
+
+    .eventInfo {
+        padding: 1em;
+    }
+
+    #btn:hover,
+    .btn:hover {
+        box-shadow: none;
+        background-color: #0b3e7a;
+    }
+
+    a.btn.btn-outline-info:hover {
+        color: white !important;
+    }
 </style>
 <script>
     $msg = "";
@@ -184,32 +249,25 @@
 <main>
     <div class="container">
         <h1>Eventos</h1>
+        <br><br>
         <?php if (session()->get('success')) { ?>
             <script>
                 $msg = '<?= session()->get('success'); ?>';
             </script>
         <?php } ?>
+        <div id="a-inscritos" style="text-align: end; margin-bottom: 20px;">
+            <?php
+            if (
+                isset($_SESSION['id']) &&
+                $_SESSION['type'] == 0
+            ) {
+            ?>
+                <a class="btn btn-outline-info" href="<?= base_url('listarEventosUser') ?>" style="color:#092e48; "></i> Eventos inscritos</a>
+            <?php
+            }
+            ?>
+        </div>
         <div class="row">
-            <!-- <div id="myBtnContainer" class="col-12">
-                <button class="btn active" onclick="filterSelection('all')">Todos</button>
-                <button class="btn " onclick="filterSelection('destinado2')"> Farmacêuticos</button>
-                <button class="btn" onclick="filterSelection('destinado3')"> Farmacêuticos - SP</button>
-                <button class="btn" onclick="filterSelection('destinado1')"> Estudantes</button>
-            </div> -->
-
-            <div id="a-inscritos" class="col-12">
-                <?php
-                if (
-                    isset($_SESSION['id']) &&
-                    $_SESSION['type'] == 0
-                ) {
-                ?>
-                    <a class="btn" href="<?= base_url('listarEventosUser') ?>" style="color:#007BFF; margin-left:520px"></i> Eventos inscritos</a>
-                <?php
-                }
-                ?>
-            </div>
-
             <?php
             if (count($data) > 0) {
                 rsort($data);
@@ -230,6 +288,7 @@
 
                         <div class="card-body">
                             <div class="image">
+                                <img src="<?php echo base_url("/public/img") . "/" . $evento['imagem'] ?>" alt="" width="100%">
                                 <div class="info" id=txt>
                                     <span> <?php
                                             if ((int)$evento['vagas'] <= 0) {
@@ -245,11 +304,12 @@
                                             }
                                             ?></span>
                                 </div>
-                                <img src="<?php echo base_url("/public/img") . "/" . $evento['imagem'] ?>" alt="" width="100%">
+
                             </div>
-                            <p id="p1"> <strong>Data:</strong> <?php echo date_format(new DateTime($evento['dtInicio']), "d/m/Y"); ?> até <?php echo date_format(new DateTime($evento['dtFim']), "d/m/Y"); ?></p>
-                            <p> <strong>Quantidade de inscrição:</strong> <?php echo $evento['limite']; ?></p>
-                            <p><strong> Evento destinado: </strong></br>
+                            <div class='eventInfo'>
+                                <strong>Data:</strong> <?php echo date_format(new DateTime($evento['dtInicio']), "d/m/Y"); ?> até <?php echo date_format(new DateTime($evento['dtFim']), "d/m/Y"); ?><br>
+                                <strong>Quantidade de inscrição:</strong> <?php echo $evento['limite']; ?><br>
+                                <strong> Evento destinado: </strong></br>
                                 <?php foreach ($destinos as $detinado) {
                                     if ($detinado == "2") {
                                         echo "Farmacêuticos inscritos em outros estados; " . '</br>';
@@ -263,25 +323,26 @@
                                     if ($detinado == "4") {
                                         echo "Outros profissionais; " . '</br>';
                                     }
-                                } ?></p>
-                            <p>
-                            <p> <strong>Carga horária:</strong> <?php echo $evento['certificado']; ?> horas</p>
-                            <?php
-                            if ($evento['tipo'] == '1') {
+                                } ?>
+                                <br>
+                                <strong>Carga horária:</strong> <?php echo $evento['certificado']; ?> horas
+                                <?php
+                                if ($evento['tipo'] == '1') {
 
-                                echo '<strong> Evento: </strong> Exclusivo';
-                            }
-                            ?>
-                            </p>
-                            <p id="p2"> Restam apenas<strong> <?php echo $evento['vagas']; ?> </strong>vagas.</p>
+                                    echo '<strong> Evento: </strong> Exclusivo';
+                                }
+                                ?>
+                                <br>
+                                Restam apenas<strong> <?php echo $evento['vagas']; ?> </strong>vagas.
+                            </div>
                         </div>
 
                         <div class="card-footer text-muted" id="card-footer">
-                            <ul class="nav nav-pills ">
+                            <ul class="nav justify-content-center">
                                 <li class="nav-item">
-                                    <button type="button" id="sobremodal" class=" cad2 btn btn-primary" data-toggle="modal" data-target="#sobreModal<?php echo $evento['id'] ?>">
+                                    <a type="button" id="sobremodal" class=" cad2 btn btn-primary" data-toggle="modal" data-target="#sobreModal<?php echo $evento['id'] ?>">
                                         Informações
-                                    </button>
+                                    </a>
 
                                     <!-- Modal sobre -->
                                     <div class="modal fade" data-backdrop="static" id="sobreModal<?php echo $evento['id'] ?>" tabindex="-1" aria-labelledby="sobreModalLabel" aria-hidden="true">
@@ -310,9 +371,7 @@
                                 <li class="nav-item">
 
                                     <?php
-
-                                    // if ($user < 0) {
-                                    if ($_SESSION['id'] == $user[0]['idUser'] && ($evento['id']) == $user[0]['idEvento']) {
+                                    if ($eventoUser) {
                                         echo '<button type="button" class="btn btn-primary cad1" id="btn" data-toggle="modal" data-target="#eventoinscrito">Informação</button>';
                                     } else if ((int)$evento['vagas'] <= 0) {
                                         echo '<button class="btn btn-primary cad2" id="btn"  data-toggle="modal" data-target="#limite" id="Btn">esgotado </button>';
@@ -323,19 +382,6 @@
                                     } else if ((Date($evento['dtFim'])) < date("Y-m-d H:i:s")) {
                                         echo '<button type="button" class="btn btn-primary cad1" id="btn" data-toggle="modal" data-target="#desativado" disabled>Encerrado</button>';
                                     }
-                                    // } else {
-                                    // if ($_SESSION['id'] == $user[0]['idUser'] && ($evento['id']) == $user[0]['idEvento']) {
-                                    //     echo '<button type="button" class="btn btn-primary cad1" id="btn" data-toggle="modal" data-target="#eventoinscrito">Informação</button>';
-                                    // } else if ((int)$evento['vagas'] <= 0) {
-                                    //     echo '<button class="btn btn-primary cad2" id="btn"  data-toggle="modal" data-target="#limite" id="Btn">esgotado </button>';
-                                    // } else if (((Date($evento['dtInicio'])) > date("Y-m-d H:i:s") && (Date($evento['dtFim'])) > date("Y-m-d H:i:s"))
-                                    //     || ((Date($evento['dtInicio'])) < date("Y-m-d H:i:s") && (Date($evento['dtFim'])) > date("Y-m-d H:i:s"))
-                                    // ) {
-                                    //     echo '<button class="btn btn-primary cad2" id="btn"  data-toggle="modal" data-target="#inscrevaModal" id="Btn" onclick="preenchermodal(' . $evento['id'] . ');">Inscreva-se</button>';
-                                    // } else if ((Date($evento['dtFim'])) < date("Y-m-d H:i:s")) {
-                                    //     echo '<button type="button" class="btn btn-primary cad1" id="btn" data-toggle="modal" data-target="#desativado" disabled>Encerrado</button>';
-                                    // }
-                                    // }
 
                                     ?>
                                 </li>

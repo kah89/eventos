@@ -30,7 +30,7 @@
     <title><?php echo $title ?></title>
     <style>
         .bg-custom {
-            background-image: linear-gradient(15deg, #0a346d 0%, #1598ef 100%);
+            background-image: linear-gradient(15deg, #092e48 0%, #00557a 100%);
         }
 
         body {
@@ -127,7 +127,7 @@
                     ) {
                     ?><ul class="navbar-nav mr-auto" id="inicio">
                             <li class="nav-item">
-                                <a class="nav-link" href="<?= base_url('eventos'); ?>"><i class="fa fa-home"></i> Início</a>
+                                <a class="nav-link" href="<?= base_url('inicio'); ?>"><i class="fa fa-home"></i> Início</a>
                             </li>
                         </ul>
                         <ul class="navbar-nav mr-auto ">
@@ -140,59 +140,59 @@
                             <li class="nav-item dropdown nav1 ">
                                 <a class="nav-link user" href="<?= base_url('alterarUser') ?>"></i>Usuários</a>
                             </li>
-                            </ul>
+                        </ul>
 
-                            <ul class="navbar-nav my-2 my-lg-0" id="session">
-                                <li class="nav-item dropdown nav1">
-                                    <a class="nav-link dropdown-toggle fa fa-sign-out" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <?php
-                                        echo $_SESSION['firstname'];
-                                        ?>
+                        <ul class="navbar-nav my-2 my-lg-0" id="session">
+                            <li class="nav-item dropdown nav1">
+                                <a class="nav-link dropdown-toggle fa fa-sign-out" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <?php
+                                    echo $_SESSION['firstname'];
+                                    ?>
 
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                        <a class="dropdown-item" href="<?php echo base_url('editarUser') . '/' . $_SESSION['id'] ?>">Editar</a>
-                                        <a class="dropdown-item" href="<?= base_url('logout') ?>">Sair</a>
-                                    </div>
-                            </ul>
-                        <?php
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="<?php echo base_url('editarUser') . '/' . $_SESSION['id'] ?>">Editar</a>
+                                    <a class="dropdown-item" href="<?= base_url('logout') ?>">Sair</a>
+                                </div>
+                        </ul>
+                    <?php
                     } else {
-                        ?>
-                            <ul class="navbar-nav mr-auto" id="inicio">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="<?= base_url('eventos'); ?>"><i class="fa fa-home"></i> Início</a>
-                                </li>
-                            </ul>
-                            <ul class="navbar-nav mr-auto ">
-                                <li class="nav-item dropdown nav1 ">
-                                    <a class="nav-link" href="<?= base_url('inscrevase') ?>"></i>Inscreva-se</a>
-                                </li>
-                                <li class="nav-item dropdown nav1 ">
-                                    <a class="nav-link" href="<?= base_url('listarEventosUser') ?>"></i>Minhas inscrições</a>
-                                </li>
-                                <!-- <li class="nav-item dropdown nav1 ">
+                    ?>
+                        <ul class="navbar-nav mr-auto" id="inicio">
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?= base_url('inicio'); ?>"> <img src="<?= base_url('public/img/logo_crfsp_neg.png'); ?>" href="<?= base_url('inicio'); ?>" style="height: 50px;" /></a>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav mr-auto ">
+                            <li class="nav-item dropdown nav1 ">
+                                <a class="nav-link" href="<?= base_url('inscrevase') ?>"></i>Inscreva-se</a>
+                            </li>
+                            <li class="nav-item dropdown nav1 ">
+                                <a class="nav-link" href="<?= base_url('listarEventosUser') ?>"></i>Minhas inscrições</a>
+                            </li>
+                            <!-- <li class="nav-item dropdown nav1 ">
                                 <a class="nav-link" href="<?= base_url('listarAtividades') ?>"></i>Atividades</a>
                             </li> -->
-                            </ul>
+                        </ul>
 
-                            <ul class="navbar-nav my-2 my-lg-0" id="session">
-                                <li class="nav-item dropdown nav1">
-                                    <a class="nav-link dropdown-toggle fa fa-sign-out" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <?php
-                                        echo $_SESSION['firstname'];
-                                        ?>
+                        <ul class="navbar-nav my-2 my-lg-0" id="session">
+                            <li class="nav-item dropdown nav1">
+                                <a class="nav-link dropdown-toggle fa fa-sign-out" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <?php
+                                    echo $_SESSION['firstname'];
+                                    ?>
 
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                        <a class="dropdown-item" href="<?php echo base_url('editarUser') . '/' . $_SESSION['id'] ?>">Editar</a>
-                                        <a class="dropdown-item" href="<?= base_url('logout') ?>">Sair</a>
-                                    </div>
-                            </ul>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="<?php echo base_url('editarUser') . '/' . $_SESSION['id'] ?>">Editar</a>
+                                    <a class="dropdown-item" href="<?= base_url('logout') ?>">Sair</a>
+                                </div>
+                        </ul>
 
-                            <?php
-                        }
-                            ?>
-                            
+                    <?php
+                    }
+                    ?>
+
                 </div>
             </div>
         </nav>

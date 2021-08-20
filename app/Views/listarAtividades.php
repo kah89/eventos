@@ -2,14 +2,14 @@
 <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.js"></script>
 <style>
     th {
-        color: #007BFF;
+        color: #092e48;
         text-align: left;
         margin-top: 20px;
         font: caption;
     }
 
     h2 {
-        color: #007BFF;
+        color: #092e48;
     }
 
     h3 {

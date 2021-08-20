@@ -38,7 +38,7 @@ $routes->match(['get','post'],'/recuperacao', 'Users::recuperacaoSenha');
 $routes->match(['get','post'],'/recuperacao/(:any)', 'Users::novasenha/$1');
 $routes->get('logout', 'Users::logout');
 
-$routes->match(['get','post'],'/eventos', 'Eventos::index');
+$routes->match(['get','post'],'/inicio', 'Eventos::index');
 $routes->match(['get','post'],'/editarEventos/(:num)', 'Eventos::editarEventos');
 $routes->match(['get','post'],'/listarEventosUser', 'Eventos::listarEventosUser');
 $routes->match(['get','post'],'/cadastrarEventos', 'Eventos::cadastrarEventos');

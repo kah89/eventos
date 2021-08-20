@@ -1,6 +1,6 @@
 <style>
     h2 {
-        color: #007BFF;
+        color: #092e48;
     }
 
     #blah {

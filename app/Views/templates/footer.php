@@ -5,7 +5,7 @@
         width: 100%;
         height: 60px;
         line-height: 60px;
-        background-image: linear-gradient(15deg, #1598ef 0%, #0a346d 100%);
+        background-image: linear-gradient(15deg, #00557a 0%, #092e48 100%);        
     }
 
 

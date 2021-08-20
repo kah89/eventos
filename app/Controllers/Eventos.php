@@ -21,7 +21,6 @@ class Eventos extends BaseController
         if (!session()->get('isLoggedIn')) {
             return redirect()->to(base_url(''));
         } else {
-            // var_dump("HEY");exit;
             $model = new EventoModel();
             $eventos = $model->findAll();
             $newmodel = new UserEvento();
@@ -35,16 +34,13 @@ class Eventos extends BaseController
             $eventoatual = $model->select('corSecundaria, corPrimaria ')->findall();
             $eventoId = $model->select('id')->findall();
 
-            // var_dump($allevents);exit;
-
             $data = [
                 'title' => 'Eventos',
                 'data' => $allevents,
-                'user' =>  $newmodel->findAll(),
+                'eventoUser' =>  $newmodel->buscarEvento(session()->get('id')),
                 // 'limite' => $newmodel->countAll(),
                 // 'colorSecundaria' => $eventoatual,
             ];
-            // var_dump($data['user']); exit;
 
             echo view('templates/header', $data);
             echo view('tdeventos');

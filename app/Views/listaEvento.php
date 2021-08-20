@@ -3,7 +3,7 @@
 <style>
     h1,
     th {
-        color: #007BFF;
+        color: #092e48;
         text-align: left;
         margin-top: 20px;
         font: caption;

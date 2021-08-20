@@ -51,9 +51,6 @@ class AtividadeModel extends Model
 
         $totalAtividadesEvento = $query['total'];
 
-
-
-
         $query2 = $this
             ->select('count(usuario_atividade.idUser) as total')
             ->join('usuario_atividade', 'atividade_evento.id = usuario_atividade.idAtividade and atividade_evento.idEvento = ' . $idEvento)

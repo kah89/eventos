@@ -113,7 +113,7 @@
                         </form>
                     </div>
                     <div class="mx-auto">
-                        Não tem uma conta? <a href="registro">cadastre-se</a>
+                        Não tem uma conta? <a href="registro">Cadastre-se</a>
                         <br />
                     </div>
                     <div class="mx-auto">
