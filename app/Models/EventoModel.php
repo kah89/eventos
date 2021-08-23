@@ -201,6 +201,8 @@ class EventoModel extends Model
         return $result;
     }
 
+    //------------------------------------------------------------------------------
+
     public function teste($idUser = null, $idEvento = null)
     {
         $q = $this->select('*')->where('id=' . $idEvento)->get(1)->getRowArray();
@@ -262,7 +264,7 @@ class EventoModel extends Model
         return true;
     }
 
-
+    //------------------------------------------------------------------------------
 
     public function eventosDisponiveis($idUser = null, $destinado = null)
     {
@@ -294,6 +296,8 @@ class EventoModel extends Model
 
         return $q->getResultArray();
     }
+
+    //------------------------------------------------------------------------------
 
     public function getEventos($userID)
     {

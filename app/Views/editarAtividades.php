@@ -54,12 +54,14 @@
         margin-top: -47px;
     }
 
-    #session {
-        margin-left: 260px;
+    .session {
+        margin-top: 20px;
+        float: right;
+        font-size: 16px;
     }
 
     .eventos {
-        margin-left: 260px;
+        margin-left: 230px;
     }
 
     #navbarNav {
@@ -69,6 +71,10 @@
     body {
 
         background-color: #F5F5F5;
+    }
+
+    .menu {
+        margin-top: 20px;
     }
 </style>
 
@@ -152,14 +158,9 @@
 
                                     <select id="certificado" name="certificado" class="form-control">
                                         <?php
-                                        foreach ($ativ as $key => $atividades) {
-                                            $selecionado = $ativ['tipo'] == $idEvento;
-                                            if ($selecionado) {
-                                                $tipo =  $atividades['tipo'];
-                                            }
-                                        }
 
-                                        if ($tipo == 1) {
+
+                                        if ((int)$ativ['tipo'] == 1) {
                                             echo '<option value="1" id="1" selected="selected">Gera certificado</option>';
                                             echo '<option value="2" id="2">Não gera certificado</option>';
                                         } else {

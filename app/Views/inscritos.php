@@ -18,9 +18,10 @@
     }
 
     .inscritos {
-        max-width: 72%;
-        margin-left: 200px;
+        max-width: 76%;
         padding: 20px;
+        text-align: center;
+        margin-left: 190px;
     }
 
     th {
@@ -30,32 +31,20 @@
         font: caption;
     }
 
-    thead {
-        text-align: center;
-    }
 
     #inscritos {
         border: solid 2px;
         border-collapse: collapse;
-        margin-left: -12px;
         margin-top: 15px;
         margin-bottom: 15px;
+        margin-left: -10px;
     }
 
-    #inscritos tbody tr {
-        border: solid 1px;
-        height: 30px;
-        cursor: pointer;
-    }
 
     #inscritos thead {
         background: #0174DF;
         border: solid 2px;
         opacity: 0.7;
-    }
-
-    #inscritos thead th:nth-child(1) {
-        width: 100px;
     }
 
     #inscritos input {
@@ -88,7 +77,7 @@
             <a href="<?= base_url('alterarEventos') ?>">Voltar</a>
             <p style="text-align: right;">Total de Inscritos: <?php echo count($users); ?></p>
 
-            <table class="table-hover display" id="inscritos" >
+            <table class="table-hover display" id="inscritos">
 
                 <thead class="thead">
                     <tr>

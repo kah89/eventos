@@ -25,6 +25,10 @@
         margin-top: 20px;
         font: caption;
     }
+    .session {
+        float: right;
+        font-size: 16px;
+    }
 
     thead {
         text-align: center;

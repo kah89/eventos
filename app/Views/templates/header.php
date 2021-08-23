@@ -78,9 +78,11 @@
             color: #fff;
         }
 
-        #session {
+        .session {
             color: #B5B5B5;
             text-transform: uppercase;
+            float: right;
+            font-size: 18px;
         }
 
         #mostrar {
@@ -94,6 +96,16 @@
         a.disabled {
             pointer-events: none;
             cursor: default;
+        }
+
+
+        @media only screen and (max-width: 990px) {
+            #logoMenu {
+                width: auto;
+                position: absolute;
+                right: 20px;
+                top: 10px;
+            }
         }
     </style>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ST5941BK0S"></script>
@@ -127,10 +139,10 @@
                     ) {
                     ?><ul class="navbar-nav mr-auto" id="inicio">
                             <li class="nav-item">
-                            <a class="nav-link" href="<?= base_url('inicio'); ?>"> <img src="<?= base_url('public/img/logo_crfsp_neg.png'); ?>" href="<?= base_url('inicio'); ?>" style="height: 50px;" /></a>
+                                <a class="nav-link" href="<?= base_url('inicio'); ?>"> <img id="logoMenu" src="<?= base_url('public/img/logo_crfsp_neg.png'); ?>" href="<?= base_url('inicio'); ?>" style="height: 50px;" /></a>
                             </li>
                         </ul>
-                        <ul class="navbar-nav mr-auto ">
+                        <ul class="navbar-nav mr-auto menu ">
                             <li class="nav-item dropdown nav1 eventos">
                                 <a class="nav-link evento" href="<?= base_url('alterarEventos') ?>"></i>Eventos</a>
                             </li>
@@ -142,7 +154,7 @@
                             </li>
                         </ul>
 
-                        <ul class="navbar-nav my-2 my-lg-0" id="session">
+                        <ul class="navbar-nav mr-auto  session">
                             <li class="nav-item dropdown nav1">
                                 <a class="nav-link dropdown-toggle fa fa-sign-out" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <?php
@@ -160,7 +172,7 @@
                     ?>
                         <ul class="navbar-nav mr-auto" id="inicio">
                             <li class="nav-item">
-                                <a class="nav-link" href="<?= base_url('inicio'); ?>"> <img src="<?= base_url('public/img/logo_crfsp_neg.png'); ?>" href="<?= base_url('inicio'); ?>" style="height: 50px;" /></a>
+                                <a class="nav-link" href="<?= base_url('inicio'); ?>"> <img id="logoMenu" src="<?= base_url('public/img/logo_crfsp_neg.png'); ?>" href="<?= base_url('inicio'); ?>" style="height: 50px;" /></a>
                             </li>
                         </ul>
                         <ul class="navbar-nav mr-auto ">
@@ -175,7 +187,7 @@
                             </li> -->
                         </ul>
 
-                        <ul class="navbar-nav my-2 my-lg-0" id="session">
+                        <ul class="navbar-nav mr-auto session">
                             <li class="nav-item dropdown nav1">
                                 <a class="nav-link dropdown-toggle fa fa-sign-out" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <?php

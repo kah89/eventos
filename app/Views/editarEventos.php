@@ -19,7 +19,7 @@
 
     #blah {
         margin-top: 15px;
-        margin-left: 350px;
+        width: 100%;
     }
 
 

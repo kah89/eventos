@@ -121,8 +121,10 @@
                                     $type = 'Administrador';
                                 }else if ($user['type'] == '1') {
                                     $type = 'Estudante';
-                                } else {
+                                } else if ($user['type'] == '2'){
                                     $type = 'Farmacêutico';
+                                } else {
+                                    $type = 'Outro profissional ';
                                 }
                                 echo '<tr><td>' . $user['id'] . '</td><td>' . $user['firstname'] . '</td><td>' . $user['lastname'] . '</td><td>' . $type. '</td>
                                <td><a href=' . base_url('editarUser') . "/" . $user['id'] . '><i class="fa fa-edit" style="color: blue"></a></i>

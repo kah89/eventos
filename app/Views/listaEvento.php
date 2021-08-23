@@ -24,6 +24,11 @@
     #cad:hover {
         box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
     }
+
+    .timer {
+        color: red;
+        margin-top: -15px;
+    }
 </style>
 <main>
     <div class="container bg-white" style="padding-bottom: 10em;">
@@ -61,7 +66,8 @@
                                 if ($atividade['dtInicio'] > date("d-m-Y H:i:s")) {
                                     echo '<a class="btn btn-primary" id="cad" href= ' . base_url('/atividades/inscreverAtividade') . "/" . $atividade['id'] . ' onclick="inscreverAtividade(' . $atividade['id'] . ');"  role="button" >Ir</a>';
                                 } else {
-                                    echo '<a class="btn btn-primary" id="cad" disabled>Ir</a>';
+                                    echo '
+                                    <span id="countdown" class="timer"> </span>';
                                 }
                             } else {
                                 echo '<a class="btn btn-primary" id="cad" data-toggle="modal" data-target="#sobreModal">Ir</a>';
@@ -72,6 +78,8 @@
 
                     </tbody>
                 </table>
+
+
             </div>
         </div>
         <div class="modal fade" data-backdrop="static" id="sobreModal" tabindex="-1" aria-labelledby="sobreModalLabel" aria-hidden="true">
@@ -98,4 +106,28 @@
         var link = '<?php echo (base_url("/atividades/inscreverAtividade") . "/");  ?>';
         document.getElementById("cad").href = link + $id;
     }
+
+    var upgradeTime = 172801;
+    var seconds = upgradeTime;
+
+    function timer() {
+        var days = Math.floor(seconds / 24 / 60 / 60);
+        var hoursLeft = Math.floor((seconds) - (days * 86400));
+        var hours = Math.floor(hoursLeft / 3600);
+        var minutesLeft = Math.floor((hoursLeft) - (hours * 3600));
+        var minutes = Math.floor(minutesLeft / 60);
+        var remainingSeconds = seconds % 60;
+
+        function pad(n) {
+            return (n < 10 ? "0" + n : n);
+        }
+        document.getElementById('countdown').innerHTML = pad(days) + ":" + pad(hours) + ":" + pad(minutes) + ":" + pad(remainingSeconds);
+        if (seconds == 0) {
+            clearInterval(countdownTimer);
+            document.getElementById('countdown').innerHTML = "Completed";
+        } else {
+            seconds--;
+        }
+    }
+    var countdownTimer = setInterval('timer()', 1000);
 </script>

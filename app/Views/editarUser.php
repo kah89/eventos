@@ -59,8 +59,6 @@
     #cad:hover {
         box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
     }
-
-
 </style>
 <script type="text/javascript">
     $(function() {
@@ -148,7 +146,18 @@
     <div class="container">
         <div class="card card-signin my-5">
             <div class="card-body">
-            <a href="<?= base_url('alterarUser') ?>">Voltar</a>
+                <?php
+                if (
+                    isset($_SESSION['id']) &&
+                    $_SESSION['type'] == 0
+                ) {
+                ?>
+                    <a href="<?= base_url('alterarUser') ?>">Voltar</a>
+                <?php
+                } else {
+                ?> <a href="<?= base_url('listarEventosUser') ?>">Voltar</a>
+
+                <?php }  ?>
                 <h2 class="card-title text-center">Alteração de Usuários</h2>
                 <form class="form-signin " method="post">
 
@@ -231,7 +240,7 @@
                                 echo '<option value="1" >Estudante de Farmácia</option>';
                                 echo '<option value="2" selected="selected">Farmacêutico</option>';
                                 echo '<option value="4" >Outros profissionais</option>';
-                            }else if ($type == 4) {
+                            } else if ($type == 4) {
                                 echo '<option value="1" >Estudante de Farmácia</option>';
                                 echo '<option value="2" >Farmacêutico</option>';
                                 echo '<option value="4" selected="selected">Outros profissionais</option>';

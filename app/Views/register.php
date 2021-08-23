@@ -135,15 +135,25 @@
         $("#cpf").mask("000.000.000-00");
 
         $('#categoria').change(function() {
-            if ($('#categoria').val() == 1) {
+            if ($('#categoria').val() != 2) {
                 $("#farmaceutico").css("display", "none");
-                $("#uf").attr('required', 0);
-                $("#crf").attr('required', 0);
+
+                if ($("#uf").prop('required')) {
+                    $("#uf").prop('required', false);
+                }
+                if ($("#crf").prop('required')) {
+                    $("#crf").prop('required', false);
+                }
             } else {
                 $("#farmaceutico").css("display", "block");
-                $("#uf").attr('required', 1);
-                $("#crf").attr('required', 1);
+                if (!$("#uf").prop('required')) {
+                    $("#uf").prop('required', true);
+                }
+                if (!$("#crf").prop('required')) {
+                    $("#crf").prop('required', true);
+                }
             }
+
         });
 
 
