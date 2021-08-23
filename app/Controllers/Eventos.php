@@ -22,7 +22,7 @@ class Eventos extends BaseController
             return redirect()->to(base_url(''));
         } else {
             $model = new EventoModel();
-            $eventos = $model->orderBy('dtFim')->getEventos(session()->get('id'));
+            $eventos = $model->orderBy('dtFim, AC')->getEventos(session()->get('id'));
             $data = [
                 'title' => 'Eventos',
                 'data' => $eventos,
