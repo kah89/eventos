@@ -114,7 +114,7 @@
         });
 
         $("#telefone").mask("(00) 0000-0000");
-        $("#celular").mask("(00) 0000-00009");
+        $("#celular").mask("(00) 00000-0009");
         $("#cpf").mask("000.000.000-00");
 
         $('#categoria').change(function() {
@@ -222,12 +222,19 @@
                                 echo '<option value="0" selected="selected">Administrador</option>';
                                 echo '<option value="1" >Estudante de Farmácia</option>';
                                 echo '<option value="2" >Farmacêutico</option>';
+                                echo '<option value="4" >Outros profissionais</option>';
                             } else if ($type == 1) {
                                 echo '<option value="1"  selected="selected">Estudante de Farmácia</option>';
                                 echo '<option value="2" >Farmacêutico</option>';
+                                echo '<option value="4" >Outros profissionais</option>';
                             } else if ($type == 2) {
                                 echo '<option value="1" >Estudante de Farmácia</option>';
                                 echo '<option value="2" selected="selected">Farmacêutico</option>';
+                                echo '<option value="4" >Outros profissionais</option>';
+                            }else if ($type == 4) {
+                                echo '<option value="1" >Estudante de Farmácia</option>';
+                                echo '<option value="2" >Farmacêutico</option>';
+                                echo '<option value="4" selected="selected">Outros profissionais</option>';
                             }
                             ?>
 

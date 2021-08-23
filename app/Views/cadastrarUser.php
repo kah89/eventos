@@ -192,6 +192,7 @@
                                 <option value="0">Administrador</option>
                                 <option value="1">Estudante de Farmácia</option>
                                 <option value="2">Farmacêutico</option>
+                                <option value="4">Outros profissionais</option>
                             </select>
                         </div>
                         <div class="form-label-group" id="farmaceutico" style="display: none">

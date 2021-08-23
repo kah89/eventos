@@ -131,7 +131,7 @@
         });
 
         $("#telefone").mask("(00) 0000-0000");
-        $("#celular").mask("(00) 0000-00009");
+        $("#celular").mask("(00) 00000-0009");
         $("#cpf").mask("000.000.000-00");
 
         $('#categoria').change(function() {
@@ -156,7 +156,7 @@
             <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
                 <div class="card card-signin my-5">
                     <div class="card-body">
-                        <h5 class="card-title text-center">Inscreva-se</h5>
+                        <h5 class="card-title text-center">Cadastre-se</h5>
                         <form class="form-signin" method="post">
                             <div class="form-label-group">
                                 <input type="text" id="nome" name="nome" class="form-control" placeholder="Nome" required autofocus>
@@ -186,6 +186,7 @@
                                 <select id="categoria" name="categoria" class="form-control" style="height: calc(1.5em + .75rem + 14px);">
                                     <option value="1">Estudante de Farmácia</option>
                                     <option value="2">Farmacêutico</option>
+                                    <option value="4">Outros profissionais</option>
                                 </select>
                             </div>
                             <div class="form-label-group" id="farmaceutico" style="display: none">
@@ -198,10 +199,10 @@
                             </div>
 
                             <div class="form-label-group">
-                                <input type="text" id="telefone" name="telefone" class="form-control" placeholder="Telefone">
+                                <input type="tel" id="telefone" name="telefone" class="form-control" placeholder="Telefone">
                             </div>
                             <div class="form-label-group">
-                                <input type="text" id="celular" name="celular" class="form-control" placeholder="Celular">
+                                <input type="tel" id="celular" name="celular" class="form-control" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}" placeholder="Celular">
                             </div>
                             <div class="form-label-group">
                                 <input type="text" id="cpf" name="cpf" class="form-control" placeholder="CPF">
@@ -232,7 +233,7 @@
                         </form>
                     </div>
                     <div class="mx-auto">
-                        Já é inscrito? <a href="<?= base_url(''); ?>">Acesse</a>
+                        Já é cadastrado? <a href="<?= base_url(''); ?>">Acesse</a>
                         <br /><br />
                     </div>
                 </div>
