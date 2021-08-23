@@ -124,6 +124,9 @@
                                 <?= session('msg') ?>
                                 <button type="button" class="close" data-dismiss="alert"><span>×</span></button>
                             </div>
+                            <?php echo  $data; ?>
+                            <?php echo $imagem; ?>
+                            <?php echo $result ;?>
                         <?php endif ?>
                         <a href="<?= base_url('alterarEventos') ?>">Voltar</a>
                         <h2 class="card-title text-center">Alteração de Evento</h2>
@@ -146,7 +149,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="form-label-group">
-                                    <textarea name="resumo" id="resumo" class="form-control" minilength="100" maxlength="1000" placeholder="Resumo" required><?= $resumo ?></textarea>
+                                    <textarea name="resumo" id="resumo" class="form-control" minlength="3" maxlength="1000" placeholder="Resumo" required><?= $resumo ?></textarea>
                                 </div>
                             </div>
                             <div class="form-group col-sm-6 data" id="inicial">
@@ -189,10 +192,10 @@
 
                                     <select id="assinatura" name="assinatura" class="form-control">
                                         <?php
-                                        foreach ($data as $key => $result) {
+                                        foreach ($data as $key => $resultado) {
                                             $selecionado = $data['assinatura'] == $id;
                                             if ($selecionado) {
-                                                $assinatura = $result['assinatura'];
+                                                $assinatura =  $data['assinatura'] ;
                                             }
                                         }
                                         if ($assinatura == 1) {
@@ -250,31 +253,7 @@
                                     ?>
                                 </div>
                             </div>
-                            <!-- <div class="form-group">
-                                <div class="form-label-group" required>
-                                    <select id="estado" name="estado" class="form-control">
-                                        <option selected disabled>Estado:</option> -->
-
-                                        <?php
-                                        // foreach ($data as $key => $result) {
-                                        //     $selecionado = $data['estado'] == $id;
-                                        //     if ($selecionado) {
-                                        //         $estado = $result['estado'];
-                                        //     }
-                                        // }
-                                        // if ($estado == 26) {
-                                        //     echo '<option value="26"  selected="selected">São Paulo</option>';
-                                        //     echo '<option value="100" >Todos</option>';
-                                        // } else {
-                                        //     echo '<option value="26" >São Paulo</option>';
-                                        //     echo '<option value="100" selected="selected">Todos</option>';
-                                        // }
-                                        ?>
-                                    <!-- </select>
-                                </div>
-                            </div> -->
-
-                            <div class="form-group">
+                                                 <div class="form-group">
                                     <div class="form-label-group">
                                         <input type="text" id="certificado" name="certificado" class="form-control" placeholder="Total de horas" value="<?= $certificado ?>" required autofocus>
                                     </div>
@@ -284,10 +263,10 @@
                                 <div class="form-check" name="tipo" required>
                                     <label class="evento" for="">Evento:</label><br>
                                     <?php
-                                    foreach ($data as $key => $result) {
+                                    foreach ($data as $key => $resultado) {
                                         $selecionado = $data['tipo'] == $id;
                                         if ($selecionado) {
-                                            $tipo = $result['tipo'];
+                                            $tipo = $resultado['tipo'];
                                         }
                                     }
                                     if ($tipo == 1) {

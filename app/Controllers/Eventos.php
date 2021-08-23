@@ -22,24 +22,10 @@ class Eventos extends BaseController
             return redirect()->to(base_url(''));
         } else {
             $model = new EventoModel();
-            $eventos = $model->orderBy('dtFim')->findAll();
-            $newmodel = new UserEvento();
-            $allevents = array();
-            foreach ($eventos as $evento) {
-                $evento['vagas'] = $model->quantidadeVagas($evento['id']);
-                array_push($allevents, $evento);
-            }
-
-            // escolha de cor
-            $eventoatual = $model->select('corSecundaria, corPrimaria ')->findall();
-            $eventoId = $model->select('id')->findall();
-
+            $eventos = $model->orderBy('dtFim')->getEventos(session()->get('id'));
             $data = [
                 'title' => 'Eventos',
-                'data' => $allevents,
-                'eventoUser' =>  $newmodel->buscarEvento(session()->get('id')),
-                // 'limite' => $newmodel->countAll(),
-                // 'colorSecundaria' => $eventoatual,
+                'data' => $eventos,
             ];
 
             echo view('templates/header', $data);
@@ -56,36 +42,16 @@ class Eventos extends BaseController
             return redirect()->to(base_url(''));
         } else {
 
-            $usuario = new UserModel();
-            $user = $usuario->find(session()->get('id'));
-            $newmodel = new UserEvento();
-
-            if ($user['type'] == 2 && $user['estado'] == 26) {
-                $destinado = 3;
-            } else if ($user['type'] == 2) {
-                $destinado = 2;
-            } else {
-                $destinado = 1;
-            }
-            
             $model = new EventoModel();
-
-            $eventos = $model->eventosDisponiveis($user['id'], $destinado);
-
-            $allevents = [];
-            foreach ($eventos as $evento) {
-                $evento['vagas'] = $model->quantidadeVagas($evento['id']);
-                array_push($allevents, $evento);
-            }
-
+            $eventos = $model->orderBy('dtFim')->getEventos(session()->get('id'));
             $data = [
-                'title' => 'Eventos para inscrição',
-                'data' => $allevents,
-                'user' =>  $newmodel->findAll(),
+                'title' => 'Eventos',
+                'data' => $eventos,
             ];
 
             echo view('templates/header', $data);
-            echo view('inscrevase');
+            // echo view('inscrevase');
+            echo view('tdeventos');
             echo view('templates/footer');
         }
     }
@@ -97,6 +63,7 @@ class Eventos extends BaseController
         if (!session()->get('isLoggedIn')) {
             return redirect()->to(base_url(''));
         } else {
+
             $model = new EventoModel();
             $idUser = session()->get('id');
             $uri = current_url(true);
@@ -104,7 +71,8 @@ class Eventos extends BaseController
             $msg = $model->inscricaoEvento($idUser, $idEvento);
             $session = session();
             $session->setFlashdata('success', $msg);
-            return redirect()->to(base_url('eventos'));
+            // var_dump($msg);exit;
+            return redirect()->to(base_url('inicio'));
         }
     }
 
@@ -159,34 +127,24 @@ class Eventos extends BaseController
             return redirect()->to(base_url(''));
         } else {
             $modelEvento = new EventoModel();
-            $modelAtividades = new AtividadeModel();
-
-            $atividades = [
-                'atividades' => $modelAtividades->findAll(),
-            ];
-
-            $eventosM = $modelEvento
-                ->select('*')
-                ->join('usuario_evento', 'usuario_evento.idEvento = eventos.id')
-                ->where('usuario_evento.idUser', session()->get('id'))
-                ->findAll();
-
+            $atividadeM = new AtividadeModel();
+            $eventosM = $modelEvento->getEventos(session()->get('id'));
             $eventos = [];
 
             foreach ($eventosM as $evento) {
-                $atividadeM = new AtividadeModel();
-                $evento['certificado'] = $atividadeM->verificarConclusao(session()->get('id'), $evento['id']);
-                array_push($eventos, $evento);
+                if ($evento['inscrito'] == 'Sim') {
+                    $evento['certificado'] = $atividadeM->verificarConclusao(session()->get('id'), $evento['id']);
+                    array_push($eventos, $evento);
+                }
             }
+
             $data = [
                 'title' => 'Lista de eventos ',
                 'data' => $eventos,
-                // 'color' => $eventoatual['corPrimaria'],
-                // 'colorSecundaria' => $eventoatual['corSecundaria'],
             ];
 
             echo view('templates/header', $data);
-            echo view('listarEventosUser', $atividades);
+            echo view('listarEventosUser');
             echo view('templates/footer');
         }
     }
@@ -243,7 +201,7 @@ class Eventos extends BaseController
                 $rules = [
                     'titulo' => 'trim|required|min_length[3]|max_length[60]',
                     'imagem' => 'uploaded[profile_image]', 'mime_in[profile_image,image/jpg,image/jpeg,image/gif,image/png]', 'max_size[profile_image,4096]',
-                    'resumo' => 'trim|required|min_length[100]|max_length[1000]',
+                    'resumo' => 'trim|required|min_length[3]|max_length[1000]',
                 ];
                 if (!$this->validate($rules)) {
                     $data['validation'] = $this->validator;
@@ -273,7 +231,7 @@ class Eventos extends BaseController
                         if ($model->save($newData)) {
                             $session = session();
                             $session->setFlashdata('success', 'Seu evento foi cadastrado com sucesso!');
-                            return redirect()->to(base_url('eventos'));
+                            return redirect()->to(base_url('inicio'));
                         } else {
                             echo "Erro ao salvar";
                             exit;
@@ -322,6 +280,7 @@ class Eventos extends BaseController
             $evento_id = $uri->getSegment(3);
             $model = new EventoModel();
             $result = $model->find($evento_id);
+            // var_dump($result);exit;
 
             $data = [
                 'title' => 'Editar evento',
@@ -336,7 +295,7 @@ class Eventos extends BaseController
                 $rules = [
                     'titulo' => 'trim|required|min_length[3]|max_length[60]',
                     // 'imagem' => 'uploaded[profile_image]', 'mime_in[profile_image,image/jpg,image/jpeg,image/gif,image/png]', 'max_size[profile_image,4096]',
-                    'resumo' => 'trim|required|min_length[100]|max_length[1000]',
+                    'resumo' => 'trim|required|min_length[3]|max_length[1000]',
                 ];
 
                 if (!$this->validate($rules)) {
@@ -411,6 +370,8 @@ class Eventos extends BaseController
                     }
                 }
             }
+
+            // var_dump($data);exit;
 
             echo view('templates/header', $data);
             echo view('editarEventos', $result);

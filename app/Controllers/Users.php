@@ -47,7 +47,7 @@ class Users extends BaseController
 
                 $acesso->save($data);
 
-                return redirect()->to('eventos');
+                return redirect()->to('inicio');
             }
         }
 
@@ -107,17 +107,19 @@ class Users extends BaseController
 
         $message = "
             Prezado(a) " . $user['firstname'] . ",<br><br>\n
-            Confirmamos sua inscrição no Workshop Judicialização da Saúde <br><br>\n
-            Informamos que, para que se receba o certificado de participação no evento, o interessado deverá:<br>\n
-            1) Estar inscrito no evento <br>\n
+            Confirmamos o seu cadastro na plataforma de eventos virtuais do CRF-SP. <br><br>\n
+            Informamos que, para assistir os eventos e emitir o certificado de participação, você deverá::<br>\n
+            1) Estar inscrito no evento. Dentro da plataforma, escolha o evento e clique em inscrever-se. <br>\n
             2) Logar, nos dias do evento no link " . base_url() . " (o mesmo que se inscreveu), informando e-mail e senha, que funcionará como  lista de presença virtual<br>\n            
-            3) Participar do evento on line<br><br>\n            
+            3) Assistir o evento de forma síncrona (no dia e horário do evento, ao vivo). <br><br>\n            
              
             Solicitamos, ainda, que não divulguem o link gerado pelo YouTube após entrar no evento, evitando que participantes não inscritos assistam o evento sem identificação e, consequentemente, sem direito ao certificado de participação. <br><br>\n
            
             Login: " . $user['email'] . "<br>
             Senha: " . $user['password'] . "<br><br>
 
+            Qualquer dúvida, estamos à disposição.\n<br>
+            
             Atenciosamente,\n<br>
             Conselho Regional de Farmácia do Estado de São Paulo<br>
             eventos@crfsp.org.br<br>
@@ -528,7 +530,7 @@ class Users extends BaseController
                         if ($this->sendEmail($newData)) {
                             $session = session();
                             $session->setFlashdata('success', 'O usuario foi criado com sucesso!');
-                            return redirect()->to(base_url('alteraruser'));
+                            return redirect()->to(base_url('alterarUser'));
                         } else {
                             echo "Erro ao enviar email";
                             exit;

@@ -220,20 +220,28 @@
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link active" id="cad2" href="<?php echo base_url("/eventos/listaEvento") . "/" . $evento['id'] ?>">Atividades</a>
+                                    <a class="nav-link active" id="cad2" href="<?php echo base_url("/inicio/listaEvento") . "/" . $evento['id'] ?>">Atividades</a>
                                 </li>
                                 <li class="nav-item">
                                     <?php
-                                    if ($_SESSION['id'] == $user[0]['idUser'] && ($evento['id']) == $user[0]['idEvento']) {
-                                        echo '<button type="button" class="btn btn-primary cad1" id="btn" data-toggle="modal" data-target="#eventoinscrito">Informação</button>';
+                                    if (session()->get('type') == 2 && session()->get('estado') == 26) {
+                                        $destinado = 3;
+                                    } else if (session()->get('type') == 2) {
+                                        $destinado = 2;
+                                    } else {
+                                        $destinado = 1;
+                                    }
+
+                                    if ($evento['inscrito'] == "Sim") {
+                                        echo '<button type="button" class="btn btn-primary cad1" id="btn" disabled>Inscrito</button>';
                                     } else if ((int)$evento['vagas'] <= 0) {
-                                        echo '<button class="btn btn-primary cad2" id="btn"  data-toggle="modal" data-target="#limite" id="Btn">Informação</button>';
-                                    } else if (((Date($evento['dtInicio'])) > date("Y-m-d H:i:s") && (Date($evento['dtFim'])) > date("Y-m-d H:i:s"))
-                                        || ((Date($evento['dtInicio'])) < date("Y-m-d H:i:s") && (Date($evento['dtFim'])) > date("Y-m-d H:i:s"))
-                                    ) {
-                                        echo '<button class="btn btn-primary cad2" id="btn"  data-toggle="modal" data-target="#inscrevaModal" id="Btn" onclick="preenchermodal(' . $evento['id'] . ');">Inscreva-se</button>';
-                                    } else if ((Date($evento['dtFim'])) < date("Y-m-d H:i:s")) {
-                                        echo '<button type="button" class="btn btn-primary cad1" id="btn" data-toggle="modal" data-target="#desativado" disabled>Encerrado</button>';
+                                        echo '<button class="btn btn-primary cad2" id="btn"  disabled>Esgotado </button>';
+                                    } else if ($evento['Expirado'] == 'Sim') {
+                                        echo '<button type="button" class="btn btn-primary cad1" id="btn" disabled>Encerrado</button>';
+                                    } else if (!(in_array($destinado, json_decode($evento['destinado'])))) {
+                                        echo '<button class="btn btn-primary cad2" id="btn"  disabled>Inscreva-se</button>';
+                                    } else if ($evento['Expirado'] == 'Não') {
+                                        echo '<button class="btn btn-primary cad2" id="btn" data-toggle="modal" data-target="#inscrevaModal" onclick="preenchermodal(' . $evento['id'] . ');">Inscreva-se</button>';
                                     }
                                     ?>
                                 </li>

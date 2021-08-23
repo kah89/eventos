@@ -58,7 +58,7 @@
                             }
 
                             if ($inscrito == true) {
-                                if ($atividade['dtInicio'] > date("d-m-Y H:i:s")) {
+                                if ($atividade['dtInicio'] < date("d-m-Y H:i:s")) {
                                     echo '<a class="btn btn-primary" id="cad" href= ' . base_url('/atividades/inscreverAtividade') . "/" . $atividade['id'] . ' onclick="inscreverAtividade(' . $atividade['id'] . ');"  role="button" >Ir</a>';
                                 } else {
                                     echo '<a class="btn btn-primary" id="cad" disabled>Ir</a>';

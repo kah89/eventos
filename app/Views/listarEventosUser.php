@@ -83,7 +83,7 @@
         max-height: 200px;
     }
 
-    #encerramento{
+    #encerramento {
         margin-top: 10px;
     }
 </style>
@@ -124,37 +124,24 @@
                         . '<ul class="nav nav-pills ">'
 
                         . '<li class="nav-item">'
-                        . '<a class="nav-link active" id="cad2"  href="' . base_url("/eventos/listaEvento") . "/" . $evento['id'] . '">Ingressar</a>'
+                        . '<a class="nav-link active" id="cad2"  href="' . base_url("inicio/listaEvento") . "/" . $evento['id'] . '">Ingressar</a>'
                         . '</li>';
-                            if(Date($evento['dtFim']) <  date("d-m-Y H:i:s")){
-                         '<li class="nav-item">';
-                    $htm .= '<a  data-toggle="modal"';
-                    if ($evento['certificado'] == 'Evento não gera certificado.') {
-                        if (Date($evento['dtFim']) >  date("d-m-Y H:i:s")) {
-                            $htm .= 'data-target="#certificadoModalN"'
-                                . ' class="nav-link active btn1" id="cad2" >Info</a>';
-                        } else {
+
+                    '<li class="nav-item">';
+                    if ($evento['Expirado'] == 'Sim') {
+                        $htm .= '<a  data-toggle="modal"';
+                        if ($evento['certificado'] == 'Evento não gera certificado.') {
                             $htm .= 'data-target="#certificadoModalN"'
                                 . ' class="nav-link active btn1" id="cad2"" >Info</a>';
-                        }
-                    } else if ($evento['certificado'] == 'Não concluiu todas as atividades.') {
-                        if (Date($evento['dtFim']) >  date("d-m-Y H:i:s")) {
-                            $htm .= 'data-target="#certificadoModalNC"'
-                                . ' class="nav-link active btn1" id="cad2" >Info</a>';
-                        } else {
+                        } else if ($evento['certificado'] == 'Não concluiu todas as atividades.') {
                             $htm .= 'data-target="#certificadoModalNC"'
                                 . ' class="nav-link active btn1" id="cad2"" >Info</a>';
-                        }
-                    } else {
-                        if (Date($evento['dtFim']) >  date("d-m-Y H:i:s")) {
-                            $htm .= 'data-target="#certificadoModal"'
-                                . 'onclick="setarCampos(' . $evento['id'] . ');"  class="nav-link active btn1" id="cad2">Gerar</a>';
                         } else {
                             $htm .= 'data-target="#certificadoModal"'
                                 . 'onclick="setarCampos(' . $evento['id'] . ');"  class="nav-link active btn1" id="cad2">Gerar</a>';
                         }
                     }
-                }
+
                     $htm .= '</li></ul>'
                         . '</div>'
                         . '</div>';
@@ -169,8 +156,8 @@
     </div>
 
 <?php
-            
-        } else {
+
+            } else {
                 echo "<h3>Não esta cadastrado em nenhum evento!</h3>";
             }
 ?>
@@ -272,7 +259,7 @@
     function setarCampos($id) {
         var link = '<?php echo (base_url("/certificadoVizualizacao") . "/");  ?>';
         document.getElementById("vizualizar").href = link + $id;
-        var link = '<?php echo (base_url("/eventos/gerarCertificado") . "/");  ?>';
+        var link = '<?php echo (base_url("/inicio/gerarCertificado") . "/");  ?>';
         document.getElementById("btnEmitir").href = link + $id;
     }
 

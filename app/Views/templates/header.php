@@ -127,7 +127,7 @@
                     ) {
                     ?><ul class="navbar-nav mr-auto" id="inicio">
                             <li class="nav-item">
-                                <a class="nav-link" href="<?= base_url('inicio'); ?>"><i class="fa fa-home"></i> Início</a>
+                            <a class="nav-link" href="<?= base_url('inicio'); ?>"> <img src="<?= base_url('public/img/logo_crfsp_neg.png'); ?>" href="<?= base_url('inicio'); ?>" style="height: 50px;" /></a>
                             </li>
                         </ul>
                         <ul class="navbar-nav mr-auto ">
@@ -164,9 +164,9 @@
                             </li>
                         </ul>
                         <ul class="navbar-nav mr-auto ">
-                            <li class="nav-item dropdown nav1 ">
+                            <!-- <li class="nav-item dropdown nav1 ">
                                 <a class="nav-link" href="<?= base_url('inscrevase') ?>"></i>Inscreva-se</a>
-                            </li>
+                            </li> -->
                             <li class="nav-item dropdown nav1 ">
                                 <a class="nav-link" href="<?= base_url('listarEventosUser') ?>"></i>Minhas inscrições</a>
                             </li>

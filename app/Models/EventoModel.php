@@ -52,8 +52,9 @@ class EventoModel extends Model
                         $result = "Erro ao efetuar inscrição";
                     }
                 } else {
-                    $result = "Não é possivel inscrever nesse evento pois
-                     conflita com outro evento ou este evento não é destinado para seu usuario.";
+                    // $result = "Não é possivel inscrever nesse evento pois
+                    //  conflita com outro evento ou este evento não é destinado para seu usuario.";
+                    $result = "Erro ao efetuar inscrição";
                 }
             } else {
                 $result = "Limite de inscrições para este evento atingido!";
@@ -169,7 +170,7 @@ class EventoModel extends Model
             ->select('count(usuario_evento.idEvento) as count')
             ->where('idEvento', $idEvento)->get(1)->getRowArray();
 
-            // var_dump($limite['limite']);exit;
+        // var_dump($limite['limite']);exit;
         $limite = (int)$limite['limite'];
         $count = (int)$count['count'];
         $result =   $limite - $count;
@@ -264,22 +265,49 @@ class EventoModel extends Model
 
 
     public function eventosDisponiveis($idUser = null, $destinado = null)
-    {        
-        $q = $this->db->query('SELECT eventos.id, eventos.titulo, eventos.tipo, eventos.destinado, eventos.resumo, eventos.imagem, eventos.assinatura, eventos.dtInicio, eventos.dtFim, eventos.limite, eventos.corPrimaria, eventos.corSecundaria from eventos 
+    {
+        $query = 'SELECT eventos.id, eventos.titulo, eventos.tipo, eventos.destinado, eventos.resumo, eventos.imagem, eventos.assinatura, eventos.dtInicio, eventos.dtFim, eventos.limite, eventos.corPrimaria, eventos.corSecundaria from eventos 
         LEFT JOIN usuario_evento 
         ON usuario_evento.idEvento = eventos.id 
         LEFT JOIN users 
-        ON usuario_evento.idUser = users.id
-        
+        ON usuario_evento.idUser = users.id        
         WHERE eventos.id NOT IN (SELECT idEvento from usuario_evento 
-        WHERE usuario_evento.idUser = '.$idUser.')
-        AND eventos.dtFim > NOW()
-        
+        WHERE usuario_evento.idUser = ';
+
+        $query .= $idUser . ')
+        AND eventos.dtFim > NOW()        
         AND  eventos.limite > ( 
-        SELECT COUNT(idUser) AS inscritos FROM usuario_evento WHERE usuario_evento.idEvento = eventos.id)
-        AND INSTR(eventos.destinado, "'.$destinado.'")  ');     
-        
-return $q->getResultArray();
+        SELECT COUNT(idUser) AS inscritos FROM usuario_evento WHERE usuario_evento.idEvento = eventos.id)';
+
+        if (count($destinado) > 1) {
+            $query .= 'AND (INSTR(eventos.destinado, "' . $destinado[0] . '") ';
+            for ($i = 1; $i <= count($destinado) - 1; $i++) {
+                $query .= 'OR INSTR(eventos.destinado, "' . $destinado[$i] . '")';
+            }
+            $query .= ') ';
+        } else {
+            $query .= 'AND INSTR(eventos.destinado, "' . $destinado[0] . '") ';
+        }
+
+
+        $q = $this->db->query($query);
+
+        return $q->getResultArray();
     }
 
+    public function getEventos($userID)
+    {
+        $query = "SELECT eventos.* 
+        ,IF((SELECT idEvento FROM  usuario_evento  WHERE idEvento = eventos.id AND idUser = " . $userID . ")>0, 'Sim', 'Não') AS inscrito 	 
+        ,IF(eventos.dtFim > NOW(), 'Não', 'Sim') AS Expirado 	 
+        ,IF( eventos.limite > (SELECT COUNT(idUser) AS inscritos FROM usuario_evento WHERE usuario_evento.idEvento = eventos.id), 'Não', 'Sim') AS limiteExcedido
+        , (eventos.limite - (SELECT COUNT(usuario_evento.idEvento) as totalInscritos FROM  usuario_evento 
+         WHERE idEvento = eventos.id)) AS vagas  
+             FROM eventos 	 	     	 
+             left join usuario_evento on eventos.id = usuario_evento.idEvento	 
+         GROUP BY  eventos.id";
+        $q = $this->db->query($query);
+
+        return $q->getResultArray();
+    }
 }
