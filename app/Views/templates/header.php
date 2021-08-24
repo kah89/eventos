@@ -175,7 +175,7 @@
                                 <a class="nav-link" href="<?= base_url('inicio'); ?>"> <img id="logoMenu" src="<?= base_url('public/img/logo_crfsp_neg.png'); ?>" href="<?= base_url('inicio'); ?>" style="height: 50px;" /></a>
                             </li>
                         </ul>
-                        <ul class="navbar-nav mr-auto ">
+                        <ul class="navbar-nav mr-auto menu">
                             <!-- <li class="nav-item dropdown nav1 ">
                                 <a class="nav-link" href="<?= base_url('inscrevase') ?>"></i>Inscreva-se</a>
                             </li> -->

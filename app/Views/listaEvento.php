@@ -1,5 +1,6 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.css" />
 <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.js"></script>
+<script src="https://rawgit.com/HugoGiraudel/Countdown.js/master/countdown.js"></script>
 <style>
     h1,
     th {
@@ -63,14 +64,13 @@
                             }
 
                             if ($inscrito == true) {
-                                if ($atividade['dtInicio'] > date("d-m-Y H:i:s")) {
-                                    echo '<a class="btn btn-primary" id="cad" href= ' . base_url('/atividades/inscreverAtividade') . "/" . $atividade['id'] . ' onclick="inscreverAtividade(' . $atividade['id'] . ');"  role="button" >Ir</a>';
-                                } else {
+                          
+                                    echo '<a class="btn btn-primary" id="cad" href= ' . base_url('/atividades/inscreverAtividade') . "/" . $atividade['id'] . ' onclick="inscreverAtividade(' . $atividade['id'] . ');"  role="button" style="display:none;" >Ir</a>';
                                     echo '
-                                    <span id="countdown" class="timer"> </span>';
-                                }
+                                    <span id="countdown" class="timer"></span>';
+                                
                             } else {
-                                echo '<a class="btn btn-primary" id="cad" data-toggle="modal" data-target="#sobreModal">Ir</a>';
+                                echo '<a class="btn btn-primary" id="cad1" data-toggle="modal" data-target="#sobreModal">Ir</a>';
                             }
                             echo  '</td></tr>';
                         }
@@ -100,34 +100,42 @@
             </div>
         </div>
     </div>
+    <script>
+        function inscreverAtividade($id) {
+            var link = '<?php echo (base_url("/atividades/inscreverAtividade") . "/");  ?>';
+            document.getElementById("cad").href = link + $id;
+        }
+
+
+        var upgradeTime =
+            <?php
+            $timestamp = strtotime($data[0]['dtInicio']) - strtotime(date("d-m-Y H:i:s"));
+            echo "$timestamp";
+            ?>;
+
+        var seconds = upgradeTime;
+
+        function timer() {
+            var days = Math.floor(seconds / 24 / 60 / 60);
+            var hoursLeft = Math.floor((seconds) - (days * 86400));
+            var hours = Math.floor(hoursLeft / 3600);
+            var minutesLeft = Math.floor((hoursLeft) - (hours * 3600));
+            var minutes = Math.floor(minutesLeft / 60);
+            var remainingSeconds = seconds % 60;
+
+            function pad(n) {
+                return (n < 10 ? "0" + n : n);
+            }
+            document.getElementById('countdown').innerHTML = pad(days) + ":" + pad(hours) + ":" + pad(minutes) + ":" + pad(remainingSeconds);
+            if (seconds <= 0) {
+                clearInterval(countdownTimer);
+                document.getElementById('countdown').innerHTML = '';
+                document.getElementById('cad').style.display = "block";
+                
+            } else {
+                seconds--;
+            }
+        }
+        var countdownTimer = setInterval('timer()', 1000);
+    </script>
 </main>
-<script>
-    function inscreverAtividade($id) {
-        var link = '<?php echo (base_url("/atividades/inscreverAtividade") . "/");  ?>';
-        document.getElementById("cad").href = link + $id;
-    }
-
-    var upgradeTime = 172801;
-    var seconds = upgradeTime;
-
-    function timer() {
-        var days = Math.floor(seconds / 24 / 60 / 60);
-        var hoursLeft = Math.floor((seconds) - (days * 86400));
-        var hours = Math.floor(hoursLeft / 3600);
-        var minutesLeft = Math.floor((hoursLeft) - (hours * 3600));
-        var minutes = Math.floor(minutesLeft / 60);
-        var remainingSeconds = seconds % 60;
-
-        function pad(n) {
-            return (n < 10 ? "0" + n : n);
-        }
-        document.getElementById('countdown').innerHTML = pad(days) + ":" + pad(hours) + ":" + pad(minutes) + ":" + pad(remainingSeconds);
-        if (seconds == 0) {
-            clearInterval(countdownTimer);
-            document.getElementById('countdown').innerHTML = "Completed";
-        } else {
-            seconds--;
-        }
-    }
-    var countdownTimer = setInterval('timer()', 1000);
-</script>

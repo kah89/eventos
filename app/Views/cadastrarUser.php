@@ -66,6 +66,14 @@
         text-align: center;
         color: red;
     }
+
+    .eventos{
+        margin-left: 190px;
+    }
+
+    .session{
+        margin-left: 190px;
+    }
 </style>
 <script type="text/javascript">
     $(function() {

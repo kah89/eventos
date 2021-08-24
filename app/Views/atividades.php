@@ -14,6 +14,13 @@
         font-size: 25px;
         margin: 20px;
     }
+    .eventos{
+        margin-left: 190px;
+    }
+
+    .session{
+        margin-left: 190px;
+    }
 </style>
 <main>
     <div class="container bg-white" style="padding-bottom: 10em;">

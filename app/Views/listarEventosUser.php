@@ -86,6 +86,14 @@
     #encerramento {
         margin-top: 10px;
     }
+
+    .eventos{
+        margin-left: 190px;
+    }
+
+    .session{
+        margin-left: 190px;
+    }
 </style>
 <main>
     <div class="container" style="padding-bottom: 10em;">

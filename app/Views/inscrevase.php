@@ -133,6 +133,14 @@
         text-align: center;
         height: 40px
     }
+
+    .eventos{
+        margin-left: 190px;
+    }
+
+    .session{
+        margin-left: 190px;
+    }
 </style>
 <script>
     $msg = "";

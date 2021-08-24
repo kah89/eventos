@@ -247,6 +247,14 @@
     .encerrado:hover{
         background-color:#0b3e7a !important;
     }
+
+    .eventos{
+        margin-left: 180px;
+    }
+
+    .session{
+        margin-left: 180px;
+    }
 </style>
 <script>
     $msg = "";
@@ -359,8 +367,10 @@
                                             $destinado = 3;
                                         } else if (session()->get('type') == 2) {
                                             $destinado = 2;
-                                        } else {
+                                        } else if (session()->get('type') == 1) {
                                             $destinado = 1;
+                                        }else{
+                                            $destinado = 4;
                                         }
 
                                         if ($evento['inscrito'] == "Sim") {

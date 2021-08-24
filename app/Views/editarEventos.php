@@ -97,6 +97,14 @@
         float: right;
         margin-top: 15px;
     }
+
+    .eventos{
+        margin-left: 190px;
+    }
+
+    .session{
+        margin-left: 190px;
+    }
 </style>
 <main>
     <div class="container">

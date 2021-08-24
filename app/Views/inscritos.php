@@ -51,6 +51,14 @@
         color: navy;
         width: 100%;
     }
+
+    .eventos{
+        margin-left: 190px;
+    }
+
+    .session{
+        margin-left: 190px;
+    }
 </style>
 <script>
     //gerar arquivo em excel
