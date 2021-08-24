@@ -241,19 +241,45 @@
     .encerradoTitle {
         background-color: #C0C0C0 !important;
     }
+
     .encerrado {
         background-color: #C0C0C0 !important;
     }
-    .encerrado:hover{
-        background-color:#0b3e7a !important;
+
+    .encerrado:hover {
+        background-color: #0b3e7a !important;
     }
 
-    .eventos{
+    .eventos {
         margin-left: 180px;
     }
 
-    .session{
+    .session {
         margin-left: 180px;
+    }
+
+    [data-tooltip] {
+        position: relative;
+        font-weight: bold;
+    }
+
+    [data-tooltip]:after {
+        display: none;
+        position: absolute;
+        top: -100px;
+        margin-left: -30px;
+        left: 30px;
+        padding: 5px;
+        z-index: 3;
+        border-radius: 3px;
+        left: calc(100% + 2px);
+        content: attr(data-tooltip);
+        background-color: #0095ff;
+        color: White;
+    }
+
+    [data-tooltip]:hover:after {
+        display: block;
     }
 </style>
 <script>
@@ -369,7 +395,7 @@
                                             $destinado = 2;
                                         } else if (session()->get('type') == 1) {
                                             $destinado = 1;
-                                        }else{
+                                        } else {
                                             $destinado = 4;
                                         }
 
@@ -380,7 +406,7 @@
                                         } else if ($evento['Expirado'] == 'Sim') {
                                             echo '<button type="button" class="btn btn-primary cad1" id="btn" disabled>Encerrado</button>';
                                         } else if (!(in_array($destinado, json_decode($evento['destinado'])))) {
-                                            echo '<button class="btn btn-primary cad2" id="btn"  disabled>Inscreva-se</button>';
+                                            echo '<button class="btn btn-primary cad2" id="btn"  disabled><span data-tooltip="Infelizmente este evento não é destinado para você">Inscreva-se</span></button>';
                                         } else if ($evento['Expirado'] == 'Não') {
                                             echo '<button class="btn btn-primary cad2" id="btn" data-toggle="modal" data-target="#inscrevaModal" onclick="preenchermodal(' . $evento['id'] . ');">Inscreva-se</button>';
                                         }
@@ -395,7 +421,7 @@
                     }
                 }
 
-                
+
 
                 foreach ($data as $key => $evento) {
                     if ($evento['dtFim'] < date("Y-m-d")) {
@@ -451,7 +477,7 @@
                                         }
                                     } ?>
                                     <br>
-                                    <strong>Carga horária:</strong> <?php echo $evento['certificado']; ?> horas
+                                    <strong>Carga horária:</strong> <?php echo $evento['certificado']; ?> horas</br>
                                     <?php
                                     if ($evento['tipo'] == '1') {
 
@@ -608,6 +634,6 @@
             toastr.info($msg);
         }
 
-        //$('#modalInfoTrigger').click();
+        // $('#modalInfoTrigger').click();
     </script>
 </main>

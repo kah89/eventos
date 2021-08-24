@@ -176,9 +176,9 @@
                             </li>
                         </ul>
                         <ul class="navbar-nav mr-auto menu">
-                            <!-- <li class="nav-item dropdown nav1 ">
+                            <li class="nav-item dropdown nav1 ">
                                 <a class="nav-link" href="<?= base_url('inscrevase') ?>"></i>Inscreva-se</a>
-                            </li> -->
+                            </li>
                             <li class="nav-item dropdown nav1 ">
                                 <a class="nav-link" href="<?= base_url('listarEventosUser') ?>"></i>Minhas inscrições</a>
                             </li>
