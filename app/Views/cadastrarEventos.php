@@ -123,7 +123,7 @@
         margin-top: -49px;
     }
 
-    #certificado{
+    #certificado {
         width: 200px;
         float: right;
         margin-right: 503px;
@@ -143,18 +143,22 @@
 
     }
 
-    .session {
-        margin-left: 270px;
-        text-transform: uppercase;
-    }
 
-    .menu{
-        margin-left: 270px;
-    }
-    
-    .nav2{
-        margin-left: 80px;
-        margin-right:  80px ;
+
+    @media only screen and (min-width: 1200px) {
+        .session {
+            margin-left: 255px;
+            text-transform: uppercase;
+        }
+
+        .menu {
+            margin-left: 255px;
+        }
+
+        .nav2 {
+            margin-left: 70px;
+            margin-right: 70px;
+        }
     }
 </style>
 <script language='Javascript'>

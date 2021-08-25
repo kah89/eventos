@@ -59,25 +59,27 @@
         text-transform: uppercase;
     }
 
-    .menu{
-        margin-left: 250px;
-    }
-    
-    .nav2{
-        margin-left: 80px;
-        margin-right:  80px ;
-    }
 
-    #navbarNav {
-        font-size: 16px;
+
+    @media only screen and (min-width: 1200px) {
+        .menu {
+            margin-left: 250px;
+        }
+
+        .nav2 {
+            margin-left: 80px;
+            margin-right: 80px;
+        }
+
+        #navbarNav {
+            font-size: 16px;
+        }
     }
 
     body {
 
         background-color: #F5F5F5;
     }
-
-    
 </style>
 
 <main id="t3-content">

@@ -203,19 +203,23 @@
         background-color: #0b3e7a !important;
     }
 
-    .session {
-        margin-left: 270px;
-        text-transform: uppercase;
+    @media only screen and (min-width: 1200px) {
+        .session {
+            margin-left: 250px;
+            text-transform: uppercase;
+        }
+
+        .menu {
+            margin-left: 250px;
+        }
+
+        .nav2 {
+            margin-left: 65px;
+            margin-right: 65px;
+        }
     }
 
-    .menu {
-        margin-left: 270px;
-    }
 
-    .nav2 {
-        margin-left: 80px;
-        margin-right: 80px;
-    }
 
     [data-tooltip] {
         position: relative;

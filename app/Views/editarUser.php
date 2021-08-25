@@ -60,20 +60,21 @@
         box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
     }
 
-    .session {
-        margin-left: 270px;
-        text-transform: uppercase;
-    }
+    @media only screen and (min-width: 1200px) {
+        .session {
+            margin-left: 250px;
+            text-transform: uppercase;
+        }
 
-    .menu{
-        margin-left: 270px;
+        .menu {
+            margin-left: 250px;
+        }
+
+        .nav2 {
+            margin-left: 70px;
+            margin-right: 70px;
+        }
     }
-    
-    .nav2{
-        margin-left: 80px;
-        margin-right:  80px ;
-    }
-   
 </style>
 <script type="text/javascript">
     $(function() {

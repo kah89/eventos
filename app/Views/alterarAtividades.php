@@ -7,8 +7,8 @@
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script> 
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script> 
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script>
 
 <style>
     h2 {
@@ -78,20 +78,23 @@
         box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
     }
 
-    .session {
-        margin-left: 270px;
-        text-transform: uppercase;
-    }
 
-    .menu{
-        margin-left: 270px;
-    }
-    
-    .nav2{
-        margin-left: 80px;
-        margin-right:  80px ;
-    }
 
+    @media only screen and (min-width: 1200px) {
+        .session {
+            margin-left: 260px;
+            text-transform: uppercase;
+        }
+
+        .menu {
+            margin-left: 260px;
+        }
+
+        .nav2 {
+            margin-left: 70px;
+            margin-right: 70px;
+        }
+    }
 </style>
 <script>
     $(document).ready(function() {
@@ -116,32 +119,32 @@
             <div class="row">
                 <div class="col-12" id="divConteudo">
                     <h2 style="text-align: center; font-size:30px">Atividades</h2>
-                    <a class="btn btn-primary  text-uppercase" id="cad" type="submit" href="<?= base_url('cadastrarAtividades') ?>" >Cadastrar</a>
+                    <a class="btn btn-primary  text-uppercase" id="cad" type="submit" href="<?= base_url('cadastrarAtividades') ?>">Cadastrar</a>
                     <?php if (session()->get('success')) { ?>
                         <script>
                             $msg = '<?= session()->get('success'); ?>';
                         </script>
                     <?php } ?>
                     <table class="table-hover display" id="tabela">
-                   
+
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>ID Evento</th> 
+                                <th>ID Evento</th>
                                 <th>Titulo</th>
                                 <th>Data Inicio</th>
                                 <th>Data Fim</th>
                                 <th>Certificado</th>
-                                <th>Ações</th> 
+                                <th>Ações</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach ($data as $key => $atividade) {
-                            if ($atividade['tipo'] == '1') {
-                                $tipo = 'Sim';
-                            } else {
-                                $tipo = 'Não';
-                            }
+                                if ($atividade['tipo'] == '1') {
+                                    $tipo = 'Sim';
+                                } else {
+                                    $tipo = 'Não';
+                                }
                                 echo '<tr><td>' . $atividade['id'] . '</td><td>' . $atividade['idEvento'] . '</td><td>' . $atividade['titulo'] . '</td><td>' . date_format(new DateTime($atividade['dtInicio']), "d/m/Y  - H:i") . '</td><td>' . date_format(new DateTime($atividade['dtFim']), "d/m/Y  - H:i") . '</td><td>' .  $tipo . '</td>
                                <td><a href=' . base_url('editarAtividades') . "/" . $atividade['id'] . '><i class="fa fa-edit" style="color: blue"></a></i>
                                <a href=' . base_url('atividades/deletar') . "/" . $atividade['id'] . '><i class="fa fa-trash"  style="color: red"></a></i>
@@ -159,25 +162,24 @@
     ?>
 </main>
 <script>
-        toastr.options = {
-            "closeButton": true,
-            "newestOnTop": false,
-            "progressBar": true,
-            "preventDuplicates": false,
-            "positionClass": "toast-top-right",
-            "onclick": null,
-            "showDuration": "300",
-            "hideDuration": "1000",
-            "timeOut": "5000",
-            "extendedTimeOut": "1000",
-            "showEasing": "swing",
-            "hideEasing": "linear",
-            "showMethod": "fadeIn",
-            "hideMethod": "fadeOut",
-        }
+    toastr.options = {
+        "closeButton": true,
+        "newestOnTop": false,
+        "progressBar": true,
+        "preventDuplicates": false,
+        "positionClass": "toast-top-right",
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut",
+    }
 
-        if ($msg) {
-            toastr.info($msg);
-        }
-    
+    if ($msg) {
+        toastr.info($msg);
+    }
 </script>

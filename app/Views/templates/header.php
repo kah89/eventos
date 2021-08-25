@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="pt-Br">
 
@@ -93,16 +92,31 @@
         }
 
 
-        @media only screen and (max-width: 990px) {
+        @media only screen and (min-width: 250px) {
             .logo-img {
-                width: 80%;
-                margin-top: -70px;
+                min-width: 120px;
+            }
+
+            #anchorpt1 {
+                margin-top: 20px;
+                width: 250px;
+                font-size: 12px;
             }
         }
 
+
+        .navbar {
+            width: 100%;
+        }
+
+        .custom {
+            width: 100%;
+        }
+
         #anchorpt1 {
-            margin-left: 800px;
             margin-top: 20px;
+            float: right;
+            width: 750px;
         }
 
         .anchor {
@@ -110,8 +124,10 @@
         }
 
         .logo-img {
-            width: 80%;
-            margin-top: -70px;
+            width: 50%;
+            margin-left: 20px;
+            margin-top: 10px;
+            margin-bottom: 10px;
         }
     </style>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ST5941BK0S"></script>
@@ -260,38 +276,37 @@
 
 <header id="t3-header">
     <div class="row">
-        <div class="col-12">
+        <div class="col-3 col-3 col-sm-3">
+            <div class="logo-image">
+                <a href="<?= base_url('inicio'); ?>" title="CRF-SP - Conselho Regional de Farmácia do Estado de São Paulo">
+                    <img class="logo-img" src="<?= base_url('public/img/logo.png'); ?>" alt="CRF-SP - Conselho Regional de Farmácia do Estado de São Paulo" />
+                </a>
+            </div>
+        </div>
+        <div class="col-9 col-9 col-sm-9">
             <div class="site-anchor " style="margin-top: -5px;margin-bottom: 5px;">
                 <div class="custom">
-                    <div class="row">
-                        <div id="anchorpt1" class="col-12 col-md-6">
-                            <a accesskey="1" href="javascript:void(0);" class="anchor acess" title="conteudo" onclick="abrirConteudo()">
-                                ir para conteudo <span>1</span>
-                            </a>
-                            <a accesskey="2" href="javascript:void(0);" class="anchor acess" title="menu" onclick="abrirMenu()">
-                                ir para menu <span>2</span>
-                            </a>
-                            <a accesskey="3" href="javascript:void(0);" class="anchor acess" title="rodapé" onclick="abrirRodape()">
-                                ir para rodapé <span>3</span>
-                            </a>
-                            <a accesskey="4" href="javascript:void(0);" class="anchor acess" title="contraste" onclick="contraste();" id="contrasteLink">
-                                alto contraste <span>4</span>
-                            </a>
-                            <a accesskey="5" href="<?= base_url('acessibilidade'); ?>" class="anchor acess " title="acessibilidade">
-                                acessibilidade <span>5</span>
-                            </a>
-                        </div>
+                    <div id="anchorpt1" class="col-12 col-md-12">
+                        <a accesskey="1" href="javascript:void(0);" class="anchor acess" title="conteudo" onclick="abrirConteudo()">
+                            ir para conteudo <span>1</span>
+                        </a>
+                        <a accesskey="2" href="javascript:void(0);" class="anchor acess" title="menu" onclick="abrirMenu()">
+                            ir para menu <span>2</span>
+                        </a>
+                        <a accesskey="3" href="javascript:void(0);" class="anchor acess" title="rodapé" onclick="abrirRodape()">
+                            ir para rodapé <span>3</span>
+                        </a>
+                        <a accesskey="4" href="javascript:void(0);" class="anchor acess" title="contraste" onclick="contraste();" id="contrasteLink">
+                            alto contraste <span>4</span>
+                        </a>
+                        <a accesskey="5" href="<?= base_url('acessibilidade'); ?>" class="anchor acess " title="acessibilidade">
+                            acessibilidade <span>5</span>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-3 col-sm-3 logo">
-            <div class="logo-image">
-                <a href="<?= base_url('inicio'); ?>"title="CRF-SP - Conselho Regional de Farmácia do Estado de São Paulo">
-                    <img class="logo-img" src="<?= base_url('public/img/logo.png'); ?>"  alt="CRF-SP - Conselho Regional de Farmácia do Estado de São Paulo" />
-                </a>
-            </div>
-        </div>
+
         <div class="col-9 col-sm-9 header-utils">
             <div class="social-icons ">
                 <div vw class="enabled">
@@ -313,89 +328,95 @@
     <?php $uri = service('uri'); ?>
     <?php if (session()->get('isLoggedIn')) : ?>
 
-        <nav class="navbar navbar-expand-lg navbar-dark bg-info bg-custom" role="navigation">
+        <nav class="navbar navbar-expand-lg navbar-dark  bg-custom row">
             <div class="container" id="menuanchor">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
 
+                <?php
+                if (
+                    isset($_SESSION['id']) &&
+                    $_SESSION['type'] == 0
+                ) {
+                ?>
+                    <div class="col-12 col-sm-12 col-lg-12">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav mr-auto" id="inicio">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="<?= base_url('inicio'); ?>">Inicio</a>
+                                </li>
+                            </ul>
+                            <ul class="navbar-nav mr-auto menu ">
+                                <li class="nav-item dropdown ">
+                                    <a class="nav-link evento" href="<?= base_url('alterarEventos') ?>">Eventos</a>
+                                </li>
+                                <li class="nav-item dropdown nav2 ">
+                                    <a class="nav-link" href="<?= base_url('alterarAtividades') ?>">Atividades</a>
+                                </li>
+                                <li class="nav-item dropdown  ">
+                                    <a class="nav-link user" href="<?= base_url('alterarUser') ?>">Usuários</a>
+                                </li>
+                            </ul>
 
-                    <?php
-                    if (
-                        isset($_SESSION['id']) &&
-                        $_SESSION['type'] == 0
-                    ) {
-                    ?><ul class="navbar-nav mr-auto" id="inicio">
-                            <li class="nav-item">
-                                <a class="nav-link" href="<?= base_url('inicio'); ?>">Inicio</a>
-                            </li>
-                        </ul>
-                        <ul class="navbar-nav mr-auto menu ">
-                            <li class="nav-item dropdown ">
-                                <a class="nav-link evento" href="<?= base_url('alterarEventos') ?>">Eventos</a>
-                            </li>
-                            <li class="nav-item dropdown nav2 ">
-                                <a class="nav-link" href="<?= base_url('alterarAtividades') ?>">Atividades</a>
-                            </li>
-                            <li class="nav-item dropdown  ">
-                                <a class="nav-link user" href="<?= base_url('alterarUser') ?>">Usuários</a>
-                            </li>
-                        </ul>
+                            <ul class="navbar-nav mr-auto  session">
+                                <li class="nav-item dropdown ">
+                                    <a class="nav-link dropdown-toggle fa fa-sign-out" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <?php
+                                        echo $_SESSION['firstname'];
+                                        ?>
 
-                        <ul class="navbar-nav mr-auto  session">
-                            <li class="nav-item dropdown ">
-                                <a class="nav-link dropdown-toggle fa fa-sign-out" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <?php
-                                    echo $_SESSION['firstname'];
-                                    ?>
-
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" href="<?php echo base_url('editarUser') . '/' . $_SESSION['id'] ?>">Editar</a>
-                                    <a class="dropdown-item" href="<?= base_url('logout') ?>">Sair</a>
-                                </div>
-                        </ul>
-                    <?php
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                        <a class="dropdown-item" href="<?php echo base_url('editarUser') . '/' . $_SESSION['id'] ?>">Editar</a>
+                                        <a class="dropdown-item" href="<?= base_url('logout') ?>">Sair</a>
+                                    </div>
+                            </ul>
+                        <?php
                     } else {
-                    ?>
-                        <ul class="navbar-nav mr-auto" id="inicio">
-                            <li class="nav-item">
-                                <a class="nav-link" href="<?= base_url('inicio'); ?>">Inicio</a>
-                            </li>
-                        </ul>
-                        <ul class="navbar-nav mr-auto menu">
-                            <li class="nav-item dropdown ">
-                                <!-- <a class="nav-link" href="<?= base_url('inscrevase') ?>">Inscreva-se</a> -->
-                            </li>
-                            <li class="nav-item dropdown nav2 ">
-                                <a class="nav-link" href="<?= base_url('listarEventosUser') ?>">Minhas inscrições</a>
-                            </li>
-                            <!-- <li class="nav-item dropdown  ">
+                        ?>
+                            <div class="col-12 col-sm-12 col-lg-12">
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon"></span>
+                                </button>
+                                <div class="collapse navbar-collapse" id="navbarNav">
+                                    <ul class="navbar-nav" id="inicio">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="<?= base_url('inicio'); ?>">Inicio</a>
+                                        </li>
+                                    </ul>
+                                    <ul class="navbar-nav  menu">
+                                        <li class="nav-item dropdown ">
+                                            <!-- <a class="nav-link" href="<?= base_url('inscrevase') ?>">Inscreva-se</a> -->
+                                        </li>
+                                        <li class="nav-item  nav2 ">
+                                            <a class="nav-link" href="<?= base_url('listarEventosUser') ?>">Minhas inscrições</a>
+                                        </li>
+                                        <!-- <li class="nav-item dropdown  ">
                                 <a class="nav-link" href="<?= base_url('listarAtividades') ?>">Atividades</a>
                             </li> -->
-                        </ul>
+                                    </ul>
 
-                        <ul class="navbar-nav mr-auto session">
-                            <li class="nav-item dropdown ">
-                                <a class="nav-link dropdown-toggle fa fa-sign-out" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <?php
-                                    echo $_SESSION['firstname'];
-                                    ?>
+                                    <ul class="navbar-nav session">
+                                        <li class="nav-item dropdown ">
+                                            <a class="nav-link dropdown-toggle fa fa-sign-out" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <?php
+                                                echo $_SESSION['firstname'];
+                                                ?>
 
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" href="<?php echo base_url('editarUser') . '/' . $_SESSION['id'] ?>">Editar</a>
-                                    <a class="dropdown-item" href="<?= base_url('logout') ?>">Sair</a>
+                                            </a>
+                                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                                <a class="dropdown-item" href="<?php echo base_url('editarUser') . '/' . $_SESSION['id'] ?>">Editar</a>
+                                                <a class="dropdown-item" href="<?= base_url('logout') ?>">Sair</a>
+                                            </div>
+                                    </ul>
+
+                                <?php
+                            }
+                                ?>
+
                                 </div>
-                        </ul>
-
-                    <?php
-                    }
-                    ?>
-
-                </div>
-            </div>
+                            </div>
         </nav>
 
     <?php

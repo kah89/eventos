@@ -25,6 +25,7 @@
         margin-top: 20px;
         font: caption;
     }
+
     .session {
         float: right;
         font-size: 16px;
@@ -81,18 +82,22 @@
     #cad:hover {
         box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
     }
-    .session {
-        margin-left: 270px;
-        text-transform: uppercase;
-    }
 
-    .menu{
-        margin-left: 270px;
-    }
-    
-    .nav2{
-        margin-left: 80px;
-        margin-right:  80px ;
+
+    @media only screen and (min-width: 1200px) {
+        .session {
+            margin-left: 255px;
+            text-transform: uppercase;
+        }
+
+        .menu {
+            margin-left: 255px;
+        }
+
+        .nav2 {
+            margin-left: 70px;
+            margin-right: 70px;
+        }
     }
 </style>
 <script>
@@ -132,7 +137,7 @@
                         </thead>
                         <tbody>
                             <?php foreach ($data as $key => $evento) {
-                                echo '<tr><td>' . $evento['id'] . '</td><td>' . $evento['titulo'] . '</td><td>' . date_format(new DateTime( $evento['dtInicio']), "d/m/Y - H:i") . '</td><td>' . date_format(new DateTime( $evento['dtFim']), "d/m/Y - H:i") . '</td><td>' . $evento['userCreated'] . '</td>
+                                echo '<tr><td>' . $evento['id'] . '</td><td>' . $evento['titulo'] . '</td><td>' . date_format(new DateTime($evento['dtInicio']), "d/m/Y - H:i") . '</td><td>' . date_format(new DateTime($evento['dtFim']), "d/m/Y - H:i") . '</td><td>' . $evento['userCreated'] . '</td>
                                <td><a href=' . base_url('editarEventos') . "/" . $evento['id'] . '  ><i class="fa fa-edit" style="color: blue"></a></i>
                                <a href=' . base_url('eventos/deletar') . "/" . $evento['id'] . '><i class="fa fa-trash"  style="color: red"></a></i>
                                <a href=' . base_url('inscritos/relatorioEvento') . "/" . $evento['id'] . ' id="baixar" ><i class="fa fa-file-excel-o"    style="color: black"></i></a></td></tr>';

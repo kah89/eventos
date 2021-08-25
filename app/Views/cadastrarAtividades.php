@@ -64,22 +64,62 @@
         color: red;
     }
 
-    .session {
-        margin-left: 270px;
-        text-transform: uppercase;
+
+
+    @media only screen and (min-width: 1400px) {
+        .session {
+            margin-left: 250px;
+            text-transform: uppercase;
+        }
+
+        .menu {
+            margin-left: 250px;
+        }
+
+        .nav2 {
+            margin-left: 70px;
+            margin-right: 70px;
+        }
+
     }
 
-    .menu{
-        margin-left: 270px;
-    }
-    
-    .nav2{
-        margin-left: 80px;
-        margin-right:  80px ;
-    }
 
-    #navbarNav {
-        font-size: 15px;
+
+    @media (max-width: 650px) {
+        #hora {
+            width: 100px;
+            margin-top: -2px;
+            margin-left: 0px;
+        }
+
+        .data {
+            width: 200px;
+        }
+
+        .data1 {
+            margin-top: 60px;
+            margin-left: 0;
+        }
+
+        #hora2 {
+            margin-top: 2px;
+        }
+
+        #certificado {
+            width: 200px;
+            margin-right: 240px;
+            margin-top: 40px;
+        }
+
+        #cad {
+            width: 200px;
+            background-color: #008CBA;
+            font-size: 12px;
+            padding: 12px 28px;
+            border-radius: 8px;
+            border: 2px solid;
+            margin-top: 100px;
+        }
     }
 </style>
 
@@ -90,18 +130,18 @@
         $_SESSION['type'] == 0
     ) {
     ?>
-        <div class="container">
-            <div>
-                <div class="mx-auto">
+        <div class="row">
+            <div class="container">
+                <div class="mx-auto ">
                     <div class="card">
                         <div class="card-body">
                             <a href="<?= base_url('alterarAtividades') ?>">Voltar</a>
-                            <h2 class="card-title text-center">Cadastro de Atividade</h2>
+                            <h2 class="card-title text-center col-12">Cadastro de Atividade</h2>
                             <?php
                             foreach ($data as $key => $evento) {
                             } ?>
                             <form class="form-signin" name='form1' method="POST">
-                                <div class="form-group">
+                                <div class="form-group ">
                                     <div class="form-label-group" required>
                                         <script>
                                             $("#selectEvent").on("change", function() {
@@ -112,7 +152,7 @@
 
                                             });
                                         </script>
-                                        <select id="selectEvent" name="selectEvent" class="form-control" required onchange="atribuir(this)">
+                                        <select id="selectEvent" name="selectEvent" class="form-control col-12" required onchange="atribuir(this)">
                                             <option selected disabled>Eventos</option>
                                             <?php
                                             foreach ($data as $key => $evento) {
@@ -124,15 +164,15 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="form-label-group">
-                                        <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Titulo" maxlength="60" minilength="3" required autofocus>
+                                        <input type="text" id="titulo" name="titulo" class="form-control col-12" placeholder="Titulo" maxlength="60" minilength="3" required autofocus>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="form-label-group">
-                                        <textarea type="text" name="atividade" id="summernote" class="form-control" placeholder="Atividade" autofocus required></textarea>
+                                        <textarea type="text" name="atividade" id="summernote" class="form-control col-12" placeholder="Atividade" autofocus required></textarea>
                                     </div>
                                 </div>
-                                <div class="form-group  data" id="inicial">
+                                <div class="form-group data" id="inicial">
                                     <div class="form-label-group">
                                         <label for="">Inicial :</label>
                                         <input type="date" name="datainicial" id="dtAgenda" min="

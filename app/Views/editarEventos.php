@@ -79,7 +79,7 @@
 
     }
 
-    #certificado{
+    #certificado {
         width: 200px;
         float: right;
         margin-right: 503px;
@@ -98,18 +98,20 @@
         margin-top: 15px;
     }
 
-    .session {
-        margin-left: 270px;
-        text-transform: uppercase;
-    }
+    @media only screen and (min-width: 1200px) {
+        .session {
+            margin-left: 255px;
+            text-transform: uppercase;
+        }
 
-    .menu{
-        margin-left: 270px;
-    }
-    
-    .nav2{
-        margin-left: 80px;
-        margin-right:  80px ;
+        .menu {
+            margin-left: 255px;
+        }
+
+        .nav2 {
+            margin-left: 70px;
+            margin-right: 70px;
+        }
     }
 </style>
 <main id="t3-content">
@@ -140,7 +142,7 @@
                             </div>
                             <?php echo  $data; ?>
                             <?php echo $imagem; ?>
-                            <?php echo $result ;?>
+                            <?php echo $result; ?>
                         <?php endif ?>
                         <a href="<?= base_url('alterarEventos') ?>">Voltar</a>
                         <h2 class="card-title text-center">Alteração de Evento</h2>
@@ -152,7 +154,7 @@
                         <form class="form-signin" id="file" method="post" enctype="multipart/form-data">
                             <div class="form-group">
                                 <div class="mb-3">
-                                    <input class="form-control" onchange="readURL(this);" type="file" name="profile_image" id="formFile" accept="image/*" readonly="true" >
+                                    <input class="form-control" onchange="readURL(this);" type="file" name="profile_image" id="formFile" accept="image/*" readonly="true">
                                     <img id="blah" type="file" alt="imagem" src="<?php echo base_url("public/img") . "/" . $imagem ?>" />
                                 </div>
                             </div>
@@ -209,7 +211,7 @@
                                         foreach ($data as $key => $resultado) {
                                             $selecionado = $data['assinatura'] == $id;
                                             if ($selecionado) {
-                                                $assinatura =  $data['assinatura'] ;
+                                                $assinatura =  $data['assinatura'];
                                             }
                                         }
                                         if ($assinatura == 1) {
@@ -267,11 +269,11 @@
                                     ?>
                                 </div>
                             </div>
-                                                 <div class="form-group">
-                                    <div class="form-label-group">
-                                        <input type="text" id="certificado" name="certificado" class="form-control" placeholder="Total de horas" value="<?= $certificado ?>" required autofocus>
-                                    </div>
+                            <div class="form-group">
+                                <div class="form-label-group">
+                                    <input type="text" id="certificado" name="certificado" class="form-control" placeholder="Total de horas" value="<?= $certificado ?>" required autofocus>
                                 </div>
+                            </div>
 
                             <div class="form-group radio">
                                 <div class="form-check" name="tipo" required>

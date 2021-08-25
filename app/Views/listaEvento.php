@@ -30,11 +30,28 @@
         color: red;
         margin-top: -15px;
     }
+
+    @media only screen and (min-width: 1200px) {
+        .session {
+            margin-left: 260px;
+            text-transform: uppercase;
+        }
+
+        .menu {
+            margin-left: 260px;
+        }
+
+        .nav2 {
+            margin-left: 70px;
+            margin-right: 70px;
+        }
+    }
 </style>
 <main id="t3-content">
     <div class="container bg-white" style="padding-bottom: 10em;">
         <div class="row">
-            <div class="col-12">
+            <div class="col-12 col-sm-12 col-lg-12 col-xl-12">
+                <a href="<?= base_url('inicio') ?>">Voltar</a>
                 <h1 style="text-align: center; font-size:30px">Atividades</h1>
 
                 <table class="table table-hover" id="atividades">
@@ -64,11 +81,10 @@
                             }
 
                             if ($inscrito == true) {
-                          
-                                    echo '<a class="btn btn-primary" id="cad" href= ' . base_url('/atividades/inscreverAtividade') . "/" . $atividade['id'] . ' onclick="inscreverAtividade(' . $atividade['id'] . ');"  role="button" style="display:none;" >Ir</a>';
-                                    echo '
+
+                                echo '<a class="btn btn-primary" id="cad" href= ' . base_url('/atividades/inscreverAtividade') . "/" . $atividade['id'] . ' onclick="inscreverAtividade(' . $atividade['id'] . ');"  role="button" style="display:none;" >Ir</a>';
+                                echo '
                                     <span id="countdown" class="timer"></span>';
-                                
                             } else {
                                 echo '<a class="btn btn-primary" id="cad1" data-toggle="modal" data-target="#sobreModal">Ir</a>';
                             }
@@ -131,7 +147,7 @@
                 clearInterval(countdownTimer);
                 document.getElementById('countdown').innerHTML = '';
                 document.getElementById('cad').style.display = "block";
-                
+
             } else {
                 seconds--;
             }
