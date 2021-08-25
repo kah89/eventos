@@ -98,7 +98,7 @@
             <?php if (count($data) > 0) { ?>
                 <?php foreach ($data as $key => $evento) {
                     $htm =
-                        '<div class="card card-trip__thumbnail col-12 col-sm-12 col-lg-4 ">'
+                        '<div class="card card-trip__thumbnail col-12 col-sm-12 col-lg-12  ">'
                         . '<div class="card-header" id="card-header" style="background-color:' .  $evento['corPrimaria'] . '">'
                         . '<h4 class="card-title" >' . $evento['titulo'] . '</h4>'
                         . '</div>'

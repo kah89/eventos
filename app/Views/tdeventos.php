@@ -276,7 +276,7 @@
             ?>
 
 
-                        <div class="card card-trip__thumbnail col-12 col-sm-12 col-lg-4                     
+                        <div class="card card-trip__thumbnail col-12 col-sm-12 col-lg-12                     
                         <?php
                         $destinos = json_decode($evento['destinado']);
                         foreach ($destinos as $detinado) {
