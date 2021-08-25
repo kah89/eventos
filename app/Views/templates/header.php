@@ -259,7 +259,7 @@
 
 <header id="t3-header">
     <div class="row">
-        <div class="col-12 col-sm-12 col-lg-12 ">
+        <div class="col-12">
             <div class="site-anchor " style="margin-top: -5px;margin-bottom: 5px;">
                 <div class="custom">
                     <div class="row">
@@ -286,7 +286,7 @@
         </div>
         <div class="col-3 col-sm-3 logo">
             <div class="logo-image">
-                <a href="<?= base_url('inicio'); ?>"title="CRF-SP - Conselho Regional de Farmácia do Estado de São Paulo">
+                <a href="<?= base_url('inicio'); ?>" title="CRF-SP - Conselho Regional de Farmácia do Estado de São Paulo">
                     <img class="logo-img" src="<?= base_url('public/img/logo.png'); ?>"  alt="CRF-SP - Conselho Regional de Farmácia do Estado de São Paulo" />
                 </a>
             </div>
@@ -312,7 +312,7 @@
     <?php $uri = service('uri'); ?>
     <?php if (session()->get('isLoggedIn')) : ?>
 
-        <nav class="navbar navbar-expand-lg navbar-dark bg-info bg-custom col-12 col-sm-12 col-lg-12 " role="navigation">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-info bg-custom" role="navigation">
             <div class="container" id="menuanchor">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
