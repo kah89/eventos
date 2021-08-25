@@ -78,6 +78,20 @@
         box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
     }
 
+    .session {
+        margin-left: 270px;
+        text-transform: uppercase;
+    }
+
+    .menu{
+        margin-left: 270px;
+    }
+    
+    .nav2{
+        margin-left: 80px;
+        margin-right:  80px ;
+    }
+
 </style>
 <script>
     $(document).ready(function() {

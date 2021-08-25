@@ -64,24 +64,18 @@
         color: red;
     }
 
-    .menu {
-        margin-top: 20px;
-    }
-
-
-    .eventos{
-        margin-left: 190px;
-    }
-
-
     .session {
-        margin-top: 20px;
-        float: right;
-        font-size: 16px;
+        margin-left: 270px;
+        text-transform: uppercase;
     }
 
-    .eventos {
-        margin-left: 230px;
+    .menu{
+        margin-left: 270px;
+    }
+    
+    .nav2{
+        margin-left: 80px;
+        margin-right:  80px ;
     }
 
     #navbarNav {

@@ -67,12 +67,18 @@
         color: red;
     }
 
-    .eventos{
-        margin-left: 190px;
+    .session {
+        margin-left: 270px;
+        text-transform: uppercase;
     }
 
-    .session{
-        margin-left: 190px;
+    .menu{
+        margin-left: 270px;
+    }
+    
+    .nav2{
+        margin-left: 80px;
+        margin-right:  80px ;
     }
 </style>
 <script type="text/javascript">

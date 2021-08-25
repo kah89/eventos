@@ -243,14 +243,20 @@
         background-color: #0b3e7a !important;
     }
 
-    .eventos {
-        margin-left: 180px;
-    }
-
     .session {
-        margin-left: 180px;
+        margin-left: 270px;
+        text-transform: uppercase;
     }
 
+    .menu{
+        margin-left: 270px;
+    }
+    
+    .nav2{
+        margin-left: 80px;
+        margin-right:  80px ;
+    }
+   
     [data-tooltip] {
         position: relative;
         font-weight: bold;

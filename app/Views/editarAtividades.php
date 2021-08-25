@@ -55,13 +55,17 @@
     }
 
     .session {
-        margin-top: 20px;
-        float: right;
-        font-size: 16px;
+        margin-left: 250px;
+        text-transform: uppercase;
     }
 
-    .eventos {
-        margin-left: 230px;
+    .menu{
+        margin-left: 250px;
+    }
+    
+    .nav2{
+        margin-left: 80px;
+        margin-right:  80px ;
     }
 
     #navbarNav {
@@ -73,9 +77,7 @@
         background-color: #F5F5F5;
     }
 
-    .menu {
-        margin-top: 20px;
-    }
+    
 </style>
 
 <main id="t3-content">

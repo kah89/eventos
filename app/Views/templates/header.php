@@ -78,18 +78,6 @@
             background: #1598ef;
         }
 
-        .nav1 {
-            margin-left: 50px;
-            color: #fff;
-        }
-
-        .session {
-            color: #B5B5B5;
-            text-transform: uppercase;
-            float: right;
-            font-size: 18px;
-        }
-
         #mostrar {
             display: none;
         }
@@ -105,11 +93,9 @@
 
 
         @media only screen and (max-width: 990px) {
-            #logoMenu {
-                width: auto;
-                position: absolute;
-                right: 20px;
-                top: 10px;
+            .logo-img {
+                width: 80%;
+                margin-top: -70px;
             }
         }
 
@@ -126,7 +112,6 @@
             width: 80%;
             margin-top: -70px;
         }
-
     </style>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ST5941BK0S"></script>
     <script>
@@ -291,7 +276,7 @@
                             <a accesskey="4" href="javascript:void(0);" class="anchor acess" title="contraste" onclick="contraste();" id="contrasteLink">
                                 alto contraste <span>4</span>
                             </a>
-                            <a accesskey="5" href="<?= base_url('acessibilidade'); ?>"  class="anchor acess " title="acessibilidade">
+                            <a accesskey="5" href="<?= base_url('acessibilidade'); ?>" class="anchor acess " title="acessibilidade">
                                 acessibilidade <span>5</span>
                             </a>
                         </div>
@@ -301,8 +286,8 @@
         </div>
         <div class="col-3 col-sm-3 logo">
             <div class="logo-image">
-                <a href="/" title="CRF-SP - Conselho Regional de Farmácia do Estado de São Paulo">
-                    <img class="logo-img" src="<?= base_url('public/img/logo.png'); ?>" alt="CRF-SP - Conselho Regional de Farmácia do Estado de São Paulo" />
+                <a href="<?= base_url('inicio'); ?>"title="CRF-SP - Conselho Regional de Farmácia do Estado de São Paulo">
+                    <img class="logo-img" src="<?= base_url('public/img/logo.png'); ?>"  alt="CRF-SP - Conselho Regional de Farmácia do Estado de São Paulo" />
                 </a>
             </div>
         </div>
@@ -326,7 +311,7 @@
 <body class="d-flex flex-column min-vh-100">
     <?php $uri = service('uri'); ?>
     <?php if (session()->get('isLoggedIn')) : ?>
-    
+
         <nav class="navbar navbar-expand-lg navbar-dark bg-info bg-custom" role="navigation">
             <div class="container" id="menuanchor">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -342,23 +327,23 @@
                     ) {
                     ?><ul class="navbar-nav mr-auto" id="inicio">
                             <li class="nav-item">
-                            <a class="nav-link" href="<?= base_url('inicio'); ?>">Inicio</a>
+                                <a class="nav-link" href="<?= base_url('inicio'); ?>">Inicio</a>
                             </li>
                         </ul>
                         <ul class="navbar-nav mr-auto menu ">
-                            <li class="nav-item dropdown nav1 eventos">
+                            <li class="nav-item dropdown ">
                                 <a class="nav-link evento" href="<?= base_url('alterarEventos') ?>">Eventos</a>
                             </li>
-                            <li class="nav-item dropdown nav1 ">
+                            <li class="nav-item dropdown nav2 ">
                                 <a class="nav-link" href="<?= base_url('alterarAtividades') ?>">Atividades</a>
                             </li>
-                            <li class="nav-item dropdown nav1 ">
+                            <li class="nav-item dropdown  ">
                                 <a class="nav-link user" href="<?= base_url('alterarUser') ?>">Usuários</a>
                             </li>
                         </ul>
 
                         <ul class="navbar-nav mr-auto  session">
-                            <li class="nav-item dropdown nav1">
+                            <li class="nav-item dropdown ">
                                 <a class="nav-link dropdown-toggle fa fa-sign-out" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <?php
                                     echo $_SESSION['firstname'];
@@ -379,19 +364,19 @@
                             </li>
                         </ul>
                         <ul class="navbar-nav mr-auto menu">
-                            <li class="nav-item dropdown nav1 ">
-                                <a class="nav-link" href="<?= base_url('inscrevase') ?>">Inscreva-se</a>
+                            <li class="nav-item dropdown ">
+                                <!-- <a class="nav-link" href="<?= base_url('inscrevase') ?>">Inscreva-se</a> -->
                             </li>
-                            <li class="nav-item dropdown nav1 ">
+                            <li class="nav-item dropdown nav2 ">
                                 <a class="nav-link" href="<?= base_url('listarEventosUser') ?>">Minhas inscrições</a>
                             </li>
-                            <!-- <li class="nav-item dropdown nav1 ">
+                            <!-- <li class="nav-item dropdown  ">
                                 <a class="nav-link" href="<?= base_url('listarAtividades') ?>">Atividades</a>
                             </li> -->
                         </ul>
 
                         <ul class="navbar-nav mr-auto session">
-                            <li class="nav-item dropdown nav1">
+                            <li class="nav-item dropdown ">
                                 <a class="nav-link dropdown-toggle fa fa-sign-out" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <?php
                                     echo $_SESSION['firstname'];

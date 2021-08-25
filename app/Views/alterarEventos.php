@@ -81,12 +81,18 @@
     #cad:hover {
         box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
     }
-    .eventos{
-        margin-left: 190px;
+    .session {
+        margin-left: 270px;
+        text-transform: uppercase;
     }
 
-    .session{
-        margin-left: 190px;
+    .menu{
+        margin-left: 270px;
+    }
+    
+    .nav2{
+        margin-left: 80px;
+        margin-right:  80px ;
     }
 </style>
 <script>
