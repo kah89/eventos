@@ -51,7 +51,7 @@ class Users extends BaseController
             }
         }
 
-        echo view('templates/header', $data);
+        echo view('templates/headerAcesso', $data);
         echo view('login');
         echo view('templates/footer');
     }
@@ -322,7 +322,7 @@ class Users extends BaseController
             }
         }
 
-        echo view('templates/header', $data);
+        echo view('templates/headerAcesso', $data);
         echo view('register', $data);
         echo view('templates/footer');
     }
@@ -368,7 +368,7 @@ class Users extends BaseController
             }
         }
 
-        echo view('templates/header', $data);
+        echo view('templates/headerAcesso', $data);
         echo view('recuperacao', $data);
         echo view('templates/footer');
     }
