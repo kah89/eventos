@@ -103,7 +103,7 @@
 
 
 
-<body>
+<body id="t3-content">
     <article id="conteudo-certificado" >
 
         <?php if (count($data) > 0) {

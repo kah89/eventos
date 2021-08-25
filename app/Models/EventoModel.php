@@ -309,7 +309,8 @@ class EventoModel extends Model
          WHERE idEvento = eventos.id)) AS vagas  
              FROM eventos 	 	     	 
              left join usuario_evento on eventos.id = usuario_evento.idEvento	 
-         GROUP BY  eventos.id";
+         GROUP BY  eventos.id
+         ORDER BY Expirado, dtFim, dtInicio";
         $q = $this->db->query($query);
 
         return $q->getResultArray();

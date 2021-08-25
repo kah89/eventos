@@ -49,6 +49,8 @@ $routes->match(['get','post'],'/cadastrarEventos', 'Eventos::cadastrarEventos');
 $routes->match(['get','post'],'/alterarEventos', 'Eventos::alterarEventos');
 $routes->match(['get','post'],'/inscrevase', 'Eventos::inscrevase');
 
+$routes->match(['get','post'],'/acessibilidade', 'Eventos::acessibilidade');
+
 $routes->match(['get','post'],'/editarUser/(:num)', 'Users::editarUser');
 $routes->match(['get','post'],'/cadastrarUser', 'Users::cadastrarUser');
 $routes->match(['get','post'],'/alterarUser', 'Users::alterarUser');

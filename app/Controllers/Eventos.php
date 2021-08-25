@@ -22,7 +22,7 @@ class Eventos extends BaseController
             return redirect()->to(base_url(''));
         } else {
             $model = new EventoModel();
-            $eventos = $model->orderBy('dtFim, AC')->getEventos(session()->get('id'));
+            $eventos = $model->getEventos(session()->get('id'));
             $data = [
                 'title' => 'Eventos',
                 'data' => $eventos,
@@ -411,6 +411,22 @@ class Eventos extends BaseController
             ];
             echo view('templates/header', $data);
             echo view('alterarEventos');
+            echo view('templates/footer');
+        }
+    }
+
+        //------------------------------------------------------------------------------
+
+    public function acessibilidade() //tras a lista de eventos
+    {
+        if (!session()->get('isLoggedIn')) {
+            return redirect()->to(base_url(''));
+        } else {
+            $data = [
+                'title' => 'Alterar eventos',
+            ];
+            echo view('templates/header', $data);
+            echo view('acessibilidade');
             echo view('templates/footer');
         }
     }

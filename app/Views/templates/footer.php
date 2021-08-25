@@ -26,7 +26,7 @@
 </style>
 <?php
 if (session()->get('isLoggedIn')) : ?>
-    <footer class="footer">
+    <footer class="footer" id="rodape">
         <div class="container">
             <span class="text-muted"></span>
         </div>

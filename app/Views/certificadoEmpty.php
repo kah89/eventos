@@ -87,7 +87,7 @@
     </style>
 </head>
 
-<body>
+<body id="t3-content">
     <article id="conteudo-certificado" style="background-image: url('https://farmaceuticosp.com.br/encontro/public/certificado_marcos.jpg');">
         <section>
             <?php echo $text ?>

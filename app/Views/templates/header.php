@@ -29,6 +29,11 @@
 
     <title><?php echo $title ?></title>
     <style>
+        header {
+            background-color: #fff;
+            max-height: 100px;
+        }
+
         .bg-custom {
             background-image: linear-gradient(15deg, #092e48 0%, #00557a 100%);
         }
@@ -107,6 +112,21 @@
                 top: 10px;
             }
         }
+
+        #anchorpt1 {
+            margin-left: 800px;
+            margin-top: 20px;
+        }
+
+        .anchor {
+            margin-left: 20px;
+        }
+
+        .logo-img {
+            width: 80%;
+            margin-top: -70px;
+        }
+
     </style>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ST5941BK0S"></script>
     <script>
@@ -118,14 +138,197 @@
         gtag('js', new Date());
 
         gtag('config', 'G-ST5941BK0S');
+
+        function abrirConteudo() {
+
+            var urlAtual = document.location.href;
+            if (urlAtual.includes("#")) {
+                urlAtual = urlAtual.substr(0, urlAtual.indexOf('#')) + "#t3-content";
+            } else {
+                urlAtual = urlAtual + "#t3-content";
+            }
+
+            window.location.replace(urlAtual);
+
+        }
+
+
+        function abrirMenu() {
+
+            var urlAtual = document.location.href;
+            if (urlAtual.includes("#")) {
+                urlAtual = urlAtual.substr(0, urlAtual.indexOf('#')) + "#menuanchor";
+            } else {
+                urlAtual = urlAtual + "#menuanchor";
+            }
+
+            window.location.replace(urlAtual);
+
+        }
+
+
+        function abrirRodape() {
+
+            var urlAtual = document.location.href;
+            if (urlAtual.includes("#")) {
+                urlAtual = urlAtual.substr(0, urlAtual.indexOf('#')) + "#rodape";
+            } else {
+                urlAtual = urlAtual + "#rodape";
+            }
+
+            window.location.replace(urlAtual);
+
+        }
+
+
+        function contraste() {
+            var body = document.getElementsByTagName('body');
+            if (body[0].style.backgroundColor == "black") {
+                window.location.reload(true);
+            } else {
+
+                for (var i = 0; i < body.length; i++) {
+                    body[i].style.backgroundColor = "black";
+                }
+
+                var divs = document.getElementsByTagName('div');
+                for (var i = 0; i < divs.length; i++) {
+                    divs[i].style.backgroundColor = "black";
+                    divs[i].style.color = "yellow";
+                }
+                var navs = document.getElementsByTagName('nav');
+                for (var i = 0; i < navs.length; i++) {
+                    navs[i].style.backgroundColor = "black";
+                    navs[i].style.color = "yellow";
+                }
+                var header = document.getElementsByTagName('header');
+                for (var i = 0; i < header.length; i++) {
+                    header[i].style.backgroundColor = "black";
+                    header[i].style.color = "yellow";
+                }
+                var footer = document.getElementsByTagName('footer');
+                for (var i = 0; i < footer.length; i++) {
+                    footer[i].style.backgroundColor = "black";
+                    footer[i].style.color = "yellow";
+                }
+
+                var as = document.getElementsByTagName('a');
+                for (var i = 0; i < as.length; i++) {
+                    as[i].style.backgroundColor = "black";
+                    as[i].style.color = "yellow";
+                }
+                var ps = document.getElementsByTagName('p');
+                for (var i = 0; i < ps.length; i++) {
+                    ps[i].style.backgroundColor = "black";
+                    ps[i].style.color = "yellow";
+                }
+                var ps = document.getElementsByTagName('h1');
+                for (var i = 0; i < ps.length; i++) {
+                    ps[i].style.backgroundColor = "black";
+                    ps[i].style.color = "yellow";
+                }
+                var is = document.getElementsByTagName('i');
+                for (var i = 0; i < is.length; i++) {
+                    is[i].style.color = "yellow";
+                }
+                var spans = document.getElementsByTagName('span');
+                for (var i = 0; i < spans.length; i++) {
+                    spans[i].style.backgroundColor = "black";
+                    spans[i].style.color = "yellow";
+                }
+                var iframes = document.getElementsByTagName('iframe');
+                for (var i = 0; i < iframes.length; i++) {
+                    iframes[i].style.backgroundColor = "white";
+                    iframes[i].style.color = "yellow";
+                }
+                var tables = document.getElementsByTagName('table');
+                for (var i = 0; i < tables.length; i++) {
+                    tables[i].style.backgroundColor = "black";
+                    tables[i].style.color = "yellow";
+                }
+                var tbodys = document.getElementsByTagName('tbody');
+                for (var i = 0; i < tbodys.length; i++) {
+                    tbodys[i].style.backgroundColor = "black";
+                    tbodys[i].style.color = "yellow";
+                }
+                var trs = document.getElementsByTagName('tr');
+                for (var i = 0; i < trs.length; i++) {
+                    trs[i].style.backgroundColor = "black";
+                    trs[i].style.color = "yellow";
+                }
+                var tds = document.getElementsByTagName('td');
+                for (var i = 0; i < tds.length; i++) {
+                    tds[i].style.backgroundColor = "black";
+                    tds[i].style.color = "yellow";
+                }
+                var button = document.getElementsByClassName('socialList_item');
+                for (var i = 0; i < button.length; i++) {
+                    button[i].style.backgroundColor = "black";
+                    button[i].style.color = "yellow";
+                }
+            }
+        }
     </script>
 </head>
+
+
+<header id="t3-header">
+    <div class="row">
+        <div class="col-12">
+            <div class="site-anchor " style="margin-top: -5px;margin-bottom: 5px;">
+                <div class="custom">
+                    <div class="row">
+                        <div id="anchorpt1" class="col-12 col-md-6">
+                            <a accesskey="1" href="javascript:void(0);" class="anchor acess" title="conteudo" onclick="abrirConteudo()">
+                                ir para conteudo <span>1</span>
+                            </a>
+                            <a accesskey="2" href="javascript:void(0);" class="anchor acess" title="menu" onclick="abrirMenu()">
+                                ir para menu <span>2</span>
+                            </a>
+                            <a accesskey="3" href="javascript:void(0);" class="anchor acess" title="rodapé" onclick="abrirRodape()">
+                                ir para rodapé <span>3</span>
+                            </a>
+                            <a accesskey="4" href="javascript:void(0);" class="anchor acess" title="contraste" onclick="contraste();" id="contrasteLink">
+                                alto contraste <span>4</span>
+                            </a>
+                            <a accesskey="5" href="<?= base_url('acessibilidade'); ?>"  class="anchor acess " title="acessibilidade">
+                                acessibilidade <span>5</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-3 col-sm-3 logo">
+            <div class="logo-image">
+                <a href="/" title="CRF-SP - Conselho Regional de Farmácia do Estado de São Paulo">
+                    <img class="logo-img" src="<?= base_url('public/img/logo.png'); ?>" alt="CRF-SP - Conselho Regional de Farmácia do Estado de São Paulo" />
+                </a>
+            </div>
+        </div>
+        <div class="col-9 col-sm-9 header-utils">
+            <div class="social-icons ">
+                <div vw class="enabled">
+                    <div vw-access-button class="active"></div>
+                    <div vw-plugin-wrapper>
+                        <div class="vw-plugin-top-wrapper"></div>
+                    </div>
+                </div>
+                <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+                <script>
+                    new window.VLibras.Widget('https://vlibras.gov.br/app');
+                </script>
+            </div>
+        </div>
+    </div>
+</header>
 
 <body class="d-flex flex-column min-vh-100">
     <?php $uri = service('uri'); ?>
     <?php if (session()->get('isLoggedIn')) : ?>
+    
         <nav class="navbar navbar-expand-lg navbar-dark bg-info bg-custom" role="navigation">
-            <div class="container">
+            <div class="container" id="menuanchor">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -139,18 +342,18 @@
                     ) {
                     ?><ul class="navbar-nav mr-auto" id="inicio">
                             <li class="nav-item">
-                                <a class="nav-link" href="<?= base_url('inicio'); ?>"> <img id="logoMenu" src="<?= base_url('public/img/logo_crfsp_neg.png'); ?>" href="<?= base_url('inicio'); ?>" style="height: 50px;" /></a>
+                            <a class="nav-link" href="<?= base_url('inicio'); ?>">Inicio</a>
                             </li>
                         </ul>
                         <ul class="navbar-nav mr-auto menu ">
                             <li class="nav-item dropdown nav1 eventos">
-                                <a class="nav-link evento" href="<?= base_url('alterarEventos') ?>"></i>Eventos</a>
+                                <a class="nav-link evento" href="<?= base_url('alterarEventos') ?>">Eventos</a>
                             </li>
                             <li class="nav-item dropdown nav1 ">
-                                <a class="nav-link" href="<?= base_url('alterarAtividades') ?>"></i>Atividades</a>
+                                <a class="nav-link" href="<?= base_url('alterarAtividades') ?>">Atividades</a>
                             </li>
                             <li class="nav-item dropdown nav1 ">
-                                <a class="nav-link user" href="<?= base_url('alterarUser') ?>"></i>Usuários</a>
+                                <a class="nav-link user" href="<?= base_url('alterarUser') ?>">Usuários</a>
                             </li>
                         </ul>
 
@@ -172,18 +375,18 @@
                     ?>
                         <ul class="navbar-nav mr-auto" id="inicio">
                             <li class="nav-item">
-                                <a class="nav-link" href="<?= base_url('inicio'); ?>"> <img id="logoMenu" src="<?= base_url('public/img/logo_crfsp_neg.png'); ?>" href="<?= base_url('inicio'); ?>" style="height: 50px;" /></a>
+                                <a class="nav-link" href="<?= base_url('inicio'); ?>">Inicio</a>
                             </li>
                         </ul>
                         <ul class="navbar-nav mr-auto menu">
                             <li class="nav-item dropdown nav1 ">
-                                <a class="nav-link" href="<?= base_url('inscrevase') ?>"></i>Inscreva-se</a>
+                                <a class="nav-link" href="<?= base_url('inscrevase') ?>">Inscreva-se</a>
                             </li>
                             <li class="nav-item dropdown nav1 ">
-                                <a class="nav-link" href="<?= base_url('listarEventosUser') ?>"></i>Minhas inscrições</a>
+                                <a class="nav-link" href="<?= base_url('listarEventosUser') ?>">Minhas inscrições</a>
                             </li>
                             <!-- <li class="nav-item dropdown nav1 ">
-                                <a class="nav-link" href="<?= base_url('listarAtividades') ?>"></i>Atividades</a>
+                                <a class="nav-link" href="<?= base_url('listarAtividades') ?>">Atividades</a>
                             </li> -->
                         </ul>
 

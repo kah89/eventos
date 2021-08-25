@@ -96,7 +96,7 @@
     </style>
 </head>
 
-<body>
+<body id="t3-content">
     <article id="conteudo-certificado">
         
         <?php

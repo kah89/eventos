@@ -106,7 +106,7 @@
         margin-left: 190px;
     }
 </style>
-<main>
+<main id="t3-content">
     <div class="container">
         <div class="message_box">
             <?php

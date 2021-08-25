@@ -67,13 +67,6 @@
         box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
     }
 
-
-    img {
-        max-height: 200px;
-        width: 100%;
-        height: 100%;
-    }
-
     .image {
         width: 100%;
         height: 184px;
@@ -174,7 +167,7 @@
         margin-top: -10px;
     }
 
-    .card.eventCard {
+    .card {
         border: none;
         box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%);
     }
@@ -261,21 +254,22 @@
     [data-tooltip] {
         position: relative;
         font-weight: bold;
+
     }
 
     [data-tooltip]:after {
         display: none;
         position: absolute;
-        top: -100px;
+        top: -80px;
         margin-left: -30px;
         left: 30px;
-        padding: 5px;
-        z-index: 3;
+        padding: 10px;
         border-radius: 3px;
         left: calc(100% + 2px);
         content: attr(data-tooltip);
-        background-color: #0095ff;
-        color: White;
+        width: 100px;
+        background-color: #FF6347;
+        color: black;
     }
 
     [data-tooltip]:hover:after {
@@ -285,7 +279,8 @@
 <script>
     $msg = "";
 </script>
-<main>
+
+<main id="t3-content">
     <div class="container">
         <h1>Eventos</h1>
         <br><br>
@@ -315,7 +310,7 @@
             ?>
 
 
-                        <div class="card card-trip__thumbnail col-12 col-sm-12 col-lg-4 destinado eventCard                    
+                        <div class="card card-trip__thumbnail col-12 col-sm-12 col-lg-4                     
                         <?php
                         $destinos = json_decode($evento['destinado']);
                         foreach ($destinos as $detinado) {
@@ -348,7 +343,7 @@
                                 <div class='eventInfo'>
                                     <strong>Data:</strong> <?php echo date_format(new DateTime($evento['dtInicio']), "d/m/Y"); ?> até <?php echo date_format(new DateTime($evento['dtFim']), "d/m/Y"); ?><br>
                                     <strong>Quantidade de inscrição:</strong> <?php echo $evento['limite']; ?><br>
-                                    <strong> Evento destinado: </strong></br>
+                                    <strong> Público-alvo: </strong></br>
                                     <?php foreach ($destinos as $detinado) {
                                         if ($detinado == "2") {
                                             echo "Farmacêuticos inscritos em outros estados; " . '</br>';
@@ -363,15 +358,15 @@
                                             echo "Outros profissionais; " . '</br>';
                                         }
                                     } ?>
-                                    <br>
-                                    <strong>Carga horária:</strong> <?php echo $evento['certificado']; ?> horas
+                                    </br>
+                                    <strong>Carga horária:</strong> <?php echo $evento['certificado']; ?> horas</br>
                                     <?php
                                     if ($evento['tipo'] == '1') {
 
                                         echo '<strong> Evento: </strong> Exclusivo';
                                     }
                                     ?>
-                                    <br>
+                                    </br>
                                     Restam apenas<strong> <?php echo $evento['vagas']; ?> </strong>vagas.
                                 </div>
                             </div>
@@ -406,7 +401,7 @@
                                         } else if ($evento['Expirado'] == 'Sim') {
                                             echo '<button type="button" class="btn btn-primary cad1" id="btn" disabled>Encerrado</button>';
                                         } else if (!(in_array($destinado, json_decode($evento['destinado'])))) {
-                                            echo '<button class="btn btn-primary cad2" id="btn"  disabled><span data-tooltip="Infelizmente este evento não é destinado para você">Inscreva-se</span></button>';
+                                            echo '<button class="btn btn-primary cad2" id="btn"  disabled><span data-tooltip="Evento restrito ao público-alvo">Inscreva-se</span></button>';
                                         } else if ($evento['Expirado'] == 'Não') {
                                             echo '<button class="btn btn-primary cad2" id="btn" data-toggle="modal" data-target="#inscrevaModal" onclick="preenchermodal(' . $evento['id'] . ');">Inscreva-se</button>';
                                         }

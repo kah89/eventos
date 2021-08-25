@@ -156,7 +156,7 @@
 
     });
 </script>
-<main>
+<main id="t3-content">
 
     <?php
     if (
