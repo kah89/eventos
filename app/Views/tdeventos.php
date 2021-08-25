@@ -44,7 +44,6 @@
     .card {
         padding: 5px;
         border-width: medium;
-        border-radius: 10px;
         max-width: 370px;
         margin: 5px;
         box-shadow: -11px 7px 8px -4px darkgrey;
@@ -119,14 +118,14 @@
         color: #fff;
         position: absolute;
         top: 30px;
-        left: 240px;
+        left: 250px;
         padding: 4px 8px;
         font-family: Quicksand, sans-serif;
         font-weight: 700;
         line-height: 20px;
         transform: rotate(45deg);
         overflow: visible;
-        width: 160px;
+        width: 152px;
         text-align: center;
     }
 
@@ -135,7 +134,7 @@
         position: absolute;
         z-index: 1;
         top: -15px;
-        right: -18px;
+        right: -20px;
         width: 50px;
         height: 30px;
         transform: rotate(45deg);
@@ -145,8 +144,8 @@
     .info::before {
         content: "";
         position: absolute;
-        top: -45px;
-        right: 142px;
+        top: -36px;
+        right: 143px;
         width: 20px;
         height: 100px;
         transform: rotate(45deg);
@@ -177,45 +176,6 @@
         padding: 0;
     }
 
-    .info::before {
-        content: "";
-        position: absolute;
-        top: -70px;
-        right: 99px;
-        width: 21px;
-        height: 137px;
-        transform: rotate(45deg);
-        background-color: #f4f4f4;
-    }
-
-    .info::after {
-        content: "";
-        position: absolute;
-        z-index: 1;
-        top: -15px;
-        right: -19px;
-        width: 50px;
-        height: 30px;
-        transform: rotate(45deg);
-        background-color: #F5F5F5;
-    }
-
-    .info {
-        background: black;
-        color: #fff;
-        position: absolute;
-        top: 20px;
-        left: 278px;
-        padding: 4px 10px;
-        font-family: Quicksand, sans-serif;
-        font-weight: 700;
-        line-height: 13px;
-        transform: rotate(45deg);
-        overflow: visible;
-        width: 123px;
-        text-align: center;
-        font-size: 11px;
-    }
 
     .eventInfo {
         padding: 1em;
@@ -248,15 +208,15 @@
         text-transform: uppercase;
     }
 
-    .menu{
+    .menu {
         margin-left: 270px;
     }
-    
-    .nav2{
+
+    .nav2 {
         margin-left: 80px;
-        margin-right:  80px ;
+        margin-right: 80px;
     }
-   
+
     [data-tooltip] {
         position: relative;
         font-weight: bold;
@@ -328,7 +288,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="image">
-                                    <img src="<?php echo base_url("/public/img") . "/" . $evento['imagem'] ?>" alt="" width="100%">
+                                    <img src="<?php echo base_url("/public/img") . "/" . $evento['imagem'] ?>" alt="" width="100%" alt="imagem principal do evento">
                                     <div class="info" id=txt>
                                         <span> <?php
                                                 if ((int)$evento['vagas'] <= 0) {
@@ -373,7 +333,7 @@
                                     }
                                     ?>
                                     </br>
-                                    Restam apenas<strong> <?php echo $evento['vagas']; ?> </strong>vagas.
+                                    <p>Restam apenas<strong> <?php echo $evento['vagas']; ?> </strong>vagas.</p>
                                 </div>
                             </div>
 
@@ -401,15 +361,15 @@
                                         }
 
                                         if ($evento['inscrito'] == "Sim") {
-                                            echo '<button type="button" class="btn btn-primary cad1" id="btn" disabled>Inscrito</button>';
+                                            echo '<button type="button" class="btn btn-primary cad1" id="btn"  disabled>Inscrito</button>';
                                         } else if ((int)$evento['vagas'] <= 0) {
                                             echo '<button class="btn btn-primary cad2" id="btn"  disabled>Esgotado </button>';
                                         } else if ($evento['Expirado'] == 'Sim') {
                                             echo '<button type="button" class="btn btn-primary cad1" id="btn" disabled>Encerrado</button>';
                                         } else if (!(in_array($destinado, json_decode($evento['destinado'])))) {
-                                            echo '<button class="btn btn-primary cad2" id="btn"  disabled><span data-tooltip="Evento restrito ao público-alvo">Inscreva-se</span></button>';
+                                            echo '<button class="btn btn-primary cad2" id="btn"   disabled><span data-tooltip="Evento restrito ao público-alvo">Inscreva-se</span></button>';
                                         } else if ($evento['Expirado'] == 'Não') {
-                                            echo '<button class="btn btn-primary cad2" id="btn" data-toggle="modal" data-target="#inscrevaModal" onclick="preenchermodal(' . $evento['id'] . ');">Inscreva-se</button>';
+                                            echo '<button class="btn btn-primary cad2" id="btn"    data-toggle="modal" data-target="#inscrevaModal" onclick="preenchermodal(' . $evento['id'] . ');">Inscreva-se</button>';
                                         }
                                         ?>
                                     </li>
@@ -441,7 +401,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="image">
-                                    <img src="<?php echo base_url("/public/img") . "/" . $evento['imagem'] ?>" alt="" width="100%">
+                                    <img src="<?php echo base_url("/public/img") . "/" . $evento['imagem'] ?>" alt="imagem proncipal do evento" width="100%">
                                     <div class="info" id=txt>
                                         <span> <?php
                                                 if ((int)$evento['vagas'] <= 0) {
@@ -504,7 +464,7 @@
                                     <li class="nav-item">
                                         <?php
 
-                                        echo '<button type="button" class="btn btn-primary cad1 encerrado" id="btn" disabled>Encerrado</button>';
+                                        echo '<button type="button" class="btn btn-primary cad1 encerrado" id="btn"  disabled>Encerrado</button>';
 
                                         ?>
                                     </li>

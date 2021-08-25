@@ -1,15 +1,7 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.css" />
 <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.js"></script>
 <style>
-    a link {
-        text-decoration: none;
-    }
 
-    h1 {
-        text-align: center;
-        margin-top: 30px;
-        color: #092e48;
-    }
 
     h4 {
         text-align: center;
@@ -22,69 +14,48 @@
         color: red;
     }
 
-    .resumo {
-        margin-top: 10px;
-        font-size: 25px;
-    }
-
     .card-title {
         text-align: center;
         margin-top: 5px;
     }
 
+    .card-body {
+        min-height: 350px;
+        padding: 0;
+    }
+
+    #encerramento{
+        margin-top: 15px;
+    }
+
+    .card-footer {
+        margin-top: -30px;
+    }
 
     .card {
-        padding: 5px;
+        padding: 0;
         border-width: medium;
-        border-radius: 10px;
         max-width: 370px;
         margin: 5px;
-    }
-
-    .btn1 {
-        width: 110px;
-        text-align: center;
-        margin-left: 100px;
-        background-color: #008CBA;
-        font-size: 12px;
-        padding: 10px 22px;
-        border-radius: 8px;
-        border: 2px solid;
-    }
-
-    .btn1:hover {
-        color: white !important;
-        cursor: pointer !important;
+        margin-bottom: 21px;
+        border: none;
+        box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%);
     }
 
     .cad2,
-    #cad2,
+    #btn,
     .cad1 {
         background-color: #008CBA;
         font-size: 12px;
-        padding: 10px 22px;
+        padding: 8px 15px;
         border-radius: 8px;
         border: 2px solid;
+        color: white;
     }
 
     .cad2:hover,
-    #cad2:hover {
-        box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19) !important;
-    }
-
-    .card-text {
-        margin-top: 20px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-
-    img {
-        max-height: 200px;
-    }
-
-    #encerramento {
-        margin-top: 10px;
+    #btn:hover {
+        box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
     }
 
     .session {
@@ -101,12 +72,14 @@
         margin-right:  80px ;
     }
    
+    
+   
 </style>
 <main id="t3-content">
     <div class="container" style="padding-bottom: 10em;">
         <div class="row">
             <div class="col">
-                <h2 style="text-align: center; font-size:30px">Eventos </h2>
+                <h2 style="text-align: center; font-size:30px" title="Eventos"> Eventos </h2>
             </div>
         </div>
         <div class="row">
@@ -125,13 +98,13 @@
             <?php if (count($data) > 0) { ?>
                 <?php foreach ($data as $key => $evento) {
                     $htm =
-                        '<div class="card col-4">'
+                        '<div class="card card-trip__thumbnail col-12 col-sm-12 col-lg-4 ">'
                         . '<div class="card-header" id="card-header" style="background-color:' .  $evento['corPrimaria'] . '">'
-                        . '<h4 class="card-title">' . $evento['titulo'] . '</h4>'
+                        . '<h4 class="card-title" >' . $evento['titulo'] . '</h4>'
                         . '</div>'
                         .  '<div class="card-body">'
 
-                        . '<img src="' .  base_url("/public/img") . "/" . $evento['imagem'] . '" alt="" width="100%">'
+                        . '<img  src="' .  base_url("/public/img") . "/" . $evento['imagem'] . '" alt="imagem proncipal do evento" width="100%">'
 
                         . '<p id="encerramento"> <strong>Evento encerra:</strong> ' . date_format(new DateTime($evento['dtFim']), "d-m-Y") . ' ' . 'às' . ' ' . date_format(new DateTime($evento['dtFim']), "h:i") . ' ' . 'horas.</p>'
                         . '</div>'
@@ -139,10 +112,10 @@
                         . '<ul class="nav nav-pills ">'
 
                         . '<li class="nav-item">'
-                        . '<a class="nav-link active" id="cad2"  href="' . base_url("inicio/listaEvento") . "/" . $evento['id'] . '">Ingressar</a>'
+                        . '<a class="nav-link active"   id="cad2"  href="' . base_url("inicio/listaEvento") . "/" . $evento['id'] . '">Ingressar</a>'
                         . '</li>';
 
-                    '<li class="nav-item">';
+                    '<li class="nav-item" >';
                     if ($evento['Expirado'] == 'Sim') {
                         $htm .= '<a  data-toggle="modal"';
                         if ($evento['certificado'] == 'Evento não gera certificado.') {
@@ -150,7 +123,7 @@
                                 . ' class="nav-link active btn1" id="cad2"" >Info</a>';
                         } else if ($evento['certificado'] == 'Não concluiu todas as atividades.') {
                             $htm .= 'data-target="#certificadoModalNC"'
-                                . ' class="nav-link active btn1" id="cad2"" >Info</a>';
+                                . ' class="nav-link active btn1" id="cad2" >Info</a>';
                         } else {
                             $htm .= 'data-target="#certificadoModal"'
                                 . 'onclick="setarCampos(' . $evento['id'] . ');"  class="nav-link active btn1" id="cad2">Gerar</a>';
