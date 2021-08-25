@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="pt-Br">
 
@@ -94,10 +95,8 @@
 
         @media only screen and (max-width: 990px) {
             .logo-img {
-                width: 55%;
-                margin-top: -8%;
-                margin-bottom: -10%;
-                margin-left: -11%;
+                width: 80%;
+                margin-top: -70px;
             }
         }
 
@@ -111,10 +110,8 @@
         }
 
         .logo-img {
-            width: 55%;
-            margin-top: -8%;
-            margin-bottom: -10%;
-            margin-left: -11%;
+            width: 80%;
+            margin-top: -70px;
         }
     </style>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ST5941BK0S"></script>
@@ -261,9 +258,7 @@
 </head>
 
 
-
-
-<body class="d-flex flex-column min-vh-100">
+<header id="t3-header">
     <div class="row">
         <div class="col-12">
             <div class="site-anchor " style="margin-top: -5px;margin-bottom: 5px;">
@@ -292,12 +287,12 @@
         </div>
         <div class="col-3 col-sm-3 logo">
             <div class="logo-image">
-                <a href="<?= base_url('inicio'); ?>" title="CRF-SP - Conselho Regional de Farmácia do Estado de São Paulo">
+                <a href="<?= base_url('inicio'); ?>"title="CRF-SP - Conselho Regional de Farmácia do Estado de São Paulo">
                     <img class="logo-img" src="<?= base_url('public/img/logo.png'); ?>"  alt="CRF-SP - Conselho Regional de Farmácia do Estado de São Paulo" />
                 </a>
             </div>
         </div>
-        <div class="col col-sm-9 header-utils">
+        <div class="col-9 col-sm-9 header-utils">
             <div class="social-icons ">
                 <div vw class="enabled">
                     <div vw-access-button class="active"></div>
@@ -312,6 +307,9 @@
             </div>
         </div>
     </div>
+</header>
+
+<body class="d-flex flex-column min-vh-100">
     <?php $uri = service('uri'); ?>
     <?php if (session()->get('isLoggedIn')) : ?>
 
@@ -333,14 +331,14 @@
                                 <a class="nav-link" href="<?= base_url('inicio'); ?>">Inicio</a>
                             </li>
                         </ul>
-                        <ul class="navbar-nav mr-auto  ">
-                            <li class="nav-item dropdown nav2">
-                                <a class="nav-link" href="<?= base_url('alterarEventos') ?>">Eventos</a>
+                        <ul class="navbar-nav mr-auto menu ">
+                            <li class="nav-item dropdown ">
+                                <a class="nav-link evento" href="<?= base_url('alterarEventos') ?>">Eventos</a>
                             </li>
                             <li class="nav-item dropdown nav2 ">
                                 <a class="nav-link" href="<?= base_url('alterarAtividades') ?>">Atividades</a>
                             </li>
-                            <li class="nav-item dropdown  nav2">
+                            <li class="nav-item dropdown  ">
                                 <a class="nav-link user" href="<?= base_url('alterarUser') ?>">Usuários</a>
                             </li>
                         </ul>
