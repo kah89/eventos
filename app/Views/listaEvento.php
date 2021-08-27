@@ -45,6 +45,15 @@
             margin-left: 70px;
             margin-right: 70px;
         }
+
+        .menuUser{
+            margin-left: 260px;
+        }
+
+        .sessionUser {
+            margin-left: 260px;
+            text-transform: uppercase;
+    }
     }
 </style>
 <main id="t3-content">
@@ -90,6 +99,7 @@
                             }
                             echo  '</td></tr>';
                         }
+
                         ?>
 
                     </tbody>
@@ -125,12 +135,14 @@
 
         var upgradeTime =
             <?php
+             
             $timestamp = strtotime($data[0]['dtInicio']) - strtotime(date("d-m-Y H:i:s"));
+           
             echo "$timestamp";
             ?>;
 
         var seconds = upgradeTime;
-
+        
         function timer() {
             var days = Math.floor(seconds / 24 / 60 / 60);
             var hoursLeft = Math.floor((seconds) - (days * 86400));
@@ -152,6 +164,7 @@
                 seconds--;
             }
         }
+        timer();
         var countdownTimer = setInterval('timer()', 1000);
     </script>
 </main>

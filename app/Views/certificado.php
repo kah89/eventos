@@ -112,9 +112,14 @@
             <section>
                 <p>Certificamos que <strong><?php echo $firstname . " "; ?><?php echo $lastname; ?></strong></p>
                 <p>Participou do: <strong><?php echo $data['titulo']; ?></strong></p>
-                <p class="p">Com carga horária de <strong><?php echo $data['certificado'] ?> Horas.</p>
-                <p class="data">Realizado nos dias <?php echo date_format(new DateTime($data['dtInicio']), "d/m"); ?> a <?php echo date_format(new DateTime($data['dtFim']), "d/m"); ?> de <?php echo date_format(new DateTime($data['dtFim']), "Y"); ?> em São Paulo - SP.</p>
-
+                <p class="p">Com carga horária de <strong><?php echo $data['certificado'] ?> Hora(s).</p>
+                <p class="data">Realizado no(s) dia(s) 
+                    <?php if(date_format(new DateTime($data['dtInicio']), "d/m/Y") == date_format(new DateTime($data['dtFim']), "d/m/Y")){
+                        echo date_format(new DateTime($data['dtInicio']), "d/m/Y");
+                    }else{
+                        echo date_format(new DateTime($data['dtInicio']), "d") . " á " .date_format(new DateTime($data['dtFim']), "d/m/Y");
+                    }
+                    ?> em São Paulo - SP.</p>
             </section>
 
         <?php } ?>

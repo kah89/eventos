@@ -138,7 +138,7 @@
         width: 50px;
         height: 30px;
         transform: rotate(45deg);
-        background-color: #F5F5F5;
+        background-color: #f4f4f4;
     }
 
     .info::before {
@@ -149,7 +149,7 @@
         width: 20px;
         height: 100px;
         transform: rotate(45deg);
-        background-color: #f5f5f5;
+        background-color: #f4f4f4;
     }
 
     #myBtnContainer,
@@ -217,6 +217,21 @@
             margin-left: 65px;
             margin-right: 65px;
         }
+
+        .menuUser{
+            margin-left: 260px;
+        }
+
+        .sessionUser {
+            margin-left: 260px;
+            text-transform: uppercase;
+        }
+    }
+
+    @media only screen and (max-width: 1200px) {
+        .card {
+            margin-left: 64px;
+        }
     }
 
 
@@ -266,7 +281,7 @@
                 $_SESSION['type'] == 0
             ) {
             ?>
-                <a class="btn btn-outline-info" href="<?= base_url('listarEventosUser') ?>" style="color:#092e48; "></i> Eventos inscritos</a>
+                <a class="btn btn-outline-info" href="<?= base_url('listarEventosUser') ?>" style="color:#092e48; "></i> Minhas inscrições</a>
             <?php
             }
             ?>
@@ -280,7 +295,7 @@
             ?>
 
 
-                        <div class="card card-trip__thumbnail col-12 col-sm-12 col-lg-12                     
+                        <div class="card card-trip__thumbnail  col-12 col-sm-12 col-lg-12                   
                         <?php
                         $destinos = json_decode($evento['destinado']);
                         foreach ($destinos as $detinado) {
@@ -393,7 +408,7 @@
                     ?>
 
 
-                        <div class="card card-trip__thumbnail col-4                    
+                        <div class="card card-trip__thumbnail col-12 col-sm-12 col-lg-12                   
                         <?php
                         $destinos = json_decode($evento['destinado']);
                         foreach ($destinos as $detinado) {
@@ -503,7 +518,7 @@
                     <?php echo $evento['resumo']; ?>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary cad2" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary cad2" data-dismiss="modal">Fechar</button>
                 </div>
             </div>
         </div>
@@ -599,6 +614,6 @@
             toastr.info($msg);
         }
 
-        // $('#modalInfoTrigger').click();
+        $('#modalInfoTrigger').click();
     </script>
 </main>

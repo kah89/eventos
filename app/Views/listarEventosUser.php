@@ -40,6 +40,11 @@
         box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%);
     }
 
+    #cad2 {
+        margin-left: 170px;
+        color: white;
+    }
+
     .cad2,
     #btn,
     .cad1 {
@@ -69,6 +74,21 @@
         .nav2 {
             margin-left: 65px;
             margin-right: 65px;
+        }
+
+        .menuUser{
+            margin-left: 260px;
+        }
+
+        .sessionUser {
+            margin-left: 260px;
+            text-transform: uppercase;
+    }
+    }
+
+    @media only screen and (max-width: 1200px) {
+        .card {
+            margin-left: 64px;
         }
     }
 </style>
@@ -103,13 +123,13 @@
 
                         . '<img  src="' .  base_url("/public/img") . "/" . $evento['imagem'] . '" alt="imagem proncipal do evento" width="100%">'
 
-                        . '<p id="encerramento"> <strong>Evento encerra:</strong> ' . date_format(new DateTime($evento['dtFim']), "d-m-Y") . ' ' . 'às' . ' ' . date_format(new DateTime($evento['dtFim']), "h:i") . ' ' . 'horas.</p>'
+                        . '<p id="encerramento"> <strong>Evento encerra:</strong> ' . date_format(new DateTime($evento['dtFim']), "d-m-Y") . ' ' . 'às' . ' ' . date_format(new DateTime($evento['dtFim']), "H:i") . ' ' . 'horas.</p>'
                         . '</div>'
                         . '<div class="card-footer text-muted" id="card-footer" >'
                         . '<ul class="nav nav-pills ">'
 
                         . '<li class="nav-item">'
-                        . '<a class="nav-link active"   id="cad2"  href="' . base_url("inicio/listaEvento") . "/" . $evento['id'] . '">Ingressar</a>'
+                        . '<a class="btn btn-primary cad2"    href="' . base_url("inicio/listaEvento") . "/" . $evento['id'] . '">Ingressar</a>'
                         . '</li>';
 
                     '<li class="nav-item" >';
@@ -117,13 +137,13 @@
                         $htm .= '<a  data-toggle="modal"';
                         if ($evento['certificado'] == 'Evento não gera certificado.') {
                             $htm .= 'data-target="#certificadoModalN"'
-                                . ' class="nav-link active btn1" id="cad2"" >Info</a>';
+                                . ' class="btn btn-primary cad2" id="cad2"" >Info</a>';
                         } else if ($evento['certificado'] == 'Não concluiu todas as atividades.') {
                             $htm .= 'data-target="#certificadoModalNC"'
-                                . ' class="nav-link active btn1" id="cad2" >Info</a>';
+                                . ' class="btn btn-primary cad2" id="cad2" >Info</a>';
                         } else {
                             $htm .= 'data-target="#certificadoModal"'
-                                . 'onclick="setarCampos(' . $evento['id'] . ');"  class="nav-link active btn1" id="cad2">Gerar</a>';
+                                . 'onclick="setarCampos(' . $evento['id'] . ');"  class="btn btn-primary cad2" id="cad2">Gerar</a>';
                         }
                     }
 
@@ -160,7 +180,7 @@
             </div>
             <div class="modal-body">
                 <p style="text-align: justify;"> Antes de emitir o certificado, clique no link abaixo e confira se o seu nome está correto. Caso queira alterar, clique no canto superior direito no seu nome e clique em editar.</p>
-                <a href="" target="_blank" id="vizualizar">vizualização do certificado</a>
+                <a href="" target="_blank" id="vizualizar">Visualização do certificado</a>
 
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
@@ -244,7 +264,7 @@
     function setarCampos($id) {
         var link = '<?php echo (base_url("/certificadoVizualizacao") . "/");  ?>';
         document.getElementById("vizualizar").href = link + $id;
-        var link = '<?php echo (base_url("/inicio/gerarCertificado") . "/");  ?>';
+        var link = '<?php echo (base_url("/eventos/gerarCertificado") . "/");  ?>';
         document.getElementById("btnEmitir").href = link + $id;
     }
 

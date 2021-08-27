@@ -41,7 +41,6 @@
         body {
             min-height: 100vh;
             position: relative;
-            margin: 0;
             padding-bottom: 100px;
             box-sizing: border-box;
             background-color: #f4f4f4;
@@ -97,11 +96,7 @@
                 min-width: 120px;
             }
 
-            #anchorpt1 {
-                margin-top: 20px;
-                width: 250px;
-                font-size: 12px;
-            }
+           
         }
 
 
@@ -113,11 +108,11 @@
             width: 100%;
         }
 
-        #anchorpt1 {
+        /* #anchorpt1 {
             margin-top: 20px;
             float: right;
             width: 750px;
-        }
+        } */
 
         .anchor {
             margin-left: 20px;
@@ -274,51 +269,51 @@
 </head>
 
 
-<header id="t3-header">
-    <div class="row">
-        <div class="col-3 col-3 col-sm-3">
-            <div class="logo-image">
-                <a href="<?= base_url('inicio'); ?>" title="CRF-SP - Conselho Regional de Farmácia do Estado de São Paulo">
-                    <img class="logo-img" src="<?= base_url('public/img/logo.png'); ?>" alt="CRF-SP - Conselho Regional de Farmácia do Estado de São Paulo" />
-                </a>
-            </div>
-        </div>
-        <div class="col-9 col-9 col-sm-9">
-            <div class="site-anchor " style="margin-top: -5px;margin-bottom: 5px;">
-                <div class="custom">
-                    <div id="anchorpt1" class="col-12 col-md-12">
-                        <a accesskey="1" href="javascript:void(0);" class="anchor acess" title="conteudo" onclick="abrirConteudo()">
-                            ir para conteudo <span>1</span>
-                        </a>
-                        <a accesskey="2" href="javascript:void(0);" class="anchor acess" title="menu" onclick="abrirMenu()">
-                            ir para menu <span>2</span>
-                        </a>
-                        <a accesskey="3" href="javascript:void(0);" class="anchor acess" title="rodapé" onclick="abrirRodape()">
-                            ir para rodapé <span>3</span>
-                        </a>
-                        <a accesskey="4" href="javascript:void(0);" class="anchor acess" title="contraste" onclick="contraste();" id="contrasteLink">
-                            alto contraste <span>4</span>
-                        </a>
-                        <a accesskey="5" href="<?= base_url('acessibilidade'); ?>" class="anchor acess " title="acessibilidade">
-                            acessibilidade <span>5</span>
+<header>
+    <div class="row" style="margin: 0px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-3">
+                    <div class="logo-image">
+                        <a href="<?= base_url('inicio'); ?>" title="CRF-SP - Conselho Regional de Farmácia do Estado de São Paulo">
+                            <img class="logo-img" src="<?= base_url('public/img/logo.png'); ?>" alt="CRF-SP - Conselho Regional de Farmácia do Estado de São Paulo" />
                         </a>
                     </div>
                 </div>
+                <div class="col-9" style="text-align: right;">
+           
+                    <a accesskey="1" href="javascript:void(0);" class="anchor acess" title="conteudo" onclick="abrirConteudo()">
+                        ir para conteudo <span>1</span>
+                    </a>
+                    <a accesskey="2" href="javascript:void(0);" class="anchor acess" title="menu" onclick="abrirMenu()">
+                        ir para menu <span>2</span>
+                    </a>
+                    <a accesskey="3" href="javascript:void(0);" class="anchor acess" title="rodapé" onclick="abrirRodape()">
+                        ir para rodapé <span>3</span>
+                    </a>
+                    <a accesskey="4" href="javascript:void(0);" class="anchor acess" title="contraste" onclick="contraste();" id="contrasteLink">
+                        alto contraste <span>4</span>
+                    </a>
+                    <a accesskey="5" href="<?= base_url('acessibilidade'); ?>" class="anchor acess " title="acessibilidade">
+                        acessibilidade <span>5</span>
+                    </a>
+                  
+                </div>
             </div>
-        </div>
 
-        <div class="col-9 col-sm-9 header-utils">
-            <div class="social-icons ">
-                <div vw class="enabled">
-                    <div vw-access-button class="active"></div>
-                    <div vw-plugin-wrapper>
-                        <div class="vw-plugin-top-wrapper"></div>
+            <div class=" header-utils">
+                <div class="social-icons ">
+                    <div vw class="enabled">
+                        <div vw-access-button class="active"></div>
+                        <div vw-plugin-wrapper>
+                            <div class="vw-plugin-top-wrapper"></div>
+                        </div>
                     </div>
+                    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+                    <script>
+                        new window.VLibras.Widget('https://vlibras.gov.br/app');
+                    </script>
                 </div>
-                <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-                <script>
-                    new window.VLibras.Widget('https://vlibras.gov.br/app');
-                </script>
             </div>
         </div>
     </div>
@@ -328,7 +323,7 @@
     <?php $uri = service('uri'); ?>
     <?php if (session()->get('isLoggedIn')) : ?>
 
-        <nav class="navbar navbar-expand-lg navbar-dark  bg-custom row">
+        <nav class="navbar navbar-expand-lg navbar-dark  bg-custom">
             <div class="container" id="menuanchor">
 
                 <?php
@@ -337,7 +332,7 @@
                     $_SESSION['type'] == 0
                 ) {
                 ?>
-                    <div class="col-12 col-sm-12 col-lg-12">
+                    <div class="col-12">
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
@@ -375,7 +370,7 @@
                         <?php
                     } else {
                         ?>
-                            <div class="col-12 col-sm-12 col-lg-12">
+                            <div class="col-12">
                                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                                     <span class="navbar-toggler-icon"></span>
                                 </button>
@@ -385,7 +380,7 @@
                                             <a class="nav-link" href="<?= base_url('inicio'); ?>">Inicio</a>
                                         </li>
                                     </ul>
-                                    <ul class="navbar-nav  menu">
+                                    <ul class="navbar-nav  menuUser" style=" margin-left: 320px;">
                                         <li class="nav-item dropdown ">
                                             <!-- <a class="nav-link" href="<?= base_url('inscrevase') ?>">Inscreva-se</a> -->
                                         </li>
@@ -397,7 +392,7 @@
                             </li> -->
                                     </ul>
 
-                                    <ul class="navbar-nav session">
+                                    <ul class="navbar-nav sessionUser">
                                         <li class="nav-item dropdown ">
                                             <a class="nav-link dropdown-toggle fa fa-sign-out" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <?php
@@ -406,7 +401,7 @@
 
                                             </a>
                                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                                <a class="dropdown-item" href="<?php echo base_url('editarUser') . '/' . $_SESSION['id'] ?>">Editar</a>
+                                                <a class="dropdown-item editarUser" href="<?php echo base_url('editarUser') . '/' . $_SESSION['id'] ?>">Editar</a>
                                                 <a class="dropdown-item" href="<?= base_url('logout') ?>">Sair</a>
                                             </div>
                                     </ul>

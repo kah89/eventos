@@ -74,6 +74,12 @@
             margin-left: 70px;
             margin-right: 70px;
         }
+
+        .sessionUser {
+            margin-left: 260px;
+            text-transform: uppercase;
+        }
+
     }
 </style>
 <script type="text/javascript">

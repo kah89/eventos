@@ -45,15 +45,14 @@ class Users extends BaseController
                     'idUser' => $user['id'],
                 ];
 
-                $acesso->save($data);
-
+                $acesso->save($data);               
                 return redirect()->to('inicio');
             }
         }
 
         echo view('templates/headerAcesso', $data);
         echo view('login');
-        echo view('templates/footer');
+        // echo view('templates/footer');
     }
     //--------------------------------------------------------------------
 
@@ -81,8 +80,6 @@ class Users extends BaseController
         ];
 
         session()->set($data);
-
-
     }
     //--------------------------------------------------------------------
 
@@ -395,7 +392,7 @@ class Users extends BaseController
             $cidade = $cidadeModel->selectCidades();
 
             $data = [
-                'title' => 'Editar Usuário', 
+                'title' => 'Editar Usuário',
                 'options_paises' => $paises,
                 'paises' => $paisModel->findall(),
                 'estados' => $estadoModel->findall(),
@@ -438,7 +435,7 @@ class Users extends BaseController
                     ];
 
                     $password = $this->request->getVar('senha');
-                    if($password != null){
+                    if ($password != null) {
                         $newData['password'] = $password;
                     }
 
@@ -447,12 +444,11 @@ class Users extends BaseController
                     if ($model->save($newData)) {
                         $session = session();
                         $session->setFlashdata('success', 'O usuário' . " ("  . $result['firstname'] . ") " .  'foi alterado com sucesso!');
-                        if($result['type'] == 0){
+                        if ($result['type'] == 0) {
                             return redirect()->to(base_url('alterarUser'));
-                        }else{
+                        } else {
                             return redirect()->to(base_url('eventos'));
                         }
-                        
                     } else {
                         echo "Erro ao salvar";
                         exit;

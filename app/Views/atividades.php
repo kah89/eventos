@@ -26,6 +26,11 @@
             margin-right: 70px;
         }
 
+        .sessionUser {
+            margin-left: 260px;
+            text-transform: uppercase;
+        }
+
     }
 </style>
 <main id="t3-content">

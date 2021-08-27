@@ -76,7 +76,6 @@ $routes->get('/certificado/(:num)', 'PdfController::gerarCertificado');
 
 
 
-
 /**
  * --------------------------------------------------------------------
  * Additional Routing
