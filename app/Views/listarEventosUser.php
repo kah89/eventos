@@ -24,6 +24,7 @@
 
     #encerramento {
         margin-top: 15px;
+        margin-left: 15px;
     }
 
     .card-footer {
@@ -43,6 +44,12 @@
     #cad2 {
         margin-left: 170px;
         color: white;
+    }
+
+    #cad1 {
+        margin-left: 235px;
+        color: white;
+        margin-top: -40px;
     }
 
     .cad2,
@@ -137,10 +144,10 @@
                         $htm .= '<a  data-toggle="modal"';
                         if ($evento['certificado'] == 'Evento não gera certificado.') {
                             $htm .= 'data-target="#certificadoModalN"'
-                                . ' class="btn btn-primary cad2" id="cad2"" >Info</a>';
+                                . ' class="btn btn-primary cad2" id="cad1" >Informação</a>';
                         } else if ($evento['certificado'] == 'Não concluiu todas as atividades.') {
                             $htm .= 'data-target="#certificadoModalNC"'
-                                . ' class="btn btn-primary cad2" id="cad2" >Info</a>';
+                                . ' class="btn btn-primary cad2" id="cad1" >Informação</a>';
                         } else {
                             $htm .= 'data-target="#certificadoModal"'
                                 . 'onclick="setarCampos(' . $evento['id'] . ');"  class="btn btn-primary cad2" id="cad2">Gerar</a>';
