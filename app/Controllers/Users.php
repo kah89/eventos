@@ -52,6 +52,7 @@ class Users extends BaseController
 
         echo view('templates/headerAcesso', $data);
         echo view('login');
+        // echo view('fb_view');
         // echo view('templates/footer');
     }
     //--------------------------------------------------------------------

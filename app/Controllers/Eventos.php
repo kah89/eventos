@@ -27,6 +27,7 @@ class Eventos extends BaseController
                 'title' => 'Eventos',
                 'data' => $eventos,
             ];
+            // var_dump($data); exit;
 
             echo view('templates/header', $data);
             echo view('tdeventos');

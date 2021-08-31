@@ -69,7 +69,7 @@
         box-shadow: 10px 0px 0px 0px #ffffff !important
     }
 
-    .btn-google { 
+    .btn-google {
         color: white;
         background-color: #ea4335
     }
@@ -81,6 +81,8 @@
 </style>
 <script type="text/javascript">
     $(function() {
+      
+
         $('#paises').on('keyup change', function() {
             var id = $('#paises').val();
 
@@ -90,6 +92,8 @@
                 if (id == 1) {
                     $('#estados').html(data);
                     $('#estados').removeAttr('disabled');
+                    $("#estados").val('26');
+                    $("#estados").trigger("change");
 
                     var exteriorCidade = '<option>Selecione o estado acima</option>'
                     $('#cidades').html(exteriorCidade);
@@ -122,6 +126,9 @@
                 if (idPais == 1) {
                     $('#cidades').html(data);
                     $('#cidades').removeAttr('disabled');
+                    if(id_estado == 26){
+                        $("#cidades").val('5270');
+                    }
                 } else {
                     var exteriorCidade = '<option>País estrangeiro não precisa informar a cidade</option>'
                     $('#cidades').html(exteriorCidade);
@@ -130,44 +137,54 @@
             });
         });
 
+        $("#paises").val('1');
+        $("#paises").trigger("change");
+
         $("#telefone").mask("(00) 0000-0000");
-        $("#celular").mask("(00) 00000-0009");
+        $("#celular").mask("(00) 0000-00000");
         $("#cpf").mask("000.000.000-00");
 
         $('#categoria').change(function() {
-            if ($('#categoria').val() != 2) {
+            if ($('#categoria').val() == 1) {
                 $("#farmaceutico").css("display", "none");
-
-                if ($("#uf").prop('required')) {
-                    $("#uf").prop('required', false);
-                }
-                if ($("#crf").prop('required')) {
-                    $("#crf").prop('required', false);
-                }
+                $("#uf").attr('required', 0);
+                $("#crf").attr('required', 0);
             } else {
                 $("#farmaceutico").css("display", "block");
-                if (!$("#uf").prop('required')) {
-                    $("#uf").prop('required', true);
-                }
-                if (!$("#crf").prop('required')) {
-                    $("#crf").prop('required', true);
-                }
+                $("#uf").attr('required', 1);
+                $("#crf").attr('required', 1);
             }
-
         });
 
+        $('#senha, #senha_confirmacao').on('keyup', function() {
+            if ($('#senha').val() == $('#senha_confirmacao').val()) {
+                $('#message').html('Senhas válidas').css('color', 'green');
+            } else
+                $('#message').html('Senhas não batem').css('color', 'red');
+        });
 
+        
 
     });
+
+  
+    function validar(){
+        if  ($('#message').text() != 'Senhas válidas'){
+            returnToPreviousPage();
+    return false;
+        }else{
+            return true;
+        }
+    }
 </script>
-<main id="t3-content">
+<main>
     <div class="container">
         <div class="row">
             <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
                 <div class="card card-signin my-5">
                     <div class="card-body">
                         <h5 class="card-title text-center">Cadastre-se</h5>
-                        <form class="form-signin" method="post">
+                        <form id="myForm" class="form-signin" method="post" onsubmit="return validar();"> 
                             <div class="form-label-group">
                                 <input type="text" id="nome" name="nome" class="form-control" placeholder="Nome" required autofocus>
                             </div>
@@ -209,20 +226,21 @@
                             </div>
 
                             <div class="form-label-group">
-                                <input type="tel" id="telefone" name="telefone" class="form-control" placeholder="Telefone">
+                                <input type="text" id="telefone" name="telefone" class="form-control" placeholder="Telefone">
                             </div>
                             <div class="form-label-group">
-                                <input type="tel" id="celular" name="celular" class="form-control" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}" placeholder="Celular">
+                                <input type="text" id="celular" name="celular" class="form-control" placeholder="Celular">
                             </div>
                             <div class="form-label-group">
                                 <input type="text" id="cpf" name="cpf" class="form-control" placeholder="CPF">
                             </div>
 
                             <div class="form-label-group">
-                                <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" required>
+                                <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" minlength="8" required>
                             </div>
                             <div class="form-label-group">
-                                <input type="password" id="senha_confirmacao" name="senha_confirmacao" class="form-control" placeholder="Confirme a Senha" required>
+                                <input type="password" id="senha_confirmacao" name="senha_confirmacao" class="form-control" placeholder="Confirme a Senha" minlength="8" required>
+                                <span id='message'></span>
                             </div>
 
                             <!-- <div class="custom-control custom-checkbox mb-3"> -->
@@ -238,7 +256,7 @@
                                     <?= $validation->listErrors(); ?>
                                 </div>
                             <?php endif; ?>
-                            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Inscrever</button>
+                            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Cadastrar</button>
                             <hr class="my-4">
                         </form>
                     </div>

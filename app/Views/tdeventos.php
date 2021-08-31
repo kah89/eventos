@@ -105,7 +105,7 @@
     }
 
     #btn,
-    #sobremodal {
+    #btnsobreModal {
         margin-left: 5px;
         margin-top: 10px;
         text-align: center;
@@ -294,7 +294,6 @@
                     if ($evento['dtFim'] > date("Y-m-d")) {
             ?>
 
-
                         <div class="card card-trip__thumbnail  col-12 col-sm-12 col-lg-12                   
                         <?php
                         $destinos = json_decode($evento['destinado']);
@@ -359,7 +358,7 @@
                             <div class="card-footer text-muted" id="card-footer">
                                 <ul class="nav justify-content-center">
                                     <li class="nav-item">
-                                        <a type="button" id="sobremodal" class=" cad2 btn btn-primary" data-toggle="modal" data-target="#sobreModal<?php echo $evento['id'] ?>">
+                                        <a type="button" id="btnsobreModal" class=" cad2 btn btn-primary" data-toggle="modal" data-target="#sobreModal" onclick="preenchermodalSobre('<?php echo $evento['resumo'];?>');" >
                                             Informações
                                         </a>
 
@@ -472,7 +471,7 @@
                             <div class="card-footer text-muted" id="card-footer">
                                 <ul class="nav justify-content-center">
                                     <li class="nav-item">
-                                        <a type="button" id="sobremodal" class=" cad2 btn btn-primary encerrado" data-toggle="modal" data-target="#sobreModal<?php echo $evento['id'] ?>">
+                                        <a type="button" id="btnsobreModal" class=" cad2 btn btn-primary encerrado" data-toggle="modal" data-target="#sobreModal">
                                             Informações
                                         </a>
 
@@ -505,7 +504,7 @@
 
 
     <!-- Modal sobre -->
-    <div class="modal fade" data-backdrop="static" id="sobreModal<?php echo $evento['id'] ?>" tabindex="-1" aria-labelledby="sobreModalLabel" aria-hidden="true">
+    <div class="modal fade" data-backdrop="modal" id="sobreModal" tabindex="-1" aria-labelledby="sobreModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -514,8 +513,8 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <?php echo $evento['resumo']; ?>
+                <div class="modal-body" id="sobreModalContent">
+                    
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary cad2" data-dismiss="modal">Fechar</button>
@@ -584,6 +583,11 @@
         function preenchermodal(id) {
             var link = '<?php echo (base_url('inicio/inscreverEvento/') . "/"); ?>';
             document.getElementById("btnConfirmaInscricao").href = link + id;
+        }
+
+        function preenchermodalSobre(resumo) {
+            
+            document.getElementById("sobreModalContent").innerHTML  =  resumo;
         }
 
         function atribuir() {
