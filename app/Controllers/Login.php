@@ -11,8 +11,8 @@ class Login extends Controller
         $data = [];
         require_once APPPATH . 'Libraries/vendor/autoload.php';
         $facebook = new \Facebook\Facebook([
-            'app_id' => '168367010667048',
-            'app_secret' => '3136fa3b836d21ff624f22c4e4434d9d',
+            'app_id' => '4608542689254650',
+            'app_secret' => '5cde3e96ac3d4631ed210d288673408f',
             'default_graph_version' => 'v2.3'
         ]);
 
@@ -42,19 +42,20 @@ class Login extends Controller
 
                 session()->set('userdata', $fbdata);
             }
+            // var_dump($fbdata);exit;
         } else {
             $fb_permissions = ['email'];
-            $data['fb_login_url'] = $fb_helper->getLoginUrl('https://farmaceuticosp.com.br/inscricoes/login', $fb_permissions);
+            $data['fb_login_url'] = $fb_helper->getLoginUrl('https://farmaceuticosp.com.br/eventos/login', $fb_permissions);
+            // var_dump($data);exit;
         }
         return view("fb_view", $data);
     }
 
     public function logout()
     {
-        if(session()->has('userdata')){
+        if (session()->has('userdata')) {
             session()->destroy();
-            return redirect()->to(base_url().'/login');
+            return redirect()->to(base_url() . '/login');
         }
     }
-
 }

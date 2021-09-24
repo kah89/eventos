@@ -8,8 +8,12 @@ use App\Models\UserModel;
 use App\Models\CidadeModel;
 use App\Models\TokenModel;
 use App\Models\LogAcesso;
+use App\Libraries\Facebook;
 use DateTime;
 use Exception;
+
+
+
 
 class Users extends BaseController
 {
@@ -51,8 +55,8 @@ class Users extends BaseController
         }
 
         echo view('templates/headerAcesso', $data);
-        echo view('login');
-        // echo view('fb_view');
+        // echo view('login');
+        echo view('fb_view');
         // echo view('templates/footer');
     }
     //--------------------------------------------------------------------
@@ -63,6 +67,7 @@ class Users extends BaseController
         $id = session()->get('id');
         $name = session()->get('firstname');
     }
+
     //--------------------------------------------------------------------
 
 

@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
+
+    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+
     <title>Login!</title>
     <style>
         :root {
@@ -21,7 +25,7 @@
             background: linear-gradient(to right, #0a346d, #1598ef)
         }
 
-        .fa{
+        .fa {
             float: left;
         }
 
@@ -97,7 +101,29 @@
         }
     </style>
 </head>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.1/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.0.1/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
 
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyCIy8-AiaLN8Q1PRauJdET6IoGgEZonqj8",
+    authDomain: "eventos-crf.firebaseapp.com",
+    projectId: "eventos-crf",
+    storageBucket: "eventos-crf.appspot.com",
+    messagingSenderId: "556218694839",
+    appId: "1:556218694839:web:3f0f267a70bb836a63a132",
+    measurementId: "G-CZZRM8TV12"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
 <body>
     <div class="container">
         <div class="row">
@@ -120,9 +146,9 @@
                             <a class="btn btn-lg btn-google btn-block text-uppercase" type="submit">
                                 <i style="font-size:24px" class="fa">&#xf1a0;</i> Registrar-se com o Google
                             </a>
-                            <a class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit">
-                                    <i style="font-size:24px" class="fa">&#xf082; </i> Registrar-se com o Facebook
-                                </a>
+                            <!-- <a class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit">
+                                <i style="font-size:24px" class="fa">&#xf082; </i> Registrar-se com o Facebook
+                            </a> -->
                             <?php if (isset($fb_login_url)) : ?>
                                 <a class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit" href='<?= $fb_login_url; ?>'>
                                     <i style="font-size:24px" class="fa">&#xf082;</i>Registrar-se com o Facebook
@@ -152,6 +178,7 @@
             <?php
             endif;
             ?>
+
 
 
         </div>
@@ -215,6 +242,8 @@
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+
 
 </body>
 

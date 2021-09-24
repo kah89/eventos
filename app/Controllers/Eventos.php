@@ -164,18 +164,19 @@ class Eventos extends BaseController
             $atividadeModel = new AtividadeModel();
             $userModel = new UserEvento();
             $modelEvento = new EventoModel();
-            $eventoatual = $modelEvento->select('corSecundaria, corPrimaria ')->where('id = ' . $idEvento)->find()[0];
-
+            $eventoatual = $modelEvento->select('corSecundaria, corPrimaria, dtfim ')->where('id = ' . $idEvento)->find()[0];
+            
             $data = [
                 'title' => 'Lista de atividades ',
                 'data' => $atividadeModel->where('idEvento = ' . $idEvento)->findAll(),
                 'users' => $userModel->findAll(),
                 'color' => $eventoatual['corPrimaria'],
                 'colorSecundaria' => $eventoatual['corSecundaria'],
+                'datafinal' => $eventoatual['dtfim'],
                 // 'colorFH' => $eventoatual['corPrimaria'],
                 // 'colorSecundariaFH' => $eventoatual['corSecundaria'],
             ];
-
+          
             echo view('templates/header', $data);
             echo view('listaEvento');
             echo view('templates/footer');

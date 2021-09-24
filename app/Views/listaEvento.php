@@ -10,7 +10,7 @@
         font: caption;
     }
 
-    #cad,
+    .cad,
     #cad1 {
         width: 40px;
         background-color: #008CBA;
@@ -22,7 +22,7 @@
     }
 
 
-    #cad:hover {
+    .cad:hover {
         box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
     }
 
@@ -46,14 +46,14 @@
             margin-right: 70px;
         }
 
-        .menuUser{
+        .menuUser {
             margin-left: 260px;
         }
 
         .sessionUser {
             margin-left: 260px;
             text-transform: uppercase;
-    }
+        }
     }
 </style>
 <main id="t3-content">
@@ -80,7 +80,7 @@
                             } else {
                                 $tipo = 'Não';
                             }
-                            echo '<tr><td>' . $atividade['id'] . '</td><td>' . $atividade['titulo'] . '</td><td>' . date_format(new DateTime($atividade['dtInicio']), "d/m/Y  - H:i") . '</td><td>' . date_format(new DateTime($atividade['dtFim']), "d/m/Y  - H:i") . '</td>';
+                            echo '<tr><td>' . $atividade['id'] . '</td><td>' . $atividade['titulo'] . '</td><td class="datainicial">' . date_format(new DateTime($atividade['dtInicio']), "d/m/Y H:i") . '</td><td class="datafinal">' . date_format(new DateTime($atividade['dtFim']), "d/m/Y  - H:i") . '</td>';
                             echo '<td>';
                             $inscrito = false;
                             foreach ($users as $userEvento) {
@@ -91,9 +91,9 @@
 
                             if ($inscrito == true) {
 
-                                echo '<a class="btn btn-primary" id="cad" href= ' . base_url('/atividades/inscreverAtividade') . "/" . $atividade['id'] . ' onclick="inscreverAtividade(' . $atividade['id'] . ');"  role="button" style="display:none;" >Ir</a>';
+                                echo '<a class="btn btn-primary cad" id="cad' . $key . '" href= ' . base_url('/atividades/inscreverAtividade') . "/" . $atividade['id'] . ' onclick="inscreverAtividade(' . $atividade['id'] . ');"  role="button" style="display: none;">Ir</a>';
                                 echo '
-                                    <span id="countdown" class="timer"></span>';
+                                    <span id="countdown' . $key . '"  class="timer"></span>';
                             } else {
                                 echo '<a class="btn btn-primary" id="cad1" data-toggle="modal" data-target="#sobreModal">Ir</a>';
                             }
@@ -133,17 +133,55 @@
         }
 
 
-        var upgradeTime =
-            <?php
-             
-            $timestamp = strtotime($data[0]['dtInicio']) - strtotime(date("d-m-Y H:i:s"));
-           
-            echo "$timestamp";
-            ?>;
+        function toISOFormat(dateTimeString) {
+            // Primeiro, dividimos a data completa em duas partes:
+            const [date, time] = dateTimeString.split(' ');
+            // Dividimos a data em dia, mês e ano:
+            const [DD, MM, YYYY] = date.split('/');
+            // Dividimos o tempo em hora e minutos:
+            const [HH, mm] = time.split(':');
+            // Retornamos a data formatada em um padrão compatível com ISO:
+            return `${YYYY}-${MM}-${DD}T${HH}:${mm}`;
+        }
 
-        var seconds = upgradeTime;
-        
-        function timer() {
+        function contador() {
+            var x = document.getElementsByClassName("datainicial");
+            var y = document.getElementsByClassName("datafinal");
+            for (i = 0; i < x.length; i++) {
+                data = toISOFormat(x[i].innerHTML);
+                datafim = toISOFormat(y[i].innerHTML);
+                var dtInicial = new Date(data);
+                var dtFinal = new Date(datafim);
+                var dtAtual = new Date();
+                var seconds = (Date.parse(dtInicial) / 1000) - (Date.parse(dtAtual) / 1000);
+
+                document.getElementById('countdown' + i).innerHTML = timer(seconds);
+
+                if (seconds <= 0) {
+                    document.getElementById('countdown' + i).innerHTML = '';
+                    document.getElementById('cad' + i).style.display = "block";
+                } else {
+                    seconds--;
+                }
+
+                if (<?php $datafinal ?>   <=  dtAtual ) {
+                    clearInterval(countdownTimer);
+                } else {
+                    if (seconds <= 0) {
+                    document.getElementById('countdown' + i).innerHTML = '';
+                    document.getElementById('cad' + i).style.display = "block";
+                } else {
+                    seconds--;
+                }
+                    
+                }
+
+
+            }
+        }
+
+
+        function timer(seconds) {
             var days = Math.floor(seconds / 24 / 60 / 60);
             var hoursLeft = Math.floor((seconds) - (days * 86400));
             var hours = Math.floor(hoursLeft / 3600);
@@ -154,17 +192,10 @@
             function pad(n) {
                 return (n < 10 ? "0" + n : n);
             }
-            document.getElementById('countdown').innerHTML = pad(days) + ":" + pad(hours) + ":" + pad(minutes) + ":" + pad(remainingSeconds);
-            if (seconds <= 0) {
-                clearInterval(countdownTimer);
-                document.getElementById('countdown').innerHTML = '';
-                document.getElementById('cad').style.display = "block";
 
-            } else {
-                seconds--;
-            }
+            return (pad(days)) + ":" + pad(hours) + ":" + pad(minutes) + ":" + pad(remainingSeconds);
         }
-        timer();
-        var countdownTimer = setInterval('timer()', 1000);
+
+        var countdownTimer = setInterval(contador, 1000);
     </script>
 </main>
