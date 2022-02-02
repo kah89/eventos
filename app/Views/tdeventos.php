@@ -1,3 +1,6 @@
+<?= $this->extend('default') ?>
+
+<?= $this->section('content') ?>
 <style>
     h1 {
         text-align: center;
@@ -218,7 +221,7 @@
             margin-right: 65px;
         }
 
-        .menuUser{
+        .menuUser {
             margin-left: 260px;
         }
 
@@ -358,7 +361,7 @@
                             <div class="card-footer text-muted" id="card-footer">
                                 <ul class="nav justify-content-center">
                                     <li class="nav-item">
-                                        <a type="button" id="btnsobreModal" class=" cad2 btn btn-primary" data-toggle="modal" data-target="#sobreModal" onclick="preenchermodalSobre('<?php echo $evento['resumo'];?>');" >
+                                        <a type="button" id="btnsobreModal" class=" cad2 btn btn-primary" data-toggle="modal" data-target="#sobreModal" onclick="preenchermodalSobre('<?php echo $evento['resumo']; ?>');">
                                             Informações
                                         </a>
 
@@ -514,7 +517,7 @@
                     </button>
                 </div>
                 <div class="modal-body" id="sobreModalContent">
-                    
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary cad2" data-dismiss="modal">Fechar</button>
@@ -586,8 +589,8 @@
         }
 
         function preenchermodalSobre(resumo) {
-            
-            document.getElementById("sobreModalContent").innerHTML  =  resumo;
+
+            document.getElementById("sobreModalContent").innerHTML = resumo;
         }
 
         function atribuir() {
@@ -619,5 +622,7 @@
         }
 
         $('#modalInfoTrigger').click();
+
     </script>
 </main>
+<?= $this->endSection() ?>

@@ -29,4 +29,5 @@ class CidadeModel extends Model
 
         return $options;
     }
+
 }

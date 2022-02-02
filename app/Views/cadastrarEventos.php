@@ -1,3 +1,7 @@
+<?= $this->extend('default') ?>
+
+<?= $this->section('content') ?>
+
 <style>
     h2 {
         color: #092e48;
@@ -270,7 +274,7 @@
                                         <select id="assinatura" name="assinatura" class="form-control">
                                             <option selected disabled>Assinatura</option>
                                             <option value="1">Marcos</option>
-                                            <option value="2">Assinatura1</option>
+                                            <option value="2">Marcelo</option>
                                             <option value="3">Assinatura2</option>
                                         </select>
                                     </div>
@@ -350,3 +354,4 @@
         }
     }
 </script>
+<?= $this->endSection() ?>

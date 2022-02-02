@@ -1,3 +1,7 @@
+<?= $this->extend('default') ?>
+
+<?= $this->section('content') ?>
+
 <style>
     h2 {
         color: #092e48;
@@ -216,15 +220,15 @@
                                         }
                                         if ($assinatura == 1) {
                                             echo '<option value="1" id="1" selected="selected">Marcos</option>';
-                                            echo '<option value="2" id="2">Assinatura1</option>';
+                                            echo '<option value="2" id="2">Marcelo</option>';
                                             echo '<option value="3" id="3">Assinatura2</option>';
                                         } else if ($assinatura == 2) {
                                             echo '<option value="1" id="1">Marcos</option>';
-                                            echo '<option value="2" id="2" selected="selected">Assinatura1</option>';
+                                            echo '<option value="2" id="2" selected="selected">Marcelo</option>';
                                             echo '<option value="3" id="3">Assinatura2</option>';
                                         } else {
                                             echo '<option value="1" id="1">Marcos</option>';
-                                            echo '<option value="2" id="2" >Assinatura1</option>';
+                                            echo '<option value="2" id="2" >Marcelo</option>';
                                             echo '<option value="3" id="3" selected="selected">Assinatura2</option>';
                                         }
                                         ?>
@@ -282,7 +286,7 @@
                                     foreach ($data as $key => $resultado) {
                                         $selecionado = $data['tipo'] == $id;
                                         if ($selecionado) {
-                                            $tipo = $resultado['tipo'];
+                                            $tipo = $data['tipo'];
                                         }
                                     }
                                     if ($tipo == 1) {
@@ -335,3 +339,4 @@
         }
     }
 </script>
+<?= $this->endSection() ?>

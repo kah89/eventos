@@ -1,3 +1,7 @@
+<?= $this->extend('default') ?>
+
+<?= $this->section('content') ?>
+
 <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.css" />
 <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.js"></script> -->
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" />
@@ -172,3 +176,4 @@
     }
     ?>
 </main>
+<?= $this->endSection() ?>

@@ -32,8 +32,8 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 // $routes->get('/', 'Home::index');
-$routes->match(['get','post'],'/', 'Login::index');
-// $routes->match(['get','post'],'/', 'Users::index');
+// $routes->match(['get','post'],'/', 'Login::index');
+$routes->match(['get','post'],'/', 'Users::index');
 $routes->match(['get','post'],'/registro', 'Users::register');
 $routes->match(['get','post'],'/recuperacao', 'Users::recuperacaoSenha');
 $routes->match(['get','post'],'/recuperacao/(:any)', 'Users::novasenha/$1');
@@ -68,12 +68,17 @@ $routes->match(['get','post'],'/emitirCertificado', 'Inscritos::emitirCertificad
 /* AJAX */
 $routes->match(['get','post'],'/cidade', 'AjaxCidade::getCidades');
 $routes->match(['get','post'],'/estado', 'AjaxEstado::getEstados');
+$routes->match(['get','post'],'/atividadesForma', 'Pesquisa::getForma');
 
 // $routes->match(['get','post'],'/concluirAtividade', 'Dashboard::concluirAtividade');
 $routes->match(['get','post'],'/verificarConclusao/(:num)', 'Atividades::verificarConclusao');
 
 $routes->get('/certificadoVizualizacao/(:num)', 'PdfController::index');
 $routes->get('/certificado/(:num)', 'PdfController::gerarCertificado');
+
+$routes->match(['get','post'],'/pesquisaSatifacao', 'Pesquisa::pesquisaSatifacao');
+$routes->match(['get','post'],'/cadastrarPesquisa', 'Pesquisa::cadastrarPesquisa');
+$routes->match(['get','post'],'/resultadoPesquisa', 'Pesquisa::resultadoPesquisa');
 
 
 

@@ -1,3 +1,6 @@
+<?= $this->extend('default') ?>
+
+<?= $this->section('content') ?>
 <script src="https://apis.google.com/_/scs/abc-static/_/js/k=gapi.gapi.en.2cdKFnNWjuc.O/m=auth/rt=j/sv=1/d=1/ed=1/rs=AHpOoo-rZMnae0kdWLu9CWmKEzOTJj_h7w/cb=gapi.loaded_0" nonce="suGVki+3mXoPhFFxRPvpGA" async=""></script>
 <style>
     h2 {
@@ -64,3 +67,4 @@
         ?>
     </div>
 </main>
+<?= $this->endSection() ?>

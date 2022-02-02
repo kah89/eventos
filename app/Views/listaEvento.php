@@ -1,3 +1,7 @@
+<?= $this->extend('default') ?>
+
+<?= $this->section('content') ?>
+
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.css" />
 <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.js"></script>
 <script src="https://rawgit.com/HugoGiraudel/Countdown.js/master/countdown.js"></script>
@@ -80,7 +84,7 @@
                             } else {
                                 $tipo = 'Não';
                             }
-                            echo '<tr><td>' . $atividade['id'] . '</td><td>' . $atividade['titulo'] . '</td><td class="datainicial">' . date_format(new DateTime($atividade['dtInicio']), "d/m/Y H:i") . '</td><td class="datafinal">' . date_format(new DateTime($atividade['dtFim']), "d/m/Y  - H:i") . '</td>';
+                            echo '<tr><td>' . $atividade['id'] . '</td><td>' . $atividade['titulo'] . '</td><td class="datainicial">' . date_format(new DateTime($atividade['dtInicio']), "d/m/Y H:i") . '</td><td class="datafinal">' . date_format(new DateTime($atividade['dtFim']), "d/m/Y H:i") . '</td>';
                             echo '<td>';
                             $inscrito = false;
                             foreach ($users as $userEvento) {
@@ -146,12 +150,11 @@
 
         function contador() {
             var x = document.getElementsByClassName("datainicial");
-            var y = document.getElementsByClassName("datafinal");
+            // var dtfim = new Date('<?php echo $datafinal; ?>');
+
             for (i = 0; i < x.length; i++) {
                 data = toISOFormat(x[i].innerHTML);
-                datafim = toISOFormat(y[i].innerHTML);
                 var dtInicial = new Date(data);
-                var dtFinal = new Date(datafim);
                 var dtAtual = new Date();
                 var seconds = (Date.parse(dtInicial) / 1000) - (Date.parse(dtAtual) / 1000);
 
@@ -164,18 +167,13 @@
                     seconds--;
                 }
 
-                if (<?php $datafinal ?>   <=  dtAtual ) {
-                    clearInterval(countdownTimer);
-                } else {
-                    if (seconds <= 0) {
-                    document.getElementById('countdown' + i).innerHTML = '';
-                    document.getElementById('cad' + i).style.display = "block";
-                } else {
-                    seconds--;
+                if (i == (x.length-1)) {
+                    var y = document.getElementsByClassName("datafinal");
+                    dtfim = new Date(toISOFormat(y[i].innerHTML));                    
+                    if (dtfim < dtAtual) {
+                        clearInterval(countdownTimer);
+                    } 
                 }
-                    
-                }
-
 
             }
         }
@@ -199,3 +197,4 @@
         var countdownTimer = setInterval(contador, 1000);
     </script>
 </main>
+<?= $this->endSection() ?>

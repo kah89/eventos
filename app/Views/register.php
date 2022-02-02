@@ -1,3 +1,7 @@
+<?= $this->extend('default') ?>
+
+<?= $this->section('content') ?>
+
 <style>
     :root {
         --input-padding-x: 1.5rem;
@@ -269,3 +273,4 @@
         </div>
     </div>
 </main>
+<?= $this->endSection() ?>

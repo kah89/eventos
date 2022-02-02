@@ -82,7 +82,7 @@
     'bold' => $fontDir . '/oxygen_bold_2cee93c71dbc4a2f6ae2610fcf81376a',
   ),
   'roboto' => array(
-    '300' => $fontDir . '/roboto_300_91c8e20f86c491647e774d4f84245c39',
-    'normal' => $fontDir . '/roboto_normal_fb1c39737fd1d39aafe418d6240e4770',
+    '300' => $fontDir . '/roboto_300_080df75d218a8ebe8b75f6ba7182d343',
+    'normal' => $fontDir . '/roboto_normal_ad149bced3f7c2e0ff246c3940f6b965',
   ),
 ) ?>

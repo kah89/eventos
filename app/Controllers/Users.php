@@ -8,12 +8,8 @@ use App\Models\UserModel;
 use App\Models\CidadeModel;
 use App\Models\TokenModel;
 use App\Models\LogAcesso;
-use App\Libraries\Facebook;
 use DateTime;
 use Exception;
-
-
-
 
 class Users extends BaseController
 {
@@ -49,14 +45,13 @@ class Users extends BaseController
                     'idUser' => $user['id'],
                 ];
 
-                $acesso->save($data);               
+                $acesso->save($data);
                 return redirect()->to('inicio');
             }
         }
 
         echo view('templates/headerAcesso', $data);
-        // echo view('login');
-        echo view('fb_view');
+        echo view('login');
         // echo view('templates/footer');
     }
     //--------------------------------------------------------------------
@@ -67,7 +62,6 @@ class Users extends BaseController
         $id = session()->get('id');
         $name = session()->get('firstname');
     }
-
     //--------------------------------------------------------------------
 
 
@@ -354,18 +348,26 @@ class Users extends BaseController
                 $model =  new UserModel();
                 $user = $model->where('email', $email)->find();
 
-                if ($user[0] != NULL) {
-                    if ($this->recuperarSenha($user[0])) {
-                        $session = session();
-                        $session->setFlashdata('success', 'Um e-mail de redefinição foi enviado!');
-                        return redirect()->to(base_url());
+                if ($user != NULL) {
+                    if ($user[0] != NULL) {
+                        if ($this->recuperarSenha($user[0])) {
+                            $session = session();
+                            $session->setFlashdata('success', 'Um e-mail de redefinição foi enviado!');
+                            return redirect()->to(base_url());
+                        } else {
+                            echo "Erro ao enviar email";
+                            exit;
+                        }
                     } else {
-                        echo "Erro ao enviar email";
+                        $session = session();
+                        $session->setFlashdata('danger', 'Esse email não está cadastrado em nossa base de dados!');
+                        return redirect()->to(base_url('recuperacao'));
                         exit;
                     }
                 } else {
-                    echo "<h1>Esse email não está cadastrado em nossa base de dados!</h1>";
-                    echo "<a href='" . base_url() . "' style='background-color: #007bff;color: white;padding: 11px;border-radius: 12px;font-size: larger;font-weight: bold;text-decoration: none;font-family: sans-serif;'>Entre!</a>";
+                    $session = session();
+                    $session->setFlashdata('danger', 'Esse email não está cadastrado em nossa base de dados!');
+                    return redirect()->to(base_url('recuperacao'));
                     exit;
                 }
             }

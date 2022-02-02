@@ -1,3 +1,4 @@
+<?= $this->section('footer') ?>
 <style>
     .footer {
         position: absolute;
@@ -35,3 +36,4 @@ if (session()->get('isLoggedIn')) : ?>
 
     </html>
 <?php endif; ?>
+<?= $this->endSection() ?>

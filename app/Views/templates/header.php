@@ -1,3 +1,4 @@
+<?= $this->section('header') ?>
 <!doctype html>
 <html lang="pt-Br">
 
@@ -417,3 +418,4 @@
     <?php
     endif;
     ?>
+    <?= $this->endSection() ?>

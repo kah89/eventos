@@ -92,7 +92,7 @@
                 if ($data['assinatura'] == 1) {
                     echo base_url('/public/img/marcos.jpg');
                 } else if ($data['assinatura'] == 2) {
-                    echo base_url('/public/img/assinatura1.jpg');;
+                    echo base_url('/public/img/marcelo.jpg');;
                 } else if ($data['assinatura'] == 3) {
                     echo base_url('/public/img/assinatura2.jpg');;
                 }
@@ -106,7 +106,8 @@
 <body id="t3-content">
     <article id="conteudo-certificado" >
 
-        <?php if (count($data) > 0) {
+        <?php
+        //  if (count($data) > 0) {
             // var_dump($data);exit;
         ?>
             <section>
@@ -122,7 +123,9 @@
                     ?> em São Paulo - SP.</p>
             </section>
 
-        <?php } ?>
+        <?php 
+    // }
+     ?>
 
     </article>
 

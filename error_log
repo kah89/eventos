@@ -4,3 +4,23 @@
 [23-Mar-2021 16:03:03 UTC] PHP Parse error:  syntax error, unexpected '}', expecting end of file in /home/crfsp010/public_html/eventosonline/eventos/dbcontest.php on line 35
 [23-Mar-2021 16:03:03 UTC] PHP Parse error:  syntax error, unexpected '}', expecting end of file in /home/crfsp010/public_html/eventosonline/eventos/dbcontest.php on line 35
 [23-Mar-2021 16:03:03 UTC] PHP Parse error:  syntax error, unexpected '}', expecting end of file in /home/crfsp010/public_html/eventosonline/eventos/dbcontest.php on line 35
+[03-Dec-2021 13:41:12 America/Sao_Paulo] PHP Fatal error:  Uncaught ErrorException: fwrite(): write of 952 bytes failed with errno=28 No space left on device in /home/crfsp010/public_html/eventos/system/Log/Handlers/FileHandler.php:143
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(8, 'fwrite(): write...', '/home/crfsp010/...', 143, Array)
+#1 /home/crfsp010/public_html/eventos/system/Log/Handlers/FileHandler.php(143): fwrite(Resource id #109, 'CRITICAL - 2021...')
+#2 /home/crfsp010/public_html/eventos/system/Log/Logger.php(381): CodeIgniter\Log\Handlers\FileHandler->handle('critical', 'Undefined varia...')
+#3 /home/crfsp010/public_html/eventos/system/Common.php(756): CodeIgniter\Log\Logger->log('critical', 'Undefined varia...', Array)
+#4 /home/crfsp010/public_html/eventos/system/Debug/Exceptions.php(156): log_message('critical', 'Undefined varia...', Array)
+#5 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ErrorException))
+#6 {main}
+  thrown in /home/crfsp010/public_html/eventos/system/Log/Handlers/FileHandler.php on line 143
+[06-Dec-2021 12:29:43 America/Sao_Paulo] PHP Fatal error:  Uncaught ErrorException: fwrite(): write of 952 bytes failed with errno=28 No space left on device in /home/crfsp010/public_html/eventos/system/Log/Handlers/FileHandler.php:143
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(8, 'fwrite(): write...', '/home/crfsp010/...', 143, Array)
+#1 /home/crfsp010/public_html/eventos/system/Log/Handlers/FileHandler.php(143): fwrite(Resource id #109, 'CRITICAL - 2021...')
+#2 /home/crfsp010/public_html/eventos/system/Log/Logger.php(381): CodeIgniter\Log\Handlers\FileHandler->handle('critical', 'Undefined varia...')
+#3 /home/crfsp010/public_html/eventos/system/Common.php(756): CodeIgniter\Log\Logger->log('critical', 'Undefined varia...', Array)
+#4 /home/crfsp010/public_html/eventos/system/Debug/Exceptions.php(156): log_message('critical', 'Undefined varia...', Array)
+#5 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ErrorException))
+#6 {main}
+  thrown in /home/crfsp010/public_html/eventos/system/Log/Handlers/FileHandler.php on line 143

@@ -1,3 +1,7 @@
+<?= $this->extend('default') ?>
+
+<?= $this->section('content') ?>
+
 <style>
     :root {
         --input-padding-x: 1.5rem;
@@ -80,6 +84,11 @@
     }
 </style>
 <main id="t3-content">
+    <?php if (session()->get('danger')) { ?>
+        <script>
+            $msg = '<?= session()->get('danger'); ?>';
+        </script>
+    <?php } ?>
     <div class="container">
         <div class="row">
             <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
@@ -107,4 +116,27 @@
             </div>
         </div>
     </div>
+    <script>
+        toastr.options = {
+            "closeButton": true,
+            "newestOnTop": false,
+            "progressBar": true,
+            "preventDuplicates": false,
+            "positionClass": "toast-top-right",
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut",
+        }
+
+        if ($msg) {
+            toastr.info($msg);
+        }
+    </script>
 </main>
+<?= $this->endSection() ?>

@@ -1,3 +1,7 @@
+<?= $this->extend('default') ?>
+
+<?= $this->section('content') ?>
+
 <style>
     h1 {
         text-align: center;
@@ -81,3 +85,4 @@
         </ul>
     </section>
 </main>
+<?= $this->endSection() ?>
